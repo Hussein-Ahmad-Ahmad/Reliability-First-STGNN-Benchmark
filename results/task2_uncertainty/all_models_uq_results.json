@@ -1,0 +1,9 @@
+{
+  "manuscript": {
+    "uncalibrated_picp": 0.132,
+    "z_score": 9.876,
+    "calibrated_picp": 0.85,
+    "calibrated_mpiw": 17.3
+  },
+  "models": []
+}

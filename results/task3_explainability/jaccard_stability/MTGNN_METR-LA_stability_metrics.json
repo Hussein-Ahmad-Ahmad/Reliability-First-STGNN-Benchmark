@@ -1,0 +1,25 @@
+{
+  "model": "MTGNN",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "stability_jaccard": 0.022844950213371268,
+  "validity_mae_increase": 0.049808502197265625,
+  "stability_detail": {
+    "noise_0.05": {
+      "mean_jaccard_across_samples": 0.022844950213371268,
+      "std_jaccard_across_samples": 0.025322720160182353,
+      "mean_intra_sample_std": 1.3530843112619096e-18
+    },
+    "noise_0.1": {
+      "mean_jaccard_across_samples": 0.022844950213371268,
+      "std_jaccard_across_samples": 0.025322720160182353,
+      "mean_intra_sample_std": 1.3530843112619096e-18
+    },
+    "noise_0.2": {
+      "mean_jaccard_across_samples": 0.022844950213371268,
+      "std_jaccard_across_samples": 0.025322720160182353,
+      "mean_intra_sample_std": 1.3530843112619096e-18
+    }
+  },
+  "source_stability_file": "d:\\original\\experiments\\publishable_experiment\\results\\xai\\MTGNN\\METR-LA_stability_metrics.json"
+}

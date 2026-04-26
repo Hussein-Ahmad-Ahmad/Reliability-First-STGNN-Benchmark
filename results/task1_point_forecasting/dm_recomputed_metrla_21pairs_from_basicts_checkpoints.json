@@ -1,0 +1,392 @@
+{
+  "source_root": "D:\\Hussein-Files\\original\\experiments\\basicts\\checkpoints",
+  "fresh_root": "results\\task1_point_forecasting\\fresh_inference_dumps",
+  "dataset": "METR-LA",
+  "seeds": [
+    43,
+    44,
+    45
+  ],
+  "pairs_total": 21,
+  "pairs_tested": 21,
+  "rows": [
+    {
+      "pair": "D2STGNN_vs_MegaCRN",
+      "model1": "D2STGNN",
+      "model2": "MegaCRN",
+      "winner_by_dm_sign": "MegaCRN",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 16.730891747934123,
+      "p_value": 0.0,
+      "mean_loss_diff": 0.5291544795036316,
+      "hac_se": 0.03162739245915986,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "D2STGNN_vs_MTGNN",
+      "model1": "D2STGNN",
+      "model2": "MTGNN",
+      "winner_by_dm_sign": "D2STGNN",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": -33.67655198093587,
+      "p_value": 0.0,
+      "mean_loss_diff": -1.871291995048523,
+      "hac_se": 0.055566614898931825,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "D2STGNN_vs_STNorm",
+      "model1": "D2STGNN",
+      "model2": "STNorm",
+      "winner_by_dm_sign": "STNorm",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 20.81494132399436,
+      "p_value": 0.0,
+      "mean_loss_diff": 0.8045730590820312,
+      "hac_se": 0.03865363089707882,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "D2STGNN_vs_STGCNChebGraphConv",
+      "model1": "D2STGNN",
+      "model2": "STGCNChebGraphConv",
+      "winner_by_dm_sign": "STGCNChebGraphConv",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 22.52866771113974,
+      "p_value": 0.0,
+      "mean_loss_diff": 0.5411495566368103,
+      "hac_se": 0.024020486412040618,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "D2STGNN_vs_STID",
+      "model1": "D2STGNN",
+      "model2": "STID",
+      "winner_by_dm_sign": "STID",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 27.52904888476255,
+      "p_value": 0.0,
+      "mean_loss_diff": 0.6870653629302979,
+      "hac_se": 0.02495783148216906,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "D2STGNN_vs_STAEformer",
+      "model1": "D2STGNN",
+      "model2": "STAEformer",
+      "winner_by_dm_sign": "STAEformer",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 33.46960054111531,
+      "p_value": 0.0,
+      "mean_loss_diff": 0.7114858627319336,
+      "hac_se": 0.021257674164886362,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MegaCRN_vs_MTGNN",
+      "model1": "MegaCRN",
+      "model2": "MTGNN",
+      "winner_by_dm_sign": "MegaCRN",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": -35.394899720005554,
+      "p_value": 0.0,
+      "mean_loss_diff": -2.4004464149475098,
+      "hac_se": 0.06781899183036118,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MegaCRN_vs_STNorm",
+      "model1": "MegaCRN",
+      "model2": "STNorm",
+      "winner_by_dm_sign": "STNorm",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 6.242993836746059,
+      "p_value": 4.2927372767564975e-10,
+      "mean_loss_diff": 0.27541860938072205,
+      "hac_se": 0.04411643140821588,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MegaCRN_vs_STGCNChebGraphConv",
+      "model1": "MegaCRN",
+      "model2": "STGCNChebGraphConv",
+      "winner_by_dm_sign": "STGCNChebGraphConv",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 0.6314117578317038,
+      "p_value": 0.5277713300888935,
+      "mean_loss_diff": 0.01199505664408207,
+      "hac_se": 0.018997201897654917,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MegaCRN_vs_STID",
+      "model1": "MegaCRN",
+      "model2": "STID",
+      "winner_by_dm_sign": "STID",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 4.295538692924544,
+      "p_value": 1.7426963664357586e-05,
+      "mean_loss_diff": 0.15791088342666626,
+      "hac_se": 0.0367616019119491,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MegaCRN_vs_STAEformer",
+      "model1": "MegaCRN",
+      "model2": "STAEformer",
+      "winner_by_dm_sign": "STAEformer",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 6.429142263539036,
+      "p_value": 1.2832601647971842e-10,
+      "mean_loss_diff": 0.1823314130306244,
+      "hac_se": 0.028360145966074304,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MTGNN_vs_STNorm",
+      "model1": "MTGNN",
+      "model2": "STNorm",
+      "winner_by_dm_sign": "STNorm",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 52.07951914478428,
+      "p_value": 0.0,
+      "mean_loss_diff": 2.6758649349212646,
+      "hac_se": 0.051380369459291565,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MTGNN_vs_STGCNChebGraphConv",
+      "model1": "MTGNN",
+      "model2": "STGCNChebGraphConv",
+      "winner_by_dm_sign": "STGCNChebGraphConv",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 42.82856770708923,
+      "p_value": 0.0,
+      "mean_loss_diff": 2.4124414920806885,
+      "hac_se": 0.056327858278607985,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MTGNN_vs_STID",
+      "model1": "MTGNN",
+      "model2": "STID",
+      "winner_by_dm_sign": "STID",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 46.966585173691996,
+      "p_value": 0.0,
+      "mean_loss_diff": 2.5583572387695312,
+      "hac_se": 0.05447185971277676,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "MTGNN_vs_STAEformer",
+      "model1": "MTGNN",
+      "model2": "STAEformer",
+      "winner_by_dm_sign": "STAEformer",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 39.92535619654883,
+      "p_value": 0.0,
+      "mean_loss_diff": 2.582777976989746,
+      "hac_se": 0.0646901674283122,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.0,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "STNorm_vs_STGCNChebGraphConv",
+      "model1": "STNorm",
+      "model2": "STGCNChebGraphConv",
+      "winner_by_dm_sign": "STNorm",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": -7.258498160907563,
+      "p_value": 3.914646384828302e-13,
+      "mean_loss_diff": -0.26342353224754333,
+      "hac_se": 0.03629174057882606,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 3.914646384828302e-12,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "STNorm_vs_STID",
+      "model1": "STNorm",
+      "model2": "STID",
+      "winner_by_dm_sign": "STNorm",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": -3.0065354079853575,
+      "p_value": 0.0026424327748841847,
+      "mean_loss_diff": -0.11750771105289459,
+      "hac_se": 0.03908409351867074,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 2.650045516361388e-09,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "STNorm_vs_STAEformer",
+      "model1": "STNorm",
+      "model2": "STAEformer",
+      "winner_by_dm_sign": "STNorm",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": -2.3121559043199373,
+      "p_value": 0.02076909331162513,
+      "mean_loss_diff": -0.09308716654777527,
+      "hac_se": 0.04025990045647658,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 2.650045516361388e-09,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "STGCNChebGraphConv_vs_STID",
+      "model1": "STGCNChebGraphConv",
+      "model2": "STID",
+      "winner_by_dm_sign": "STID",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 4.684192382676014,
+      "p_value": 2.810659293528417e-06,
+      "mean_loss_diff": 0.14591582119464874,
+      "hac_se": 0.031150689227518246,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 2.650045516361388e-09,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "STGCNChebGraphConv_vs_STAEformer",
+      "model1": "STGCNChebGraphConv",
+      "model2": "STAEformer",
+      "winner_by_dm_sign": "STAEformer",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 6.283396070556379,
+      "p_value": 3.312556895451735e-10,
+      "mean_loss_diff": 0.17033635079860687,
+      "hac_se": 0.027108962873881672,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 2.650045516361388e-09,
+      "significant_after_holm": true
+    },
+    {
+      "pair": "STID_vs_STAEformer",
+      "model1": "STID",
+      "model2": "STAEformer",
+      "winner_by_dm_sign": "STAEformer",
+      "seeds_used": [
+        43,
+        44,
+        45
+      ],
+      "dm_stat": 1.1916813808649176,
+      "p_value": 0.23338620143394317,
+      "mean_loss_diff": 0.02442052587866783,
+      "hac_se": 0.020492495956380145,
+      "n_obs": 20493,
+      "p_value_holm_corrected": 0.46677240286788635,
+      "significant_after_holm": false
+    }
+  ]
+}

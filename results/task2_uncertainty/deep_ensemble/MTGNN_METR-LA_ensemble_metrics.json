@@ -1,0 +1,15 @@
+{
+  "model": "MTGNN",
+  "dataset": "METR-LA",
+  "n_seeds": 4,
+  "PICP": 0.20402601241710672,
+  "MPIW": 10.265181541442871,
+  "target_coverage": 0.85,
+  "coverage_error": 0.6459739875828933,
+  "NLL": 101405822025728.0,
+  "CRPS": 12.810393501612875,
+  "mean_prediction": 54.42299270629883,
+  "mean_uncertainty": 3.564297914505005,
+  "uncertainty_min": 0.0,
+  "uncertainty_max": 31.001005172729492
+}

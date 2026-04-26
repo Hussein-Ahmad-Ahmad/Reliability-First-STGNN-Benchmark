@@ -1,0 +1,74 @@
+# ==============================================================================
+# STGNN-Reliability-Benchmark .gitignore
+# Large binary files excluded from version control
+# ==============================================================================
+
+# Model checkpoint weights (large .pt files — use release assets or DVC)
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+
+# Large numpy arrays and pickle files
+results/**/*.npy
+results/**/*.npz
+results/**/*.pkl
+datasets/**/*.npy
+datasets/**/*.pkl
+datasets/**/*.dat
+
+# Raw inference prediction dumps (6.5GB — too large for GitHub)
+results/task1_point_forecasting/fresh_inference_dumps/
+
+# Zip archives
+*.zip
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# ==============================================================================
+# WHAT IS INCLUDED (tracked by git):
+#   - All source code (.py files)
+#   - All JSON results files
+#   - All config files
+#   - Dataset metadata (adj_mx.pkl, desc.json, meta.json)
+#   - Framework code (basicts library)
+#   - Model architectures
+#   - Documentation
+# ==============================================================================
+
+# Override: keep small dataset metadata files
+!datasets/**/adj_mx.pkl
+!datasets/**/desc.json
+!datasets/**/meta.json

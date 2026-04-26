@@ -1,0 +1,37 @@
+{
+  "model": "STAEformer",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    3
+  ],
+  "non_zero_count": 473868,
+  "top_10_sensors": [
+    26,
+    57,
+    91,
+    156,
+    196,
+    109,
+    16,
+    181,
+    177,
+    39
+  ],
+  "sensor_importance_mean": 160.20745849609375,
+  "sensor_importance_std": 139.62147521972656,
+  "sensor_importance_min": 20.916034698486328,
+  "sensor_importance_max": 1303.9471435546875,
+  "top_sensor_importance_values": [
+    1303.9471435546875,
+    1132.30810546875,
+    903.1226806640625,
+    616.3657836914062,
+    596.002685546875
+  ],
+  "status": "pass"
+}

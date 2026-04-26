@@ -1,0 +1,24 @@
+{
+  "model": "MTGNN",
+  "dataset": "PEMS04",
+  "num_samples": 100,
+  "target_timestep": 0,
+  "top_10_sensors": [
+    60,
+    274,
+    131,
+    130,
+    257,
+    266,
+    132,
+    273,
+    49,
+    129
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.8760964274406433,
+    "std": 0.023661168292164803,
+    "min": 0.7653422355651855,
+    "max": 0.9248450994491577
+  }
+}

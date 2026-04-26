@@ -1,0 +1,248 @@
+{
+  "DCRNN": [
+    {
+      "model": "DCRNN",
+      "config": "METR-LA_100_12_12",
+      "hash": "5f21d6bbc9aa6f4d3bb3424886326b13",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\DCRNN\\METR-LA_100_12_12\\5f21d6bbc9aa6f4d3bb3424886326b13\\DCRNN_best_val_MAE.pt",
+      "config_path": "baselines/DCRNN/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\DCRNN\\METR-LA_100_12_12\\5f21d6bbc9aa6f4d3bb3424886326b13\\test_metrics.json",
+      "MAE": 3.567603203722415,
+      "metrics": {
+        "overall": {
+          "MAE": 3.567603203722415,
+          "MAPE": 0.10193701051236272,
+          "RMSE": 7.141773031415713
+        },
+        "horizon_3": {
+          "MAE": 3.021030006911224,
+          "MAPE": 0.08036805905781785,
+          "RMSE": 5.868178276676879
+        },
+        "horizon_6": {
+          "MAE": 3.5748244251785026,
+          "MAPE": 0.10167507673140969,
+          "RMSE": 7.112856070329279
+        },
+        "horizon_12": {
+          "MAE": 4.376829570165535,
+          "MAPE": 0.13362959993801587,
+          "RMSE": 8.714291817698907
+        }
+      }
+    }
+  ],
+  "D2STGNN": [
+    {
+      "model": "D2STGNN",
+      "config": "METR-LA_100_12_12",
+      "hash": "e15c412ef6fd29dda965a82c60190801",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\D2STGNN\\METR-LA_100_12_12\\e15c412ef6fd29dda965a82c60190801\\D2STGNN_best_val_MAE.pt",
+      "config_path": "baselines/D2STGNN/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\D2STGNN\\METR-LA_100_12_12\\e15c412ef6fd29dda965a82c60190801\\test_metrics.json",
+      "MAE": 2.874322851889348,
+      "metrics": {
+        "overall": {
+          "MAE": 2.874322851889348,
+          "MAPE": 0.07796161854980778,
+          "RMSE": 5.9067569742484665
+        },
+        "horizon_3": {
+          "MAE": 2.5615358520791287,
+          "MAPE": 0.06550689247283144,
+          "RMSE": 4.9269467306935395
+        },
+        "horizon_6": {
+          "MAE": 2.911979851133541,
+          "MAPE": 0.07943491314128041,
+          "RMSE": 5.964088620474404
+        },
+        "horizon_12": {
+          "MAE": 3.3338236596528494,
+          "MAPE": 0.09539036488786239,
+          "RMSE": 7.021279101268535
+        }
+      }
+    }
+  ],
+  "MegaCRN": [
+    {
+      "model": "MegaCRN",
+      "config": "METR-LA_100_12_12",
+      "hash": "86ed66fad8fa6343401710ebdbce8c76",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\MegaCRN\\METR-LA_100_12_12\\86ed66fad8fa6343401710ebdbce8c76\\MegaCRN_best_val_MAE.pt",
+      "config_path": "baselines/MegaCRN/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\MegaCRN\\METR-LA_100_12_12\\86ed66fad8fa6343401710ebdbce8c76\\test_metrics.json",
+      "MAE": 3.0432694106260763,
+      "metrics": {
+        "overall": {
+          "MAE": 3.0432694106260763,
+          "MAPE": 0.08127934128934705,
+          "RMSE": 6.190561620587555
+        },
+        "horizon_3": {
+          "MAE": 2.6653952341958833,
+          "MAPE": 0.06618113057253289,
+          "RMSE": 5.125121949037797
+        },
+        "horizon_6": {
+          "MAE": 3.0702259657846707,
+          "MAPE": 0.08179608609670538,
+          "RMSE": 6.187500924125825
+        },
+        "horizon_12": {
+          "MAE": 3.5903345723133615,
+          "MAPE": 0.1023067186971563,
+          "RMSE": 7.483332882119962
+        }
+      }
+    }
+  ],
+  "STAEformer": [
+    {
+      "model": "STAEformer",
+      "config": "METR-LA_100_12_12",
+      "hash": "1bc69bcfbc868608094762772a17ef04",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\STAEformer\\METR-LA_100_12_12\\1bc69bcfbc868608094762772a17ef04\\STAEformer_best_val_MAE.pt",
+      "config_path": "baselines/STAEformer/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\STAEformer\\METR-LA_100_12_12\\1bc69bcfbc868608094762772a17ef04\\test_metrics.json",
+      "MAE": 2.940235065325483,
+      "metrics": {
+        "overall": {
+          "MAE": 2.940235065325483,
+          "MAPE": 0.08155348482030274,
+          "RMSE": 5.9950082622893595
+        },
+        "horizon_3": {
+          "MAE": 2.650819463167251,
+          "MAPE": 0.06874886989629975,
+          "RMSE": 5.109409224319711
+        },
+        "horizon_6": {
+          "MAE": 2.97001561106739,
+          "MAPE": 0.08218092022764895,
+          "RMSE": 6.0226495050356235
+        },
+        "horizon_12": {
+          "MAE": 3.3545480775609815,
+          "MAPE": 0.09964720671590602,
+          "RMSE": 7.0513438168681635
+        }
+      }
+    }
+  ],
+  "STGCNChebGraphConv": [
+    {
+      "model": "STGCNChebGraphConv",
+      "config": "METR-LA_100_12_12",
+      "hash": "64f2b26efa34b13b983d789df4001619",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\STGCNChebGraphConv\\METR-LA_100_12_12\\64f2b26efa34b13b983d789df4001619\\STGCNChebGraphConv_best_val_MAE.pt",
+      "config_path": "baselines/STGCN/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\STGCNChebGraphConv\\METR-LA_100_12_12\\64f2b26efa34b13b983d789df4001619\\test_metrics.json",
+      "MAE": 3.132244071500619,
+      "metrics": {
+        "overall": {
+          "MAE": 3.132244071500619,
+          "MAPE": 0.08587481790094699,
+          "RMSE": 6.340380969185272
+        },
+        "horizon_3": {
+          "MAE": 2.775376042535457,
+          "MAPE": 0.07154698529890524,
+          "RMSE": 5.331797127912057
+        },
+        "horizon_6": {
+          "MAE": 3.1728136454664635,
+          "MAPE": 0.08708384595796194,
+          "RMSE": 6.383231724267874
+        },
+        "horizon_12": {
+          "MAE": 3.639512017712176,
+          "MAPE": 0.10570710007684278,
+          "RMSE": 7.530175926720987
+        }
+      }
+    }
+  ],
+  "STID": [
+    {
+      "model": "STID",
+      "config": "METR-LA_100_12_12",
+      "hash": "a526ba553408961fc4392a846d3b280c",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\STID\\METR-LA_100_12_12\\a526ba553408961fc4392a846d3b280c\\STID_best_val_MAE.pt",
+      "config_path": "baselines/STID/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\STID\\METR-LA_100_12_12\\a526ba553408961fc4392a846d3b280c\\test_metrics.json",
+      "MAE": 3.120551046465061,
+      "metrics": {
+        "overall": {
+          "MAE": 3.120551046465061,
+          "MAPE": 0.09066981625024782,
+          "RMSE": 6.483091886016195
+        },
+        "horizon_3": {
+          "MAE": 2.8085527758303934,
+          "MAPE": 0.07659836136456173,
+          "RMSE": 5.537714205523624
+        },
+        "horizon_6": {
+          "MAE": 3.1813786755759472,
+          "MAPE": 0.09308309014052107,
+          "RMSE": 6.594041711107212
+        },
+        "horizon_12": {
+          "MAE": 3.5489473398945486,
+          "MAPE": 0.10881408279715499,
+          "RMSE": 7.545323108321595
+        }
+      }
+    }
+  ],
+  "STNorm": [
+    {
+      "model": "STNorm",
+      "config": "METR-LA_100_12_12",
+      "hash": "65d9b958a1c61da04fb6de227a26cde5",
+      "checkpoint_path": "D:\\original\\BasicTS-master\\checkpoints\\STNorm\\METR-LA_100_12_12\\65d9b958a1c61da04fb6de227a26cde5\\STNorm_best_val_MAE.pt",
+      "config_path": "baselines/STNorm/METR-LA.py",
+      "metrics_path": "D:\\original\\BasicTS-master\\checkpoints\\STNorm\\METR-LA_100_12_12\\65d9b958a1c61da04fb6de227a26cde5\\test_metrics.json",
+      "MAE": 3.1165643740218214,
+      "metrics": {
+        "overall": {
+          "MAE": 3.1165643740218214,
+          "MAPE": 0.08573763847612581,
+          "RMSE": 6.398648744446958
+        },
+        "horizon_3": {
+          "MAE": 2.7996676553590696,
+          "MAPE": 0.07358088919386215,
+          "RMSE": 5.495049210220216
+        },
+        "horizon_6": {
+          "MAE": 3.1659056995602017,
+          "MAPE": 0.0875090598856046,
+          "RMSE": 6.49131899893852
+        },
+        "horizon_12": {
+          "MAE": 3.5745127107195094,
+          "MAPE": 0.10307921658117934,
+          "RMSE": 7.45519564815157
+        }
+      }
+    }
+  ],
+  "MTGNN": {
+    "model": "MTGNN",
+    "dataset": "METR-LA",
+    "n_seeds": 3,
+    "MAE_mean": 3.021335,
+    "MAE_std": 0.005644,
+    "RMSE_mean": 6.146856,
+    "RMSE_std": 0.017994,
+    "MAPE_mean": 0.081777,
+    "MAPE_std": 0.000196,
+    "H3_MAE_mean": 2.689952,
+    "H6_MAE_mean": 3.055331,
+    "H12_MAE_mean": 3.494194,
+    "source": "Multi-seed test metrics (seeds 43, 44, 45)"
+  }
+}

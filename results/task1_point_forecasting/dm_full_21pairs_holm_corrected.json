@@ -1,0 +1,249 @@
+{
+  "pairs": [
+    {
+      "model1": "D2STGNN",
+      "model2": "STAEformer",
+      "dm_statistic": -2.716089434020043,
+      "p_value_raw": 0.0066058070868142416,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "D2STGNN",
+      "p_value_holm_corrected": 0.0066058070868142416,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "D2STGNN",
+      "model2": "MegaCRN",
+      "dm_statistic": -5.238673252856108,
+      "p_value_raw": 1.617350986471422e-07,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "D2STGNN",
+      "p_value_holm_corrected": 3.234701972942844e-07,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "D2STGNN",
+      "model2": "MTGNN",
+      "dm_statistic": 83.95122892934816,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "MTGNN",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "D2STGNN",
+      "model2": "STNorm",
+      "dm_statistic": 16.240475928715394,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STNorm",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "D2STGNN",
+      "model2": "STID",
+      "dm_statistic": 297.6409926801496,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STID",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "D2STGNN",
+      "model2": "STGCNChebGraphConv",
+      "dm_statistic": 373.3138243765229,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STGCNChebGraphConv",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STAEformer",
+      "model2": "MegaCRN",
+      "dm_statistic": -28.637601247174754,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STAEformer",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STAEformer",
+      "model2": "MTGNN",
+      "dm_statistic": 613.2191219375721,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "MTGNN",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STAEformer",
+      "model2": "STNorm",
+      "dm_statistic": 468.4918982667207,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STNorm",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STAEformer",
+      "model2": "STID",
+      "dm_statistic": 308.20166342366105,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STID",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STAEformer",
+      "model2": "STGCNChebGraphConv",
+      "dm_statistic": 388.5478216706599,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STGCNChebGraphConv",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MegaCRN",
+      "model2": "MTGNN",
+      "dm_statistic": 493.36319401640793,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "MTGNN",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MegaCRN",
+      "model2": "STNorm",
+      "dm_statistic": 211.41667227360773,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STNorm",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MegaCRN",
+      "model2": "STID",
+      "dm_statistic": 308.1158559915457,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STID",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MegaCRN",
+      "model2": "STGCNChebGraphConv",
+      "dm_statistic": 387.6769525818288,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STGCNChebGraphConv",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MTGNN",
+      "model2": "STNorm",
+      "dm_statistic": -579.2131663422948,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "MTGNN",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MTGNN",
+      "model2": "STID",
+      "dm_statistic": 292.942905548973,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STID",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "MTGNN",
+      "model2": "STGCNChebGraphConv",
+      "dm_statistic": 375.18585647937664,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STGCNChebGraphConv",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STNorm",
+      "model2": "STID",
+      "dm_statistic": 305.12806608991315,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STID",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STNorm",
+      "model2": "STGCNChebGraphConv",
+      "dm_statistic": 385.6789148476084,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STGCNChebGraphConv",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    },
+    {
+      "model1": "STID",
+      "model2": "STGCNChebGraphConv",
+      "dm_statistic": 145.87236735419023,
+      "p_value_raw": 0.0,
+      "n_samples": 1242000,
+      "hac_lag": 12,
+      "better_model": "STGCNChebGraphConv",
+      "p_value_holm_corrected": 0.0,
+      "significant_at_0.05": true
+    }
+  ],
+  "wins": {
+    "D2STGNN": 2,
+    "STAEformer": 1,
+    "MegaCRN": 0,
+    "MTGNN": 4,
+    "STNorm": 3,
+    "STID": 5,
+    "STGCNChebGraphConv": 6
+  },
+  "sentinel_dm_statistics": {
+    "D2STGNN_vs_MegaCRN": -5.238673252856108,
+    "D2STGNN_vs_STID": 297.6409926801496,
+    "MegaCRN_vs_STID": 308.1158559915457
+  }
+}

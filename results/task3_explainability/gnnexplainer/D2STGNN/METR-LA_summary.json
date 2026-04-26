@@ -1,0 +1,24 @@
+{
+  "model": "D2STGNN",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "target_timestep": 11,
+  "top_10_sensors": [
+    174,
+    144,
+    165,
+    51,
+    48,
+    75,
+    125,
+    3,
+    76,
+    5
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.7393409013748169,
+    "std": 0.036300498992204666,
+    "min": 0.6521506309509277,
+    "max": 0.8785942196846008
+  }
+}

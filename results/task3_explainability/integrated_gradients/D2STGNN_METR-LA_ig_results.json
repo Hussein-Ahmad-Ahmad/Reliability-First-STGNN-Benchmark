@@ -1,0 +1,37 @@
+{
+  "model": "D2STGNN",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    3
+  ],
+  "non_zero_count": 225468,
+  "top_10_sensors": [
+    166,
+    96,
+    176,
+    163,
+    67,
+    0,
+    2,
+    28,
+    90,
+    162
+  ],
+  "sensor_importance_mean": 29431.763671875,
+  "sensor_importance_std": 146528.5625,
+  "sensor_importance_min": 0.0,
+  "sensor_importance_max": 1523339.125,
+  "top_sensor_importance_values": [
+    1523339.125,
+    1159991.625,
+    632734.8125,
+    378143.09375,
+    350342.0
+  ],
+  "status": "pass"
+}

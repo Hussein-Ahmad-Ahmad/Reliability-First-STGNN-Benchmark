@@ -1,0 +1,24 @@
+{
+  "model": "MegaCRN",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "target_timestep": 11,
+  "top_10_sensors": [
+    174,
+    46,
+    10,
+    7,
+    53,
+    173,
+    171,
+    153,
+    108,
+    37
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.7529717087745667,
+    "std": 0.04588385298848152,
+    "min": 0.6762837767601013,
+    "max": 0.9150531888008118
+  }
+}

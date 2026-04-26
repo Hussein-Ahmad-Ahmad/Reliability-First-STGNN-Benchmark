@@ -1,0 +1,24 @@
+{
+  "model": "STAEformer",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "target_timestep": 0,
+  "top_10_sensors": [
+    57,
+    181,
+    147,
+    175,
+    10,
+    166,
+    73,
+    92,
+    117,
+    99
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.9246830344200134,
+    "std": 0.002825123257935047,
+    "min": 0.884986937046051,
+    "max": 0.925636351108551
+  }
+}

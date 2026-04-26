@@ -1,0 +1,18 @@
+{
+    "noise_0.05":  {
+                       "mean_jaccard_across_samples":  0.1086651192303844,
+                       "std_jaccard_across_samples":  0.04386406366160264,
+                       "mean_intra_sample_std":  0.015790002602989354
+                   },
+    "noise_0.1":  {
+                      "mean_jaccard_across_samples":  0.09919147716361339,
+                      "std_jaccard_across_samples":  0.03902616069053404,
+                      "mean_intra_sample_std":  0.0213136152776594
+                  },
+    "noise_0.2":  {
+                      "mean_jaccard_across_samples":  0.0812297249061955,
+                      "std_jaccard_across_samples":  0.03433600089344382,
+                      "mean_intra_sample_std":  0.027521883303918703
+                  },
+    "stability_jaccard":  0.09919147716361339
+}
