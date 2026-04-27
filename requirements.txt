@@ -1,4 +1,3 @@
-# Core training framework
 easy-torch==1.3.3
 easydict
 packaging
@@ -12,25 +11,12 @@ setuptools==59.5.0
 numpy==1.24.4
 tqdm==4.67.1
 tensorboard==2.18.0
-
-# Deep learning
 torch>=2.0.0
 torch-geometric>=2.3.0
-
-# UQ (Uncertainty Quantification)
 scipy>=1.10.0
-
-# XAI (Explainability)
-captum>=0.6.0          # Integrated Gradients
-
-# Analysis / visualization
+captum>=0.6.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
-
-# Notebooks
 jupyter>=1.0.0
 ipykernel
-
-# Utilities
-tqdm
 pyyaml

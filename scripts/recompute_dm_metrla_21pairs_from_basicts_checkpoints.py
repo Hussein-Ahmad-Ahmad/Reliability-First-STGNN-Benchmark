@@ -1,0 +1,197 @@
+﻿import itertools
+import json
+from pathlib import Path
+
+import numpy as np
+from scipy import stats
+
+ROOT = Path(r"D:/Hussein-Files/original/experiments/basicts/checkpoints")
+FRESH_ROOT = Path("results/task1_point_forecasting/fresh_inference_dumps")
+MODELS = ["D2STGNN", "MegaCRN", "MTGNN", "STNorm", "STGCNChebGraphConv", "STID", "STAEformer"]
+SEEDS = [43, 44, 45]
+OUT_JSON = Path("results/task1_point_forecasting/dm_recomputed_metrla_21pairs_from_basicts_checkpoints.json")
+OUT_MD = Path("results/task1_point_forecasting/dm_recomputed_metrla_21pairs_from_basicts_checkpoints.md")
+
+
+def load_pred_or_target(path: Path, horizon: int = 12, nodes: int = 207):
+    try:
+        return np.load(path, allow_pickle=True)
+    except Exception:
+        raw = np.fromfile(path, dtype=np.float32)
+        step = horizon * nodes
+        if raw.size % step != 0:
+            raise
+        return raw.reshape(-1, horizon, nodes)
+
+
+def dm_test_newey_west(errors1: np.ndarray, errors2: np.ndarray):
+    d = errors1 - errors2
+    t = len(d)
+    d_mean = float(np.mean(d))
+    lags = int(np.floor(4 * (t / 100) ** (2 / 9)))
+    gamma_0 = float(np.mean((d - d_mean) ** 2))
+    hac_var = gamma_0
+    for lag in range(1, lags + 1):
+        w = 1 - lag / (lags + 1)
+        g = float(np.mean((d[lag:] - d_mean) * (d[:-lag] - d_mean)))
+        hac_var += 2 * w * g
+    se = float(np.sqrt(max(hac_var, 1e-10) / t))
+    dm = d_mean / se
+    p = float(2 * (1 - stats.norm.cdf(abs(dm))))
+    return {"dm_stat": dm, "p_value": p, "mean_loss_diff": d_mean, "hac_se": se, "n_obs": int(t)}
+
+
+def holm_bonferroni(p_values):
+    n = len(p_values)
+    indexed = sorted(enumerate(p_values), key=lambda x: x[1])
+    adjusted = [None] * n
+    for rank, (idx, p) in enumerate(indexed):
+        adjusted[idx] = min(1.0, p * (n - rank))
+    for i in range(len(adjusted) - 2, -1, -1):
+        adjusted[i] = min(adjusted[i], adjusted[i + 1])
+    return adjusted
+
+
+def find_test_dir(model: str, seed: int):
+    fresh_dir = FRESH_ROOT / model / "METR-LA" / f"seed{seed}"
+    if (fresh_dir / "predictions.npy").exists() and (fresh_dir / "targets.npy").exists():
+        return fresh_dir
+
+    model_root = ROOT / model
+    if not model_root.exists():
+        return None
+
+    seed_dirs = []
+    for d in model_root.iterdir():
+        if not d.is_dir():
+            continue
+        name = d.name
+        if not name.startswith("METR-LA_"):
+            continue
+        if f"_seed{seed}" not in name:
+            continue
+        seed_dirs.append(d)
+
+    for seed_dir in sorted(seed_dirs):
+        run_dirs = [d for d in seed_dir.iterdir() if d.is_dir()]
+        for run_dir in sorted(run_dirs):
+            test_dir = run_dir / "test_results"
+            if (test_dir / "predictions.npy").exists() and (test_dir / "targets.npy").exists():
+                return test_dir
+
+    return None
+
+
+def _coerce_array(x):
+    if isinstance(x, np.ndarray) and x.dtype == object and x.shape == ():
+        x = x.item()
+    return np.asarray(x)
+
+
+def to_errors(pred, tgt):
+    pred = _coerce_array(pred)
+    tgt = _coerce_array(tgt)
+    if pred.shape != tgt.shape:
+        raise ValueError(f"shape mismatch {pred.shape} vs {tgt.shape}")
+    ae = np.abs(pred - tgt)
+    if ae.ndim >= 3:
+        return ae.mean(axis=tuple(range(1, ae.ndim))).reshape(-1)
+    return ae.reshape(-1)
+
+
+def main():
+    cache = {}
+    for m in MODELS:
+        cache[m] = {}
+        for s in SEEDS:
+            test_dir = find_test_dir(m, s)
+            if test_dir is None:
+                continue
+            pred_p = test_dir / "predictions.npy"
+            tgt_p = test_dir / "targets.npy"
+            if not pred_p.exists() or not tgt_p.exists():
+                continue
+            pred = load_pred_or_target(pred_p)
+            tgt = load_pred_or_target(tgt_p)
+            cache[m][s] = {"pred": pred, "tgt": tgt, "path": str(test_dir)}
+
+    pairs = list(itertools.combinations(MODELS, 2))
+    rows = []
+
+    for m1, m2 in pairs:
+        e1_all, e2_all, used = [], [], []
+        for s in SEEDS:
+            if s not in cache[m1] or s not in cache[m2]:
+                continue
+            t1 = cache[m1][s]["tgt"]
+            t2 = cache[m2][s]["tgt"]
+            if t1.shape != t2.shape or not np.allclose(t1, t2, atol=1e-8):
+                continue
+            e1_all.append(to_errors(cache[m1][s]["pred"], t1))
+            e2_all.append(to_errors(cache[m2][s]["pred"], t2))
+            used.append(s)
+
+        if not e1_all:
+            rows.append({"pair": f"{m1}_vs_{m2}", "model1": m1, "model2": m2, "missing": True, "seeds_used": used})
+            continue
+
+        e1 = np.concatenate(e1_all)
+        e2 = np.concatenate(e2_all)
+        dm = dm_test_newey_west(e1, e2)
+        winner = m1 if dm["dm_stat"] < 0 else m2
+        row = {
+            "pair": f"{m1}_vs_{m2}",
+            "model1": m1,
+            "model2": m2,
+            "winner_by_dm_sign": winner,
+            "seeds_used": used,
+            **dm,
+        }
+        rows.append(row)
+
+    tested = [r for r in rows if not r.get("missing")]
+    adj = holm_bonferroni([r["p_value"] for r in tested]) if tested else []
+    for r, a in zip(tested, adj):
+        r["p_value_holm_corrected"] = float(a)
+        r["significant_after_holm"] = bool(a < 0.05)
+
+    payload = {
+        "source_root": str(ROOT),
+        "fresh_root": str(FRESH_ROOT),
+        "dataset": "METR-LA",
+        "seeds": SEEDS,
+        "pairs_total": len(rows),
+        "pairs_tested": len(tested),
+        "rows": rows,
+    }
+
+    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+    OUT_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+    lines = [
+        "# DM Recomputed METR-LA 21 Pairs (from basicts checkpoints + fresh dumps)",
+        "",
+        f"Source root: {ROOT}",
+        f"Fresh root: {FRESH_ROOT}",
+        f"Pairs tested: {len(tested)}/{len(rows)}",
+        "",
+        "| Pair | Winner by DM sign | DM stat | p(raw) | p(Holm) | Holm<0.05 | Seeds |",
+        "|---|---|---:|---:|---:|---|---|",
+    ]
+    for r in rows:
+        if r.get("missing"):
+            lines.append(f"| {r['pair']} | NA | NA | NA | NA | NA | {','.join(map(str, r['seeds_used'])) or '-'} |")
+        else:
+            lines.append(
+                f"| {r['pair']} | {r['winner_by_dm_sign']} | {r['dm_stat']:.4f} | {r['p_value']:.6g} | "
+                f"{r['p_value_holm_corrected']:.6g} | {'Yes' if r['significant_after_holm'] else 'No'} | "
+                f"{','.join(map(str, r['seeds_used']))} |"
+            )
+    OUT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    print(f"Wrote {OUT_JSON}")
+    print(f"Wrote {OUT_MD}")
+
+
+if __name__ == '__main__':
+    main()
