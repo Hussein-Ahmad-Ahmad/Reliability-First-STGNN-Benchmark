@@ -1,0 +1,14 @@
+{
+    "model":  "STAEformer",
+    "dataset":  "METR-LA",
+    "n_passes":  50,
+    "n_samples":  6831,
+    "device":  "cuda",
+    "training_state":  false,
+    "variance_mean":  0.046931274235248559,
+    "picp_uncalibrated":  0.0063993808655294334,
+    "mpiw_uncalibrated":  0.093862548470497117,
+    "status":  "functional",
+    "note":  "Generated via original mc_dropout_uq.py with memory-safe CRPS approximation; calibration required before reporting.",
+    "metrics_source":  "d:/Hussein-Files/original/experiments/publishable_experiment/scripts/mc_dropout_uq.py"
+}

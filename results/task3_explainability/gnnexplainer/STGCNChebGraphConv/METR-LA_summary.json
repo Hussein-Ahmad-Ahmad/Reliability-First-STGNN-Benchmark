@@ -1,0 +1,24 @@
+{
+  "model": "STGCNChebGraphConv",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "target_timestep": 0,
+  "top_10_sensors": [
+    28,
+    80,
+    2,
+    107,
+    90,
+    123,
+    37,
+    89,
+    142,
+    78
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.9250469207763672,
+    "std": 0.0001958140346687287,
+    "min": 0.9227522015571594,
+    "max": 0.9255797863006592
+  }
+}

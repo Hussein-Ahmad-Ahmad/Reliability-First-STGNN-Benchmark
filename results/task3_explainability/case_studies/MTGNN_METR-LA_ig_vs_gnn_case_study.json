@@ -1,0 +1,827 @@
+{
+  "model": "MTGNN",
+  "dataset": "METR-LA",
+  "case": "Integrated Gradients vs GNNExplainer top-k sensor comparison",
+  "k": 10,
+  "source_files": {
+    "integrated_gradients": "results\\task3_explainability\\integrated_gradients\\MTGNN_METR-LA_ig_results.json",
+    "gnnexplainer": "results\\task3_explainability\\gnnexplainer\\MTGNN\\METR-LA_summary.json",
+    "adjacency": "datasets\\METR-LA\\adj_mx.pkl"
+  },
+  "interpretation_guardrail": "This case study treats explanations as diagnostic views of model behavior. Disagreement between methods should not be read as causal evidence about sensors.",
+  "summary": {
+    "ig_top_indices": [
+      175,
+      166,
+      93,
+      171,
+      1,
+      128,
+      74,
+      90,
+      67,
+      149
+    ],
+    "ig_top_sensor_ids": [
+      "768469",
+      "772669",
+      "773024",
+      "717587",
+      "767541",
+      "717473",
+      "765176",
+      "716571",
+      "773880",
+      "763995"
+    ],
+    "gnn_top_indices": [
+      174,
+      91,
+      16,
+      56,
+      12,
+      196,
+      144,
+      193,
+      84,
+      15
+    ],
+    "gnn_top_sensor_ids": [
+      "716939",
+      "773023",
+      "771667",
+      "716955",
+      "716339",
+      "771673",
+      "764853",
+      "717453",
+      "767053",
+      "716331"
+    ],
+    "overlap_count": 0,
+    "overlap_indices": [],
+    "overlap_sensor_ids": [],
+    "jaccard": 0.0,
+    "ig_mean_importance": 336.4239196777344,
+    "ig_importance_std": 43.17905807495117,
+    "gnn_mean_node_importance_stats": {
+      "mean": 0.9004055857658386,
+      "std": 0.006694270297884941,
+      "min": 0.8877024054527283,
+      "max": 0.925352156162262
+    }
+  },
+  "integrated_gradients_sensor_context": [
+    {
+      "rank": 1,
+      "node_index": 175,
+      "sensor_id": "768469",
+      "binary_degree": 20,
+      "weighted_degree": 11.938502103090286,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 103,
+          "sensor_id": "717488",
+          "edge_weight": 0.7739418148994446
+        },
+        {
+          "node_index": 68,
+          "sensor_id": "764766",
+          "edge_weight": 0.6962083578109741
+        },
+        {
+          "node_index": 71,
+          "sensor_id": "717491",
+          "edge_weight": 0.6142242550849915
+        },
+        {
+          "node_index": 98,
+          "sensor_id": "717486",
+          "edge_weight": 0.4816717207431793
+        },
+        {
+          "node_index": 205,
+          "sensor_id": "718141",
+          "edge_weight": 0.44188907742500305
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 2,
+      "node_index": 166,
+      "sensor_id": "772669",
+      "binary_degree": 20,
+      "weighted_degree": 10.635073497891426,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 30,
+          "sensor_id": "773013",
+          "edge_weight": 0.8792049288749695
+        },
+        {
+          "node_index": 101,
+          "sensor_id": "718371",
+          "edge_weight": 0.6062260270118713
+        },
+        {
+          "node_index": 48,
+          "sensor_id": "760650",
+          "edge_weight": 0.5588619112968445
+        },
+        {
+          "node_index": 133,
+          "sensor_id": "716953",
+          "edge_weight": 0.4047282934188843
+        },
+        {
+          "node_index": 65,
+          "sensor_id": "767751",
+          "edge_weight": 0.31404516100883484
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 16,
+          "sensor_id": "771667"
+        },
+        {
+          "node_index": 91,
+          "sensor_id": "773023"
+        },
+        {
+          "node_index": 144,
+          "sensor_id": "764853"
+        },
+        {
+          "node_index": 196,
+          "sensor_id": "771673"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "node_index": 93,
+      "sensor_id": "773024",
+      "binary_degree": 17,
+      "weighted_degree": 10.144600003957748,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 6,
+          "sensor_id": "773062",
+          "edge_weight": 0.848268985748291
+        },
+        {
+          "node_index": 91,
+          "sensor_id": "773023",
+          "edge_weight": 0.7651641368865967
+        },
+        {
+          "node_index": 136,
+          "sensor_id": "765182",
+          "edge_weight": 0.4210447669029236
+        },
+        {
+          "node_index": 16,
+          "sensor_id": "771667",
+          "edge_weight": 0.25771859288215637
+        },
+        {
+          "node_index": 138,
+          "sensor_id": "772513",
+          "edge_weight": 0.24663369357585907
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 15,
+          "sensor_id": "716331"
+        },
+        {
+          "node_index": 16,
+          "sensor_id": "771667"
+        },
+        {
+          "node_index": 91,
+          "sensor_id": "773023"
+        },
+        {
+          "node_index": 144,
+          "sensor_id": "764853"
+        },
+        {
+          "node_index": 174,
+          "sensor_id": "716939"
+        },
+        {
+          "node_index": 196,
+          "sensor_id": "771673"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "node_index": 171,
+      "sensor_id": "717587",
+      "binary_degree": 19,
+      "weighted_degree": 9.42409447580576,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 202,
+          "sensor_id": "717592",
+          "edge_weight": 0.6718123555183411
+        },
+        {
+          "node_index": 179,
+          "sensor_id": "773974",
+          "edge_weight": 0.6105074882507324
+        },
+        {
+          "node_index": 132,
+          "sensor_id": "762329",
+          "edge_weight": 0.4989359676837921
+        },
+        {
+          "node_index": 108,
+          "sensor_id": "767454",
+          "edge_weight": 0.4082799255847931
+        },
+        {
+          "node_index": 11,
+          "sensor_id": "767471",
+          "edge_weight": 0.38226422667503357
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 5,
+      "node_index": 1,
+      "sensor_id": "767541",
+      "binary_degree": 16,
+      "weighted_degree": 9.39803534001112,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 177,
+          "sensor_id": "767554",
+          "edge_weight": 0.9262187480926514
+        },
+        {
+          "node_index": 28,
+          "sensor_id": "767573",
+          "edge_weight": 0.5737320184707642
+        },
+        {
+          "node_index": 2,
+          "sensor_id": "767542",
+          "edge_weight": 0.39095538854599
+        },
+        {
+          "node_index": 7,
+          "sensor_id": "767620",
+          "edge_weight": 0.39045706391334534
+        },
+        {
+          "node_index": 78,
+          "sensor_id": "718064",
+          "edge_weight": 0.20909732580184937
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 6,
+      "node_index": 128,
+      "sensor_id": "717473",
+      "binary_degree": 19,
+      "weighted_degree": 13.527338162064552,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 198,
+          "sensor_id": "769372",
+          "edge_weight": 0.9885618686676025
+        },
+        {
+          "node_index": 97,
+          "sensor_id": "717480",
+          "edge_weight": 0.8498106002807617
+        },
+        {
+          "node_index": 206,
+          "sensor_id": "769373",
+          "edge_weight": 0.5576744675636292
+        },
+        {
+          "node_index": 155,
+          "sensor_id": "717468",
+          "edge_weight": 0.5045788288116455
+        },
+        {
+          "node_index": 127,
+          "sensor_id": "717472",
+          "edge_weight": 0.4684463441371918
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 7,
+      "node_index": 74,
+      "sensor_id": "765176",
+      "binary_degree": 15,
+      "weighted_degree": 9.2787656635046,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 119,
+          "sensor_id": "764760",
+          "edge_weight": 0.9801982641220093
+        },
+        {
+          "node_index": 175,
+          "sensor_id": "768469",
+          "edge_weight": 0.8945814371109009
+        },
+        {
+          "node_index": 103,
+          "sensor_id": "717488",
+          "edge_weight": 0.4937923550605774
+        },
+        {
+          "node_index": 68,
+          "sensor_id": "764766",
+          "edge_weight": 0.4167509377002716
+        },
+        {
+          "node_index": 71,
+          "sensor_id": "717491",
+          "edge_weight": 0.3748728036880493
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 8,
+      "node_index": 90,
+      "sensor_id": "716571",
+      "binary_degree": 5,
+      "weighted_degree": 2.8900611251592636,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 83,
+          "sensor_id": "717610",
+          "edge_weight": 0.3757065534591675
+        },
+        {
+          "node_index": 99,
+          "sensor_id": "764120",
+          "edge_weight": 0.14431248605251312
+        },
+        {
+          "node_index": 122,
+          "sensor_id": "717608",
+          "edge_weight": 0.14205719530582428
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 9,
+      "node_index": 67,
+      "sensor_id": "773880",
+      "binary_degree": 13,
+      "weighted_degree": 7.2435013353824615,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 36,
+          "sensor_id": "760987",
+          "edge_weight": 0.9210419058799744
+        },
+        {
+          "node_index": 115,
+          "sensor_id": "717573",
+          "edge_weight": 0.48419055342674255
+        },
+        {
+          "node_index": 0,
+          "sensor_id": "773869",
+          "edge_weight": 0.3004092574119568
+        },
+        {
+          "node_index": 199,
+          "sensor_id": "774204",
+          "edge_weight": 0.1238250583410263
+        },
+        {
+          "node_index": 145,
+          "sensor_id": "761003",
+          "edge_weight": 0.11943988502025604
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 10,
+      "node_index": 149,
+      "sensor_id": "763995",
+      "binary_degree": 3,
+      "weighted_degree": 2.7496888488531113,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 90,
+          "sensor_id": "716571",
+          "edge_weight": 0.22798489034175873
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    }
+  ],
+  "gnnexplainer_sensor_context": [
+    {
+      "rank": 1,
+      "node_index": 174,
+      "sensor_id": "716939",
+      "binary_degree": 7,
+      "weighted_degree": 4.7022916823625565,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 124,
+          "sensor_id": "716942",
+          "edge_weight": 0.5720444917678833
+        },
+        {
+          "node_index": 91,
+          "sensor_id": "773023",
+          "edge_weight": 0.1664523035287857
+        },
+        {
+          "node_index": 6,
+          "sensor_id": "773062",
+          "edge_weight": 0.1452782303094864
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "node_index": 91,
+      "sensor_id": "773023",
+      "binary_degree": 18,
+      "weighted_degree": 10.051127180457115,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 136,
+          "sensor_id": "765182",
+          "edge_weight": 0.8401774168014526
+        },
+        {
+          "node_index": 93,
+          "sensor_id": "773024",
+          "edge_weight": 0.7873482704162598
+        },
+        {
+          "node_index": 5,
+          "sensor_id": "717445",
+          "edge_weight": 0.5607427954673767
+        },
+        {
+          "node_index": 138,
+          "sensor_id": "772513",
+          "edge_weight": 0.5602146983146667
+        },
+        {
+          "node_index": 6,
+          "sensor_id": "773062",
+          "edge_weight": 0.5209550857543945
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024"
+        },
+        {
+          "node_index": 166,
+          "sensor_id": "772669"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "node_index": 16,
+      "sensor_id": "771667",
+      "binary_degree": 26,
+      "weighted_degree": 12.26889555156231,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 196,
+          "sensor_id": "771673",
+          "edge_weight": 0.9270501136779785
+        },
+        {
+          "node_index": 166,
+          "sensor_id": "772669",
+          "edge_weight": 0.9156497716903687
+        },
+        {
+          "node_index": 30,
+          "sensor_id": "773013",
+          "edge_weight": 0.6505544185638428
+        },
+        {
+          "node_index": 38,
+          "sensor_id": "718045",
+          "edge_weight": 0.6247071027755737
+        },
+        {
+          "node_index": 101,
+          "sensor_id": "718371",
+          "edge_weight": 0.364712119102478
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024"
+        },
+        {
+          "node_index": 166,
+          "sensor_id": "772669"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "node_index": 56,
+      "sensor_id": "716955",
+      "binary_degree": 8,
+      "weighted_degree": 3.8874570950865746,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 170,
+          "sensor_id": "716949",
+          "edge_weight": 0.5892708897590637
+        },
+        {
+          "node_index": 101,
+          "sensor_id": "718371",
+          "edge_weight": 0.2586718797683716
+        },
+        {
+          "node_index": 48,
+          "sensor_id": "760650",
+          "edge_weight": 0.231174498796463
+        },
+        {
+          "node_index": 30,
+          "sensor_id": "773013",
+          "edge_weight": 0.2115768939256668
+        },
+        {
+          "node_index": 133,
+          "sensor_id": "716953",
+          "edge_weight": 0.1383165568113327
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 5,
+      "node_index": 12,
+      "sensor_id": "716339",
+      "binary_degree": 22,
+      "weighted_degree": 12.781885027885437,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 193,
+          "sensor_id": "717453",
+          "edge_weight": 0.9361228942871094
+        },
+        {
+          "node_index": 191,
+          "sensor_id": "717450",
+          "edge_weight": 0.7529517412185669
+        },
+        {
+          "node_index": 80,
+          "sensor_id": "765164",
+          "edge_weight": 0.6663309931755066
+        },
+        {
+          "node_index": 195,
+          "sensor_id": "717456",
+          "edge_weight": 0.5194905400276184
+        },
+        {
+          "node_index": 4,
+          "sensor_id": "717446",
+          "edge_weight": 0.48403099179267883
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 6,
+      "node_index": 196,
+      "sensor_id": "771673",
+      "binary_degree": 19,
+      "weighted_degree": 10.537991419434547,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 166,
+          "sensor_id": "772669",
+          "edge_weight": 0.9995322823524475
+        },
+        {
+          "node_index": 30,
+          "sensor_id": "773013",
+          "edge_weight": 0.8652336001396179
+        },
+        {
+          "node_index": 101,
+          "sensor_id": "718371",
+          "edge_weight": 0.5876791477203369
+        },
+        {
+          "node_index": 48,
+          "sensor_id": "760650",
+          "edge_weight": 0.5404361486434937
+        },
+        {
+          "node_index": 133,
+          "sensor_id": "716953",
+          "edge_weight": 0.38820385932922363
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024"
+        },
+        {
+          "node_index": 166,
+          "sensor_id": "772669"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "node_index": 144,
+      "sensor_id": "764853",
+      "binary_degree": 18,
+      "weighted_degree": 10.395891584455967,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024",
+          "edge_weight": 0.8495982885360718
+        },
+        {
+          "node_index": 136,
+          "sensor_id": "765182",
+          "edge_weight": 0.5452628135681152
+        },
+        {
+          "node_index": 6,
+          "sensor_id": "773062",
+          "edge_weight": 0.5193604230880737
+        },
+        {
+          "node_index": 91,
+          "sensor_id": "773023",
+          "edge_weight": 0.4409932494163513
+        },
+        {
+          "node_index": 138,
+          "sensor_id": "772513",
+          "edge_weight": 0.4209235608577728
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024"
+        },
+        {
+          "node_index": 166,
+          "sensor_id": "772669"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "node_index": 193,
+      "sensor_id": "717453",
+      "binary_degree": 19,
+      "weighted_degree": 11.661399625241756,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 191,
+          "sensor_id": "717450",
+          "edge_weight": 0.9267932176589966
+        },
+        {
+          "node_index": 4,
+          "sensor_id": "717446",
+          "edge_weight": 0.7019698619842529
+        },
+        {
+          "node_index": 17,
+          "sensor_id": "716337",
+          "edge_weight": 0.6205282211303711
+        },
+        {
+          "node_index": 15,
+          "sensor_id": "716331",
+          "edge_weight": 0.591094970703125
+        },
+        {
+          "node_index": 192,
+          "sensor_id": "717452",
+          "edge_weight": 0.48128941655158997
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 9,
+      "node_index": 84,
+      "sensor_id": "767053",
+      "binary_degree": 15,
+      "weighted_degree": 8.897002063691616,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 77,
+          "sensor_id": "765171",
+          "edge_weight": 0.9810684323310852
+        },
+        {
+          "node_index": 130,
+          "sensor_id": "764781",
+          "edge_weight": 0.7937838435173035
+        },
+        {
+          "node_index": 146,
+          "sensor_id": "717502",
+          "edge_weight": 0.7491889595985413
+        },
+        {
+          "node_index": 9,
+          "sensor_id": "717816",
+          "edge_weight": 0.6358410716056824
+        },
+        {
+          "node_index": 43,
+          "sensor_id": "760024",
+          "edge_weight": 0.6296464800834656
+        }
+      ],
+      "adjacent_to_other_method_top10": []
+    },
+    {
+      "rank": 10,
+      "node_index": 15,
+      "sensor_id": "716331",
+      "binary_degree": 18,
+      "weighted_degree": 10.660204410552979,
+      "top_weighted_neighbors": [
+        {
+          "node_index": 33,
+          "sensor_id": "716328",
+          "edge_weight": 0.8918171525001526
+        },
+        {
+          "node_index": 144,
+          "sensor_id": "764853",
+          "edge_weight": 0.7981093525886536
+        },
+        {
+          "node_index": 93,
+          "sensor_id": "773024",
+          "edge_weight": 0.4620845317840576
+        },
+        {
+          "node_index": 138,
+          "sensor_id": "772513",
+          "edge_weight": 0.29518434405326843
+        },
+        {
+          "node_index": 136,
+          "sensor_id": "765182",
+          "edge_weight": 0.20766353607177734
+        }
+      ],
+      "adjacent_to_other_method_top10": [
+        {
+          "node_index": 93,
+          "sensor_id": "773024"
+        }
+      ]
+    }
+  ],
+  "paper_ready_takeaway": "For MTGNN on METR-LA, IG and GNNExplainer select 0/10 common top sensors (Jaccard=0.000). The low overlap, together with graph-neighborhood context, supports using XAI as a diagnostic and method-dependent probe rather than a causal claim."
+}

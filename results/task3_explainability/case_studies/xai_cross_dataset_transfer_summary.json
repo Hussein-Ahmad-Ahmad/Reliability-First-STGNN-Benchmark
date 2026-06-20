@@ -1,0 +1,113 @@
+{
+  "scope": "stored cross-dataset GNNExplainer transfer check",
+  "source": "results\\task3_explainability\\xai_cross_dataset_summary.csv",
+  "datasets": [
+    "PEMS-BAY",
+    "PEMS04"
+  ],
+  "models": [
+    "D2STGNN",
+    "MTGNN",
+    "STID"
+  ],
+  "n_rows": 6,
+  "interpretation_guardrail": "These PEMS-BAY/PEMS04 results are lightweight transfer diagnostics from stored GNNExplainer artifacts. They are not full cross-dataset causal or IG-vs-GNN validation.",
+  "rows": [
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS-BAY",
+      "n_samples": 100,
+      "top3_sensors": [
+        41,
+        94,
+        247
+      ],
+      "fidelity_ratio_k10": 1.0416660921019023,
+      "fidelity_ratio_k20": 0.9712977748232225,
+      "delta_important_k20": 2.190889331102371,
+      "delta_random_k20": 2.6265597143769264,
+      "jaccard_noise_0.1": 0.06368086614241614,
+      "jaccard_noise_0.2": 0.05342404852491739
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS04",
+      "n_samples": 100,
+      "top3_sensors": [
+        39,
+        203,
+        142
+      ],
+      "fidelity_ratio_k10": 1.2621517621886165,
+      "fidelity_ratio_k20": 1.2888199543229957,
+      "delta_important_k20": 20.271994619369508,
+      "delta_random_k20": 22.855669132471085,
+      "jaccard_noise_0.1": 0.06902761245082031,
+      "jaccard_noise_0.2": 0.06256438643085141
+    },
+    {
+      "model": "MTGNN",
+      "dataset": "PEMS-BAY",
+      "n_samples": 100,
+      "top3_sensors": [
+        268,
+        41,
+        9
+      ],
+      "fidelity_ratio_k10": 0.9465147975028393,
+      "fidelity_ratio_k20": 0.9686135383197743,
+      "delta_important_k20": 0.2146487720310688,
+      "delta_random_k20": 0.22165770664811135,
+      "jaccard_noise_0.1": 0.1587820610581022,
+      "jaccard_noise_0.2": 0.1355661866884777
+    },
+    {
+      "model": "MTGNN",
+      "dataset": "PEMS04",
+      "n_samples": 100,
+      "top3_sensors": [
+        60,
+        274,
+        131
+      ],
+      "fidelity_ratio_k10": 1.4375143510781938,
+      "fidelity_ratio_k20": 1.3631057047937203,
+      "delta_important_k20": 0.08070789460092782,
+      "delta_random_k20": 0.061071394123136995,
+      "jaccard_noise_0.1": 0.16520797028834852,
+      "jaccard_noise_0.2": 0.15538999631778158
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS-BAY",
+      "n_samples": 100,
+      "top3_sensors": [
+        82,
+        121,
+        26
+      ],
+      "fidelity_ratio_k10": 0.9691904254658354,
+      "fidelity_ratio_k20": 0.9888779021429935,
+      "delta_important_k20": 5.797097115516663,
+      "delta_random_k20": 5.861946382522583,
+      "jaccard_noise_0.1": 0.08496145009302904,
+      "jaccard_noise_0.2": 0.07075057464376348
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS04",
+      "n_samples": 100,
+      "top3_sensors": [
+        31,
+        266,
+        128
+      ],
+      "fidelity_ratio_k10": 0.7934785337297318,
+      "fidelity_ratio_k20": 0.8512049385027016,
+      "delta_important_k20": 7.868407719731331,
+      "delta_random_k20": 8.700652668476105,
+      "jaccard_noise_0.1": 0.10346664865058194,
+      "jaccard_noise_0.2": 0.08597226280046087
+    }
+  ]
+}

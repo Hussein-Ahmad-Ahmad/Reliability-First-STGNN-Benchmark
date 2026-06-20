@@ -1,0 +1,72 @@
+{
+  "STID": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 13424
+  },
+  "STNorm": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 35068
+  },
+  "MTGNN": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 22732
+  },
+  "STAEformer": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 25996
+  },
+  "STGCN-Cheb": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 13276
+  },
+  "MegaCRN": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 42833
+  },
+  "D2STGNN": {
+    "status": "forward_pass_ok",
+    "output_shape": [
+      2,
+      12,
+      20,
+      1
+    ],
+    "num_parameters": 230032
+  }
+}

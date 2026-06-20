@@ -1,0 +1,8 @@
+{
+  "model": "STNorm",
+  "dataset": "METR-LA",
+  "has_attention": false,
+  "architecture_type": "Spatio-temporal normalization network",
+  "reason": "Architecture does not implement attention layers",
+  "status": "pass"
+}

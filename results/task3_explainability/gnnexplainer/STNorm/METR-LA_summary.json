@@ -1,0 +1,24 @@
+{
+  "model": "STNorm",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "target_timestep": 0,
+  "top_10_sensors": [
+    184,
+    20,
+    42,
+    59,
+    1,
+    204,
+    146,
+    41,
+    10,
+    109
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.9245020747184753,
+    "std": 0.0009149198303930461,
+    "min": 0.9175965189933777,
+    "max": 0.9261406064033508
+  }
+}

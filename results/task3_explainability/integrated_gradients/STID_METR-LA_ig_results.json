@@ -1,0 +1,37 @@
+{
+  "model": "STID",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    3
+  ],
+  "non_zero_count": 473868,
+  "top_10_sensors": [
+    166,
+    145,
+    67,
+    149,
+    90,
+    123,
+    203,
+    111,
+    107,
+    105
+  ],
+  "sensor_importance_mean": 3286.40576171875,
+  "sensor_importance_std": 589.8749389648438,
+  "sensor_importance_min": 11.864985466003418,
+  "sensor_importance_max": 4094.7001953125,
+  "top_sensor_importance_values": [
+    4094.7001953125,
+    3984.69384765625,
+    3948.658447265625,
+    3948.143798828125,
+    3935.35791015625
+  ],
+  "status": "pass"
+}

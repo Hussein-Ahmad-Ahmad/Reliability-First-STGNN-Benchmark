@@ -1,0 +1,242 @@
+{
+  "METR-LA": {
+    "D2STGNN": {
+      "n_seeds": 3,
+      "MAE_mean": 2.877969,
+      "MAE_std": 0.000851,
+      "RMSE_mean": 5.921416,
+      "RMSE_std": 0.007096,
+      "MAPE_mean": 0.07797,
+      "MAPE_std": 0.00021,
+      "H3_MAE_mean": 2.5627,
+      "H6_MAE_mean": 2.910028,
+      "H12_MAE_mean": 3.352373
+    },
+    "MegaCRN": {
+      "n_seeds": 3,
+      "MAE_mean": 3.011328,
+      "MAE_std": 0.035483,
+      "RMSE_mean": 6.147921,
+      "RMSE_std": 0.063424,
+      "MAPE_mean": 0.081114,
+      "MAPE_std": 0.000709,
+      "H3_MAE_mean": 2.649667,
+      "H6_MAE_mean": 3.046086,
+      "H12_MAE_mean": 3.531132
+    },
+    "MTGNN": {
+      "n_seeds": 3,
+      "MAE_mean": 3.021335,
+      "MAE_std": 0.005644,
+      "RMSE_mean": 6.146856,
+      "RMSE_std": 0.017994,
+      "MAPE_mean": 0.081777,
+      "MAPE_std": 0.000196,
+      "H3_MAE_mean": 2.689952,
+      "H6_MAE_mean": 3.055331,
+      "H12_MAE_mean": 3.494194
+    },
+    "STGCNChebGraphConv": {
+      "n_seeds": 3,
+      "MAE_mean": 3.137189,
+      "MAE_std": 0.0004,
+      "RMSE_mean": 6.323753,
+      "RMSE_std": 0.019725,
+      "MAPE_mean": 0.084736,
+      "MAPE_std": 0.000533,
+      "H3_MAE_mean": 2.778189,
+      "H6_MAE_mean": 3.175185,
+      "H12_MAE_mean": 3.648485
+    },
+    "STID": {
+      "n_seeds": 3,
+      "MAE_mean": 3.119073,
+      "MAE_std": 0.004128,
+      "RMSE_mean": 6.47654,
+      "RMSE_std": 0.008407,
+      "MAPE_mean": 0.090706,
+      "MAPE_std": 0.000198,
+      "H3_MAE_mean": 2.808437,
+      "H6_MAE_mean": 3.178405,
+      "H12_MAE_mean": 3.548053
+    },
+    "STNorm": {
+      "n_seeds": 3,
+      "MAE_mean": 3.131702,
+      "MAE_std": 0.003096,
+      "RMSE_mean": 6.427959,
+      "RMSE_std": 0.01273,
+      "MAPE_mean": 0.086298,
+      "MAPE_std": 0.000353,
+      "H3_MAE_mean": 2.80713,
+      "H6_MAE_mean": 3.187085,
+      "H12_MAE_mean": 3.583053
+    },
+    "STAEformer": {
+      "n_seeds": 3,
+      "MAE_mean": 2.942297,
+      "MAE_std": 0.005744,
+      "RMSE_mean": 6.001636,
+      "RMSE_std": 0.025874,
+      "MAPE_mean": 0.081795,
+      "MAPE_std": 0.000168,
+      "H3_MAE_mean": 2.659291,
+      "H6_MAE_mean": 2.972656,
+      "H12_MAE_mean": 3.348486
+    }
+  },
+  "PEMS-BAY": {
+    "D2STGNN": {
+      "n_seeds": 3,
+      "MAE_mean": 1.513263,
+      "MAE_std": 0.000586,
+      "RMSE_mean": 3.526433,
+      "RMSE_std": 0.011753,
+      "MAPE_mean": 0.034219,
+      "MAPE_std": 0.000427,
+      "H3_MAE_mean": 1.255743,
+      "H6_MAE_mean": 1.568436,
+      "H12_MAE_mean": 1.862649
+    },
+    "MTGNN": {
+      "n_seeds": 3,
+      "MAE_mean": 1.59148,
+      "MAE_std": 0.004606,
+      "RMSE_mean": 3.674225,
+      "RMSE_std": 0.010125,
+      "MAPE_mean": 0.035607,
+      "MAPE_std": 0.000358,
+      "H3_MAE_mean": 1.327933,
+      "H6_MAE_mean": 1.654452,
+      "H12_MAE_mean": 1.955573
+    },
+    "STGCNChebGraphConv": {
+      "n_seeds": 3,
+      "MAE_mean": 1.70198,
+      "MAE_std": 0.00901,
+      "RMSE_mean": 3.81251,
+      "RMSE_std": 0.014538,
+      "MAPE_mean": 0.03871,
+      "MAPE_std": 0.000465,
+      "H3_MAE_mean": 1.437531,
+      "H6_MAE_mean": 1.756616,
+      "H12_MAE_mean": 2.064504
+    },
+    "STID": {
+      "n_seeds": 3,
+      "MAE_mean": 1.563265,
+      "MAE_std": 0.00012,
+      "RMSE_mean": 3.600271,
+      "RMSE_std": 0.006529,
+      "MAPE_mean": 0.035461,
+      "MAPE_std": 7.7e-05,
+      "H3_MAE_mean": 1.309773,
+      "H6_MAE_mean": 1.629437,
+      "H12_MAE_mean": 1.906984
+    },
+    "MegaCRN": {
+      "n_seeds": 3,
+      "MAE_mean": 1.55146,
+      "MAE_std": 0.003261,
+      "RMSE_mean": 3.623981,
+      "RMSE_std": 0.00661,
+      "MAPE_mean": 0.035177,
+      "MAPE_std": 0.00037
+    },
+    "STNorm": {
+      "n_seeds": 3,
+      "MAE_mean": 1.603087,
+      "MAE_std": 0.001278,
+      "RMSE_mean": 3.708522,
+      "RMSE_std": 0.013599,
+      "MAPE_mean": 0.035837,
+      "MAPE_std": 0.000138
+    },
+    "STAEformer": {
+      "n_seeds": 3,
+      "MAE_mean": 1.57296,
+      "MAE_std": 0.01254,
+      "RMSE_mean": 3.579183,
+      "RMSE_std": 0.020527,
+      "MAPE_mean": 0.035474,
+      "MAPE_std": 0.000263
+    }
+  },
+  "PEMS04": {
+    "D2STGNN": {
+      "n_seeds": 3,
+      "MAE_mean": 18.393026,
+      "MAE_std": 0.042643,
+      "RMSE_mean": 29.855537,
+      "RMSE_std": 0.107552,
+      "MAPE_mean": 0.126613,
+      "MAPE_std": 0.001608,
+      "H3_MAE_mean": 17.588214,
+      "H6_MAE_mean": 18.396403,
+      "H12_MAE_mean": 19.802967
+    },
+    "MTGNN": {
+      "n_seeds": 3,
+      "MAE_mean": 19.0589,
+      "MAE_std": 0.022272,
+      "RMSE_mean": 31.0018,
+      "RMSE_std": 0.021739,
+      "MAPE_mean": 0.13315,
+      "MAPE_std": 0.000323,
+      "H3_MAE_mean": 18.198887,
+      "H6_MAE_mean": 19.050688,
+      "H12_MAE_mean": 20.524127
+    },
+    "STGCNChebGraphConv": {
+      "n_seeds": 3,
+      "MAE_mean": 19.962503,
+      "MAE_std": 0.085272,
+      "RMSE_mean": 31.639228,
+      "RMSE_std": 0.130756,
+      "MAPE_mean": 0.135167,
+      "MAPE_std": 0.000868,
+      "H3_MAE_mean": 18.95515,
+      "H6_MAE_mean": 19.914607,
+      "H12_MAE_mean": 21.745992
+    },
+    "STID": {
+      "n_seeds": 3,
+      "MAE_mean": 18.419484,
+      "MAE_std": 0.010382,
+      "RMSE_mean": 29.940883,
+      "RMSE_std": 0.006515,
+      "MAPE_mean": 0.12546,
+      "MAPE_std": 0.000479,
+      "H3_MAE_mean": 17.616141,
+      "H6_MAE_mean": 18.43602,
+      "H12_MAE_mean": 19.740473
+    },
+    "MegaCRN": {
+      "n_seeds": 3,
+      "MAE_mean": 18.818741,
+      "MAE_std": 0.020466,
+      "RMSE_mean": 30.489188,
+      "RMSE_std": 0.065285,
+      "MAPE_mean": 0.127617,
+      "MAPE_std": 0.000952
+    },
+    "STNorm": {
+      "n_seeds": 3,
+      "MAE_mean": 19.041688,
+      "MAE_std": 0.073822,
+      "RMSE_mean": 31.336789,
+      "RMSE_std": 0.296587,
+      "MAPE_mean": 0.127963,
+      "MAPE_std": 0.001228
+    },
+    "STAEformer": {
+      "n_seeds": 3,
+      "MAE_mean": 18.222093,
+      "MAE_std": 0.094473,
+      "RMSE_mean": 30.655789,
+      "RMSE_std": 0.349363,
+      "MAPE_mean": 0.122032,
+      "MAPE_std": 0.000756
+    }
+  }
+}

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">Reliability-First STGNN Benchmark</title>
+  <desc id="desc">Animated banner showing traffic graph forecasting, reliability diagnostics, and benchmark artifacts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#07111f">
+        <animate attributeName="stop-color" values="#07111f;#102a43;#07111f" dur="12s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="46%" stop-color="#0f766e">
+        <animate attributeName="stop-color" values="#0f766e;#1d4ed8;#0f766e" dur="12s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#f59e0b">
+        <animate attributeName="stop-color" values="#f59e0b;#e11d48;#f59e0b" dur="12s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="45%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#fb7185"/>
+    </linearGradient>
+    <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="320" rx="26" fill="url(#bg)"/>
+  <rect width="1200" height="320" rx="26" fill="url(#grid)"/>
+
+  <g opacity="0.18">
+    <circle cx="1000" cy="64" r="150" fill="#ffffff"/>
+    <circle cx="1060" cy="270" r="190" fill="#ffffff"/>
+  </g>
+
+  <g fill="none" stroke="url(#line)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 14" opacity="0.78">
+    <path d="M706 223 C760 139 820 106 886 154 S1008 232 1084 150">
+      <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="7s" repeatCount="indefinite"/>
+    </path>
+    <path d="M682 112 C744 68 801 80 848 124 S949 202 1035 96">
+      <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="9s" repeatCount="indefinite"/>
+    </path>
+    <path d="M742 264 C812 204 899 215 956 246 S1041 275 1110 218">
+      <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="8s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <g filter="url(#soft-glow)">
+    <g fill="#67e8f9">
+      <circle cx="706" cy="223" r="8">
+        <animate attributeName="r" values="7;10;7" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="820" cy="106" r="7"/>
+      <circle cx="886" cy="154" r="9">
+        <animate attributeName="r" values="8;11;8" dur="4.8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    <g fill="#facc15">
+      <circle cx="760" cy="139" r="7"/>
+      <circle cx="956" cy="246" r="8">
+        <animate attributeName="r" values="7;10;7" dur="5.2s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    <g fill="#fb7185">
+      <circle cx="1035" cy="96" r="9">
+        <animate attributeName="r" values="8;12;8" dur="4.6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="1084" cy="150" r="8"/>
+      <circle cx="1110" cy="218" r="7"/>
+    </g>
+  </g>
+
+  <g opacity="0.94">
+    <rect x="72" y="70" width="466" height="178" rx="18" fill="#07111f" fill-opacity="0.62" stroke="#ffffff" stroke-opacity="0.18"/>
+    <text x="100" y="122" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="44" font-weight="800">Reliability-First</text>
+    <text x="100" y="166" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">STGNN Benchmark</text>
+    <text x="100" y="205" fill="#dbeafe" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Accuracy · Calibration · Robustness · XAI · Compute</text>
+    <text x="100" y="234" fill="#bae6fd" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15">METR-LA · PEMS-BAY · PEMS04 · Reliability diagnostics</text>
+  </g>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="700" font-size="15">
+    <rect x="715" y="34" width="112" height="34" rx="17" fill="#0f172a" fill-opacity="0.7" stroke="#67e8f9" stroke-opacity="0.55"/>
+    <text x="741" y="56" fill="#e0f2fe">7 models</text>
+    <rect x="842" y="34" width="130" height="34" rx="17" fill="#0f172a" fill-opacity="0.7" stroke="#facc15" stroke-opacity="0.65"/>
+    <text x="869" y="56" fill="#fef9c3">3 datasets</text>
+    <rect x="987" y="34" width="136" height="34" rx="17" fill="#0f172a" fill-opacity="0.7" stroke="#fb7185" stroke-opacity="0.6"/>
+    <text x="1011" y="56" fill="#ffe4e6">63 runs</text>
+  </g>
+</svg>

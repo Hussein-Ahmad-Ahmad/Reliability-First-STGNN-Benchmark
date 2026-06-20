@@ -1,0 +1,34 @@
+{
+  "k=5": {
+    "mean_fidelity_ratio": 1.3488073343054705,
+    "std_fidelity_ratio": 0.4282466068671637,
+    "mean_delta_important": 0.0227083894982934,
+    "mean_delta_random": 0.018091495004482566
+  },
+  "k=10": {
+    "mean_fidelity_ratio": 1.4375143510781938,
+    "std_fidelity_ratio": 0.32750590732985785,
+    "mean_delta_important": 0.04371266722679138,
+    "mean_delta_random": 0.031845640018582345
+  },
+  "k=20": {
+    "mean_fidelity_ratio": 1.3631057047937203,
+    "std_fidelity_ratio": 0.2480570719533579,
+    "mean_delta_important": 0.08070789460092782,
+    "mean_delta_random": 0.061071394123136995
+  },
+  "k=50": {
+    "mean_fidelity_ratio": 1.3190506865712393,
+    "std_fidelity_ratio": 0.21040217840505113,
+    "mean_delta_important": 0.18147182539105416,
+    "mean_delta_random": 0.13849337093532085
+  },
+  "comprehensiveness": {
+    "mean": 0.07080071449279784,
+    "std": 0.015083980297164002
+  },
+  "sufficiency": {
+    "mean": 0.3678952905535698,
+    "std": 0.3655474956694034
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "method": "per_horizon_normalized_conformal",
+  "alpha": 0.1,
+  "target_coverage": 0.9,
+  "num_horizons": 12,
+  "thresholds_per_horizon": {
+    "H1": 2.7482986450195312,
+    "H2": 3.269965887069702,
+    "H3": 3.844550371170044,
+    "H4": 3.8575358390808105,
+    "H5": 4.134251594543457,
+    "H6": 4.398633003234863,
+    "H7": 4.0363664627075195,
+    "H8": 4.16051721572876,
+    "H9": 4.024294376373291,
+    "H10": 3.050027847290039,
+    "H11": 3.0425658226013184,
+    "H12": 2.937199115753174
+  },
+  "evaluation_set": {
+    "size": 1688,
+    "PICP": 0.8922187765133628,
+    "MPIW": 495.86456298828125,
+    "coverage_percent": 89.22187765133629,
+    "per_horizon": {
+      "horizon_1": {
+        "PICP": 0.899422924823997,
+        "MPIW": 393.63165283203125,
+        "coverage_percent": 89.9422924823997
+      },
+      "horizon_2": {
+        "PICP": 0.8968729312193283,
+        "MPIW": 412.8797607421875,
+        "coverage_percent": 89.68729312193283
+      },
+      "horizon_3": {
+        "PICP": 0.8950716973615606,
+        "MPIW": 430.8267517089844,
+        "coverage_percent": 89.50716973615606
+      },
+      "horizon_4": {
+        "PICP": 0.8951446603761795,
+        "MPIW": 433.07281494140625,
+        "coverage_percent": 89.51446603761795
+      },
+      "horizon_5": {
+        "PICP": 0.8947581164836967,
+        "MPIW": 446.7822570800781,
+        "coverage_percent": 89.47581164836967
+      },
+      "horizon_6": {
+        "PICP": 0.8936249565533213,
+        "MPIW": 462.7512512207031,
+        "coverage_percent": 89.36249565533213
+      },
+      "horizon_7": {
+        "PICP": 0.8942315202449388,
+        "MPIW": 515.8287353515625,
+        "coverage_percent": 89.42315202449387
+      },
+      "horizon_8": {
+        "PICP": 0.8926268063943578,
+        "MPIW": 535.1365966796875,
+        "coverage_percent": 89.26268063943577
+      },
+      "horizon_9": {
+        "PICP": 0.8891715740639498,
+        "MPIW": 545.0970458984375,
+        "coverage_percent": 88.91715740639498
+      },
+      "horizon_10": {
+        "PICP": 0.886126318913473,
+        "MPIW": 579.3969116210938,
+        "coverage_percent": 88.6126318913473
+      },
+      "horizon_11": {
+        "PICP": 0.8855015785681791,
+        "MPIW": 594.7385864257812,
+        "coverage_percent": 88.55015785681792
+      },
+      "horizon_12": {
+        "PICP": 0.884076137146829,
+        "MPIW": 600.169189453125,
+        "coverage_percent": 88.4076137146829
+      }
+    }
+  },
+  "full_test_set": {
+    "size": 3375,
+    "PICP": 0.8961050029760946,
+    "MPIW": 491.970703125,
+    "coverage_percent": 89.61050029760946,
+    "per_horizon": {
+      "horizon_1": {
+        "PICP": 0.8997123379823374,
+        "MPIW": 390.3865966796875,
+        "coverage_percent": 89.97123379823374
+      },
+      "horizon_2": {
+        "PICP": 0.8984354604201112,
+        "MPIW": 409.62591552734375,
+        "coverage_percent": 89.84354604201113
+      },
+      "horizon_3": {
+        "PICP": 0.8975337504534445,
+        "MPIW": 427.3757019042969,
+        "coverage_percent": 89.75337504534446
+      },
+      "horizon_4": {
+        "PICP": 0.8975705291605922,
+        "MPIW": 429.564453125,
+        "coverage_percent": 89.75705291605922
+      },
+      "horizon_5": {
+        "PICP": 0.8973770305866432,
+        "MPIW": 442.5843505859375,
+        "coverage_percent": 89.73770305866432
+      },
+      "horizon_6": {
+        "PICP": 0.8968093490219391,
+        "MPIW": 457.81475830078125,
+        "coverage_percent": 89.68093490219391
+      },
+      "horizon_7": {
+        "PICP": 0.8971124569537848,
+        "MPIW": 509.93109130859375,
+        "coverage_percent": 89.71124569537848
+      },
+      "horizon_8": {
+        "PICP": 0.8963095070477621,
+        "MPIW": 529.3934326171875,
+        "coverage_percent": 89.63095070477621
+      },
+      "horizon_9": {
+        "PICP": 0.894578752071651,
+        "MPIW": 539.7998046875,
+        "coverage_percent": 89.4578752071651
+      },
+      "horizon_10": {
+        "PICP": 0.8930535348320583,
+        "MPIW": 576.6150512695312,
+        "coverage_percent": 89.30535348320583
+      },
+      "horizon_11": {
+        "PICP": 0.892740333987463,
+        "MPIW": 592.31201171875,
+        "coverage_percent": 89.2740333987463
+      },
+      "horizon_12": {
+        "PICP": 0.8920270101141261,
+        "MPIW": 598.2423706054688,
+        "coverage_percent": 89.20270101141261
+      }
+    }
+  },
+  "masking": {
+    "null_val": 0.0,
+    "total_values": 12433500,
+    "masked_values": 160705,
+    "masked_fraction": 0.012925161861101058
+  },
+  "notes": [
+    "Per-horizon conformal with separate threshold for each forecast horizon",
+    "Conservative quantile (method=higher) with finite-sample correction",
+    "Chronological split: first 50% calibration, last 50% evaluation",
+    "Normalized by ensemble std for adaptive intervals"
+  ]
+}

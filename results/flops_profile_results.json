@@ -1,0 +1,299 @@
+{
+  "rows": [
+    {
+      "dataset": "METR-LA",
+      "model": "D2STGNN",
+      "macs": 440608608.0,
+      "flops": 881217216.0,
+      "params": 391962,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\D2STGNN\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        3
+      ]
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "MegaCRN",
+      "macs": 317952.0,
+      "flops": 635904.0,
+      "params": 388761,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\MegaCRN\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        2
+      ]
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "MTGNN",
+      "macs": 88430400.0,
+      "flops": 176860800.0,
+      "params": 405452,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\MTGNN\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        2
+      ]
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STAEformer",
+      "macs": 2560089888.0,
+      "flops": 5120179776.0,
+      "params": 1258980,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STAEformer\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        4
+      ]
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STGCNChebGraphConv",
+      "macs": 7842816.0,
+      "flops": 15685632.0,
+      "params": 246028,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STGCNChebGraphConv\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        1
+      ]
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STID",
+      "macs": 20905344.0,
+      "flops": 41810688.0,
+      "params": 117868,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STID\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        4
+      ]
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STNorm",
+      "macs": 154776384.0,
+      "flops": 309552768.0,
+      "params": 223756,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STNorm\\METR-LA_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        207,
+        2
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "D2STGNN",
+      "macs": 702010400.0,
+      "flops": 1404020800.0,
+      "params": 399220,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\D2STGNN\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        3
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "MegaCRN",
+      "macs": 499200.0,
+      "flops": 998400.0,
+      "params": 393481,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\MegaCRN\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        2
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "MTGNN",
+      "macs": 138840000.0,
+      "flops": 277680000.0,
+      "params": 573484,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\MTGNN\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        2
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STAEformer",
+      "macs": 4019464800.0,
+      "flops": 8038929600.0,
+      "params": 1372260,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STAEformer\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        4
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STGCNChebGraphConv",
+      "macs": 12313600.0,
+      "flops": 24627200.0,
+      "params": 306444,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STGCNChebGraphConv\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        1
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STID",
+      "macs": 32822400.0,
+      "flops": 65644800.0,
+      "params": 121644,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STID\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        4
+      ]
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STNorm",
+      "macs": 243006400.0,
+      "flops": 486012800.0,
+      "params": 284172,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STNorm\\PEMS-BAY_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        325,
+        2
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "D2STGNN",
+      "macs": 663129824.0,
+      "flops": 1326259648.0,
+      "params": 398788,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\D2STGNN\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        3
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "MegaCRN",
+      "macs": 471552.0,
+      "flops": 943104.0,
+      "params": 392761,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\MegaCRN\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        2
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "MTGNN",
+      "macs": 131150400.0,
+      "flops": 262300800.0,
+      "params": 547852,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\MTGNN\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        2
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STAEformer",
+      "macs": 3796848288.0,
+      "flops": 7593696576.0,
+      "params": 1354980,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STAEformer\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        4
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STGCNChebGraphConv",
+      "macs": 11631616.0,
+      "flops": 23263232.0,
+      "params": 297228,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STGCNChebGraphConv\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        1
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STID",
+      "macs": 31004544.0,
+      "flops": 62009088.0,
+      "params": 121068,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STID\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        4
+      ]
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STNorm",
+      "macs": 229547584.0,
+      "flops": 459095168.0,
+      "params": 274956,
+      "config": "D:\\Hussein-Files\\STGNN-Reliability-Benchmark\\configs\\STNorm\\PEMS04_seed43.py",
+      "input_shape": [
+        1,
+        12,
+        307,
+        2
+      ]
+    }
+  ],
+  "errors": []
+}

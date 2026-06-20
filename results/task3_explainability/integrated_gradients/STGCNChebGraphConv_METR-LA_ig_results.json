@@ -1,0 +1,37 @@
+{
+  "model": "STGCNChebGraphConv",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    1
+  ],
+  "non_zero_count": 225468,
+  "top_10_sensors": [
+    107,
+    192,
+    35,
+    191,
+    161,
+    15,
+    3,
+    93,
+    4,
+    85
+  ],
+  "sensor_importance_mean": 157.83197021484375,
+  "sensor_importance_std": 100.14643096923828,
+  "sensor_importance_min": 0.0,
+  "sensor_importance_max": 720.5516357421875,
+  "top_sensor_importance_values": [
+    720.5516357421875,
+    524.8993530273438,
+    514.871337890625,
+    484.920166015625,
+    483.6029052734375
+  ],
+  "status": "pass"
+}

@@ -1,0 +1,8 @@
+model,n_gnnexplainer_samples,gnn_top3_sensors,ig_top3_sensors,gnn_ig_overlap_at_10,fidelity_ratio_k10,fidelity_ratio_k20,stability_jaccard,validity_mae_delta,source_note
+D2STGNN,100,"174, 144, 165","166, 96, 176",0,0.8566618757073614,0.861596601062923,0.2236842105263158,-0.2940635681152344,"stored outputs; diagnostic, not causal explanation"
+MegaCRN,100,"174, 46, 10","123, 35, 16",0,0.5585621163492417,0.7204813642582582,0.5091277890466531,-0.026599884033203125,"stored outputs; diagnostic, not causal explanation"
+MTGNN,100,"174, 91, 16","175, 166, 93",0,2.265190559790281e-33,5.528343846918767e-33,0.022844950213371268,0.049808502197265625,"stored outputs; diagnostic, not causal explanation"
+STAEformer,100,"57, 181, 147","26, 57, 91",2,1.082262606376662,1.110015630270865,0.11411642651453313,0.1090240478515625,"stored outputs; diagnostic, not causal explanation"
+STGCNChebGraphConv,100,"28, 80, 2","107, 192, 35",1,2.0123512792422242,2.08581889182754,0.18693836140325534,0.0076751708984375,"stored outputs; diagnostic, not causal explanation"
+STID,100,"174, 66, 46","166, 145, 67",0,0.3792907275795162,0.5328443867127549,0.6209150326797386,-3.302459716796875,"stored outputs; diagnostic, not causal explanation"
+STNorm,100,"184, 20, 42","132, 105, 99",0,1.0522932989444633,1.0631388934046548,0.09919147716361339,0.69732666015625,"stored outputs; diagnostic, not causal explanation"

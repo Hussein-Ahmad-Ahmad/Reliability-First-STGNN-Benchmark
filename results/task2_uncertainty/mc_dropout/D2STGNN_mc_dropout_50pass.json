@@ -1,0 +1,13 @@
+{
+  "model": "D2STGNN",
+  "dataset": "METR-LA",
+  "n_passes": 50,
+  "n_samples": 6831,
+  "device": "cuda",
+  "training_state": false,
+  "variance_mean": 8.880664,
+  "picp_uncalibrated": 0.62103,
+  "mpiw_uncalibrated": 34.81221,
+  "status": "functional",
+  "note": "diagnostic only - calibration required before reporting"
+}
