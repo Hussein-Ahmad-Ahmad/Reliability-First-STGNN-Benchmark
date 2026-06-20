@@ -1,0 +1,8 @@
+{
+  "model": "STGCNChebGraphConv",
+  "dataset": "METR-LA",
+  "has_attention": false,
+  "architecture_type": "Spectral graph convolution network",
+  "reason": "Architecture does not implement attention layers",
+  "status": "pass"
+}

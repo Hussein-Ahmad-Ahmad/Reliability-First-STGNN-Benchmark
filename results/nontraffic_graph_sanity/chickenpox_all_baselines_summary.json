@@ -1,0 +1,374 @@
+{
+  "dataset": "Hungarian Chickenpox Cases",
+  "task": "12-week input to 12-week output county-level case-count forecasting",
+  "split": "chronological 70/10/20 train/validation/test",
+  "models": [
+    "D2STGNN",
+    "MegaCRN",
+    "MTGNN",
+    "STNorm",
+    "STGCN-Cheb",
+    "STID",
+    "STAEformer"
+  ],
+  "seeds": [
+    43,
+    44,
+    45
+  ],
+  "summary": {
+    "D2STGNN": {
+      "mae_mean": 0.6402626236279806,
+      "mae_std": 0.0006430072233150251,
+      "rmse_mean": 1.008853832880656,
+      "rmse_std": 0.0009812071749767226,
+      "conformal_coverage_90_mean": 0.8850869809203142,
+      "conformal_coverage_90_std": 0.0005897264185461121,
+      "conformal_interval_width_mean": 2.9145689010620117,
+      "conformal_interval_width_std": 0.007002233715120978,
+      "best_val_mae_mean": 0.5836555560429891,
+      "best_val_mae_std": 0.0009365574148542039,
+      "best_epoch_mean": 11.666666666666666,
+      "best_epoch_std": 2.516611478423583,
+      "train_seconds_mean": 64.77953100204468,
+      "train_seconds_std": 4.563106824723462,
+      "num_parameters_mean": 230032.0,
+      "num_parameters_std": 0.0
+    },
+    "MegaCRN": {
+      "mae_mean": 0.639398197333018,
+      "mae_std": 0.0007449993070643375,
+      "rmse_mean": 1.0056683619817097,
+      "rmse_std": 0.0016172511531260586,
+      "conformal_coverage_90_mean": 0.8853535353535352,
+      "conformal_coverage_90_std": 0.0006479294746775969,
+      "conformal_interval_width_mean": 2.904991388320923,
+      "conformal_interval_width_std": 0.017859732847343067,
+      "best_val_mae_mean": 0.5817909439404806,
+      "best_val_mae_std": 0.0002781658624620548,
+      "best_epoch_mean": 6.333333333333333,
+      "best_epoch_std": 3.2145502536643185,
+      "train_seconds_mean": 20.932396014531452,
+      "train_seconds_std": 1.917649539358749,
+      "num_parameters_mean": 42833.0,
+      "num_parameters_std": 0.0
+    },
+    "MTGNN": {
+      "mae_mean": 0.6399126648902893,
+      "mae_std": 0.0003410407299669957,
+      "rmse_mean": 1.0053334633509319,
+      "rmse_std": 0.0005994488207668067,
+      "conformal_coverage_90_mean": 0.8843013468013469,
+      "conformal_coverage_90_std": 0.0014475912055488254,
+      "conformal_interval_width_mean": 2.894822438557943,
+      "conformal_interval_width_std": 0.014270126621976574,
+      "best_val_mae_mean": 0.5829136371612549,
+      "best_val_mae_std": 0.000153734661139919,
+      "best_epoch_mean": 8.666666666666666,
+      "best_epoch_std": 3.214550253664318,
+      "train_seconds_mean": 5.939889907836914,
+      "train_seconds_std": 0.5920349710780917,
+      "num_parameters_mean": 22732.0,
+      "num_parameters_std": 0.0
+    },
+    "STNorm": {
+      "mae_mean": 0.638916810353597,
+      "mae_std": 0.00039605005953053215,
+      "rmse_mean": 1.0050632953643799,
+      "rmse_std": 0.0008286753056591461,
+      "conformal_coverage_90_mean": 0.8850308641975309,
+      "conformal_coverage_90_std": 0.000787760670110369,
+      "conformal_interval_width_mean": 2.8991853396097818,
+      "conformal_interval_width_std": 0.01934236718939135,
+      "best_val_mae_mean": 0.5821171601613363,
+      "best_val_mae_std": 0.00026083451116797746,
+      "best_epoch_mean": 11.0,
+      "best_epoch_std": 1.7320508075688772,
+      "train_seconds_mean": 16.969974279403687,
+      "train_seconds_std": 0.8690679658675112,
+      "num_parameters_mean": 35068.0,
+      "num_parameters_std": 0.0
+    },
+    "STGCN-Cheb": {
+      "mae_mean": 0.6395691831906637,
+      "mae_std": 0.0009512372735951822,
+      "rmse_mean": 1.0063416560490925,
+      "rmse_std": 0.001269909141547924,
+      "conformal_coverage_90_mean": 0.8848484848484849,
+      "conformal_coverage_90_std": 0.0009230518602466926,
+      "conformal_interval_width_mean": 2.9133684635162354,
+      "conformal_interval_width_std": 0.006312687599927477,
+      "best_val_mae_mean": 0.5826873580614725,
+      "best_val_mae_std": 0.0004920440154706766,
+      "best_epoch_mean": 39.0,
+      "best_epoch_std": 9.643650760992955,
+      "train_seconds_mean": 6.929902156194051,
+      "train_seconds_std": 1.0498614068675263,
+      "num_parameters_mean": 13276.0,
+      "num_parameters_std": 0.0
+    },
+    "STID": {
+      "mae_mean": 0.6416415969530741,
+      "mae_std": 0.0005822082613993662,
+      "rmse_mean": 1.0073397556940715,
+      "rmse_std": 0.0005198244650555381,
+      "conformal_coverage_90_mean": 0.8844276094276093,
+      "conformal_coverage_90_std": 0.0006954003216269998,
+      "conformal_interval_width_mean": 2.911426067352295,
+      "conformal_interval_width_std": 0.005990227741854286,
+      "best_val_mae_mean": 0.5861790577570597,
+      "best_val_mae_std": 0.0010352229806873399,
+      "best_epoch_mean": 4.0,
+      "best_epoch_std": 1.0,
+      "train_seconds_mean": 1.0661492347717285,
+      "train_seconds_std": 0.033338054286332755,
+      "num_parameters_mean": 11756.0,
+      "num_parameters_std": 0.0
+    },
+    "STAEformer": {
+      "mae_mean": 0.6648566126823425,
+      "mae_std": 0.001853702680665117,
+      "rmse_mean": 1.0288766622543335,
+      "rmse_std": 0.001582914629428248,
+      "conformal_coverage_90_mean": 0.887219416386083,
+      "conformal_coverage_90_std": 0.0009281551575209443,
+      "conformal_interval_width_mean": 3.0320425033569336,
+      "conformal_interval_width_std": 0.007811729798283076,
+      "best_val_mae_mean": 0.6154508193333944,
+      "best_val_mae_std": 0.003227477229234226,
+      "best_epoch_mean": 4.0,
+      "best_epoch_std": 0.0,
+      "train_seconds_mean": 8.462778568267822,
+      "train_seconds_std": 0.018188100196464965,
+      "num_parameters_mean": 25996.0,
+      "num_parameters_std": 0.0
+    }
+  },
+  "per_seed": {
+    "D2STGNN": [
+      {
+        "mae": 0.6406543254852295,
+        "rmse": 1.0088365077972412,
+        "conformal_coverage_90": 0.8850589225589226,
+        "conformal_interval_width": 2.915311098098755,
+        "best_val_mae": 0.5847358107566833,
+        "best_epoch": 9,
+        "train_seconds": 59.88638949394226,
+        "num_parameters": 230032
+      },
+      {
+        "mae": 0.6406130194664001,
+        "rmse": 1.0098435878753662,
+        "conformal_coverage_90": 0.8845117845117845,
+        "conformal_interval_width": 2.9072251319885254,
+        "best_val_mae": 0.583159327507019,
+        "best_epoch": 14,
+        "train_seconds": 68.91867923736572,
+        "num_parameters": 230032
+      },
+      {
+        "mae": 0.639520525932312,
+        "rmse": 1.0078814029693604,
+        "conformal_coverage_90": 0.8856902356902356,
+        "conformal_interval_width": 2.921170473098755,
+        "best_val_mae": 0.5830715298652649,
+        "best_epoch": 12,
+        "train_seconds": 65.53352427482605,
+        "num_parameters": 230032
+      }
+    ],
+    "MegaCRN": [
+      {
+        "mae": 0.6393539905548096,
+        "rmse": 1.0058125257492065,
+        "conformal_coverage_90": 0.8859006734006734,
+        "conformal_interval_width": 2.925546884536743,
+        "best_val_mae": 0.5816928744316101,
+        "best_epoch": 4,
+        "train_seconds": 19.41903805732727,
+        "num_parameters": 42833
+      },
+      {
+        "mae": 0.6386762857437134,
+        "rmse": 1.0039838552474976,
+        "conformal_coverage_90": 0.8855218855218855,
+        "conformal_interval_width": 2.8932735919952393,
+        "best_val_mae": 0.5815750956535339,
+        "best_epoch": 10,
+        "train_seconds": 23.088964462280273,
+        "num_parameters": 42833
+      },
+      {
+        "mae": 0.640164315700531,
+        "rmse": 1.0072087049484253,
+        "conformal_coverage_90": 0.8846380471380472,
+        "conformal_interval_width": 2.896153688430786,
+        "best_val_mae": 0.5821048617362976,
+        "best_epoch": 5,
+        "train_seconds": 20.289185523986816,
+        "num_parameters": 42833
+      }
+    ],
+    "MTGNN": [
+      {
+        "mae": 0.6400839686393738,
+        "rmse": 1.0057740211486816,
+        "conformal_coverage_90": 0.884553872053872,
+        "conformal_interval_width": 2.8923370838165283,
+        "best_val_mae": 0.5828350186347961,
+        "best_epoch": 10,
+        "train_seconds": 6.32793664932251,
+        "num_parameters": 22732
+      },
+      {
+        "mae": 0.6401340961456299,
+        "rmse": 1.0055755376815796,
+        "conformal_coverage_90": 0.8827441077441077,
+        "conformal_interval_width": 2.881958246231079,
+        "best_val_mae": 0.5828151106834412,
+        "best_epoch": 5,
+        "train_seconds": 5.2584547996521,
+        "num_parameters": 22732
+      },
+      {
+        "mae": 0.6395199298858643,
+        "rmse": 1.0046508312225342,
+        "conformal_coverage_90": 0.8856060606060606,
+        "conformal_interval_width": 2.9101719856262207,
+        "best_val_mae": 0.5830907821655273,
+        "best_epoch": 11,
+        "train_seconds": 6.233278274536133,
+        "num_parameters": 22732
+      }
+    ],
+    "STNorm": [
+      {
+        "mae": 0.6388195157051086,
+        "rmse": 1.0053906440734863,
+        "conformal_coverage_90": 0.8856060606060606,
+        "conformal_interval_width": 2.9047133922576904,
+        "best_val_mae": 0.5820189714431763,
+        "best_epoch": 12,
+        "train_seconds": 17.46248745918274,
+        "num_parameters": 35068
+      },
+      {
+        "mae": 0.6393524408340454,
+        "rmse": 1.0056782960891724,
+        "conformal_coverage_90": 0.8853535353535353,
+        "conformal_interval_width": 2.9151618480682373,
+        "best_val_mae": 0.5819196701049805,
+        "best_epoch": 12,
+        "train_seconds": 17.480917930603027,
+        "num_parameters": 35068
+      },
+      {
+        "mae": 0.638578474521637,
+        "rmse": 1.004120945930481,
+        "conformal_coverage_90": 0.8841329966329966,
+        "conformal_interval_width": 2.877680778503418,
+        "best_val_mae": 0.582412838935852,
+        "best_epoch": 9,
+        "train_seconds": 15.966517448425293,
+        "num_parameters": 35068
+      }
+    ],
+    "STGCN-Cheb": [
+      {
+        "mae": 0.6386522054672241,
+        "rmse": 1.0048835277557373,
+        "conformal_coverage_90": 0.8858585858585859,
+        "conformal_interval_width": 2.920609951019287,
+        "best_val_mae": 0.5829182863235474,
+        "best_epoch": 32,
+        "train_seconds": 6.219137907028198,
+        "num_parameters": 13276
+      },
+      {
+        "mae": 0.6395040154457092,
+        "rmse": 1.0069363117218018,
+        "conformal_coverage_90": 0.8840488215488216,
+        "conformal_interval_width": 2.9104692935943604,
+        "best_val_mae": 0.5821223258972168,
+        "best_epoch": 50,
+        "train_seconds": 8.13576626777649,
+        "num_parameters": 13276
+      },
+      {
+        "mae": 0.6405513286590576,
+        "rmse": 1.0072051286697388,
+        "conformal_coverage_90": 0.8846380471380472,
+        "conformal_interval_width": 2.9090261459350586,
+        "best_val_mae": 0.5830214619636536,
+        "best_epoch": 35,
+        "train_seconds": 6.434802293777466,
+        "num_parameters": 13276
+      }
+    ],
+    "STID": [
+      {
+        "mae": 0.6410301923751831,
+        "rmse": 1.006847620010376,
+        "conformal_coverage_90": 0.8847643097643098,
+        "conformal_interval_width": 2.9066340923309326,
+        "best_val_mae": 0.5852700471878052,
+        "best_epoch": 4,
+        "train_seconds": 1.0651257038116455,
+        "num_parameters": 11756
+      },
+      {
+        "mae": 0.6417052149772644,
+        "rmse": 1.0072882175445557,
+        "conformal_coverage_90": 0.8836279461279462,
+        "conformal_interval_width": 2.9095022678375244,
+        "best_val_mae": 0.5873058438301086,
+        "best_epoch": 5,
+        "train_seconds": 1.099987268447876,
+        "num_parameters": 11756
+      },
+      {
+        "mae": 0.6421893835067749,
+        "rmse": 1.0078834295272827,
+        "conformal_coverage_90": 0.8848905723905723,
+        "conformal_interval_width": 2.9181418418884277,
+        "best_val_mae": 0.5859612822532654,
+        "best_epoch": 3,
+        "train_seconds": 1.033334732055664,
+        "num_parameters": 11756
+      }
+    ],
+    "STAEformer": [
+      {
+        "mae": 0.666262149810791,
+        "rmse": 1.0307027101516724,
+        "conformal_coverage_90": 0.8874579124579125,
+        "conformal_interval_width": 3.0408947467803955,
+        "best_val_mae": 0.6187090277671814,
+        "best_epoch": 4,
+        "train_seconds": 8.449988603591919,
+        "num_parameters": 25996
+      },
+      {
+        "mae": 0.6627557873725891,
+        "rmse": 1.0278944969177246,
+        "conformal_coverage_90": 0.8880050505050505,
+        "conformal_interval_width": 3.026115894317627,
+        "best_val_mae": 0.6122549772262573,
+        "best_epoch": 4,
+        "train_seconds": 8.454747200012207,
+        "num_parameters": 25996
+      },
+      {
+        "mae": 0.6655519008636475,
+        "rmse": 1.0280327796936035,
+        "conformal_coverage_90": 0.8861952861952862,
+        "conformal_interval_width": 3.0291168689727783,
+        "best_val_mae": 0.6153884530067444,
+        "best_epoch": 4,
+        "train_seconds": 8.48359990119934,
+        "num_parameters": 25996
+      }
+    ]
+  },
+  "interpretation": "Appendix-only non-traffic graph sanity check using the same seven model classes; not part of the main traffic ranking."
+}

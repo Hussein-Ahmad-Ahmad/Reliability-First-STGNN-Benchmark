@@ -1,0 +1,14 @@
+{
+    "model":  "STGCNChebGraphConv",
+    "dataset":  "METR-LA",
+    "n_passes":  50,
+    "n_samples":  6831,
+    "device":  "cuda",
+    "training_state":  false,
+    "variance_mean":  0.0604168027639389,
+    "picp_uncalibrated":  0.015543306763638626,
+    "mpiw_uncalibrated":  0.12083360552787779,
+    "status":  "functional",
+    "note":  "Generated via STGCN alias path for STGCNChebGraphConv using original mc_dropout_uq.py with memory-safe CRPS approximation; calibration required before reporting.",
+    "metrics_source":  "d:/Hussein-Files/original/experiments/publishable_experiment/scripts/mc_dropout_uq.py"
+}

@@ -1,0 +1,35 @@
+{
+  "k=5": {
+    "mean_fidelity_ratio": 9.584601236288884e-34,
+    "std_fidelity_ratio": 3.549453958137488e-34,
+    "mean_delta_important": 9.584601236288884e-42,
+    "mean_delta_random": 2.8278132945151593e-41
+  },
+  "k=10": {
+    "mean_fidelity_ratio": 2.265190559790281e-33,
+    "std_fidelity_ratio": 7.700776148129479e-34,
+    "mean_delta_important": 2.265190559790281e-41,
+    "mean_delta_random": 5.554721889211217e-41
+  },
+  "k=20": {
+    "mean_fidelity_ratio": 5.528343846918767e-33,
+    "std_fidelity_ratio": 2.0472900732945226e-33,
+    "mean_delta_important": 5.528343846918767e-41,
+    "mean_delta_random": 1.114788980308965e-40
+  },
+  "k=50": {
+    "mean_fidelity_ratio": 1.929719847560766e-32,
+    "std_fidelity_ratio": 6.779787405345754e-33,
+    "mean_delta_important": 1.929719847560766e-40,
+    "mean_delta_random": 2.7998299247019785e-40
+  },
+  "comprehensiveness": {
+    "mean": 4.5740637966089593e-41,
+    "std": 1.6620771155946744e-41
+  },
+  "sufficiency": {
+    "mean": 9.937028921105346e-40,
+    "std": 1.8723691548365592e-40
+  },
+  "faithfulness_score": 5.528343846918767e-33
+}

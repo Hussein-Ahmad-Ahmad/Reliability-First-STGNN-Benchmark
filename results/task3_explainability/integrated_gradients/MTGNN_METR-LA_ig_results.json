@@ -1,0 +1,37 @@
+{
+  "model": "MTGNN",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    2
+  ],
+  "non_zero_count": 473868,
+  "top_10_sensors": [
+    175,
+    166,
+    93,
+    171,
+    1,
+    128,
+    74,
+    90,
+    67,
+    149
+  ],
+  "sensor_importance_mean": 336.4239196777344,
+  "sensor_importance_std": 43.17905807495117,
+  "sensor_importance_min": 17.893192291259766,
+  "sensor_importance_max": 428.4385986328125,
+  "top_sensor_importance_values": [
+    428.4385986328125,
+    416.1180114746094,
+    409.40167236328125,
+    405.9402770996094,
+    397.9985656738281
+  ],
+  "status": "pass"
+}

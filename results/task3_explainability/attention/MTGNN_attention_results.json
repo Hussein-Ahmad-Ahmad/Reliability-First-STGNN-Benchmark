@@ -1,0 +1,8 @@
+{
+  "model": "MTGNN",
+  "dataset": "METR-LA",
+  "has_attention": false,
+  "architecture_type": "Graph temporal convolutional network",
+  "reason": "No explicit attention module in architecture",
+  "status": "pass"
+}

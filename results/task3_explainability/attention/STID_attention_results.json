@@ -1,0 +1,8 @@
+{
+  "model": "STID",
+  "dataset": "METR-LA",
+  "has_attention": false,
+  "architecture_type": "Graph-free MLP",
+  "reason": "Architecture does not implement attention layers",
+  "status": "pass"
+}

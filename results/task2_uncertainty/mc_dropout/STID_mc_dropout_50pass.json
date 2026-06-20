@@ -1,0 +1,13 @@
+{
+  "model": "STID",
+  "dataset": "METR-LA",
+  "n_passes": 50,
+  "n_samples": 6831,
+  "device": "cuda",
+  "training_state": false,
+  "variance_mean": 10.043541,
+  "picp_uncalibrated": 0.253704,
+  "mpiw_uncalibrated": 39.370743,
+  "status": "functional",
+  "note": "diagnostic only - calibration required before reporting"
+}

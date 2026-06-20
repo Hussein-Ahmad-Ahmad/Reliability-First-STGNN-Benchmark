@@ -1,0 +1,37 @@
+{
+  "model": "STNorm",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    2
+  ],
+  "non_zero_count": 473868,
+  "top_10_sensors": [
+    132,
+    105,
+    99,
+    67,
+    108,
+    96,
+    37,
+    203,
+    168,
+    45
+  ],
+  "sensor_importance_mean": 10007.56640625,
+  "sensor_importance_std": 6857.77587890625,
+  "sensor_importance_min": 97.73717498779297,
+  "sensor_importance_max": 45036.015625,
+  "top_sensor_importance_values": [
+    45036.015625,
+    42385.92578125,
+    38809.57421875,
+    38803.96484375,
+    35433.58984375
+  ],
+  "status": "pass"
+}

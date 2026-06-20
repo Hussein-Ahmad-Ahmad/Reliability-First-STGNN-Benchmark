@@ -1,0 +1,24 @@
+{
+  "model": "STID",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "target_timestep": 0,
+  "top_10_sensors": [
+    174,
+    66,
+    46,
+    12,
+    84,
+    9,
+    14,
+    88,
+    8,
+    19
+  ],
+  "mean_node_importance_stats": {
+    "mean": 0.924725353717804,
+    "std": 0.0025765779428184032,
+    "min": 0.9240204691886902,
+    "max": 0.9592707753181458
+  }
+}

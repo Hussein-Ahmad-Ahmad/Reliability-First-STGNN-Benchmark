@@ -1,0 +1,25 @@
+{
+  "model": "STAEformer",
+  "dataset": "METR-LA",
+  "num_samples": 100,
+  "stability_jaccard": 0.11411642651453313,
+  "validity_mae_increase": 0.1090240478515625,
+  "stability_detail": {
+    "noise_0.05": {
+      "mean_jaccard_across_samples": 0.11886967140060532,
+      "std_jaccard_across_samples": 0.08974446242874831,
+      "mean_intra_sample_std": 0.024899365650368252
+    },
+    "noise_0.1": {
+      "mean_jaccard_across_samples": 0.11411642651453313,
+      "std_jaccard_across_samples": 0.08790086319463795,
+      "mean_intra_sample_std": 0.03223918627432479
+    },
+    "noise_0.2": {
+      "mean_jaccard_across_samples": 0.10968241537463903,
+      "std_jaccard_across_samples": 0.09123357670301245,
+      "mean_intra_sample_std": 0.028009973480324305
+    }
+  },
+  "source_stability_file": "d:\\original\\experiments\\publishable_experiment\\results\\xai\\STAEformer\\METR-LA_stability_metrics.json"
+}

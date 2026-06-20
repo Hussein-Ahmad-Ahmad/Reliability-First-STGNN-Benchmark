@@ -1,0 +1,37 @@
+{
+  "model": "MegaCRN",
+  "dataset": "METR-LA",
+  "n_samples": 100,
+  "n_steps": 50,
+  "attribution_shape": [
+    100,
+    12,
+    207,
+    3
+  ],
+  "non_zero_count": 246168,
+  "top_10_sensors": [
+    123,
+    35,
+    16,
+    121,
+    50,
+    196,
+    118,
+    18,
+    203,
+    57
+  ],
+  "sensor_importance_mean": 881.9451293945312,
+  "sensor_importance_std": 748.2531127929688,
+  "sensor_importance_min": 1.5822012424468994,
+  "sensor_importance_max": 5515.23193359375,
+  "top_sensor_importance_values": [
+    5515.23193359375,
+    4987.095703125,
+    4439.7265625,
+    4431.80078125,
+    3400.094970703125
+  ],
+  "status": "pass"
+}

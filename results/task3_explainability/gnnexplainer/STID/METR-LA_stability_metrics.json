@@ -1,0 +1,10 @@
+{
+  "model": "STID",
+  "dataset": "METR-LA",
+  "method": "GNNExplainer",
+  "jaccard_stability": 0.6209150326797386,
+  "top_k": 10,
+  "note": "Jaccard stability extracted from xai_results_final.json (computed by test_xai_metrics.py in BasicTS pipeline). Formal per-run breakdown not available for this model.",
+  "source": "experiments/basicts/xai_results_final.json",
+  "validity_mae_increase": -3.302459716796875
+}

@@ -1,0 +1,13 @@
+{
+  "model": "MegaCRN",
+  "dataset": "METR-LA",
+  "n_passes": 50,
+  "n_samples": 6831,
+  "device": "cuda",
+  "training_state": false,
+  "variance_mean": 0.0,
+  "picp_uncalibrated": 0.0,
+  "mpiw_uncalibrated": 1e-06,
+  "status": "degenerate-low-variance",
+  "note": "diagnostic only - calibration required before reporting"
+}

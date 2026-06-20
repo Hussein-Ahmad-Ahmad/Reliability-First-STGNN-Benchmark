@@ -1,0 +1,10 @@
+{
+  "model": "MegaCRN",
+  "dataset": "METR-LA",
+  "method": "GNNExplainer",
+  "jaccard_stability": 0.5091277890466531,
+  "top_k": 10,
+  "note": "Jaccard stability extracted from xai_results_final.json (computed by test_xai_metrics.py in BasicTS pipeline). Formal per-run breakdown not available for this model.",
+  "source": "experiments/basicts/xai_results_final.json",
+  "validity_mae_increase": -0.026599884033203125
+}
