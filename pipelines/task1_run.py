@@ -2,7 +2,7 @@
 Task 1 Pipeline: Multi-Seed Point Forecasting
 ==============================================
 Trains 7 STGNN models on 3 datasets (METR-LA, PEMS-BAY, PEMS04) with seeds 43/44/45.
-Computes multi-seed aggregation and Diebold-Mariano statistical tests.
+Computes the multi-seed point-forecast aggregation.
 
 Usage:
     # Train all configurations (63 runs)
@@ -14,14 +14,11 @@ Usage:
     # Aggregate results (after training)
     python pipelines/task1_run.py --mode aggregate
 
-    # Run DM tests (after aggregation)
-    python pipelines/task1_run.py --mode dm_test
 """
 
 import argparse
 import subprocess
 import sys
-import os
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -52,18 +49,12 @@ def train_config(model: str, dataset: str, seed: int):
 def aggregate_results():
     """Aggregate multi-seed results from checkpoints into summary JSON."""
     script = PROJECT_ROOT / "scripts" / "aggregate_multiseed.py"
-    subprocess.run([sys.executable, str(script)])
-
-
-def run_dm_tests():
-    """Run full 21-pair Diebold-Mariano test matrix with Holm-Bonferroni correction."""
-    script = PROJECT_ROOT / "scripts" / "run_dm_tests.py"
-    subprocess.run([sys.executable, str(script)])
+    subprocess.run([sys.executable, str(script)], check=True)
 
 
 def main():
     parser = argparse.ArgumentParser(description="Task 1: Point Forecasting Pipeline")
-    parser.add_argument("--mode", choices=["train", "aggregate", "dm_test"], required=True)
+    parser.add_argument("--mode", choices=["train", "aggregate"], required=True)
     parser.add_argument("--model", default="all")
     parser.add_argument("--dataset", default="all")
     parser.add_argument("--seed", type=int, default=None)
@@ -83,15 +74,12 @@ def main():
                     if train_config(model, dataset, seed):
                         success += 1
         print(f"\nCompleted: {success}/{total}")
+        if success != total:
+            raise SystemExit(f"{total - success} training run(s) failed")
 
     elif args.mode == "aggregate":
         print("Aggregating multi-seed results...")
         aggregate_results()
-
-    elif args.mode == "dm_test":
-        print("Running Diebold-Mariano tests (21 pairs, Holm-Bonferroni)...")
-        run_dm_tests()
-
 
 if __name__ == "__main__":
     main()

@@ -3,14 +3,14 @@ Dependence-aware forecast-origin bootstrap for pairwise point-forecast results.
 
 This check resamples contiguous blocks of forecast origins, preserving short-range
 temporal dependence that an iid resample would break. It is intended as a compact
-robustness companion to the pairwise DM/Holm statistical reporting.
+dependence-aware companion to pairwise point-forecast reporting.
 
 Default run:
-    python scripts/run_block_bootstrap_dm_robustness.py
+    python scripts/run_block_bootstrap_pairwise.py
 
 Outputs:
-    results/task1_point_forecasting/block_bootstrap_dm_robustness_pems04_seeds43-44-45.json
-    results/task1_point_forecasting/block_bootstrap_dm_robustness_pems04_seeds43-44-45.csv
+    results/task1_point_forecasting/block_bootstrap_pairwise_pems04_seeds43-44-45.json
+    results/task1_point_forecasting/block_bootstrap_pairwise_pems04_seeds43-44-45.csv
 """
 
 from __future__ import annotations
@@ -333,7 +333,7 @@ def main() -> None:
         )
 
     seed_stem = "seeds" + "-".join(str(seed) for seed in args.seeds)
-    out_stem = f"block_bootstrap_dm_robustness_{args.dataset.lower()}_{seed_stem}"
+    out_stem = f"block_bootstrap_pairwise_{args.dataset.lower()}_{seed_stem}"
     args.out_dir.mkdir(parents=True, exist_ok=True)
     json_path = args.out_dir / f"{out_stem}.json"
     csv_path = args.out_dir / f"{out_stem}.csv"

@@ -2,9 +2,9 @@
 Task 2 Pipeline: Uncertainty Quantification
 ============================================
 Evaluates three UQ methods on trained STGNN checkpoints:
-  1. MC Dropout  — 50-pass stochastic inference
-  2. Deep Ensemble — multi-seed prediction aggregation
-  3. Conformal Prediction — fixed (global) and per-horizon variants
+  1. MC Dropout - 50-pass stochastic inference
+  2. Deep Ensemble - multi-seed prediction aggregation
+  3. Conformal Prediction - fixed (global) and per-horizon variants
 
 Usage:
     # Run all UQ methods for all models
@@ -16,8 +16,9 @@ Usage:
     # Run Deep Ensemble
     python pipelines/task2_run.py --method ensemble
 
-    # Run Conformal Prediction
-    python pipelines/task2_run.py --method conformal --dataset PEMS-BAY
+    # Run Conformal Prediction from member arrays
+    python pipelines/task2_run.py --method conformal --dataset PEMS-BAY \
+        --ensemble-root /path/to/ensemble-arrays
 """
 
 import argparse
@@ -48,7 +49,7 @@ def run_mc_dropout(model: str, dataset: str):
         output_path=str(output_path),
     )
     evaluator.evaluate()
-    print(f"  ✓ MC Dropout: {model}/{dataset}")
+    print(f"  [ok] MC Dropout: {model}/{dataset}")
 
 
 def run_ensemble(dataset: str):
@@ -61,20 +62,29 @@ def run_ensemble(dataset: str):
         output_dir=str(pred_dir),
     )
     evaluator.evaluate()
-    print(f"  ✓ Ensemble: {dataset}")
+    print(f"  [ok] Ensemble: {dataset}")
 
 
-def run_conformal(dataset: str):
+def run_conformal(dataset: str, ensemble_root: Path):
     """Run fixed and per-horizon conformal prediction."""
+    ensemble_dir = ensemble_root / dataset
+    predictions_path = ensemble_dir / "ensemble_predictions.npy"
+    targets_path = ensemble_dir / "targets.npy"
+    if not predictions_path.is_file() or not targets_path.is_file():
+        raise FileNotFoundError(
+            f"Missing ensemble_predictions.npy or targets.npy under {ensemble_dir}"
+        )
     for variant in ["fixed", "per_horizon"]:
         output_path = PROJECT_ROOT / "results" / "task2_uncertainty" / "conformal" / f"{dataset}_conformal_{variant}_metrics.json"
         predictor = ConformalPredictor(
             dataset=dataset,
             variant=variant,
             output_path=str(output_path),
+            ensemble_predictions_path=str(predictions_path),
+            targets_path=str(targets_path),
         )
         predictor.calibrate_and_evaluate()
-        print(f"  ✓ Conformal ({variant}): {dataset}")
+        print(f"  [ok] Conformal ({variant}): {dataset}")
 
 
 def main():
@@ -82,10 +92,16 @@ def main():
     parser.add_argument("--method", choices=["mc_dropout", "ensemble", "conformal", "all"], default="all")
     parser.add_argument("--model", default="all")
     parser.add_argument("--dataset", default="all")
+    parser.add_argument(
+        "--ensemble-root",
+        type=Path,
+        help="Root containing DATASET/ensemble_predictions.npy and targets.npy",
+    )
     args = parser.parse_args()
 
     models = MODELS if args.model == "all" else [args.model]
     datasets = DATASETS if args.dataset == "all" else [args.dataset]
+    failures = []
 
     if args.method in ("mc_dropout", "all"):
         print("=== MC Dropout (50-pass) ===")
@@ -93,24 +109,34 @@ def main():
             for dataset in datasets:
                 try:
                     run_mc_dropout(model, dataset)
-                except Exception as e:
-                    print(f"  ✗ {model}/{dataset}: {e}")
+                except Exception as error:
+                    failures.append(f"MC Dropout {model}/{dataset}: {error}")
+                    print(f"  [failed] {model}/{dataset}: {error}")
 
     if args.method in ("ensemble", "all"):
         print("=== Deep Ensemble ===")
         for dataset in datasets:
             try:
                 run_ensemble(dataset)
-            except Exception as e:
-                print(f"  ✗ {dataset}: {e}")
+            except Exception as error:
+                failures.append(f"Ensemble {dataset}: {error}")
+                print(f"  [failed] {dataset}: {error}")
 
     if args.method in ("conformal", "all"):
+        if args.ensemble_root is None:
+            raise ValueError("--ensemble-root is required for conformal generation")
         print("=== Conformal Prediction ===")
         for dataset in datasets:
             try:
-                run_conformal(dataset)
-            except Exception as e:
-                print(f"  ✗ {dataset}: {e}")
+                run_conformal(dataset, args.ensemble_root)
+            except Exception as error:
+                failures.append(f"Conformal {dataset}: {error}")
+                print(f"  [failed] {dataset}: {error}")
+
+    if failures:
+        raise SystemExit(
+            f"{len(failures)} Task 2 run(s) failed:\n" + "\n".join(failures)
+        )
 
 
 if __name__ == "__main__":

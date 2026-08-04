@@ -1,95 +1,95 @@
 {
-  "method": "normalized_conformal_with_masking",
-  "fixes_applied": [
-    "Masked 12.8% zero targets",
-    "Conservative quantile method (higher)",
-    "Normalized scores (adaptive intervals)",
-    "Finite-sample correction",
-    "Sample-wise exchangeability"
-  ],
+  "dataset": "PEMS-BAY",
+  "method": "normalized_split_conformal_marginal_diagnostic",
+  "alpha": 0.1,
+  "target_coverage": 0.9,
+  "member_count": 9,
+  "ensemble_std_ddof": 0,
+  "epsilon": 1e-06,
+  "chronological_split": {
+    "calibration_origins": 5200,
+    "evaluation_origins": 5200
+  },
+  "score_pooling": "valid origin-sensor-horizon elements",
+  "null_target_rule": "finite targets not equal to zero",
+  "dependence_caveat": "Coverage is an empirical marginal diagnostic. Pooled elements share origins, sensors, and horizons, so no independent-element or finite-sample exchangeability guarantee is claimed.",
+  "variant": "fixed",
   "calibration": {
-    "cal_size": 5200,
-    "eval_size": 5200,
-    "alpha": 0.1,
-    "target_coverage": 0.9,
-    "conformity_threshold": 1.5049619674682617,
-    "score_stats": {
-      "min": 8.509135113854427e-06,
-      "max": 60.366798400878906,
-      "mean": 1.387973666191101,
-      "median": 1.3754085302352905
-    }
+    "threshold": 10.726480484008789,
+    "valid_score_count": 20280000,
+    "quantile_level": 0.9000000443786983,
+    "quantile_method": "higher",
+    "score_min": 0.0,
+    "score_max": 923.6410522460938,
+    "score_mean": 4.933124542236328,
+    "score_median": 3.0519754886627197
   },
   "evaluation_set": {
-    "PICP": 0.8913496585064473,
-    "MPIW": 94.9404296875,
-    "coverage_percent": 89.13496585064473,
+    "PICP": 0.9062850081933598,
+    "MPIW": 11.6907320022583,
+    "valid_target_count": 20277396,
     "per_horizon": {
       "horizon_1": {
-        "PICP": 0.9740937149918066,
-        "MPIW": 94.6895523071289,
-        "coverage_percent": 97.40937149918066
+        "PICP": 0.8947438813149381,
+        "MPIW": 4.909153938293457,
+        "valid_target_count": 1689783
       },
       "horizon_2": {
-        "PICP": 0.8001577717375544,
-        "MPIW": 90.0787124633789,
-        "coverage_percent": 80.01577717375544
+        "PICP": 0.8799692031462027,
+        "MPIW": 6.627872467041016,
+        "valid_target_count": 1689783
       },
       "horizon_3": {
-        "PICP": 0.5411120836225717,
-        "MPIW": 86.7860336303711,
-        "coverage_percent": 54.111208362257166
+        "PICP": 0.8875707709214733,
+        "MPIW": 8.466200828552246,
+        "valid_target_count": 1689783
       },
       "horizon_4": {
-        "PICP": 0.919614530386446,
-        "MPIW": 98.12138366699219,
-        "coverage_percent": 91.9614530386446
+        "PICP": 0.8955913274071287,
+        "MPIW": 10.149738311767578,
+        "valid_target_count": 1689783
       },
       "horizon_5": {
-        "PICP": 0.9398041050241362,
-        "MPIW": 100.99188232421875,
-        "coverage_percent": 93.98041050241362
+        "PICP": 0.8999421819251348,
+        "MPIW": 11.29548454284668,
+        "valid_target_count": 1689783
       },
       "horizon_6": {
-        "PICP": 0.9609618513146363,
-        "MPIW": 107.38387298583984,
-        "coverage_percent": 96.09618513146363
+        "PICP": 0.9054298688056396,
+        "MPIW": 12.2518949508667,
+        "valid_target_count": 1689783
       },
       "horizon_7": {
-        "PICP": 0.9045818309214851,
-        "MPIW": 87.51081848144531,
-        "coverage_percent": 90.45818309214852
+        "PICP": 0.9089758862528502,
+        "MPIW": 12.944204330444336,
+        "valid_target_count": 1689783
       },
       "horizon_8": {
-        "PICP": 0.9225291058082606,
-        "MPIW": 88.82000732421875,
-        "coverage_percent": 92.25291058082607
+        "PICP": 0.9130042141505743,
+        "MPIW": 13.602344512939453,
+        "valid_target_count": 1689783
       },
       "horizon_9": {
-        "PICP": 0.9289180918496636,
-        "MPIW": 93.84856414794922,
-        "coverage_percent": 92.89180918496636
+        "PICP": 0.916737829650316,
+        "MPIW": 14.182381629943848,
+        "valid_target_count": 1689783
       },
       "horizon_10": {
-        "PICP": 0.9355402439248116,
-        "MPIW": 97.11721801757812,
-        "coverage_percent": 93.55402439248117
+        "PICP": 0.9207649739641125,
+        "MPIW": 14.698999404907227,
+        "valid_target_count": 1689783
       },
       "horizon_11": {
-        "PICP": 0.9347543441968584,
-        "MPIW": 96.7518310546875,
-        "coverage_percent": 93.47543441968584
+        "PICP": 0.9241009052641671,
+        "MPIW": 15.280577659606934,
+        "valid_target_count": 1689783
       },
       "horizon_12": {
-        "PICP": 0.9341282282991367,
-        "MPIW": 97.18305206298828,
-        "coverage_percent": 93.41282282991367
+        "PICP": 0.9285890555177795,
+        "MPIW": 15.879918098449707,
+        "valid_target_count": 1689783
       }
     }
   },
-  "full_test_set": {
-    "PICP": 0.895675205577794,
-    "MPIW": 95.7803955078125,
-    "coverage_percent": 89.5675205577794
-  }
+  "ensemble_manifest_path": "results/task2_uncertainty/conformal/PEMS-BAY_ensemble_manifest.json"
 }

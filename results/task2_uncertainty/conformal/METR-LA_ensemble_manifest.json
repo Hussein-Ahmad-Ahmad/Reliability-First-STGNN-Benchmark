@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "dataset": "METR-LA",
+  "member_count": 6,
+  "member_seed_note": "These legacy heterogeneous-architecture runs did not record an explicit CFG.SEED value in their copied configs; no seed is inferred.",
+  "member_order": [
+    {
+      "model": "D2STGNN",
+      "experiment_id": "e15c412ef6fd29dda965a82c60190801",
+      "prediction_path": "checkpoints/D2STGNN/METR-LA_100_12_12/e15c412ef6fd29dda965a82c60190801/test_results/predictions.npy",
+      "prediction_sha256": "fb7f2bd906f4fb1147a13daba76ba3bf52957075caa763f3c3b38df8a170cebe",
+      "checkpoint_sha256": "c2367d4c5b97f3574a5c066c2508cb156db0a913cca7a29dc2d8d94e984a85f1",
+      "member_mae": 2.870648
+    },
+    {
+      "model": "MegaCRN",
+      "experiment_id": "86ed66fad8fa6343401710ebdbce8c76",
+      "prediction_path": "checkpoints/MegaCRN/METR-LA_100_12_12/86ed66fad8fa6343401710ebdbce8c76/test_results/predictions.npy",
+      "prediction_sha256": "1da26085fc9ad40c56a7889862135141230ddb0db55994350435c3ec5fb1d527",
+      "checkpoint_sha256": "0f2f31792625d004c362bee3cdf2bba6b49b7d2f87daf30fa0cf1ff5a0f7f52c",
+      "member_mae": 3.039330
+    },
+    {
+      "model": "STAEformer",
+      "experiment_id": "1bc69bcfbc868608094762772a17ef04",
+      "prediction_path": "checkpoints/STAEformer/METR-LA_100_12_12/1bc69bcfbc868608094762772a17ef04/test_results/predictions.npy",
+      "prediction_sha256": "d3be71a6013503510d90a17724c6eb28c492b10fbaa00bcd538d975f3921e3f2",
+      "checkpoint_sha256": "d76305d612eacd79e194874ecfa88b6e8a73328099f4a122fa322192c19efccf",
+      "member_mae": 2.936498
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "experiment_id": "64f2b26efa34b13b983d789df4001619",
+      "prediction_path": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12/64f2b26efa34b13b983d789df4001619/test_results/predictions.npy",
+      "prediction_sha256": "ff07f3bf5ee1e076a4cdcd0bfa51b27aba4e94ffc91ec2d8896056aeea65313e",
+      "checkpoint_sha256": "aa7ac0fd5ce14f4b7eae9e72e9acd5a18e8987ead15ef94bd6f5cf05c1e8e52b",
+      "member_mae": 3.128992
+    },
+    {
+      "model": "STID",
+      "experiment_id": "a526ba553408961fc4392a846d3b280c",
+      "prediction_path": "checkpoints/STID/METR-LA_100_12_12/a526ba553408961fc4392a846d3b280c/test_results/predictions.npy",
+      "prediction_sha256": "6ab65452d97822ac575b3ab4f8dee20d2af82887a7474b4ba1f948462332b2c6",
+      "checkpoint_sha256": "bcb72fa46c7b9657f521cea8beb634e38f809f6fdb0765d73ac2f7a1d5584306",
+      "member_mae": 3.115839
+    },
+    {
+      "model": "STNorm",
+      "experiment_id": "65d9b958a1c61da04fb6de227a26cde5",
+      "prediction_path": "checkpoints/STNorm/METR-LA_100_12_12/65d9b958a1c61da04fb6de227a26cde5/test_results/predictions.npy",
+      "prediction_sha256": "bb1464307b750a112bd9cc938a15f51b705a45b7ff5f55d6042b9c7562edee28",
+      "checkpoint_sha256": "bcb2d168ed656829cba18fada7bb8c530d53a5bc9b3f36319113a3747c76c4a3",
+      "member_mae": 3.112780
+    }
+  ],
+  "aggregate_source": {
+    "ensemble_shape": [6, 6831, 12, 207],
+    "ensemble_predictions_sha256": "2b3af6994fbbe313c5f6143e47c5cbe86f0bf6a9a0983934ec555d97a007a9fe",
+    "targets_sha256": "1335f4d79cb187a88a6057ce2119cd6b1ddda399190764b7773b40aa657489df"
+  },
+  "aggregation": {
+    "mean": "arithmetic mean across the six members",
+    "standard_deviation": "NumPy population standard deviation (ddof=0)"
+  },
+  "generation_script": "scripts/generate_conformal_intervals.py",
+  "large_member_arrays_archived_in_git": false
+}

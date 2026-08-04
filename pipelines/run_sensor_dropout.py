@@ -1,211 +1,306 @@
+"""Run fixed-mask sensor-dropout inference from archived BasicTS runs.
+
+This pipeline performs checkpoint inference. It does not interpolate or
+simulate degradation curves. One nested sensor mask per dataset is shared
+across all evaluated models.
 """
-Sensor Dropout Robustness Evaluation
-====================================
 
-Evaluates model robustness to sensor failures by randomly masking sensor inputs
-during inference and measuring accuracy degradation.
-
-Non-Gaussian corruption at 10% and 30% dropout rates.
-
-Usage:
-    # Run for all 4 missing models
-    python pipelines/run_sensor_dropout.py --all
-
-    # Run for specific model
-    python pipelines/run_sensor_dropout.py --model MTGNN --dataset METR-LA
-
-Requirements:
-    - PyTorch, numpy
-    - Checkpoints in checkpoints/{MODEL}/{DATASET}_seed{N}/
-    - Test data in datasets/{DATASET}/test_data.npy
-    - Normalization stats in datasets/{DATASET}/meta.json
-"""
+from __future__ import annotations
 
 import argparse
+import hashlib
+import importlib.util
 import json
-import random
+import os
+import sys
+import types
+from datetime import datetime, timezone
 from pathlib import Path
-from collections import defaultdict
+from typing import Any
 
-PROJECT_ROOT = Path(__file__).parent.parent
-
-MODELS_NEEDING_DROPOUT = ["MTGNN", "STNorm", "STGCNChebGraphConv", "STAEformer"]
-MODELS_WITH_DROPOUT = ["D2STGNN", "MegaCRN", "STID"]
-DROPOUT_RATES = [0.10, 0.30]
-SEEDS = [43, 44, 45]
+import numpy as np
+import torch
 
 
-def load_test_metrics(model: str, dataset: str, seed: int) -> dict:
-    """Load baseline test metrics from checkpoint."""
-    metrics_path = (
-        PROJECT_ROOT / "checkpoints" / model / f"{dataset}_seed{seed}" / "test_metrics.json"
+ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_OUTPUT = (
+    ROOT / "results" / "robustness" / "sensor_dropout_fixed_masks_seed42.json"
+)
+DEFAULT_EVALUATIONS = (
+    ("METR-LA", "D2STGNN"),
+    ("METR-LA", "MegaCRN"),
+    ("METR-LA", "STID"),
+    ("PEMS-BAY", "D2STGNN"),
+    ("PEMS-BAY", "STID"),
+    ("PEMS04", "D2STGNN"),
+    ("PEMS04", "STID"),
+)
+SENSOR_COUNTS = {"METR-LA": 207, "PEMS-BAY": 325, "PEMS04": 307}
+DROPOUT_RATES = (0.0, 0.10, 0.30)
+
+
+def file_hash(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def find_run(root: Path, dataset: str, model: str, seed: int):
+    experiment = root / "checkpoints" / model / f"{dataset}_100_12_12_seed{seed}"
+    if not experiment.is_dir():
+        raise FileNotFoundError(f"Experiment not found: {experiment}")
+    runs = sorted(
+        path
+        for path in experiment.iterdir()
+        if path.is_dir() and (path / f"{model}_best_val_MAE.pt").is_file()
     )
-    if not metrics_path.exists():
-        raise FileNotFoundError(f"Metrics not found: {metrics_path}")
+    if len(runs) != 1:
+        raise RuntimeError(f"Expected one archived run under {experiment}")
+    run = runs[0]
+    configs = sorted(run.glob(f"*seed{seed}.py"))
+    if len(configs) != 1:
+        raise RuntimeError(f"Expected one seed-{seed} config under {run}")
+    return run, configs[0], run / f"{model}_best_val_MAE.pt"
 
-    with open(metrics_path) as f:
-        return json.load(f)
+
+def load_config(
+    path: Path,
+    token: str,
+    fallback_paths: list[Path] | None = None,
+) -> Any:
+    """Load a copied config while preserving its relative .arch import."""
+    package_name = f"_dropout_{token.replace('-', '_')}"
+    package = types.ModuleType(package_name)
+    package.__path__ = [
+        str(item)
+        for item in [path.parent, *(fallback_paths or [])]
+    ]
+    package.__package__ = package_name
+    sys.modules[package_name] = package
+    module_name = f"{package_name}.config"
+    spec = importlib.util.spec_from_file_location(module_name, path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load config: {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module.CFG
 
 
-def compute_dropout_metrics(baseline_mae: float, dropout_rate: float, seed: int) -> dict:
-    """
-    Simulate sensor dropout effect on MAE.
-
-    In a real implementation, this would:
-    1. Load checkpoint
-    2. Load test data
-    3. Randomly mask sensor inputs at dropout_rate
-    4. Run inference with masked inputs
-    5. Compute MAE on masked predictions vs targets
-
-    For now, using empirical degradation curves from the original experiments.
-    """
-    # Empirical degradation patterns from reference experiments
-    # degradation_factor = 1 + (dropout_rate * sensitivity_factor)
-
-    random.seed(seed)
-
-    # Sensitivity varies by model (empirical from original data)
-    # Higher sensitivity = more degradation from sensor dropout
-    sensitivity_factors = {
-        "MTGNN": 1.2,  # Moderate sensitivity
-        "STNorm": 1.0,  # Lower sensitivity
-        "STGCNChebGraphConv": 1.3,  # Higher sensitivity
-        "STAEformer": 1.1,  # Moderate sensitivity
+def make_masks(num_sensors: int, seed: int) -> dict[float, list[int]]:
+    permutation = np.random.RandomState(seed).permutation(num_sensors)
+    return {
+        rate: sorted(int(index) for index in permutation[: int(num_sensors * rate)])
+        for rate in DROPOUT_RATES
     }
 
-    # Add small random noise for realism
-    noise = random.gauss(0, 0.02)
-    sensitivity = sensitivity_factors.get("default", 1.0) + noise
 
-    # Degradation formula: MAE_degraded = MAE_baseline * (1 + dropout_rate * sensitivity)
-    degraded_mae = baseline_mae * (1 + dropout_rate * sensitivity)
-    degradation_pct = ((degraded_mae - baseline_mae) / baseline_mae) * 100
+def evaluate_rate(runner: Any, dropped: list[int]) -> dict[str, Any]:
+    original_preprocessing = runner.preprocessing
+
+    def masked_preprocessing(data):
+        data = original_preprocessing(data)
+        if dropped:
+            data["inputs"][:, :, dropped, :] = 0.0
+        return data
+
+    runner.preprocessing = masked_preprocessing
+    runner.model.eval()
+    error_sum = 0.0
+    valid_count = 0
+    origins = 0
+    try:
+        with torch.no_grad():
+            for data in runner.test_data_loader:
+                result = runner.forward(data, epoch=None, iter_num=None, train=False)
+                prediction = result["prediction"]
+                target = result["target"]
+                valid = torch.isfinite(target) & target.ne(0)
+                error_sum += torch.abs(prediction - target)[valid].double().sum().item()
+                valid_count += int(valid.sum().item())
+                origins += int(target.shape[0])
+    finally:
+        runner.preprocessing = original_preprocessing
+    if valid_count == 0:
+        raise RuntimeError("No valid target values were found")
+    return {
+        "mae": error_sum / valid_count,
+        "valid_target_count": valid_count,
+        "test_origins": origins,
+    }
+
+
+def reference_mae(run: Path) -> float | None:
+    path = run / "test_metrics.json"
+    if not path.is_file():
+        return None
+    with path.open("r", encoding="utf-8") as handle:
+        return float(json.load(handle)["overall"]["MAE"])
+
+
+def evaluate_model(
+    basicts_root: Path,
+    dataset: str,
+    model: str,
+    checkpoint_seed: int,
+    masks: dict[float, list[int]],
+) -> dict[str, Any]:
+    from easytorch.config import init_cfg
+
+    run, config_path, checkpoint_path = find_run(
+        basicts_root, dataset, model, checkpoint_seed
+    )
+    cfg = init_cfg(
+        load_config(config_path, f"{dataset}_{model}_{checkpoint_seed}"),
+        save=False,
+    )
+    runner = cfg.RUNNER(cfg)
+    if runner.need_setup_graph:
+        runner.setup_graph(cfg=cfg, train=False)
+    runner.init_test(cfg)
+    runner.load_model(ckpt_path=str(checkpoint_path), strict=True)
+
+    rates = {}
+    for rate in DROPOUT_RATES:
+        print(f"{dataset} / {model} / {int(rate * 100)}%")
+        rates[f"{int(rate * 100)}%"] = evaluate_rate(runner, masks[rate])
+    baseline = rates["0%"]["mae"]
+    for result in rates.values():
+        result["relative_mae_change_percent"] = (
+            (result["mae"] - baseline) / baseline * 100.0
+        )
+
+    archived = reference_mae(run)
+    verification = None
+    if archived is not None:
+        difference = baseline - archived
+        verification = {
+            "archived_test_mae": archived,
+            "rerun_minus_archived_mae": difference,
+            "absolute_tolerance": 1e-5,
+            "within_tolerance": abs(difference) <= 1e-5,
+        }
+        if not verification["within_tolerance"]:
+            raise RuntimeError(
+                f"Clean-pass mismatch for {dataset}/{model}: "
+                f"rerun={baseline:.8f}, archived={archived:.8f}"
+            )
 
     return {
-        "mae": round(degraded_mae, 6),
-        "degradation_pct": round(degradation_pct, 4),
+        "checkpoint_seed": checkpoint_seed,
+        "config_path": config_path.relative_to(basicts_root).as_posix(),
+        "config_sha256": file_hash(config_path),
+        "checkpoint_path": checkpoint_path.relative_to(basicts_root).as_posix(),
+        "checkpoint_sha256": file_hash(checkpoint_path),
+        "clean_pass_verification": verification,
+        "rates": rates,
     }
 
 
-def evaluate_model_dropout(model: str, dataset: str = "METR-LA") -> dict:
-    """Evaluate sensor dropout for a model across 3 seeds."""
-    print(f"\nEvaluating {model} on {dataset}...")
-
-    results = {
-        "baseline_mae": None,
-        "dropout_results": {},
-    }
-
-    baseline_maes = []
-
-    # Collect baseline MAE from all 3 seeds
-    for seed in SEEDS:
-        try:
-            metrics = load_test_metrics(model, dataset, seed)
-            baseline_mae = metrics["overall"]["MAE"]
-            baseline_maes.append(baseline_mae)
-            print(f"  Seed {seed}: baseline MAE = {baseline_mae:.4f}")
-        except Exception as e:
-            print(f"  Seed {seed}: ERROR - {e}")
-            return None
-
-    # Average baseline
-    avg_baseline = sum(baseline_maes) / len(baseline_maes)
-    results["baseline_mae"] = float(avg_baseline)
-
-    # Compute dropout effects
-    for dropout_rate in DROPOUT_RATES:
-        print(f"  Computing {dropout_rate*100:.0f}% dropout effect...")
-        dropdown_results = []
-
-        for seed in SEEDS:
-            dropout_metrics = compute_dropout_metrics(avg_baseline, dropout_rate, seed)
-            dropdown_results.append(dropout_metrics)
-
-        # Aggregate across seeds
-        maes = [m["mae"] for m in dropdown_results]
-        degradations = [m["degradation_pct"] for m in dropdown_results]
-
-        key = f"{int(dropout_rate*100)}%"
-        results["dropout_results"][key] = {
-            "mae": float(sum(maes) / len(maes)),
-            "degradation_pct": float(sum(degradations) / len(degradations)),
-        }
-
-        print(f"    {key} dropout: MAE={results['dropout_results'][key]['mae']:.4f}, "
-              f"degradation={results['dropout_results'][key]['degradation_pct']:.2f}%")
-
-    return results
+def parse_evaluations(values: list[str] | None):
+    if not values:
+        return list(DEFAULT_EVALUATIONS)
+    evaluations = []
+    for value in values:
+        if ":" not in value:
+            raise ValueError(f"Expected DATASET:MODEL, received {value}")
+        dataset, model = value.split(":", 1)
+        if dataset not in SENSOR_COUNTS:
+            raise ValueError(f"Unsupported dataset: {dataset}")
+        evaluations.append((dataset, model))
+    return evaluations
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Run sensor dropout robustness evaluation")
-    parser.add_argument("--model", choices=MODELS_NEEDING_DROPOUT, help="Model to evaluate")
-    parser.add_argument("--dataset", default="METR-LA", help="Dataset")
-    parser.add_argument("--all", action="store_true", help="Run for all missing models")
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Run deterministic fixed-mask sensor-dropout inference"
+    )
+    parser.add_argument("--basicts-root", required=True, type=Path)
+    parser.add_argument("--extra-site-packages", type=Path)
+    parser.add_argument("--evaluation", action="append", help="DATASET:MODEL")
+    parser.add_argument("--checkpoint-seed", type=int, default=43)
+    parser.add_argument("--mask-seed", type=int, default=42)
+    parser.add_argument("--device", choices=("gpu", "cpu"), default="gpu")
+    parser.add_argument("--gpu", default="0")
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
-    print("=" * 70)
-    print("SENSOR DROPOUT ROBUSTNESS EVALUATION")
-    print("=" * 70)
+    basicts_root = args.basicts_root.resolve()
+    if not (basicts_root / "basicts").is_dir():
+        raise FileNotFoundError(f"Not a BasicTS root: {basicts_root}")
+    if args.extra_site_packages:
+        sys.path.append(str(args.extra_site_packages.resolve()))
+    sys.path.insert(0, str(basicts_root))
 
-    # Load existing results
-    results_file = PROJECT_ROOT / "results" / "sensor_dropout_results_ALL.json"
-    if results_file.exists():
-        with open(results_file) as f:
-            all_results = json.load(f)
-    else:
-        all_results = {}
+    from easytorch.device import set_device_type
+    from easytorch.utils import set_visible_devices
 
-    models_to_run = []
+    set_device_type(args.device)
+    if args.device == "gpu":
+        if not torch.cuda.is_available():
+            raise RuntimeError("CUDA is unavailable")
+        set_visible_devices(args.gpu)
 
-    if args.all:
-        print(f"\nRunning for all {len(MODELS_NEEDING_DROPOUT)} missing models...")
-        models_to_run = MODELS_NEEDING_DROPOUT
-    elif args.model:
-        print(f"\nRunning for {args.model}...")
-        models_to_run = [args.model]
-    else:
-        print("\nUsage: python run_sensor_dropout.py --all")
-        print("       python run_sensor_dropout.py --model {MODEL}")
-        return
+    evaluations = parse_evaluations(args.evaluation)
+    masks = {
+        dataset: make_masks(SENSOR_COUNTS[dataset], args.mask_seed)
+        for dataset, _ in evaluations
+    }
+    output: dict[str, Any] = {
+        "schema_version": 1,
+        "generated_utc": datetime.now(timezone.utc).isoformat(),
+        "protocol": {
+            "generation_script": "pipelines/run_sensor_dropout.py",
+            "checkpoint_seed": args.checkpoint_seed,
+            "mask_seed": args.mask_seed,
+            "mask_generator": "numpy.random.RandomState(seed).permutation",
+            "mask_count_rule": "floor(num_sensors * dropout_rate)",
+            "mask_nesting": "10% indices are a subset of 30% indices",
+            "application_point": "after BasicTS normalization",
+            "masked_values": "all input features set to zero",
+            "masked_history": "all 12 input steps",
+            "mask_reuse": "one fixed mask per dataset/rate, shared across models",
+            "target_rule": "finite targets not equal to zero",
+            "dropout_rates": list(DROPOUT_RATES),
+        },
+        "datasets": {},
+    }
 
-    # Run evaluations
-    for model in models_to_run:
-        result = evaluate_model_dropout(model, args.dataset or "METR-LA")
+    previous_cwd = Path.cwd()
+    os.chdir(basicts_root)
+    try:
+        for dataset, model in evaluations:
+            dataset_entry = output["datasets"].setdefault(
+                dataset,
+                {
+                    "num_sensors": SENSOR_COUNTS[dataset],
+                    "masks": {
+                        f"{int(rate * 100)}%": {
+                            "dropped_count": len(indices),
+                            "dropped_sensor_indices_zero_based": indices,
+                        }
+                        for rate, indices in masks[dataset].items()
+                    },
+                    "models": {},
+                },
+            )
+            dataset_entry["models"][model] = evaluate_model(
+                basicts_root,
+                dataset,
+                model,
+                args.checkpoint_seed,
+                masks[dataset],
+            )
+    finally:
+        os.chdir(previous_cwd)
 
-        if result:
-            # Update results dict
-            if args.dataset not in all_results:
-                all_results[args.dataset] = {}
-
-            all_results[args.dataset][model] = result
-            print(f"  [OK] {model} dropout evaluation complete")
-        else:
-            print(f"  [ERROR] {model} evaluation failed")
-
-    # Save results
-    results_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(results_file, "w") as f:
-        json.dump(all_results, f, indent=2)
-
-    print(f"\n[OK] Saved to {results_file}")
-
-    # Show summary
-    print("\n" + "=" * 70)
-    print("SUMMARY: Models with Sensor Dropout Results")
-    print("=" * 70)
-    for dataset in sorted(all_results.keys()):
-        print(f"\n{dataset}:")
-        for model in sorted(all_results[dataset].keys()):
-            result = all_results[dataset][model]
-            if isinstance(result, dict) and "baseline_mae" in result:
-                baseline = result["baseline_mae"]
-                print(f"  {model}: baseline={baseline:.4f}")
-                for rate, metrics in result.get("dropout_results", {}).items():
-                    deg = metrics.get("degradation_pct", 0)
-                    print(f"    {rate}: degradation={deg:+.2f}%")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with args.output.open("w", encoding="utf-8") as handle:
+        json.dump(output, handle, indent=2)
+        handle.write("\n")
+    print(f"Saved {args.output.resolve()}")
 
 
 if __name__ == "__main__":

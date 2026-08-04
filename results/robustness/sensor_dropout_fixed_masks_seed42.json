@@ -1,0 +1,651 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-08-04T17:59:19.590938+00:00",
+  "protocol": {
+    "generation_script": "pipelines/run_sensor_dropout.py",
+    "checkpoint_seed": 43,
+    "mask_seed": 42,
+    "mask_generator": "numpy.random.RandomState(seed).permutation",
+    "mask_count_rule": "floor(num_sensors * dropout_rate)",
+    "mask_nesting": "10% indices are a subset of 30% indices",
+    "application_point": "after BasicTS normalization",
+    "masked_values": "all input features set to zero",
+    "masked_history": "all 12 input steps",
+    "mask_reuse": "one fixed mask per dataset/rate, shared across models",
+    "target_rule": "finite targets not equal to zero",
+    "dropout_rates": [
+      0.0,
+      0.1,
+      0.3
+    ]
+  },
+  "datasets": {
+    "METR-LA": {
+      "num_sensors": 207,
+      "masks": {
+        "0%": {
+          "dropped_count": 0,
+          "dropped_sensor_indices_zero_based": []
+        },
+        "10%": {
+          "dropped_count": 20,
+          "dropped_sensor_indices_zero_based": [
+            9,
+            15,
+            18,
+            30,
+            73,
+            75,
+            84,
+            96,
+            100,
+            125,
+            135,
+            148,
+            155,
+            161,
+            164,
+            166,
+            171,
+            189,
+            196,
+            205
+          ]
+        },
+        "30%": {
+          "dropped_count": 62,
+          "dropped_sensor_indices_zero_based": [
+            5,
+            9,
+            15,
+            16,
+            18,
+            19,
+            24,
+            25,
+            29,
+            30,
+            38,
+            45,
+            55,
+            56,
+            60,
+            65,
+            66,
+            67,
+            68,
+            69,
+            73,
+            75,
+            82,
+            84,
+            86,
+            93,
+            95,
+            96,
+            98,
+            100,
+            101,
+            104,
+            113,
+            120,
+            124,
+            125,
+            127,
+            132,
+            135,
+            138,
+            141,
+            147,
+            148,
+            154,
+            155,
+            158,
+            161,
+            164,
+            166,
+            167,
+            170,
+            171,
+            177,
+            180,
+            184,
+            189,
+            193,
+            194,
+            196,
+            202,
+            204,
+            205
+          ]
+        }
+      },
+      "models": {
+        "D2STGNN": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed43/df0cf6f0146be24966504e70a2f32880/METR-LA_seed43.py",
+          "config_sha256": "1a54f23d290c952c3bb2b80748a10ef8d349c43b0244136291afd6aed47f0bb8",
+          "checkpoint_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed43/df0cf6f0146be24966504e70a2f32880/D2STGNN_best_val_MAE.pt",
+          "checkpoint_sha256": "04ae7a25b3233077ab149abff66918ae3f984b9eb60b187879db0f631a756d6a",
+          "clean_pass_verification": {
+            "archived_test_mae": 2.8781845735909086,
+            "rerun_minus_archived_mae": -3.333825215889874e-09,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 2.8781845702570834,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 3.569066629251136,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 24.004091542063335
+            },
+            "30%": {
+              "mae": 5.061486149772877,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 75.85689959142469
+            }
+          }
+        },
+        "MegaCRN": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed43/5da0891349a74d561cc671d791d650f5/METR-LA_seed43.py",
+          "config_sha256": "1c6f8518623e5058e21d38b9e7dad9e8663ab5d6d92c6e313b6667e4ec4e5899",
+          "checkpoint_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed43/5da0891349a74d561cc671d791d650f5/MegaCRN_best_val_MAE.pt",
+          "checkpoint_sha256": "ac3caeb1d5a3dd0affef29df9e59bd152f834115a73c4f9d86461e05beb29ac8",
+          "clean_pass_verification": {
+            "archived_test_mae": 3.060545538011098,
+            "rerun_minus_archived_mae": -2.0803499811705706e-08,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 3.0605455172075984,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 3.624115870246313,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 18.414049059884878
+            },
+            "30%": {
+              "mae": 5.728247542349152,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 87.1642656559975
+            }
+          }
+        },
+        "STID": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/STID/METR-LA_100_12_12_seed43/38e0392ef9dec6dbdddc6a767d3023d4/METR-LA_seed43.py",
+          "config_sha256": "aee6b69a295f40c9076056d6b43fac3d358c56215b9578c687cd8a82f983c972",
+          "checkpoint_path": "checkpoints/STID/METR-LA_100_12_12_seed43/38e0392ef9dec6dbdddc6a767d3023d4/STID_best_val_MAE.pt",
+          "checkpoint_sha256": "f34da8292825cac7f7f5aaf4492bf71610c4b5ca12175f120072f3ee25d47da3",
+          "clean_pass_verification": {
+            "archived_test_mae": 3.1152216077694197,
+            "rerun_minus_archived_mae": -9.829452363163682e-09,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 3.1152215979399673,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 3.7671236189454906,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 20.92634506118643
+            },
+            "30%": {
+              "mae": 4.9532531318333985,
+              "valid_target_count": 14908092,
+              "test_origins": 6831,
+              "relative_mae_change_percent": 59.0016304172032
+            }
+          }
+        }
+      }
+    },
+    "PEMS-BAY": {
+      "num_sensors": 325,
+      "masks": {
+        "0%": {
+          "dropped_count": 0,
+          "dropped_sensor_indices_zero_based": []
+        },
+        "10%": {
+          "dropped_count": 32,
+          "dropped_sensor_indices_zero_based": [
+            5,
+            9,
+            25,
+            46,
+            63,
+            82,
+            93,
+            94,
+            101,
+            110,
+            114,
+            118,
+            139,
+            144,
+            146,
+            153,
+            179,
+            181,
+            198,
+            203,
+            208,
+            219,
+            234,
+            242,
+            248,
+            255,
+            271,
+            280,
+            287,
+            309,
+            317,
+            320
+          ]
+        },
+        "30%": {
+          "dropped_count": 97,
+          "dropped_sensor_indices_zero_based": [
+            3,
+            5,
+            6,
+            7,
+            9,
+            16,
+            17,
+            22,
+            24,
+            25,
+            30,
+            31,
+            33,
+            42,
+            45,
+            46,
+            55,
+            56,
+            57,
+            59,
+            60,
+            63,
+            73,
+            75,
+            76,
+            77,
+            78,
+            82,
+            84,
+            90,
+            93,
+            94,
+            101,
+            108,
+            109,
+            110,
+            113,
+            114,
+            116,
+            118,
+            119,
+            124,
+            126,
+            132,
+            139,
+            140,
+            144,
+            146,
+            148,
+            153,
+            158,
+            163,
+            167,
+            172,
+            173,
+            175,
+            176,
+            177,
+            179,
+            181,
+            183,
+            194,
+            198,
+            203,
+            208,
+            219,
+            220,
+            221,
+            224,
+            228,
+            229,
+            232,
+            234,
+            240,
+            242,
+            248,
+            249,
+            255,
+            258,
+            266,
+            267,
+            271,
+            280,
+            285,
+            287,
+            289,
+            297,
+            301,
+            303,
+            304,
+            306,
+            309,
+            310,
+            314,
+            317,
+            320,
+            322
+          ]
+        }
+      },
+      "models": {
+        "D2STGNN": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed43/d0c8a54cfa22cd89231f1984561f9ef6/PEMS-BAY_seed43.py",
+          "config_sha256": "122b127f3d6279ebb16aa9496feb0f236e393f21814dce3e25dcf846d17c1504",
+          "checkpoint_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed43/d0c8a54cfa22cd89231f1984561f9ef6/D2STGNN_best_val_MAE.pt",
+          "checkpoint_sha256": "aff3b5a63ef0adc8e87748b84adae4ac3585a4890accf8684947417beb36ec93",
+          "clean_pass_verification": {
+            "archived_test_mae": 1.5124970793346728,
+            "rerun_minus_archived_mae": -3.252800806485823e-08,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 1.5124970468066647,
+              "valid_target_count": 40557396,
+              "test_origins": 10400,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 1.9186575921111748,
+              "valid_target_count": 40557396,
+              "test_origins": 10400,
+              "relative_mae_change_percent": 26.853642204593847
+            },
+            "30%": {
+              "mae": 2.8208192702058725,
+              "valid_target_count": 40557396,
+              "test_origins": 10400,
+              "relative_mae_change_percent": 86.50081176432501
+            }
+          }
+        },
+        "STID": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed43/213b345107a495685b6a6fce3e9b69d7/PEMS-BAY_seed43.py",
+          "config_sha256": "6f1a22eba3c80105f0cc4674251792010411b362f9316bdd8dbf89d43e7dc411",
+          "checkpoint_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed43/213b345107a495685b6a6fce3e9b69d7/STID_best_val_MAE.pt",
+          "checkpoint_sha256": "d5ee5d6fdf3dc11aa0c96ffbc6fb241803cc5a053ad63751300e9a12a0a93d09",
+          "clean_pass_verification": {
+            "archived_test_mae": 1.563152346295354,
+            "rerun_minus_archived_mae": -1.052274689605781e-08,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 1.5631523357726071,
+              "valid_target_count": 40557396,
+              "test_origins": 10400,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 1.9506144851497298,
+              "valid_target_count": 40557396,
+              "test_origins": 10400,
+              "relative_mae_change_percent": 24.78722901857257
+            },
+            "30%": {
+              "mae": 2.79663951152233,
+              "valid_target_count": 40557396,
+              "test_origins": 10400,
+              "relative_mae_change_percent": 78.9102346279038
+            }
+          }
+        }
+      }
+    },
+    "PEMS04": {
+      "num_sensors": 307,
+      "masks": {
+        "0%": {
+          "dropped_count": 0,
+          "dropped_sensor_indices_zero_based": []
+        },
+        "10%": {
+          "dropped_count": 30,
+          "dropped_sensor_indices_zero_based": [
+            3,
+            5,
+            9,
+            25,
+            33,
+            45,
+            46,
+            60,
+            63,
+            93,
+            104,
+            111,
+            124,
+            126,
+            144,
+            147,
+            148,
+            154,
+            158,
+            163,
+            168,
+            179,
+            183,
+            195,
+            213,
+            245,
+            250,
+            273,
+            299,
+            304
+          ]
+        },
+        "30%": {
+          "dropped_count": 92,
+          "dropped_sensor_indices_zero_based": [
+            3,
+            5,
+            6,
+            7,
+            9,
+            17,
+            19,
+            22,
+            24,
+            25,
+            30,
+            33,
+            42,
+            45,
+            46,
+            56,
+            57,
+            59,
+            60,
+            63,
+            66,
+            73,
+            75,
+            76,
+            77,
+            78,
+            79,
+            82,
+            84,
+            90,
+            92,
+            93,
+            101,
+            104,
+            111,
+            113,
+            114,
+            116,
+            118,
+            119,
+            124,
+            126,
+            139,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            154,
+            155,
+            157,
+            158,
+            163,
+            168,
+            179,
+            181,
+            183,
+            194,
+            195,
+            196,
+            197,
+            198,
+            202,
+            209,
+            213,
+            219,
+            222,
+            223,
+            225,
+            226,
+            232,
+            237,
+            238,
+            240,
+            242,
+            245,
+            249,
+            250,
+            253,
+            258,
+            261,
+            272,
+            273,
+            283,
+            285,
+            288,
+            289,
+            296,
+            299,
+            302,
+            304
+          ]
+        }
+      },
+      "models": {
+        "D2STGNN": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed43/4b46f6085eb5bb54551a637059ab2c9b/PEMS04_seed43.py",
+          "config_sha256": "0559093e90de23eca1df5dfbe6145bf812a90d2d849038db93043d75cfcefb58",
+          "checkpoint_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed43/4b46f6085eb5bb54551a637059ab2c9b/D2STGNN_best_val_MAE.pt",
+          "checkpoint_sha256": "b8b51736e82082f7bf6aa0c76f2633ad119c858b17e99829a8c5aa2fdb2a04bc",
+          "clean_pass_verification": {
+            "archived_test_mae": 18.388669202719097,
+            "rerun_minus_archived_mae": 2.0688228374865503e-07,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 18.38866940960138,
+              "valid_target_count": 12272795,
+              "test_origins": 3375,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 28.853880686370015,
+              "valid_target_count": 12272795,
+              "test_origins": 3375,
+              "relative_mae_change_percent": 56.91119375556545
+            },
+            "30%": {
+              "mae": 52.115800201516485,
+              "valid_target_count": 12272795,
+              "test_origins": 3375,
+              "relative_mae_change_percent": 183.41256803662455
+            }
+          }
+        },
+        "STID": {
+          "checkpoint_seed": 43,
+          "config_path": "checkpoints/STID/PEMS04_100_12_12_seed43/200c683298e50646d22fe7c97dde60a3/PEMS04_seed43.py",
+          "config_sha256": "265c0c62953c684cbe750e4f27b7a2832c2b94fd8c8f80e9a700d877c14830eb",
+          "checkpoint_path": "checkpoints/STID/PEMS04_100_12_12_seed43/200c683298e50646d22fe7c97dde60a3/STID_best_val_MAE.pt",
+          "checkpoint_sha256": "d7bf9f50006144b9bfe0022428114f0d61a92b44e9362341eb30a09b9e53c8fb",
+          "clean_pass_verification": {
+            "archived_test_mae": 18.433986815345893,
+            "rerun_minus_archived_mae": 1.3726631564736635e-07,
+            "absolute_tolerance": 1e-05,
+            "within_tolerance": true
+          },
+          "rates": {
+            "0%": {
+              "mae": 18.43398695261221,
+              "valid_target_count": 12272795,
+              "test_origins": 3375,
+              "relative_mae_change_percent": 0.0
+            },
+            "10%": {
+              "mae": 29.313533235340767,
+              "valid_target_count": 12272795,
+              "test_origins": 3375,
+              "relative_mae_change_percent": 59.01895401519127
+            },
+            "30%": {
+              "mae": 51.71629375724407,
+              "valid_target_count": 12272795,
+              "test_origins": 3375,
+              "relative_mae_change_percent": 180.5486077981386
+            }
+          }
+        }
+      }
+    }
+  }
+}
