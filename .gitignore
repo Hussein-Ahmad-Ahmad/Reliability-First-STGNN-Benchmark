@@ -107,13 +107,17 @@ paper_*_extracted.txt
 MANUSCRIPT_INTEGRATION_FIX_REPORT.md
 reviewer_response_assessment_extracted.txt
 color_*_extracted.txt
+.manuscript_work/
+.tmp_manuscript_*/
+pytest-cache-files-*/
+PRISMA_AND_16_JUNE_AUDIT_*.md
 
 # Local exploratory non-traffic checks not cited in the public repository README
 configs/nontraffic_sanity/
 results/nontraffic_sanity/
 scripts/run_nontraffic_sanity.py
 results/task1_point_forecasting/METR_LA_BOOTSTRAP_VALIDATION.md
-results/task1_point_forecasting/block_bootstrap_dm_robustness_pems04_seed43.*
+results/task1_point_forecasting/block_bootstrap_pairwise_pems04_seed43.*
 
 # Optional Chickenpox exploratory extras not used in the current public artifact map
 scripts/run_chickenpox_graph_sanity.py

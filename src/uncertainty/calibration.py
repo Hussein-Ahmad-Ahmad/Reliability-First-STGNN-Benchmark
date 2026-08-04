@@ -310,29 +310,52 @@ def compute_adaptive_intervals(
 
 
 class ConformalPredictor:
-    """Compatibility predictor used by pipelines/task2_run.py.
+    """Run the archived normalized split-conformal implementation."""
 
-    Reuses persisted conformal artifacts for the requested dataset/variant.
-    """
-
-    def __init__(self, dataset: str, variant: str, output_path: str):
+    def __init__(
+        self,
+        dataset: str,
+        variant: str,
+        output_path: str,
+        ensemble_predictions_path: str,
+        targets_path: str,
+        alpha: float = 0.1,
+    ):
         from pathlib import Path
+
+        if variant not in {"fixed", "per_horizon"}:
+            raise ValueError(f"Unsupported conformal variant: {variant}")
         self.dataset = dataset
         self.variant = variant
         self.output_path = Path(output_path)
+        self.ensemble_predictions_path = Path(ensemble_predictions_path)
+        self.targets_path = Path(targets_path)
+        self.alpha = alpha
 
     def calibrate_and_evaluate(self):
         import json
-        import shutil
-        from pathlib import Path
+        from scripts.generate_conformal_intervals import compute_conformal_metrics
 
-        repo_root = Path(__file__).resolve().parents[2]
-        src = repo_root / 'results' / 'task2_uncertainty' / 'conformal' / f'{self.dataset}_conformal_{self.variant}_metrics.json'
-        if not src.exists():
-            raise FileNotFoundError(f'Conformal source artifact not found: {src}')
+        predictions = np.load(self.ensemble_predictions_path, mmap_mode="r")
+        targets = np.load(self.targets_path, mmap_mode="r")
+        if predictions.ndim != 4:
+            raise ValueError(
+                "Expected ensemble predictions with shape "
+                "[members, origins, horizons, sensors]"
+            )
+        mean = np.asarray(predictions.mean(axis=0), dtype=np.float32)
+        std = np.asarray(predictions.std(axis=0, ddof=0), dtype=np.float32)
+        result = compute_conformal_metrics(
+            mean,
+            std,
+            targets,
+            dataset=self.dataset,
+            alpha=self.alpha,
+            member_count=predictions.shape[0],
+        )[self.variant]
 
         self.output_path.parent.mkdir(parents=True, exist_ok=True)
-        if src.resolve() != self.output_path.resolve():
-            shutil.copy2(src, self.output_path)
-        with self.output_path.open('r', encoding='utf-8') as f:
-            return json.load(f)
+        with self.output_path.open("w", encoding="utf-8") as handle:
+            json.dump(result, handle, indent=2)
+            handle.write("\n")
+        return result

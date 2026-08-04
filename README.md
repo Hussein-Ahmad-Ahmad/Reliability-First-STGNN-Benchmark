@@ -27,16 +27,25 @@ Repository for:
 
 **Reliability-First Spatio-Temporal Graph Forecasting: A Survey and Traffic-Domain Benchmark for Calibration, Robustness, and Explanation Diagnostics**
 
+## Corrected Reproducibility Release
+
+Tag `v1.1-ieee-access-resubmission` is the corrected reproducibility snapshot
+for the IEEE Access resubmission. It supersedes `v1.0.0` for the revised
+manuscript and includes conformal-generation sources and ensemble manifests,
+checkpoint-based sensor-dropout inference and metadata, forecast-origin
+block-bootstrap outputs, the formal DM-withdrawal notice, regression tests, and
+the complete SHA-256 artifact manifest.
+
 ## Overview
 
-This repository provides the code structure, configurations, figures, and compact result artifacts for a traffic-domain reliability benchmark of spatio-temporal graph neural network forecasting models. The benchmark compares models beyond point accuracy by adding statistical testing, uncertainty calibration, robustness checks, explanation diagnostics, and computational cost.
+This repository provides the code structure, configurations, figures, and compact result artifacts for a traffic-domain reliability benchmark of spatio-temporal graph neural network forecasting models. The benchmark compares models beyond point accuracy by adding dependence-aware ranking sensitivity, uncertainty calibration, robustness checks, explanation diagnostics, and computational cost.
 
 <table>
   <tr>
     <td align="center" width="25%"><strong>7 models</strong><br/>Graph recurrent, convolutional, normalization, identity, and transformer families</td>
     <td align="center" width="25%"><strong>3 traffic datasets</strong><br/>METR-LA, PEMS-BAY, and PEMS04 under a shared benchmark protocol</td>
     <td align="center" width="25%"><strong>63 traffic runs</strong><br/>3 datasets x 7 models x 3 seeds, with 100 epochs per run</td>
-    <td align="center" width="25%"><strong>Reliability suite</strong><br/>Accuracy, statistics, uncertainty, robustness, XAI, and compute</td>
+    <td align="center" width="25%"><strong>Reliability diagnostics</strong><br/>Accuracy, ranking sensitivity, uncertainty, robustness, XAI, and compute</td>
   </tr>
 </table>
 
@@ -46,7 +55,7 @@ The main benchmark is intentionally focused on traffic forecasting. Appendix-onl
 
 | Dataset | Role | Coverage |
 |---|---|---|
-| METR-LA | Primary diagnostic traffic dataset | Full reliability suite |
+| METR-LA | Primary diagnostic traffic dataset | Broadest diagnostic coverage |
 | PEMS-BAY | Traffic-domain transfer check | Point forecasting and selected diagnostics |
 | PEMS04 | Traffic-domain transfer check | Point forecasting, bootstrap sensitivity, and selected diagnostics |
 
@@ -71,8 +80,8 @@ The main benchmark is intentionally focused on traffic forecasting. Appendix-onl
       <sub><strong>Point forecasting.</strong> Mean test MAE over seeds 43, 44, and 45.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="figures/main/pf3_dm_significance_metrla.png" width="100%" alt="METR-LA Diebold-Mariano significance figure"/><br/>
-      <sub><strong>Statistical distinguishability.</strong> METR-LA pairwise DM analysis with Holm-adjusted p-values.</sub>
+      <img src="figures/appendix/uq2_conformal_cross_dataset.png" width="100%" alt="Cross-dataset conformal diagnostics"/><br/>
+      <sub><strong>Calibration diagnostics.</strong> Corrected fixed and per-horizon conformal results.</sub>
     </td>
   </tr>
   <tr>
@@ -103,39 +112,57 @@ Mean test MAE over seeds 43, 44, and 45:
 | STNorm | 3.132 | 1.603 | 19.042 |
 | STGCN-Cheb | 3.137 | 1.702 | 19.963 |
 
-### METR-LA DM Significance
+### Pairwise Ranking Sensitivity
 
-The METR-LA pairwise Diebold-Mariano analysis uses Holm-adjusted p-values across the 21 model pairs:
-
-```text
-results/task1_point_forecasting/dm_metrla_21pairs_mae_aligned.json
-```
-
-Left in the gallery figure: significant win counts by model. Right in the gallery figure: signed `-log10` Holm-adjusted p-values. Green cells indicate that the row model has lower MAE; gray cells are not significant at 0.05 after Holm adjustment.
-
-<details>
-<summary>Reproduce the DM figure</summary>
-
-```bash
-python scripts/generate_pf3_dm_significance.py
-```
-
-</details>
+The legacy flattened Diebold-Mariano matrix from v1.0.0 was withdrawn after a
+sign and provenance audit. It is not evidence for the corrected manuscript.
+The rationale is recorded in
+[`DM_WITHDRAWAL.md`](results/task1_point_forecasting/DM_WITHDRAWAL.md).
 
 ### Dependence-Aware Bootstrap
 
 Forecast-origin block-bootstrap sensitivity checks are provided for METR-LA and PEMS04:
 
 ```text
-results/task1_point_forecasting/block_bootstrap_dm_robustness_metr-la_seeds43-44-45.csv
-results/task1_point_forecasting/block_bootstrap_dm_robustness_pems04_seeds43-44-45.csv
+results/task1_point_forecasting/block_bootstrap_pairwise_metr-la_seeds43-44-45.csv
+results/task1_point_forecasting/block_bootstrap_pairwise_pems04_seeds43-44-45.csv
 ```
 
-These checks complement the flattened DM matrix by resampling one-day forecast-origin blocks.
+These are the corrected study's primary dependence-aware pairwise checks. They
+aggregate loss at the forecast-origin level and resample one-day blocks.
 
 ### Uncertainty Quantification
 
-The conformal analysis is reported for the selected D2STGNN base forecaster, with global and per-horizon variants.
+The conformal analysis uses a six-architecture METR-LA ensemble and corrected
+nine-member D2STGNN/MTGNN/STID ensembles on PEMS-BAY and PEMS04. Exact member
+order, seeds where recorded, checkpoint hashes, and generation code are stored
+under [`results/task2_uncertainty/conformal/`](results/task2_uncertainty/conformal/).
+
+Fixed-variant PICP/MPIW are 0.9056/23.31 on METR-LA, 0.9063/11.69 on
+PEMS-BAY, and 0.9010/91.75 on PEMS04. Cross-dataset widths are descriptive
+because target units, scales, and ensemble compositions differ.
+
+```bash
+python scripts/generate_conformal_intervals.py --help
+python scripts/regenerate_cross_dataset_conformal.py --help
+python scripts/generate_conformal_appendix_figures.py
+```
+
+### Sensor-Dropout Stress Test
+
+The corrected sensor-dropout artifact comes from checkpoint inference with
+nested fixed seed-42 masks, seed-43 checkpoints, and clean-pass verification.
+The JSON records every zero-based sensor index plus configuration and checkpoint
+hashes:
+
+```text
+results/robustness/sensor_dropout_fixed_masks_seed42.json
+```
+
+```bash
+python pipelines/run_sensor_dropout.py --help
+python scripts/generate_sensor_dropout_figure.py
+```
 
 ### Explanation Diagnostics
 
@@ -159,7 +186,7 @@ The main traffic benchmark was run as a multi-seed GPU experiment. Post-hoc anal
 | Traffic training budget | 63 trained runs: 3 datasets x 7 models x 3 seeds, 100 epochs per run |
 | Seeds | 43, 44, 45 |
 | Forecasting setting | 12 input steps to 12 output steps |
-| DM / bootstrap / figures | Post-hoc artifact scripts; GPU not required with stored results |
+| Bootstrap / figures | Post-hoc artifact scripts; GPU not required with stored results |
 
 Wall-clock time depends on dataset storage, dataloader settings, GPU availability, and whether checkpoints or prediction dumps are already present.
 
@@ -175,7 +202,8 @@ figures/
 models/                          Local model architecture implementations
 pipelines/                       End-to-end task entry points
 results/
-  task1_point_forecasting/       Point forecasting, DM, bootstrap artifacts
+  task1_point_forecasting/       Point forecasting and bootstrap artifacts
+  robustness/                    Sensor-dropout metrics and mask metadata
   task2_uncertainty/             UQ and conformal artifacts
   task3_explainability/          XAI and stability artifacts
   nontraffic_graph_sanity/       Chickenpox appendix sanity-check artifacts
@@ -200,15 +228,29 @@ conda activate stgnn-benchmark
 
 Full traffic-model retraining requires the original datasets, trained-checkpoint storage, and GPU resources.
 
+Verify every file in the corrected release against the repository-wide manifest:
+
+```bash
+python scripts/generate_artifact_manifest.py --check
+```
+
+Run the focused conformal and mask regression tests with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
 ## Key Artifacts
 
 | Area | Location |
 |---|---|
-| Point forecasting, DM, and bootstrap results | [`results/task1_point_forecasting/`](results/task1_point_forecasting/) |
+| Point forecasting and bootstrap results | [`results/task1_point_forecasting/`](results/task1_point_forecasting/) |
 | Uncertainty and conformal diagnostics | [`results/task2_uncertainty/`](results/task2_uncertainty/) |
+| Sensor-dropout inference and mask metadata | [`pipelines/run_sensor_dropout.py`](pipelines/run_sensor_dropout.py), [`results/robustness/`](results/robustness/) |
 | XAI summaries and case-study artifacts | [`results/task3_explainability/`](results/task3_explainability/) |
 | Main manuscript figures | [`figures/main/`](figures/main/) |
 | Reproduction and utility scripts | [`scripts/`](scripts/) |
+| Release checksum manifest | [`ARTIFACT_MANIFEST.sha256`](ARTIFACT_MANIFEST.sha256) |
 
 ## Citation
 
@@ -217,7 +259,7 @@ Full traffic-model retraining requires the original datasets, trained-checkpoint
   title  = {Reliability-First Spatio-Temporal Graph Forecasting: A Survey and
             Traffic-Domain Benchmark for Calibration, Robustness, and
             Explanation Diagnostics},
-  author = {Ahmad, Hussein and Mortazavi, Seyyed Kasra and Benarbia, Taha
+  author = {Ahmad, Hussein Ahmad and Mortazavi, Seyyed Kasra and Benarbia, Taha
             and Al Machot, Fadi and Kyamakya, Kyandoghere},
   year   = {2026},
   note   = {Manuscript prepared for IEEE Access submission}
