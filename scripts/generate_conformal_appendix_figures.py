@@ -1,4 +1,4 @@
-"""Regenerate appendix conformal figures from corrected compact metrics."""
+"""Generate appendix conformal figures from compact metrics."""
 
 from __future__ import annotations
 
@@ -92,7 +92,7 @@ def generate_tradeoff() -> None:
     axis.set_xscale("log")
     axis.set_xlabel("Mean prediction-interval width (dataset units, log scale)")
     axis.set_ylabel("Empirical marginal coverage (%)")
-    axis.set_title("Coverage-width diagnostics from corrected conformal outputs")
+    axis.set_title("Coverage-width diagnostics for normalized ensemble conformal prediction")
     axis.set_ylim(89.75, 90.8)
 
     dataset_handles = [
@@ -163,9 +163,9 @@ def generate_horizon_figure(key: str, output_name: str) -> None:
     )
     axes[-1].legend(loc="best", fontsize=8)
     figure.suptitle(
-        "Per-horizon coverage from corrected conformal outputs"
+        "Per-horizon empirical marginal coverage"
         if key == "PICP"
-        else "Per-horizon interval width from corrected conformal outputs",
+        else "Per-horizon mean interval width",
         y=1.02,
         fontsize=11,
     )
@@ -180,7 +180,7 @@ def main() -> None:
     generate_tradeoff()
     generate_horizon_figure("MPIW", "uq6_pi_horizon_bands.png")
     generate_horizon_figure("PICP", "uq7_pi_coverage_calibration.png")
-    print("Regenerated uq5, uq6, and uq7 from corrected conformal metrics")
+    print("Generated uq5, uq6, and uq7 from conformal metrics")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Generate the corrected cross-dataset conformal summary figure."""
+"""Generate the cross-dataset conformal summary figure."""
 
 from __future__ import annotations
 
@@ -104,7 +104,7 @@ def main():
         bbox_to_anchor=(0.5, 1.01),
     )
     fig.suptitle(
-        "Corrected normalized ensemble-conformal diagnostics",
+        "Normalized ensemble-conformal diagnostics",
         y=1.08,
         fontsize=14,
         fontweight="bold",
