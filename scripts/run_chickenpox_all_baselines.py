@@ -1,15 +1,15 @@
-"""Train the seven paper baselines on Chickenpox Hungary as a small sanity check.
+"""Run the graph-native non-traffic protocol illustration on Chickenpox Hungary.
 
-This is not a full non-traffic benchmark. It reuses the same model classes from
-the traffic paper with small Chickenpox-specific dimensions.
+The experiment reuses the seven traffic-benchmark model classes with compact,
+dataset-specific dimensions and records its full protocol in the result JSON.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import random
-import ssl
 import sys
 import time
 import urllib.request
@@ -23,9 +23,6 @@ from torch.utils.data import DataLoader, TensorDataset
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-ORIGINAL_BASICTS = Path("D:/Hussein-Files/original/experiments/basicts")
-if ORIGINAL_BASICTS.exists():
-    sys.path.insert(0, str(ORIGINAL_BASICTS))
 
 from models.D2STGNN.arch import D2STGNN
 from models.MTGNN.arch import MTGNN
@@ -62,8 +59,7 @@ def set_seed(seed: int) -> None:
 def fetch_dataset() -> dict:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     if not DATA_PATH.exists():
-        context = ssl._create_unverified_context()
-        with urllib.request.urlopen(DATA_URL, context=context, timeout=60) as response:
+        with urllib.request.urlopen(DATA_URL, timeout=60) as response:
             DATA_PATH.write_bytes(response.read())
     return json.loads(DATA_PATH.read_text(encoding="utf-8"))
 
@@ -287,28 +283,144 @@ def summarize(results):
     return summary
 
 
-def write_outputs(summary, results):
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def protocol_manifest(mean: float, std: float, split_counts: dict[str, int]) -> dict:
+    return {
+        "schema_version": 1,
+        "role": "secondary graph-native non-traffic protocol illustration",
+        "ranking_scope": "not pooled with the main traffic-domain rankings",
+        "dataset": {
+            "name": "Hungarian Chickenpox Cases",
+            "source_url": DATA_URL,
+            "snapshot_path": DATA_PATH.as_posix(),
+            "snapshot_sha256": file_sha256(DATA_PATH),
+            "time_steps": 521,
+            "nodes": 20,
+            "source_edges": 102,
+            "value_scale": (
+                "source-provided FX series; reported errors are inverse-scaled "
+                "to that source scale, not raw integer case counts"
+            ),
+        },
+        "forecast_task": {
+            "input_weeks": 12,
+            "output_weeks": 12,
+            "total_windows": sum(split_counts.values()),
+            "chronological_split_ratio": [0.7, 0.1, 0.2],
+            "split_windows": split_counts,
+        },
+        "preprocessing": {
+            "normalization": "single scalar mean and standard deviation from training targets only",
+            "training_target_mean": mean,
+            "training_target_std": std,
+            "same_transform_for_all_models": True,
+            "time_features": "week index modulo 52 plus one zero dummy channel",
+        },
+        "graph": {
+            "construction": "source neighbor edges symmetrized with self-loops",
+            "base_normalization": "row normalization",
+            "model_specific_supports": {
+                "D2STGNN": "forward and reverse random-walk transitions",
+                "STGCN-Cheb": "symmetric normalized Laplacian",
+                "other_models": "their released adaptive, memory, normalization, identity, or embedding paths",
+            },
+        },
+        "optimization": {
+            "seeds": [43, 44, 45],
+            "execution_device": "CPU",
+            "maximum_epochs": 120,
+            "early_stopping_patience": 25,
+            "checkpoint_selector": "minimum validation MAE",
+            "checkpoint_storage": (
+                "best state retained in memory; no checkpoint files written by this script"
+            ),
+            "loss": "L1",
+            "optimizer": "Adam",
+            "weight_decay": 1e-5,
+            "gradient_clip_max_norm": 5.0,
+            "train_batch_size": 32,
+            "validation_test_batch_size": 128,
+            "learning_rates": {
+                "D2STGNN": 0.002,
+                "MegaCRN": 0.005,
+                "MTGNN": 0.003,
+                "STNorm": 0.003,
+                "STGCN-Cheb": 0.001,
+                "STID": 0.003,
+                "STAEformer": 0.001,
+            },
+        },
+        "model_dimensions": {
+            "D2STGNN": "hidden=16, node_hidden=8, time_embedding=8, layers=5, k_t=3, k_s=2",
+            "MegaCRN": "rnn_units=32, layers=1, cheb_k=2, memory=10x16",
+            "MTGNN": "gcn_depth=2, node_dim=16, conv/residual=16, skip=32, end=64, layers=2",
+            "STNorm": "channels=16, kernel_size=2, blocks=4, layers=2",
+            "STGCN-Cheb": "Kt=3, Ks=3, two 16/8/16 blocks, dropout=0.2",
+            "STID": "embedding=32, layers=2, node/time embeddings=8",
+            "STAEformer": "input/time embeddings=8, adaptive embedding=16, feed-forward=64, heads=4, layer=1",
+        },
+        "interval_diagnostic": {
+            "calibration_split": "chronological validation split",
+            "calibration_windows": split_counts["val"],
+            "evaluation_split": "chronological test split",
+            "evaluation_windows": split_counts["test"],
+            "calibration_targets": split_counts["val"] * 20 * 12,
+            "evaluation_targets": split_counts["test"] * 20 * 12,
+            "score": "absolute validation residual",
+            "quantile": "NumPy higher empirical quantile at 0.90",
+            "interval": "point prediction plus or minus the model-and-seed validation residual quantile",
+            "temporal_dependence_caveat": (
+                "reported coverage is an empirical diagnostic, not an exchangeability guarantee"
+            ),
+        },
+    }
+
+
+def write_outputs(summary, results, mean, std, split_counts):
+    protocol = protocol_manifest(mean, std, split_counts)
+    protocol["optimization"]["best_epochs"] = {
+        name: {
+            str(seed): row.best_epoch
+            for seed, row in zip((43, 44, 45), rows)
+        }
+        for name, rows in results.items()
+    }
+    protocol["generation_script"] = "scripts/run_chickenpox_all_baselines.py"
+    protocol["result_path"] = (
+        "results/nontraffic_graph_sanity/chickenpox_all_baselines_summary.json"
+    )
     payload = {
         "dataset": "Hungarian Chickenpox Cases",
-        "task": "12-week input to 12-week output county-level case-count forecasting",
+        "task": "12-week input to 12-week output forecasting of the source-provided county-level weekly series",
         "split": "chronological 70/10/20 train/validation/test",
         "models": list(results.keys()),
         "seeds": [43, 44, 45],
+        "protocol_manifest_path": "results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json",
+        "protocol": protocol,
         "summary": summary,
         "per_seed": {name: [asdict(row) for row in rows] for name, rows in results.items()},
-        "interpretation": "Appendix-only non-traffic graph sanity check using the same seven model classes; not part of the main traffic ranking.",
+        "interpretation": "Secondary graph-native non-traffic protocol illustration using the same seven model classes; not pooled with the main traffic ranking.",
     }
     json_path = OUT_DIR / "chickenpox_all_baselines_summary.json"
+    protocol_path = OUT_DIR / "chickenpox_protocol_manifest.json"
     md_path = OUT_DIR / "chickenpox_all_baselines_summary.md"
     json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    protocol_path.write_text(json.dumps(protocol, indent=2), encoding="utf-8")
 
     def fmt(name, field):
         return f"{summary[name][field + '_mean']:.4f} +/- {summary[name][field + '_std']:.4f}"
 
     lines = [
-        "# Chickenpox Hungary Same-Baseline Sanity Check",
+        "# Chickenpox Hungary Graph-Native Protocol Illustration",
         "",
-        "Appendix-only graph-native non-traffic check using the same seven model classes from the traffic benchmark, with small Chickenpox-specific dimensions.",
+        "Secondary graph-native non-traffic experiment using the same seven model classes from the traffic benchmark with compact Chickenpox-specific dimensions.",
         "",
         "| Model | MAE | RMSE | 90% coverage | Width | Params |",
         "|---|---:|---:|---:|---:|---:|",
@@ -320,7 +432,7 @@ def write_outputs(summary, results):
         )
     lines += [
         "",
-        "Interpret this as a feasibility/sanity check only. Hyperparameters were scaled down for the 20-node weekly dataset and are not intended as a full non-traffic benchmark.",
+        "The protocol and per-seed best epochs are recorded in the companion JSON. This secondary experiment is not pooled with the traffic-domain model rankings.",
     ]
     md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -341,7 +453,8 @@ def main():
             rows.append(train_one(name, tensors, adj, mean, std, seed))
             print(f"  seed {seed}: MAE={rows[-1].mae:.4f}, coverage={rows[-1].conformal_coverage_90:.4f}")
         results[name] = rows
-    write_outputs(summarize(results), results)
+    split_counts = {name: int(parts[0].shape[0]) for name, parts in raw.items()}
+    write_outputs(summarize(results), results, mean, std, split_counts)
     print((OUT_DIR / "chickenpox_all_baselines_summary.md").resolve())
 
 

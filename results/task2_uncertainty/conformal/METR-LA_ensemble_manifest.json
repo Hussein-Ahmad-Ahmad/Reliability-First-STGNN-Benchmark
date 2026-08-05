@@ -1,12 +1,39 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "dataset": "METR-LA",
   "member_count": 6,
+  "selection_rule": {
+    "predefined_extraction_set": [
+      "DCRNN",
+      "D2STGNN",
+      "MegaCRN",
+      "STAEformer",
+      "STGCNChebGraphConv",
+      "STID",
+      "STNorm"
+    ],
+    "inclusion_rule": "A member entered the ensemble only when a complete test prediction dump aligned with the common target archive before conformal calibration.",
+    "excluded_before_calibration": [
+      {
+        "model": "DCRNN",
+        "reason": "The extraction path did not write a compatible prediction dump."
+      }
+    ],
+    "coverage_used_for_member_selection": false
+  },
   "member_seed_note": "These legacy heterogeneous-architecture runs did not record an explicit CFG.SEED value in their copied configs; no seed is inferred.",
   "member_order": [
     {
       "model": "D2STGNN",
       "experiment_id": "e15c412ef6fd29dda965a82c60190801",
+      "seed": null,
+      "seed_status": "not retained in the copied run configuration",
+      "config_path": "checkpoints/D2STGNN/METR-LA_100_12_12/e15c412ef6fd29dda965a82c60190801/METR-LA.py",
+      "config_sha256": "5fe3c3fcb550b9c5cb0f783797088ed22d61bd05b29edcc1fff5c63c0ef4f98e",
+      "checkpoint_path": "checkpoints/D2STGNN/METR-LA_100_12_12/e15c412ef6fd29dda965a82c60190801/D2STGNN_best_val_MAE.pt",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 83,
+      "checkpoint_best_validation_mae": 2.6679112967834033,
       "prediction_path": "checkpoints/D2STGNN/METR-LA_100_12_12/e15c412ef6fd29dda965a82c60190801/test_results/predictions.npy",
       "prediction_sha256": "fb7f2bd906f4fb1147a13daba76ba3bf52957075caa763f3c3b38df8a170cebe",
       "checkpoint_sha256": "c2367d4c5b97f3574a5c066c2508cb156db0a913cca7a29dc2d8d94e984a85f1",
@@ -15,6 +42,14 @@
     {
       "model": "MegaCRN",
       "experiment_id": "86ed66fad8fa6343401710ebdbce8c76",
+      "seed": null,
+      "seed_status": "not retained in the copied run configuration",
+      "config_path": "checkpoints/MegaCRN/METR-LA_100_12_12/86ed66fad8fa6343401710ebdbce8c76/METR-LA.py",
+      "config_sha256": "c00a3232c1425076b4ba27c9f1992feae44738bf8968a321cd7504dfe8c02539",
+      "checkpoint_path": "checkpoints/MegaCRN/METR-LA_100_12_12/86ed66fad8fa6343401710ebdbce8c76/MegaCRN_best_val_MAE.pt",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 42,
+      "checkpoint_best_validation_mae": 2.758732894356841,
       "prediction_path": "checkpoints/MegaCRN/METR-LA_100_12_12/86ed66fad8fa6343401710ebdbce8c76/test_results/predictions.npy",
       "prediction_sha256": "1da26085fc9ad40c56a7889862135141230ddb0db55994350435c3ec5fb1d527",
       "checkpoint_sha256": "0f2f31792625d004c362bee3cdf2bba6b49b7d2f87daf30fa0cf1ff5a0f7f52c",
@@ -23,6 +58,14 @@
     {
       "model": "STAEformer",
       "experiment_id": "1bc69bcfbc868608094762772a17ef04",
+      "seed": null,
+      "seed_status": "not retained in the copied run configuration",
+      "config_path": "checkpoints/STAEformer/METR-LA_100_12_12/1bc69bcfbc868608094762772a17ef04/METR-LA.py",
+      "config_sha256": "45bbec569ad17b9cbde8e74a9448fa122a06193f22c6fea0da6205eb5e7362a5",
+      "checkpoint_path": "checkpoints/STAEformer/METR-LA_100_12_12/1bc69bcfbc868608094762772a17ef04/STAEformer_best_val_MAE.pt",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 21,
+      "checkpoint_best_validation_mae": 2.749266823348323,
       "prediction_path": "checkpoints/STAEformer/METR-LA_100_12_12/1bc69bcfbc868608094762772a17ef04/test_results/predictions.npy",
       "prediction_sha256": "d3be71a6013503510d90a17724c6eb28c492b10fbaa00bcd538d975f3921e3f2",
       "checkpoint_sha256": "d76305d612eacd79e194874ecfa88b6e8a73328099f4a122fa322192c19efccf",
@@ -31,6 +74,14 @@
     {
       "model": "STGCNChebGraphConv",
       "experiment_id": "64f2b26efa34b13b983d789df4001619",
+      "seed": null,
+      "seed_status": "not retained in the copied run configuration",
+      "config_path": null,
+      "config_status": "an exact copied run configuration was not retained",
+      "checkpoint_path": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12/64f2b26efa34b13b983d789df4001619/STGCNChebGraphConv_best_val_MAE.pt",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 92,
+      "checkpoint_best_validation_mae": 2.85506054511386,
       "prediction_path": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12/64f2b26efa34b13b983d789df4001619/test_results/predictions.npy",
       "prediction_sha256": "ff07f3bf5ee1e076a4cdcd0bfa51b27aba4e94ffc91ec2d8896056aeea65313e",
       "checkpoint_sha256": "aa7ac0fd5ce14f4b7eae9e72e9acd5a18e8987ead15ef94bd6f5cf05c1e8e52b",
@@ -39,6 +90,14 @@
     {
       "model": "STID",
       "experiment_id": "a526ba553408961fc4392a846d3b280c",
+      "seed": null,
+      "seed_status": "not retained in the copied run configuration",
+      "config_path": "checkpoints/STID/METR-LA_100_12_12/a526ba553408961fc4392a846d3b280c/METR-LA.py",
+      "config_sha256": "f4055f3afdca414eb65d7055b0424dd9e6df3512e08910478a1c4a3c0f8329c9",
+      "checkpoint_path": "checkpoints/STID/METR-LA_100_12_12/a526ba553408961fc4392a846d3b280c/STID_best_val_MAE.pt",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 56,
+      "checkpoint_best_validation_mae": 2.916304139555549,
       "prediction_path": "checkpoints/STID/METR-LA_100_12_12/a526ba553408961fc4392a846d3b280c/test_results/predictions.npy",
       "prediction_sha256": "6ab65452d97822ac575b3ab4f8dee20d2af82887a7474b4ba1f948462332b2c6",
       "checkpoint_sha256": "bcb72fa46c7b9657f521cea8beb634e38f809f6fdb0765d73ac2f7a1d5584306",
@@ -47,6 +106,14 @@
     {
       "model": "STNorm",
       "experiment_id": "65d9b958a1c61da04fb6de227a26cde5",
+      "seed": null,
+      "seed_status": "not retained in the copied run configuration",
+      "config_path": "checkpoints/STNorm/METR-LA_100_12_12/65d9b958a1c61da04fb6de227a26cde5/METR-LA.py",
+      "config_sha256": "f7cbde45ef5bcb360094668634b9822ad27f3370edabdeba1d182a337a3bd0ea",
+      "checkpoint_path": "checkpoints/STNorm/METR-LA_100_12_12/65d9b958a1c61da04fb6de227a26cde5/STNorm_best_val_MAE.pt",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 16,
+      "checkpoint_best_validation_mae": 2.8626824335370937,
       "prediction_path": "checkpoints/STNorm/METR-LA_100_12_12/65d9b958a1c61da04fb6de227a26cde5/test_results/predictions.npy",
       "prediction_sha256": "bb1464307b750a112bd9cc938a15f51b705a45b7ff5f55d6042b9c7562edee28",
       "checkpoint_sha256": "bcb2d168ed656829cba18fada7bb8c530d53a5bc9b3f36319113a3747c76c4a3",
@@ -55,7 +122,11 @@
   ],
   "aggregate_source": {
     "ensemble_shape": [6, 6831, 12, 207],
+    "ensemble_predictions_archive_path": "experiments/basicts/ensemble_predictions/ensemble_predictions.npy",
+    "ensemble_predictions_bytes": 407237024,
     "ensemble_predictions_sha256": "2b3af6994fbbe313c5f6143e47c5cbe86f0bf6a9a0983934ec555d97a007a9fe",
+    "targets_archive_path": "experiments/basicts/ensemble_predictions/targets.npy",
+    "targets_bytes": 67872944,
     "targets_sha256": "1335f4d79cb187a88a6057ce2119cd6b1ddda399190764b7773b40aa657489df"
   },
   "aggregation": {
@@ -63,5 +134,12 @@
     "standard_deviation": "NumPy population standard deviation (ddof=0)"
   },
   "generation_script": "scripts/generate_conformal_intervals.py",
-  "large_member_arrays_archived_in_git": false
+  "large_member_arrays_archived_in_git": false,
+  "artifact_availability": {
+    "public_repository": "generation code, member metadata, and compact metrics",
+    "prediction_and_checkpoint_bytes": "retained internal archive; not distributed in the GitHub release",
+    "public_download_url": null,
+    "raw_rerun_requirement": "access to the listed prediction arrays or member checkpoints",
+    "reproduction_boundary": "the compact metrics and selection metadata are public; raw-array regeneration is not possible from the Git tree alone"
+  }
 }

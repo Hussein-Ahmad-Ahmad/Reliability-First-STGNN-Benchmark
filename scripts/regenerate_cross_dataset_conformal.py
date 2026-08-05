@@ -42,6 +42,17 @@ def archived_mae(run: Path) -> float | None:
         return float(json.load(handle)["overall"]["MAE"])
 
 
+def checkpoint_training_metadata(path: Path) -> tuple[int | None, float | None]:
+    payload = torch.load(path, map_location="cpu", weights_only=False)
+    epoch = payload.get("epoch") if isinstance(payload, dict) else None
+    metrics = payload.get("best_metrics", {}) if isinstance(payload, dict) else {}
+    best_val_mae = metrics.get("val/MAE") if isinstance(metrics, dict) else None
+    return (
+        None if epoch is None else int(epoch),
+        None if best_val_mae is None else float(best_val_mae),
+    )
+
+
 def infer_member(
     basicts_root: Path,
     dataset: str,
@@ -88,6 +99,9 @@ def infer_member(
             f"{clean_mae:.8f} versus {archived:.8f}"
         )
 
+    checkpoint_epoch, checkpoint_best_val_mae = checkpoint_training_metadata(
+        checkpoint_path
+    )
     metadata = {
         "model": model,
         "seed": seed,
@@ -95,6 +109,10 @@ def infer_member(
         "config_sha256": file_hash(config_path),
         "checkpoint_path": checkpoint_path.relative_to(basicts_root).as_posix(),
         "checkpoint_sha256": file_hash(checkpoint_path),
+        "checkpoint_selector": "minimum validation MAE during training",
+        "checkpoint_epoch": checkpoint_epoch,
+        "checkpoint_best_validation_mae": checkpoint_best_val_mae,
+        "checkpoint_bytes_in_public_repository": False,
         "rerun_clean_mae": clean_mae,
         "archived_test_mae": archived,
         "rerun_minus_archived_mae": (
@@ -195,10 +213,16 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     manifest_name = f"{args.dataset}_ensemble_manifest.json"
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "dataset": args.dataset,
         "member_count": len(members),
+        "selection_rule": (
+            "The member list was fixed from the requested MODEL:SEED entries "
+            "before conformal calibration; calibration and evaluation coverage "
+            "were not used to select members or checkpoints."
+        ),
+        "coverage_used_for_member_selection": False,
         "member_order": member_metadata,
         "aggregation": {
             "mean": "online arithmetic mean in float32",
@@ -207,6 +231,13 @@ def main() -> None:
             "clean_mae_verification_tolerance": 1e-5,
         },
         "generation_script": "scripts/regenerate_cross_dataset_conformal.py",
+        "artifact_availability": {
+            "public_repository": "generation code, member metadata, and compact metrics",
+            "large_prediction_arrays": "not retained; regenerated in memory from checkpoints",
+            "checkpoint_bytes": "retained internal archive; not distributed in the GitHub release",
+            "public_download_url": None,
+            "raw_rerun_requirement": "access to the listed BasicTS checkpoints and public datasets",
+        },
         "statistics_arrays_archived": False,
         "statistics_note": (
             "Ensemble mean and standard deviation are regenerated in memory "

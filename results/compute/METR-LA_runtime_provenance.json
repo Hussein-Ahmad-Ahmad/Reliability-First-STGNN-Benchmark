@@ -1,0 +1,548 @@
+{
+  "schema_version": 1,
+  "dataset": "METR-LA",
+  "seeds": [
+    43,
+    44,
+    45
+  ],
+  "hardware_context": "single NVIDIA GeForce RTX 4090 reference setup",
+  "aggregation": {
+    "train_seconds_per_epoch": "median across three per-seed medians; each per-seed median uses the final ten logged training epochs",
+    "recorded_log_span_minutes": "median across three per-seed spans between the first and last timestamped records in each selected canonical training log",
+    "rounding": "manuscript table displays two decimal places"
+  },
+  "source_boundary": {
+    "raw_logs_in_public_repository": false,
+    "public_values": "the final-ten observations, boundary timestamps, per-seed statistics, and aggregate statistics are retained below"
+  },
+  "per_seed": [
+    {
+      "model": "D2STGNN",
+      "seed": 43,
+      "experiment_id": "df0cf6f0146be24966504e70a2f32880",
+      "source_log": "checkpoints/D2STGNN/METR-LA_100_12_12_seed43/df0cf6f0146be24966504e70a2f32880/training_log_20260212124013.log",
+      "observed_train_epoch_count": 94,
+      "final_ten_train_seconds": [
+        198.86,
+        195.84,
+        194.45,
+        195.16,
+        197.54,
+        200.09,
+        198.75,
+        198.27,
+        198.33,
+        197.62
+      ],
+      "median_final_ten_train_seconds": 197.945,
+      "first_timestamp": "2026-02-12T12:40:13.555",
+      "last_timestamp": "2026-02-12T18:04:39.738",
+      "recorded_log_span_minutes": 324.43638333333337
+    },
+    {
+      "model": "D2STGNN",
+      "seed": 44,
+      "experiment_id": "e98ec97bc3505401c5aa34252fad9a9d",
+      "source_log": "checkpoints/D2STGNN/METR-LA_100_12_12_seed44/e98ec97bc3505401c5aa34252fad9a9d/training_log_20260212180448.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        182.2,
+        182.04,
+        182.24,
+        182.34,
+        182.31,
+        182.11,
+        182.15,
+        182.36,
+        182.24,
+        182.4
+      ],
+      "median_final_ten_train_seconds": 182.24,
+      "first_timestamp": "2026-02-12T18:04:48.322",
+      "last_timestamp": "2026-02-12T23:24:49.482",
+      "recorded_log_span_minutes": 320.01933333333335
+    },
+    {
+      "model": "D2STGNN",
+      "seed": 45,
+      "experiment_id": "314de509ae4c09a882a2df45cce6de4c",
+      "source_log": "checkpoints/D2STGNN/METR-LA_100_12_12_seed45/314de509ae4c09a882a2df45cce6de4c/training_log_20260212232457.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        184.03,
+        188.87,
+        184.21,
+        183.87,
+        184.36,
+        183.76,
+        184.29,
+        184.26,
+        185.03,
+        183.88
+      ],
+      "median_final_ten_train_seconds": 184.235,
+      "first_timestamp": "2026-02-12T23:24:57.544",
+      "last_timestamp": "2026-02-13T04:48:31.253",
+      "recorded_log_span_minutes": 323.56181666666663
+    },
+    {
+      "model": "MegaCRN",
+      "seed": 43,
+      "experiment_id": "5da0891349a74d561cc671d791d650f5",
+      "source_log": "checkpoints/MegaCRN/METR-LA_100_12_12_seed43/5da0891349a74d561cc671d791d650f5/training_log_20260213075120.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        50.29,
+        49.74,
+        49.78,
+        49.87,
+        49.95,
+        50.1,
+        50.1,
+        49.99,
+        49.89,
+        49.84
+      ],
+      "median_final_ten_train_seconds": 49.92,
+      "first_timestamp": "2026-02-13T07:51:20.608",
+      "last_timestamp": "2026-02-13T09:32:25.507",
+      "recorded_log_span_minutes": 101.08165000000001
+    },
+    {
+      "model": "MegaCRN",
+      "seed": 44,
+      "experiment_id": "0249ac62895c58a2a348a0e6167406f8",
+      "source_log": "checkpoints/MegaCRN/METR-LA_100_12_12_seed44/0249ac62895c58a2a348a0e6167406f8/training_log_20260213093230.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        49.96,
+        49.95,
+        49.62,
+        49.98,
+        49.77,
+        49.86,
+        49.72,
+        49.98,
+        49.87,
+        49.68
+      ],
+      "median_final_ten_train_seconds": 49.864999999999995,
+      "first_timestamp": "2026-02-13T09:32:30.272",
+      "last_timestamp": "2026-02-13T11:13:34.852",
+      "recorded_log_span_minutes": 101.07633333333334
+    },
+    {
+      "model": "MegaCRN",
+      "seed": 45,
+      "experiment_id": "7f4070757032836bd729775ac17f4f96",
+      "source_log": "checkpoints/MegaCRN/METR-LA_100_12_12_seed45/7f4070757032836bd729775ac17f4f96/training_log_20260213111339.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        49.98,
+        49.9,
+        49.78,
+        49.45,
+        49.94,
+        49.47,
+        49.52,
+        49.87,
+        49.41,
+        49.35
+      ],
+      "median_final_ten_train_seconds": 49.650000000000006,
+      "first_timestamp": "2026-02-13T11:13:39.699",
+      "last_timestamp": "2026-02-13T12:54:20.755",
+      "recorded_log_span_minutes": 100.68426666666666
+    },
+    {
+      "model": "MTGNN",
+      "seed": 43,
+      "experiment_id": "b49973cb6528058f8eafa1751de49e57",
+      "source_log": "checkpoints/MTGNN/METR-LA_100_12_12_seed43/b49973cb6528058f8eafa1751de49e57/training_log_20260213044839.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        22.69,
+        22.76,
+        22.74,
+        22.77,
+        22.87,
+        22.74,
+        23.03,
+        22.63,
+        22.87,
+        22.74
+      ],
+      "median_final_ten_train_seconds": 22.75,
+      "first_timestamp": "2026-02-13T04:48:39.698",
+      "last_timestamp": "2026-02-13T05:35:43.713",
+      "recorded_log_span_minutes": 47.066916666666664
+    },
+    {
+      "model": "MTGNN",
+      "seed": 44,
+      "experiment_id": "5f07e537758f747405ba3122fca637f4",
+      "source_log": "checkpoints/MTGNN/METR-LA_100_12_12_seed44/5f07e537758f747405ba3122fca637f4/training_log_20260213053548.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        22.85,
+        22.91,
+        22.81,
+        22.65,
+        22.75,
+        22.46,
+        23.02,
+        22.9,
+        22.77,
+        22.55
+      ],
+      "median_final_ten_train_seconds": 22.79,
+      "first_timestamp": "2026-02-13T05:35:48.478",
+      "last_timestamp": "2026-02-13T06:23:05.086",
+      "recorded_log_span_minutes": 47.2768
+    },
+    {
+      "model": "MTGNN",
+      "seed": 45,
+      "experiment_id": "365fa4eaa01f1a0d46779c73085ac308",
+      "source_log": "checkpoints/MTGNN/METR-LA_100_12_12_seed45/365fa4eaa01f1a0d46779c73085ac308/training_log_20260213062310.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        22.82,
+        22.89,
+        22.64,
+        22.73,
+        22.63,
+        22.89,
+        23.07,
+        22.91,
+        22.77,
+        23.02
+      ],
+      "median_final_ten_train_seconds": 22.855,
+      "first_timestamp": "2026-02-13T06:23:10.228",
+      "last_timestamp": "2026-02-13T07:10:27.768",
+      "recorded_log_span_minutes": 47.29233333333333
+    },
+    {
+      "model": "STAEformer",
+      "seed": 43,
+      "experiment_id": "6e41ab1fdb68ffe63475b8df1dca8ae8",
+      "source_log": "checkpoints/STAEformer/METR-LA_100_12_12_seed43/6e41ab1fdb68ffe63475b8df1dca8ae8/training_log_20260213140135.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        61.48,
+        61.49,
+        61.45,
+        61.51,
+        61.48,
+        61.54,
+        61.5,
+        61.67,
+        61.51,
+        61.63
+      ],
+      "median_final_ten_train_seconds": 61.504999999999995,
+      "first_timestamp": "2026-02-13T14:01:35.941",
+      "last_timestamp": "2026-02-13T16:02:50.848",
+      "recorded_log_span_minutes": 121.24845
+    },
+    {
+      "model": "STAEformer",
+      "seed": 44,
+      "experiment_id": "dcd1c91d4ec3a2ae6af040965460b9c7",
+      "source_log": "checkpoints/STAEformer/METR-LA_100_12_12_seed44/dcd1c91d4ec3a2ae6af040965460b9c7/training_log_20260213160257.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        61.73,
+        61.73,
+        61.72,
+        61.74,
+        61.7,
+        62.15,
+        61.84,
+        62.06,
+        61.83,
+        62.07
+      ],
+      "median_final_ten_train_seconds": 61.785,
+      "first_timestamp": "2026-02-13T16:02:57.734",
+      "last_timestamp": "2026-02-13T18:03:32.244",
+      "recorded_log_span_minutes": 120.57516666666668
+    },
+    {
+      "model": "STAEformer",
+      "seed": 45,
+      "experiment_id": "89c665df504bdd324c7ece2617a87d09",
+      "source_log": "checkpoints/STAEformer/METR-LA_100_12_12_seed45/89c665df504bdd324c7ece2617a87d09/training_log_20260213180343.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        61.84,
+        61.92,
+        61.83,
+        61.9,
+        61.8,
+        61.93,
+        61.81,
+        61.78,
+        61.83,
+        61.96
+      ],
+      "median_final_ten_train_seconds": 61.835,
+      "first_timestamp": "2026-02-13T18:03:43.445",
+      "last_timestamp": "2026-02-13T20:04:17.431",
+      "recorded_log_span_minutes": 120.56643333333334
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "seed": 43,
+      "experiment_id": "e6a1d567e4c62e3516fc087a00db8bec",
+      "source_log": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12_seed43/e6a1d567e4c62e3516fc087a00db8bec/training_log_20260212091319.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        32.93,
+        32.67,
+        32.61,
+        32.81,
+        32.71,
+        32.68,
+        32.69,
+        32.71,
+        32.59,
+        32.91
+      ],
+      "median_final_ten_train_seconds": 32.7,
+      "first_timestamp": "2026-02-12T09:13:19.734",
+      "last_timestamp": "2026-02-12T10:21:39.981",
+      "recorded_log_span_minutes": 68.33745
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "seed": 44,
+      "experiment_id": "58eccaeb0bde9543fa28fa70ce14b537",
+      "source_log": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12_seed44/58eccaeb0bde9543fa28fa70ce14b537/training_log_20260212102144.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        33.98,
+        34.01,
+        33.84,
+        33.7,
+        33.94,
+        33.74,
+        33.84,
+        33.82,
+        33.87,
+        33.79
+      ],
+      "median_final_ten_train_seconds": 33.84,
+      "first_timestamp": "2026-02-12T10:21:44.656",
+      "last_timestamp": "2026-02-12T11:31:30.941",
+      "recorded_log_span_minutes": 69.77141666666667
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "seed": 45,
+      "experiment_id": "7ae43e309b4bedd51d49c9173e41a47d",
+      "source_log": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12_seed45/7ae43e309b4bedd51d49c9173e41a47d/training_log_20260212113135.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        33.21,
+        33.2,
+        33.1,
+        40.69,
+        33.36,
+        33.35,
+        33.29,
+        33.29,
+        33.27,
+        33.35
+      ],
+      "median_final_ten_train_seconds": 33.29,
+      "first_timestamp": "2026-02-12T11:31:35.461",
+      "last_timestamp": "2026-02-12T12:40:08.925",
+      "recorded_log_span_minutes": 68.55773333333333
+    },
+    {
+      "model": "STID",
+      "seed": 43,
+      "experiment_id": "38e0392ef9dec6dbdddc6a767d3023d4",
+      "source_log": "checkpoints/STID/METR-LA_100_12_12_seed43/38e0392ef9dec6dbdddc6a767d3023d4/training_log_20260213071032.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        5.98,
+        6.77,
+        6.52,
+        6.04,
+        5.93,
+        6.25,
+        6.08,
+        6.23,
+        6.75,
+        6.09
+      ],
+      "median_final_ten_train_seconds": 6.16,
+      "first_timestamp": "2026-02-13T07:10:32.423",
+      "last_timestamp": "2026-02-13T07:24:32.796",
+      "recorded_log_span_minutes": 14.006216666666667
+    },
+    {
+      "model": "STID",
+      "seed": 44,
+      "experiment_id": "bbe9dfdbdd5c9ea9fa8edb60d6ff0094",
+      "source_log": "checkpoints/STID/METR-LA_100_12_12_seed44/bbe9dfdbdd5c9ea9fa8edb60d6ff0094/training_log_20260213072437.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        5.21,
+        5.44,
+        5.45,
+        5.54,
+        6.15,
+        5.65,
+        5.56,
+        5.6,
+        5.69,
+        6.06
+      ],
+      "median_final_ten_train_seconds": 5.58,
+      "first_timestamp": "2026-02-13T07:24:37.515",
+      "last_timestamp": "2026-02-13T07:38:07.474",
+      "recorded_log_span_minutes": 13.499316666666665
+    },
+    {
+      "model": "STID",
+      "seed": 45,
+      "experiment_id": "9a1e85eb62155c45f724c2b330178a7e",
+      "source_log": "checkpoints/STID/METR-LA_100_12_12_seed45/9a1e85eb62155c45f724c2b330178a7e/training_log_20260213073812.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        5.72,
+        5.56,
+        5.65,
+        6.19,
+        5.5,
+        5.71,
+        5.56,
+        5.56,
+        6.1,
+        5.57
+      ],
+      "median_final_ten_train_seconds": 5.61,
+      "first_timestamp": "2026-02-13T07:38:12.065",
+      "last_timestamp": "2026-02-13T07:51:15.818",
+      "recorded_log_span_minutes": 13.06255
+    },
+    {
+      "model": "STNorm",
+      "seed": 43,
+      "experiment_id": "70d43e707a12d602460787b0917023e7",
+      "source_log": "checkpoints/STNorm/METR-LA_100_12_12_seed43/70d43e707a12d602460787b0917023e7/training_log_20260213125425.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        10.69,
+        10.61,
+        10.65,
+        10.51,
+        10.59,
+        10.48,
+        10.63,
+        10.58,
+        10.58,
+        10.59
+      ],
+      "median_final_ten_train_seconds": 10.59,
+      "first_timestamp": "2026-02-13T12:54:25.938",
+      "last_timestamp": "2026-02-13T13:16:48.376",
+      "recorded_log_span_minutes": 22.373966666666668
+    },
+    {
+      "model": "STNorm",
+      "seed": 44,
+      "experiment_id": "8c6a2abeefe9ca0847647d4da6970827",
+      "source_log": "checkpoints/STNorm/METR-LA_100_12_12_seed44/8c6a2abeefe9ca0847647d4da6970827/training_log_20260213131653.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        10.49,
+        10.67,
+        10.47,
+        10.48,
+        10.47,
+        10.63,
+        10.47,
+        10.53,
+        10.5,
+        10.45
+      ],
+      "median_final_ten_train_seconds": 10.485,
+      "first_timestamp": "2026-02-13T13:16:53.168",
+      "last_timestamp": "2026-02-13T13:39:02.638",
+      "recorded_log_span_minutes": 22.157833333333333
+    },
+    {
+      "model": "STNorm",
+      "seed": 45,
+      "experiment_id": "c4780ebd0790bd61499f070376f786a8",
+      "source_log": "checkpoints/STNorm/METR-LA_100_12_12_seed45/c4780ebd0790bd61499f070376f786a8/training_log_20260213133907.log",
+      "observed_train_epoch_count": 100,
+      "final_ten_train_seconds": [
+        10.61,
+        10.59,
+        10.5,
+        10.69,
+        10.8,
+        10.68,
+        10.6,
+        10.63,
+        10.75,
+        10.62
+      ],
+      "median_final_ten_train_seconds": 10.625,
+      "first_timestamp": "2026-02-13T13:39:07.611",
+      "last_timestamp": "2026-02-13T14:01:31.012",
+      "recorded_log_span_minutes": 22.390016666666668
+    }
+  ],
+  "aggregate": [
+    {
+      "model": "D2STGNN",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 184.235,
+      "recorded_log_span_minutes": 323.56181666666663
+    },
+    {
+      "model": "MegaCRN",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 49.864999999999995,
+      "recorded_log_span_minutes": 101.07633333333334
+    },
+    {
+      "model": "MTGNN",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 22.79,
+      "recorded_log_span_minutes": 47.2768
+    },
+    {
+      "model": "STAEformer",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 61.785,
+      "recorded_log_span_minutes": 120.57516666666668
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 33.29,
+      "recorded_log_span_minutes": 68.55773333333333
+    },
+    {
+      "model": "STID",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 5.61,
+      "recorded_log_span_minutes": 13.499316666666665
+    },
+    {
+      "model": "STNorm",
+      "seed_count": 3,
+      "train_seconds_per_epoch": 10.59,
+      "recorded_log_span_minutes": 22.373966666666668
+    }
+  ]
+}

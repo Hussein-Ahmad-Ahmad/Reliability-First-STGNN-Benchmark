@@ -1,8 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "generated_utc": "2026-08-04T18:09:56.001384+00:00",
   "dataset": "PEMS04",
   "member_count": 9,
+  "selection_rule": "The D2STGNN, MTGNN, and STID members at seeds 43, 44, and 45 were fixed before conformal calibration; calibration and evaluation coverage were not used to select members or checkpoints.",
+  "coverage_used_for_member_selection": false,
   "member_order": [
     {
       "model": "D2STGNN",
@@ -11,6 +13,10 @@
       "config_sha256": "0559093e90de23eca1df5dfbe6145bf812a90d2d849038db93043d75cfcefb58",
       "checkpoint_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed43/4b46f6085eb5bb54551a637059ab2c9b/D2STGNN_best_val_MAE.pt",
       "checkpoint_sha256": "b8b51736e82082f7bf6aa0c76f2633ad119c858b17e99829a8c5aa2fdb2a04bc",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 97,
+      "checkpoint_best_validation_mae": 18.414116567659317,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 18.388669967651367,
       "archived_test_mae": 18.388669202719097,
       "rerun_minus_archived_mae": 7.649322704139649e-07
@@ -22,6 +28,10 @@
       "config_sha256": "a5ba0332f1e0b2b5634f02bfd6b891ca906c94015d72288bdf13dd6fe877fd0c",
       "checkpoint_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed44/26833830056a9790fd9e371e0acb8a3c/D2STGNN_best_val_MAE.pt",
       "checkpoint_sha256": "05631ec5acd89628d98077fefd62ab058bb64aa44246a17cee07273b30f6ed28",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 100,
+      "checkpoint_best_validation_mae": 18.43356553039027,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 18.343114852905273,
       "archived_test_mae": 18.34311470750994,
       "rerun_minus_archived_mae": 1.4539533310653496e-07
@@ -33,6 +43,10 @@
       "config_sha256": "73e76dd58e3eec7f0e25aca38140e0e31bdc13aeb4aa248e36dc2a834db0ee84",
       "checkpoint_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed45/747a083b3b242dc48f31929843440260/D2STGNN_best_val_MAE.pt",
       "checkpoint_sha256": "f917ee983c04bdcbef038509db85b5e36e5b5b4715724258bc41e5dd7f044ef6",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 91,
+      "checkpoint_best_validation_mae": 18.411051439446897,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 18.447298049926758,
       "archived_test_mae": 18.447296649416042,
       "rerun_minus_archived_mae": 1.4005107153991503e-06
@@ -44,6 +58,10 @@
       "config_sha256": "bfbab8db6c8f077ac64ba03a0f0f49679d26885a2b02afd5b734532f2c14405b",
       "checkpoint_path": "checkpoints/MTGNN/PEMS04_100_12_12_seed43/3296253683405aa7f969d7be7396b7a3/MTGNN_best_val_MAE.pt",
       "checkpoint_sha256": "dda0835fa3912ec62bfa6538421c7e695e94844be1bd23b99c2b7fa67daece4a",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 99,
+      "checkpoint_best_validation_mae": 18.928640247836505,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 19.037837982177734,
       "archived_test_mae": 19.037837890237814,
       "rerun_minus_archived_mae": 9.193992056566458e-08
@@ -55,6 +73,10 @@
       "config_sha256": "52ea4af186f5e2ad388b7d93fd717c20cb5af3d9370e1865e8578ac415faa6db",
       "checkpoint_path": "checkpoints/MTGNN/PEMS04_100_12_12_seed44/7d0a3ae6f054cb7a9510293a46a8a8c1/MTGNN_best_val_MAE.pt",
       "checkpoint_sha256": "f00205af7e086c9605ec48953ae63487f6f3adf9a8a780ba127d90e395c18b07",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 98,
+      "checkpoint_best_validation_mae": 19.003381229840087,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 19.089712142944336,
       "archived_test_mae": 19.089713832586924,
       "rerun_minus_archived_mae": -1.6896425876211651e-06
@@ -66,6 +88,10 @@
       "config_sha256": "2139800acdea6add82d14939f9d170e05d8f28b9a670f172760fe749ddf61009",
       "checkpoint_path": "checkpoints/MTGNN/PEMS04_100_12_12_seed45/acd319b0b4a386287fbc7b3d74410b84/MTGNN_best_val_MAE.pt",
       "checkpoint_sha256": "d7adbc80c0e5df939e37e0c243df75a1b457e2c4c95f9c31143ac3fb4432f739",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 100,
+      "checkpoint_best_validation_mae": 18.927328589431312,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 19.049148559570312,
       "archived_test_mae": 19.0491493762856,
       "rerun_minus_archived_mae": -8.167152891758178e-07
@@ -77,6 +103,10 @@
       "config_sha256": "265c0c62953c684cbe750e4f27b7a2832c2b94fd8c8f80e9a700d877c14830eb",
       "checkpoint_path": "checkpoints/STID/PEMS04_100_12_12_seed43/200c683298e50646d22fe7c97dde60a3/STID_best_val_MAE.pt",
       "checkpoint_sha256": "d7bf9f50006144b9bfe0022428114f0d61a92b44e9362341eb30a09b9e53c8fb",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 97,
+      "checkpoint_best_validation_mae": 18.503367643900695,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 18.43398666381836,
       "archived_test_mae": 18.433986815345893,
       "rerun_minus_archived_mae": -1.5152753363167903e-07
@@ -88,6 +118,10 @@
       "config_sha256": "10abcfaab087d04e29a6557bd5a42797a8a438079139b48468525e6a03a3d439",
       "checkpoint_path": "checkpoints/STID/PEMS04_100_12_12_seed44/5b8699b310175f02f9a8413d0628b5f5/STID_best_val_MAE.pt",
       "checkpoint_sha256": "d05cadaa038cd485cfb3a5b6ea1d52d457295757263c1ab93958cd5fbb25a461",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 92,
+      "checkpoint_best_validation_mae": 18.516131794451347,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 18.41025161743164,
       "archived_test_mae": 18.4102511608943,
       "rerun_minus_archived_mae": 4.5653733948824993e-07
@@ -99,6 +133,10 @@
       "config_sha256": "6d79981ec63b364e59c442ce480ada23ce80910e4a735535d9be0045d94277f8",
       "checkpoint_path": "checkpoints/STID/PEMS04_100_12_12_seed45/652c1ed78d3922cad159d0b590a1606a/STID_best_val_MAE.pt",
       "checkpoint_sha256": "c83845c436e46a8400a054eabfdd83095304b545124a3e30810fecd8b0ea0a56",
+      "checkpoint_selector": "minimum validation MAE during training",
+      "checkpoint_epoch": 92,
+      "checkpoint_best_validation_mae": 18.51909619872034,
+      "checkpoint_bytes_in_public_repository": false,
       "rerun_clean_mae": 18.414209365844727,
       "archived_test_mae": 18.41421107062813,
       "rerun_minus_archived_mae": -1.7047834042216437e-06
@@ -114,6 +152,13 @@
     "clean_mae_verification_tolerance": 1e-05
   },
   "generation_script": "scripts/regenerate_cross_dataset_conformal.py",
+  "artifact_availability": {
+    "public_repository": "generation code, member metadata, and compact metrics",
+    "large_prediction_arrays": "not retained; regenerated in memory from checkpoints",
+    "checkpoint_bytes": "retained internal archive; not distributed in the GitHub release",
+    "public_download_url": null,
+    "raw_rerun_requirement": "access to the listed BasicTS checkpoints and public datasets"
+  },
   "statistics_arrays_archived": false,
   "statistics_note": "Ensemble mean and standard deviation are regenerated in memory from the listed checkpoints; only compact metrics are archived."
 }

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "role": "secondary graph-native non-traffic protocol illustration",
+  "ranking_scope": "not pooled with the main traffic-domain rankings",
+  "dataset": {
+    "name": "Hungarian Chickenpox Cases",
+    "source_url": "https://raw.githubusercontent.com/benedekrozemberczki/pytorch_geometric_temporal/master/dataset/chickenpox.json",
+    "snapshot_path": "results/nontraffic_graph_sanity/chickenpox.json",
+    "snapshot_sha256": "724b48cfb274b2ecbb855bdb99b970b5ef9dd3671694fa477435dc1e08293735",
+    "time_steps": 521,
+    "nodes": 20,
+    "source_edges": 102,
+    "value_scale": "source-provided FX series; reported errors are inverse-scaled to that source scale, not raw integer case counts"
+  },
+  "forecast_task": {
+    "input_weeks": 12,
+    "output_weeks": 12,
+    "total_windows": 498,
+    "chronological_split_ratio": [
+      0.7,
+      0.1,
+      0.2
+    ],
+    "split_windows": {
+      "train": 349,
+      "val": 50,
+      "test": 99
+    }
+  },
+  "preprocessing": {
+    "normalization": "single scalar mean and standard deviation from training targets only",
+    "training_target_mean": -0.0015624482184648514,
+    "training_target_std": 0.9830290079116821,
+    "same_transform_for_all_models": true,
+    "time_features": "week index modulo 52 plus one zero dummy channel"
+  },
+  "graph": {
+    "construction": "source neighbor edges symmetrized with self-loops",
+    "base_normalization": "row normalization",
+    "model_specific_supports": {
+      "D2STGNN": "forward and reverse random-walk transitions",
+      "STGCN-Cheb": "symmetric normalized Laplacian",
+      "other_models": "their released adaptive, memory, normalization, identity, or embedding paths"
+    }
+  },
+  "optimization": {
+    "seeds": [
+      43,
+      44,
+      45
+    ],
+    "execution_device": "CPU",
+    "maximum_epochs": 120,
+    "early_stopping_patience": 25,
+    "checkpoint_selector": "minimum validation MAE",
+    "checkpoint_storage": "best state retained in memory; no checkpoint files written by this script",
+    "best_epochs": {
+      "D2STGNN": {
+        "43": 9,
+        "44": 14,
+        "45": 12
+      },
+      "MegaCRN": {
+        "43": 4,
+        "44": 10,
+        "45": 5
+      },
+      "MTGNN": {
+        "43": 10,
+        "44": 5,
+        "45": 11
+      },
+      "STNorm": {
+        "43": 12,
+        "44": 12,
+        "45": 9
+      },
+      "STGCN-Cheb": {
+        "43": 32,
+        "44": 50,
+        "45": 35
+      },
+      "STID": {
+        "43": 4,
+        "44": 5,
+        "45": 3
+      },
+      "STAEformer": {
+        "43": 4,
+        "44": 4,
+        "45": 4
+      }
+    },
+    "loss": "L1",
+    "optimizer": "Adam",
+    "weight_decay": 1e-05,
+    "gradient_clip_max_norm": 5.0,
+    "train_batch_size": 32,
+    "validation_test_batch_size": 128,
+    "learning_rates": {
+      "D2STGNN": 0.002,
+      "MegaCRN": 0.005,
+      "MTGNN": 0.003,
+      "STNorm": 0.003,
+      "STGCN-Cheb": 0.001,
+      "STID": 0.003,
+      "STAEformer": 0.001
+    }
+  },
+  "model_dimensions": {
+    "D2STGNN": "hidden=16, node_hidden=8, time_embedding=8, layers=5, k_t=3, k_s=2",
+    "MegaCRN": "rnn_units=32, layers=1, cheb_k=2, memory=10x16",
+    "MTGNN": "gcn_depth=2, node_dim=16, conv/residual=16, skip=32, end=64, layers=2",
+    "STNorm": "channels=16, kernel_size=2, blocks=4, layers=2",
+    "STGCN-Cheb": "Kt=3, Ks=3, two 16/8/16 blocks, dropout=0.2",
+    "STID": "embedding=32, layers=2, node/time embeddings=8",
+    "STAEformer": "input/time embeddings=8, adaptive embedding=16, feed-forward=64, heads=4, layer=1"
+  },
+  "interval_diagnostic": {
+    "calibration_split": "chronological validation split",
+    "calibration_windows": 50,
+    "evaluation_split": "chronological test split",
+    "evaluation_windows": 99,
+    "calibration_targets": 12000,
+    "evaluation_targets": 23760,
+    "score": "absolute validation residual",
+    "quantile": "NumPy higher empirical quantile at 0.90",
+    "interval": "point prediction plus or minus the model-and-seed validation residual quantile",
+    "temporal_dependence_caveat": "reported coverage is an empirical diagnostic, not an exchangeability guarantee"
+  },
+  "generation_script": "scripts/run_chickenpox_all_baselines.py",
+  "result_path": "results/nontraffic_graph_sanity/chickenpox_all_baselines_summary.json"
+}
