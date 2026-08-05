@@ -254,6 +254,13 @@ def main() -> None:
         "protocol": {
             "generation_script": "pipelines/run_sensor_dropout.py",
             "checkpoint_seed": args.checkpoint_seed,
+            "checkpoint_seed_role": (
+                "the first fixed seed in the benchmark seed set, used uniformly "
+                "as the deterministic checkpoint reference"
+            ),
+            "checkpoint_seed_comparison": (
+                "alternative checkpoint seeds were not evaluated in this stress test"
+            ),
             "mask_seed": args.mask_seed,
             "mask_generator": "numpy.random.RandomState(seed).permutation",
             "mask_count_rule": "floor(num_sensors * dropout_rate)",

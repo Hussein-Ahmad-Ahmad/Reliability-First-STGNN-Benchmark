@@ -27,14 +27,14 @@ Repository for:
 
 **Reliability-First Spatio-Temporal Graph Forecasting: A Survey and Traffic-Domain Benchmark for Calibration, Robustness, and Explanation Diagnostics**
 
-## Corrected Reproducibility Release
+## Reproducibility Snapshot
 
-Tag `v1.1-ieee-access-resubmission` is the corrected reproducibility snapshot
-for the IEEE Access resubmission. It supersedes `v1.0.0` for the revised
-manuscript and includes conformal-generation sources and ensemble manifests,
+Tag `v1.1.1-ieee-access-resubmission` is the immutable snapshot supporting the
+manuscript. It includes conformal-generation sources and member provenance,
 checkpoint-based sensor-dropout inference and metadata, forecast-origin
-block-bootstrap outputs, the formal DM-withdrawal notice, regression tests, and
-the complete SHA-256 artifact manifest.
+block-bootstrap outputs, runtime aggregation provenance, the graph-native
+non-traffic protocol manifest, regression tests, and the complete SHA-256
+artifact manifest.
 
 ## Overview
 
@@ -44,14 +44,14 @@ This repository provides the code structure, configurations, figures, and compac
   <tr>
     <td align="center" width="25%"><strong>7 models</strong><br/>Graph recurrent, convolutional, normalization, identity, and transformer families</td>
     <td align="center" width="25%"><strong>3 traffic datasets</strong><br/>METR-LA, PEMS-BAY, and PEMS04 under a shared benchmark protocol</td>
-    <td align="center" width="25%"><strong>63 traffic runs</strong><br/>3 datasets x 7 models x 3 seeds, with 100 epochs per run</td>
+    <td align="center" width="25%"><strong>63 main traffic runs</strong><br/>Point-forecast training: 3 datasets x 7 models x 3 seeds</td>
     <td align="center" width="25%"><strong>Reliability diagnostics</strong><br/>Accuracy, ranking sensitivity, uncertainty, robustness, XAI, and compute</td>
   </tr>
 </table>
 
 ## Benchmark Scope
 
-The main benchmark is intentionally focused on traffic forecasting. Appendix-only sanity artifacts are kept separate from the traffic-domain ranking.
+The main benchmark is intentionally focused on traffic forecasting. The secondary Chickenpox protocol illustration is kept separate from the traffic-domain ranking.
 
 | Dataset | Role | Coverage |
 |---|---|---|
@@ -81,7 +81,7 @@ The main benchmark is intentionally focused on traffic forecasting. Appendix-onl
     </td>
     <td align="center" width="50%">
       <img src="figures/appendix/uq2_conformal_cross_dataset.png" width="100%" alt="Cross-dataset conformal diagnostics"/><br/>
-      <sub><strong>Calibration diagnostics.</strong> Corrected fixed and per-horizon conformal results.</sub>
+      <sub><strong>Calibration diagnostics.</strong> Fixed and per-horizon conformal results.</sub>
     </td>
   </tr>
   <tr>
@@ -114,9 +114,8 @@ Mean test MAE over seeds 43, 44, and 45:
 
 ### Pairwise Ranking Sensitivity
 
-The legacy flattened Diebold-Mariano matrix from v1.0.0 was withdrawn after a
-sign and provenance audit. It is not evidence for the corrected manuscript.
-The rationale is recorded in
+DM-based directional or significance claims are not part of the reported
+evidence. The status of the earlier flattened artifact is recorded in
 [`DM_WITHDRAWAL.md`](results/task1_point_forecasting/DM_WITHDRAWAL.md).
 
 ### Dependence-Aware Bootstrap
@@ -128,15 +127,20 @@ results/task1_point_forecasting/block_bootstrap_pairwise_metr-la_seeds43-44-45.c
 results/task1_point_forecasting/block_bootstrap_pairwise_pems04_seeds43-44-45.csv
 ```
 
-These are the corrected study's primary dependence-aware pairwise checks. They
+These are the study's dependence-aware pairwise checks. They
 aggregate loss at the forecast-origin level and resample one-day blocks.
 
 ### Uncertainty Quantification
 
-The conformal analysis uses a six-architecture METR-LA ensemble and corrected
+The conformal analysis uses a six-architecture METR-LA ensemble and
 nine-member D2STGNN/MTGNN/STID ensembles on PEMS-BAY and PEMS04. Exact member
-order, seeds where recorded, checkpoint hashes, and generation code are stored
-under [`results/task2_uncertainty/conformal/`](results/task2_uncertainty/conformal/).
+order, checkpoint-selection epochs, seeds where retained, selection rules, and
+generation code are stored under
+[`results/task2_uncertainty/conformal/`](results/task2_uncertainty/conformal/).
+The compact metrics and metadata are public. The large prediction arrays and
+checkpoint bytes remain in the internal experiment archive and are not
+distributed in this Git repository; the manifests state this boundary
+explicitly.
 
 Fixed-variant PICP/MPIW are 0.9056/23.31 on METR-LA, 0.9063/11.69 on
 PEMS-BAY, and 0.9010/91.75 on PEMS04. Cross-dataset widths are descriptive
@@ -150,8 +154,10 @@ python scripts/generate_conformal_appendix_figures.py
 
 ### Sensor-Dropout Stress Test
 
-The corrected sensor-dropout artifact comes from checkpoint inference with
-nested fixed seed-42 masks, seed-43 checkpoints, and clean-pass verification.
+The sensor-dropout artifact comes from checkpoint inference with nested fixed
+seed-42 masks, seed-43 checkpoints, and clean-pass verification. Seed 43 is the
+first fixed benchmark seed and serves uniformly as the deterministic reference;
+alternative checkpoint seeds were not compared in this stress test.
 The JSON records every zero-based sensor index plus configuration and checkpoint
 hashes:
 
@@ -163,6 +169,15 @@ results/robustness/sensor_dropout_fixed_masks_seed42.json
 python pipelines/run_sensor_dropout.py --help
 python scripts/generate_sensor_dropout_figure.py
 ```
+
+### Graph-Native Non-Traffic Protocol Illustration
+
+The secondary Chickenpox experiment uses the same seven model classes with
+compact dimensions on a 20-node weekly graph. Its 349/50/99 chronological
+window split, train-only scaling, graph preprocessing, optimization settings,
+per-seed best epochs, and validation-residual interval construction are recorded
+in
+[`chickenpox_protocol_manifest.json`](results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json).
 
 ### Explanation Diagnostics
 
@@ -183,12 +198,16 @@ The main traffic benchmark was run as a multi-seed GPU experiment. Post-hoc anal
 | CUDA / PyTorch | CUDA 12.6, PyTorch 2.11.0+cu126 |
 | Main framework | BasicTS + EasyTorch 1.3.3 |
 | Python stack | Python 3.9, NumPy 1.24.4, TensorBoard 2.18.0, PyG >= 2.3.0, SciPy >= 1.10, Captum >= 0.6 |
-| Traffic training budget | 63 trained runs: 3 datasets x 7 models x 3 seeds, 100 epochs per run |
+| Main traffic point-forecast training | 63 runs: 3 datasets x 7 models x 3 seeds, 100 epochs per run |
+| Auxiliary executions | UQ, robustness, XAI, profiling, bootstrap, and Chickenpox experiments are reported separately |
 | Seeds | 43, 44, 45 |
 | Forecasting setting | 12 input steps to 12 output steps |
 | Bootstrap / figures | Post-hoc artifact scripts; GPU not required with stored results |
 
-Wall-clock time depends on dataset storage, dataloader settings, GPU availability, and whether checkpoints or prediction dumps are already present.
+Wall-clock time depends on dataset storage, dataloader settings, GPU
+availability, and whether checkpoints or prediction dumps are already present.
+The METR-LA table aggregation and per-seed observations are archived in
+[`METR-LA_runtime_provenance.json`](results/compute/METR-LA_runtime_provenance.json).
 
 ## Repository Layout
 
@@ -206,7 +225,8 @@ results/
   robustness/                    Sensor-dropout metrics and mask metadata
   task2_uncertainty/             UQ and conformal artifacts
   task3_explainability/          XAI and stability artifacts
-  nontraffic_graph_sanity/       Chickenpox appendix sanity-check artifacts
+  nontraffic_graph_sanity/       Chickenpox protocol illustration artifacts
+  compute/                       Runtime aggregation provenance
 scripts/                         Reproduction, figure, and diagnostic scripts
 src/                             Shared reliability utilities
 ```
@@ -228,7 +248,7 @@ conda activate stgnn-benchmark
 
 Full traffic-model retraining requires the original datasets, trained-checkpoint storage, and GPU resources.
 
-Verify every file in the corrected release against the repository-wide manifest:
+Verify every file in the release against the repository-wide manifest:
 
 ```bash
 python scripts/generate_artifact_manifest.py --check
@@ -248,6 +268,8 @@ python -m unittest discover -s tests -v
 | Uncertainty and conformal diagnostics | [`results/task2_uncertainty/`](results/task2_uncertainty/) |
 | Sensor-dropout inference and mask metadata | [`pipelines/run_sensor_dropout.py`](pipelines/run_sensor_dropout.py), [`results/robustness/`](results/robustness/) |
 | XAI summaries and case-study artifacts | [`results/task3_explainability/`](results/task3_explainability/) |
+| Runtime aggregation provenance | [`results/compute/METR-LA_runtime_provenance.json`](results/compute/METR-LA_runtime_provenance.json) |
+| Non-traffic protocol illustration | [`results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json`](results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json) |
 | Main manuscript figures | [`figures/main/`](figures/main/) |
 | Reproduction and utility scripts | [`scripts/`](scripts/) |
 | Release checksum manifest | [`ARTIFACT_MANIFEST.sha256`](ARTIFACT_MANIFEST.sha256) |

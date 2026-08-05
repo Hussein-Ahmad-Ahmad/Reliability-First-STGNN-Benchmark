@@ -1,6 +1,6 @@
-# Chickenpox Hungary Same-Baseline Sanity Check
+# Chickenpox Hungary Graph-Native Protocol Illustration
 
-Appendix-only graph-native non-traffic check using the same seven model classes from the traffic benchmark, with small Chickenpox-specific dimensions.
+Secondary graph-native non-traffic experiment using the same seven model classes from the traffic benchmark with compact Chickenpox-specific dimensions.
 
 | Model | MAE | RMSE | 90% coverage | Width | Params |
 |---|---:|---:|---:|---:|---:|
@@ -12,4 +12,4 @@ Appendix-only graph-native non-traffic check using the same seven model classes 
 | STID | 0.6416 +/- 0.0006 | 1.0073 +/- 0.0005 | 0.8844 +/- 0.0007 | 2.9114 +/- 0.0060 | 11756 |
 | STAEformer | 0.6649 +/- 0.0019 | 1.0289 +/- 0.0016 | 0.8872 +/- 0.0009 | 3.0320 +/- 0.0078 | 25996 |
 
-Interpret this as a feasibility/sanity check only. Hyperparameters were scaled down for the 20-node weekly dataset and are not intended as a full non-traffic benchmark.
+The full protocol, model dimensions, split counts, interval construction, and per-seed best epochs are recorded in chickenpox_protocol_manifest.json. This secondary experiment is not pooled with the traffic-domain model rankings.

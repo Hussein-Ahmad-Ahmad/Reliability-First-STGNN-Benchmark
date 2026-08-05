@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import statistics
 import unittest
 from pathlib import Path
 
@@ -124,6 +125,100 @@ class ArchivedArtifactTests(unittest.TestCase):
                         result["relative_mae_change_percent"],
                         expected_change,
                     )
+
+    def test_conformal_manifests_disclose_selection_and_availability(self) -> None:
+        root = ROOT / "results" / "task2_uncertainty" / "conformal"
+        metr = json.loads(
+            (root / "METR-LA_ensemble_manifest.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertFalse(
+            metr["selection_rule"]["coverage_used_for_member_selection"]
+        )
+        self.assertEqual(
+            [member["checkpoint_epoch"] for member in metr["member_order"]],
+            [83, 42, 21, 92, 56, 16],
+        )
+        self.assertTrue(
+            all(member["seed"] is None for member in metr["member_order"])
+        )
+        self.assertIsNone(
+            metr["artifact_availability"]["public_download_url"]
+        )
+
+        for dataset in ("PEMS-BAY", "PEMS04"):
+            manifest = json.loads(
+                (root / f"{dataset}_ensemble_manifest.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            self.assertFalse(
+                manifest["coverage_used_for_member_selection"]
+            )
+            self.assertTrue(
+                all(
+                    isinstance(member["checkpoint_epoch"], int)
+                    for member in manifest["member_order"]
+                )
+            )
+            self.assertIsNone(
+                manifest["artifact_availability"]["public_download_url"]
+            )
+
+    def test_chickenpox_protocol_manifest_is_complete(self) -> None:
+        path = (
+            ROOT
+            / "results"
+            / "nontraffic_graph_sanity"
+            / "chickenpox_protocol_manifest.json"
+        )
+        protocol = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(
+            protocol["forecast_task"]["split_windows"],
+            {"train": 349, "val": 50, "test": 99},
+        )
+        self.assertEqual(
+            protocol["interval_diagnostic"]["calibration_targets"], 12000
+        )
+        self.assertEqual(
+            protocol["interval_diagnostic"]["evaluation_targets"], 23760
+        )
+        self.assertEqual(
+            sorted(protocol["optimization"]["seeds"]), [43, 44, 45]
+        )
+        script = (
+            ROOT / "scripts" / "run_chickenpox_all_baselines.py"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("D:/Hussein-Files", script)
+
+    def test_runtime_provenance_matches_declared_aggregation(self) -> None:
+        path = (
+            ROOT
+            / "results"
+            / "compute"
+            / "METR-LA_runtime_provenance.json"
+        )
+        artifact = json.loads(path.read_text(encoding="utf-8"))
+        for aggregate in artifact["aggregate"]:
+            rows = [
+                row
+                for row in artifact["per_seed"]
+                if row["model"] == aggregate["model"]
+            ]
+            self.assertEqual(len(rows), 3)
+            self.assertAlmostEqual(
+                aggregate["train_seconds_per_epoch"],
+                statistics.median(
+                    row["median_final_ten_train_seconds"] for row in rows
+                ),
+            )
+            self.assertAlmostEqual(
+                aggregate["recorded_log_span_minutes"],
+                statistics.median(
+                    row["recorded_log_span_minutes"] for row in rows
+                ),
+            )
 
 
 if __name__ == "__main__":

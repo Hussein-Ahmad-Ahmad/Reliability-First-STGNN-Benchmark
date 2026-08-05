@@ -1,6 +1,6 @@
 {
   "dataset": "Hungarian Chickenpox Cases",
-  "task": "12-week input to 12-week output county-level case-count forecasting",
+  "task": "12-week input to 12-week output forecasting of the source-provided county-level weekly series",
   "split": "chronological 70/10/20 train/validation/test",
   "models": [
     "D2STGNN",
@@ -16,6 +16,7 @@
     44,
     45
   ],
+  "protocol_manifest_path": "results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json",
   "summary": {
     "D2STGNN": {
       "mae_mean": 0.6402626236279806,
@@ -370,5 +371,5 @@
       }
     ]
   },
-  "interpretation": "Appendix-only non-traffic graph sanity check using the same seven model classes; not part of the main traffic ranking."
+  "interpretation": "Secondary graph-native non-traffic protocol illustration using the same seven model classes; not pooled with the main traffic ranking."
 }
