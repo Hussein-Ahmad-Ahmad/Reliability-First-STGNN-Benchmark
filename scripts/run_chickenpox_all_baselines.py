@@ -291,7 +291,14 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def protocol_manifest(mean: float, std: float, split_counts: dict[str, int]) -> dict:
+def protocol_manifest(
+    source_data: np.ndarray,
+    mean: float,
+    std: float,
+    split_counts: dict[str, int],
+) -> dict:
+    column_means = source_data.mean(axis=0)
+    column_stds = source_data.std(axis=0)
     return {
         "schema_version": 1,
         "role": "secondary graph-native non-traffic protocol illustration",
@@ -305,9 +312,17 @@ def protocol_manifest(mean: float, std: float, split_counts: dict[str, int]) -> 
             "nodes": 20,
             "source_edges": 102,
             "value_scale": (
-                "source-provided FX series; reported errors are inverse-scaled "
-                "to that source scale, not raw integer case counts"
+                "county-wise standardized FX signal units in the upstream JSON; "
+                "not raw weekly case counts"
             ),
+            "source_fx_standardization": {
+                "axis": "each county column over all 521 source weeks",
+                "maximum_absolute_column_mean": float(
+                    np.abs(column_means).max()
+                ),
+                "minimum_column_population_std": float(column_stds.min()),
+                "maximum_column_population_std": float(column_stds.max()),
+            },
         },
         "forecast_task": {
             "input_weeks": 12,
@@ -317,10 +332,19 @@ def protocol_manifest(mean: float, std: float, split_counts: dict[str, int]) -> 
             "split_windows": split_counts,
         },
         "preprocessing": {
-            "normalization": "single scalar mean and standard deviation from training targets only",
+            "optimization_transform": (
+                "additional single scalar mean and standard deviation estimated "
+                "from training targets only"
+            ),
             "training_target_mean": mean,
             "training_target_std": std,
             "same_transform_for_all_models": True,
+            "evaluation_inverse_transform": (
+                "reverses only the additional training-target scalar transform"
+            ),
+            "reported_error_units": (
+                "upstream county-wise standardized FX signal units"
+            ),
             "time_features": "week index modulo 52 plus one zero dummy channel",
         },
         "graph": {
@@ -383,8 +407,8 @@ def protocol_manifest(mean: float, std: float, split_counts: dict[str, int]) -> 
     }
 
 
-def write_outputs(summary, results, mean, std, split_counts):
-    protocol = protocol_manifest(mean, std, split_counts)
+def write_outputs(summary, results, source_data, mean, std, split_counts):
+    protocol = protocol_manifest(source_data, mean, std, split_counts)
     protocol["optimization"]["best_epochs"] = {
         name: {
             str(seed): row.best_epoch
@@ -398,7 +422,10 @@ def write_outputs(summary, results, mean, std, split_counts):
     )
     payload = {
         "dataset": "Hungarian Chickenpox Cases",
-        "task": "12-week input to 12-week output forecasting of the source-provided county-level weekly series",
+        "task": (
+            "12-week input to 12-week output forecasting in the upstream "
+            "county-wise standardized FX signal units"
+        ),
         "split": "chronological 70/10/20 train/validation/test",
         "models": list(results.keys()),
         "seeds": [43, 44, 45],
@@ -433,13 +460,16 @@ def write_outputs(summary, results, mean, std, split_counts):
     lines += [
         "",
         "The protocol and per-seed best epochs are recorded in the companion JSON. This secondary experiment is not pooled with the traffic-domain model rankings.",
+        "",
+        "MAE, RMSE, and interval width remain in the upstream county-wise standardized FX signal units. They are not numbers of weekly cases.",
     ]
     md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main():
     dataset = fetch_dataset()
-    data = np.array(dataset["FX"], dtype=np.float32)
+    source_data = np.array(dataset["FX"], dtype=np.float64)
+    data = source_data.astype(np.float32)
     x, y = build_windows(data, 12, 12)
     raw = split_data(x, y)
     scaled, mean, std = standardize(raw)
@@ -454,7 +484,14 @@ def main():
             print(f"  seed {seed}: MAE={rows[-1].mae:.4f}, coverage={rows[-1].conformal_coverage_90:.4f}")
         results[name] = rows
     split_counts = {name: int(parts[0].shape[0]) for name, parts in raw.items()}
-    write_outputs(summarize(results), results, mean, std, split_counts)
+    write_outputs(
+        summarize(results),
+        results,
+        source_data,
+        mean,
+        std,
+        split_counts,
+    )
     print((OUT_DIR / "chickenpox_all_baselines_summary.md").resolve())
 
 

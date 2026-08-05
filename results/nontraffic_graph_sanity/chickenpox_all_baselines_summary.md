@@ -13,3 +13,5 @@ Secondary graph-native non-traffic experiment using the same seven model classes
 | STAEformer | 0.6649 +/- 0.0019 | 1.0289 +/- 0.0016 | 0.8872 +/- 0.0009 | 3.0320 +/- 0.0078 | 25996 |
 
 The full protocol, model dimensions, split counts, interval construction, and per-seed best epochs are recorded in chickenpox_protocol_manifest.json. This secondary experiment is not pooled with the traffic-domain model rankings.
+
+MAE, RMSE, and interval width remain in the upstream county-wise standardized FX signal units. They are not numbers of weekly cases.
