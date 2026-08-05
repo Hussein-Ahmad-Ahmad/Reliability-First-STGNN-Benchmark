@@ -21,7 +21,7 @@
     ],
     "coverage_used_for_member_selection": false
   },
-  "member_seed_note": "These legacy heterogeneous-architecture runs did not record an explicit CFG.SEED value in their copied configs; no seed is inferred.",
+  "member_seed_note": "These archived heterogeneous-architecture runs did not record an explicit CFG.SEED value in their copied configs; no seed is inferred.",
   "member_order": [
     {
       "model": "D2STGNN",

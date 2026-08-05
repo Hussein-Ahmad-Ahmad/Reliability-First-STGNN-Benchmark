@@ -187,6 +187,20 @@ class ArchivedArtifactTests(unittest.TestCase):
         self.assertEqual(
             sorted(protocol["optimization"]["seeds"]), [43, 44, 45]
         )
+        source_stats = protocol["dataset"]["source_fx_standardization"]
+        self.assertLess(
+            source_stats["maximum_absolute_column_mean"], 1e-12
+        )
+        self.assertAlmostEqual(
+            source_stats["minimum_column_population_std"], 1.0
+        )
+        self.assertAlmostEqual(
+            source_stats["maximum_column_population_std"], 1.0
+        )
+        self.assertEqual(
+            protocol["preprocessing"]["reported_error_units"],
+            "upstream county-wise standardized FX signal units",
+        )
         script = (
             ROOT / "scripts" / "run_chickenpox_all_baselines.py"
         ).read_text(encoding="utf-8")

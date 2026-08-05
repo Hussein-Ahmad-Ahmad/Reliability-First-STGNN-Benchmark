@@ -1,6 +1,6 @@
 {
   "dataset": "Hungarian Chickenpox Cases",
-  "task": "12-week input to 12-week output forecasting of the source-provided county-level weekly series",
+  "task": "12-week input to 12-week output forecasting in the upstream county-wise standardized FX signal units",
   "split": "chronological 70/10/20 train/validation/test",
   "models": [
     "D2STGNN",

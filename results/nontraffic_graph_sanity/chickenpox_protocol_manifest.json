@@ -10,7 +10,13 @@
     "time_steps": 521,
     "nodes": 20,
     "source_edges": 102,
-    "value_scale": "source-provided FX series; reported errors are inverse-scaled to that source scale, not raw integer case counts"
+    "value_scale": "county-wise standardized FX signal units in the upstream JSON; not raw weekly case counts",
+    "source_fx_standardization": {
+      "axis": "each county column over all 521 source weeks",
+      "maximum_absolute_column_mean": 4.6028440176398046e-17,
+      "minimum_column_population_std": 0.9999999999999983,
+      "maximum_column_population_std": 1.0000000000000013
+    }
   },
   "forecast_task": {
     "input_weeks": 12,
@@ -28,10 +34,12 @@
     }
   },
   "preprocessing": {
-    "normalization": "single scalar mean and standard deviation from training targets only",
+    "optimization_transform": "additional single scalar mean and standard deviation estimated from training targets only",
     "training_target_mean": -0.0015624482184648514,
     "training_target_std": 0.9830290079116821,
     "same_transform_for_all_models": true,
+    "evaluation_inverse_transform": "reverses only the additional training-target scalar transform",
+    "reported_error_units": "upstream county-wise standardized FX signal units",
     "time_features": "week index modulo 52 plus one zero dummy channel"
   },
   "graph": {

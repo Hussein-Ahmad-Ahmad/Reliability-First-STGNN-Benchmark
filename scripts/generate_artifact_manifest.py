@@ -27,6 +27,7 @@ ROOT_FILES = {
     ".gitignore",
     "LICENSE",
     "README.md",
+    "REPRODUCIBILITY_CHECK.md",
     "environment.yml",
     "requirements.txt",
 }

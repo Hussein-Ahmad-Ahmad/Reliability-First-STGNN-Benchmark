@@ -27,14 +27,18 @@ Repository for:
 
 **Reliability-First Spatio-Temporal Graph Forecasting: A Survey and Traffic-Domain Benchmark for Calibration, Robustness, and Explanation Diagnostics**
 
-## Reproducibility Snapshot
+## Public Code-and-Artifact Snapshot
 
-Tag `v1.1.1-ieee-access-resubmission` is the immutable snapshot supporting the
-manuscript. It includes conformal-generation sources and member provenance,
-checkpoint-based sensor-dropout inference and metadata, forecast-origin
-block-bootstrap outputs, runtime aggregation provenance, the graph-native
-non-traffic protocol manifest, regression tests, and the complete SHA-256
-artifact manifest.
+The versioned tag `v1.2.0` identifies the public snapshot supporting the
+manuscript. It includes evaluation code, compact results, provenance metadata,
+regression tests, and the complete SHA-256 artifact manifest. The snapshot
+supports code inspection, compact-artifact verification, and retraining-based
+reproduction. Large retained prediction arrays and trained checkpoints are not
+distributed in this repository.
+
+The clean-clone procedure is documented in
+[`REPRODUCIBILITY_CHECK.md`](REPRODUCIBILITY_CHECK.md) and automated by
+[`scripts/verify_release.py`](scripts/verify_release.py).
 
 ## Overview
 
@@ -178,6 +182,10 @@ window split, train-only scaling, graph preprocessing, optimization settings,
 per-seed best epochs, and validation-residual interval construction are recorded
 in
 [`chickenpox_protocol_manifest.json`](results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json).
+The archived `FX` matrix is standardized independently by county over the 521
+source weeks. Evaluation reverses only the experiment's additional
+training-target scalar transform, so MAE, RMSE, and interval width remain in
+standardized `FX` signal units rather than weekly case counts.
 
 ### Explanation Diagnostics
 
@@ -248,16 +256,11 @@ conda activate stgnn-benchmark
 
 Full traffic-model retraining requires the original datasets, trained-checkpoint storage, and GPU resources.
 
-Verify every file in the release against the repository-wide manifest:
+Verify the Git identity, required artifact families, repository-wide manifest,
+and focused regression tests together:
 
 ```bash
-python scripts/generate_artifact_manifest.py --check
-```
-
-Run the focused conformal and mask regression tests with:
-
-```bash
-python -m unittest discover -s tests -v
+python scripts/verify_release.py --expect-tag v1.2.0 --expect-manifest-entries 356 --expect-tests 8
 ```
 
 ## Key Artifacts
@@ -273,6 +276,7 @@ python -m unittest discover -s tests -v
 | Main manuscript figures | [`figures/main/`](figures/main/) |
 | Reproduction and utility scripts | [`scripts/`](scripts/) |
 | Release checksum manifest | [`ARTIFACT_MANIFEST.sha256`](ARTIFACT_MANIFEST.sha256) |
+| Clean-clone verification guide | [`REPRODUCIBILITY_CHECK.md`](REPRODUCIBILITY_CHECK.md) |
 
 ## Citation
 
