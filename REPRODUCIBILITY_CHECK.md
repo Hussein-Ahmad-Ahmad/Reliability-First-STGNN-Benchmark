@@ -17,6 +17,19 @@ To check the manuscript's full commit identifier as well, append
 run prints a JSON summary containing the checked commit, tag, manifest-entry
 count, and test count.
 
+## Current Main Branch
+
+The default branch may contain documentation and automation improvements after
+the manuscript-linked snapshot. Verify its current tracked release tree with:
+
+```bash
+python scripts/verify_release.py --expect-tests 8
+```
+
+The same command runs automatically through
+[`.github/workflows/verify.yml`](.github/workflows/verify.yml) on pushes, pull
+requests, a weekly schedule, and manual dispatch.
+
 ## Scope
 
 The public snapshot supports source inspection, compact-artifact verification,

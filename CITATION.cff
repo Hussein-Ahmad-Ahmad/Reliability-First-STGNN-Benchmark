@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use this benchmark or its artifacts, please cite the repository
+  snapshot and the accompanying manuscript.
+title: >-
+  Reliability-First Spatio-Temporal Graph Forecasting: A Survey and
+  Traffic-Domain Benchmark for Calibration, Robustness, and Explanation
+  Diagnostics
+type: software
+authors:
+  - family-names: Ahmad
+    given-names: Hussein Ahmad
+  - family-names: Mortazavi
+    given-names: Seyyed Kasra
+  - family-names: Benarbia
+    given-names: Taha
+  - family-names: Al Machot
+    given-names: Fadi
+  - family-names: Kyamakya
+    given-names: Kyandoghere
+version: 1.3.0
+date-released: 2026-08-06
+repository-code: >-
+  https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark
+license: MIT
+keywords:
+  - spatio-temporal graph neural networks
+  - traffic forecasting
+  - uncertainty quantification
+  - conformal prediction
+  - robustness
+  - explainable artificial intelligence
+  - reproducibility
+abstract: >-
+  Code, compact results, provenance metadata, and verification tools for a
+  reliability-first benchmark of spatio-temporal graph forecasting models.

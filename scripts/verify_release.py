@@ -51,6 +51,11 @@ def main() -> None:
     parser.add_argument("--expect-manifest-entries", type=int)
     parser.add_argument("--expect-tests", type=int)
     parser.add_argument(
+        "--json-output",
+        type=Path,
+        help="Write the final machine-readable summary to this path.",
+    )
+    parser.add_argument(
         "--require-clean",
         action="store_true",
         help="Fail if the Git worktree differs from the checked-out commit.",
@@ -115,18 +120,20 @@ def main() -> None:
     if not result.wasSuccessful():
         raise SystemExit("Focused regression tests failed")
 
-    print(
-        json.dumps(
-            {
-                "status": "passed",
-                "commit": head,
-                "tags_at_head": tags,
-                "manifest_entries": manifest_entries,
-                "tests_run": result.testsRun,
-            },
-            indent=2,
-        )
-    )
+    summary = {
+        "status": "passed",
+        "commit": head,
+        "tags_at_head": tags,
+        "manifest_entries": manifest_entries,
+        "tests_run": result.testsRun,
+    }
+    rendered = json.dumps(summary, indent=2)
+    print(rendered)
+    if args.json_output:
+        output = args.json_output.expanduser().resolve()
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(rendered + "\n", encoding="utf-8", newline="\n")
+        print(f"Wrote verification summary to {output}")
 
 
 if __name__ == "__main__":
