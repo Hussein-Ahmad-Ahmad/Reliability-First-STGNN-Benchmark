@@ -1,7 +1,8 @@
-"""Run the graph-native non-traffic protocol illustration on Chickenpox Hungary.
+"""Run the target-disjoint Chickenpox Hungary protocol illustration.
 
 The experiment reuses the seven traffic-benchmark model classes with compact,
-dataset-specific dimensions and records its full protocol in the result JSON.
+dataset-specific dimensions. Model selection, interval calibration, and final
+evaluation use distinct chronological target periods.
 """
 
 from __future__ import annotations
@@ -23,6 +24,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "framework"))
 
 from models.D2STGNN.arch import D2STGNN
 from models.MTGNN.arch import MTGNN
@@ -36,6 +38,38 @@ from models.STNorm.arch import STNorm
 DATA_URL = "https://raw.githubusercontent.com/benedekrozemberczki/pytorch_geometric_temporal/master/dataset/chickenpox.json"
 OUT_DIR = Path("results/nontraffic_graph_sanity")
 DATA_PATH = OUT_DIR / "chickenpox.json"
+RUN_ARTIFACT_DIR = OUT_DIR / "chickenpox_run_artifacts"
+PROTOCOL_ARRAYS_PATH = OUT_DIR / "chickenpox_protocol_arrays.npz"
+INPUT_LEN = 12
+OUTPUT_LEN = 12
+ALPHA = 0.10
+SEEDS = (43, 44, 45)
+MODELS = (
+    "D2STGNN",
+    "MegaCRN",
+    "MTGNN",
+    "STNorm",
+    "STGCN-Cheb",
+    "STID",
+    "STAEformer",
+)
+PARTITION_BOUNDS = {
+    "train": (0, 286),
+    "val": (297, 327),
+    "calibration": (338, 388),
+    "test": (399, 498),
+}
+EXCLUDED_BOUNDS = ((286, 297), (327, 338), (388, 399))
+SUMMARY_FIELDS = (
+    "mae",
+    "rmse",
+    "conformal_coverage_90",
+    "conformal_interval_width",
+    "best_val_mae",
+    "best_epoch",
+    "train_seconds",
+    "num_parameters",
+)
 
 
 @dataclass
@@ -48,6 +82,12 @@ class Metrics:
     best_epoch: int
     train_seconds: float
     num_parameters: int
+    validation_mae_history: list[float]
+    coverage_by_horizon: list[float]
+    interval_width_by_horizon: list[float]
+    conformal_rank: int
+    run_artifact_path: str
+    run_artifact_sha256: str
 
 
 def set_seed(seed: int) -> None:
@@ -72,15 +112,46 @@ def build_windows(data: np.ndarray, input_len: int, output_len: int) -> tuple[np
     return np.stack(xs).astype(np.float32), np.stack(ys).astype(np.float32)
 
 
-def split_data(x: np.ndarray, y: np.ndarray) -> dict[str, tuple[np.ndarray, np.ndarray]]:
-    n = x.shape[0]
-    n_train = round(n * 0.7)
-    n_val = round(n * 0.1)
-    return {
-        "train": (x[:n_train], y[:n_train]),
-        "val": (x[n_train : n_train + n_val], y[n_train : n_train + n_val]),
-        "test": (x[n_train + n_val :], y[n_train + n_val :]),
+def split_data(
+    x: np.ndarray,
+    y: np.ndarray,
+) -> tuple[
+    dict[str, tuple[np.ndarray, np.ndarray]],
+    dict[str, np.ndarray],
+    np.ndarray,
+]:
+    if x.shape[0] != 498 or y.shape[0] != 498:
+        raise ValueError(
+            "The documented Chickenpox protocol expects 498 windows; "
+            f"found x={x.shape[0]} and y={y.shape[0]}"
+        )
+
+    indices = {
+        name: np.arange(start, stop, dtype=np.int64)
+        for name, (start, stop) in PARTITION_BOUNDS.items()
     }
+    excluded = np.concatenate(
+        [
+            np.arange(start, stop, dtype=np.int64)
+            for start, stop in EXCLUDED_BOUNDS
+        ]
+    )
+    assigned = np.concatenate(list(indices.values()))
+    if len(np.unique(np.concatenate([assigned, excluded]))) != x.shape[0]:
+        raise ValueError("Partition and exclusion indices do not cover each window once")
+
+    split_names = list(indices)
+    for left_name, right_name in zip(split_names, split_names[1:]):
+        left_last_target = int(indices[left_name][-1] + INPUT_LEN + OUTPUT_LEN - 1)
+        right_first_target = int(indices[right_name][0] + INPUT_LEN)
+        if left_last_target >= right_first_target:
+            raise ValueError(
+                f"Targets overlap between {left_name} and {right_name}: "
+                f"{left_last_target} >= {right_first_target}"
+            )
+
+    splits = {name: (x[idx], y[idx]) for name, idx in indices.items()}
+    return splits, indices, excluded
 
 
 def standardize(splits: dict[str, tuple[np.ndarray, np.ndarray]]):
@@ -104,16 +175,13 @@ def add_time_features(x: np.ndarray, start_indices: np.ndarray, steps_per_year: 
     return np.concatenate([values, week, dummy], axis=-1).astype(np.float32)
 
 
-def prepare_tensors(splits_raw, splits_scaled, input_len: int, output_len: int):
+def prepare_tensors(splits_scaled, split_indices):
     tensors = {}
-    offset = 0
-    for name in ["train", "val", "test"]:
+    for name in ["train", "val", "calibration", "test"]:
         x_scaled, y_scaled = splits_scaled[name]
-        count = x_scaled.shape[0]
-        starts = np.arange(offset, offset + count)
-        offset += count
+        starts = split_indices[name]
         hist = add_time_features(x_scaled, starts)
-        future_features = add_time_features(y_scaled, starts + input_len)
+        future_features = add_time_features(y_scaled, starts + INPUT_LEN)
         target = np.transpose(y_scaled, (0, 2, 1))[..., None].astype(np.float32)
         tensors[name] = (hist, future_features, target)
     return tensors
@@ -233,6 +301,26 @@ def eval_model(model, loader, mean, std):
     return y_pred, y_true, float(np.abs(err).mean()), float(np.sqrt(np.mean(err**2)))
 
 
+def coordinate_conformal_quantile(
+    calibration_pred: np.ndarray,
+    calibration_true: np.ndarray,
+    alpha: float = ALPHA,
+) -> tuple[np.ndarray, np.ndarray, int]:
+    scores = np.abs(calibration_pred - calibration_true)
+    calibration_origins = scores.shape[0]
+    rank = min(
+        math.ceil((calibration_origins + 1) * (1.0 - alpha)),
+        calibration_origins,
+    )
+    quantiles = np.sort(scores, axis=0)[rank - 1]
+    return scores, quantiles, rank
+
+
+def run_artifact_path(name: str, seed: int) -> Path:
+    slug = name.lower().replace("-", "_")
+    return RUN_ARTIFACT_DIR / f"{slug}_seed{seed}.npz"
+
+
 def train_one(name, tensors, adj, mean, std, seed, epochs=120, patience=25) -> Metrics:
     set_seed(seed)
     model = make_model(name, 20, 12, 12, adj)
@@ -242,8 +330,12 @@ def train_one(name, tensors, adj, mean, std, seed, epochs=120, patience=25) -> M
     loss_fn = nn.L1Loss()
     train_loader = make_loader(tensors["train"], name, 32, True)
     val_loader = make_loader(tensors["val"], name, 128, False)
+    calibration_loader = make_loader(
+        tensors["calibration"], name, 128, False
+    )
     test_loader = make_loader(tensors["test"], name, 128, False)
     best_state, best_val, best_epoch, stale = None, math.inf, -1, 0
+    validation_mae_history = []
     start = time.time()
     for epoch in range(1, epochs + 1):
         model.train()
@@ -255,6 +347,7 @@ def train_one(name, tensors, adj, mean, std, seed, epochs=120, patience=25) -> M
             torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
             optim.step()
         _, _, val_mae, _ = eval_model(model, val_loader, mean, std)
+        validation_mae_history.append(val_mae)
         if val_mae < best_val:
             best_val, best_epoch, stale = val_mae, epoch, 0
             best_state = {k: v.detach().clone() for k, v in model.state_dict().items()}
@@ -265,18 +358,58 @@ def train_one(name, tensors, adj, mean, std, seed, epochs=120, patience=25) -> M
     if best_state is not None:
         model.load_state_dict(best_state)
     train_seconds = time.time() - start
-    val_pred, val_true, _, _ = eval_model(model, val_loader, mean, std)
+    calibration_pred, calibration_true, _, _ = eval_model(
+        model, calibration_loader, mean, std
+    )
     test_pred, test_true, mae, rmse = eval_model(model, test_loader, mean, std)
-    q = float(np.quantile(np.abs(val_pred - val_true).reshape(-1), 0.9, method="higher"))
-    coverage = float((np.abs(test_pred - test_true) <= q).mean())
-    return Metrics(mae, rmse, coverage, 2.0 * q, best_val, best_epoch, train_seconds, num_params)
+    calibration_residuals, coordinate_quantiles, rank = (
+        coordinate_conformal_quantile(calibration_pred, calibration_true)
+    )
+    covered = np.abs(test_pred - test_true) <= coordinate_quantiles
+    coverage = float(covered.mean())
+    interval_width = float((2.0 * coordinate_quantiles).mean())
+    coverage_by_horizon = covered.mean(axis=(0, 2, 3)).tolist()
+    width_by_horizon = (2.0 * coordinate_quantiles).mean(
+        axis=(1, 2)
+    ).tolist()
+
+    RUN_ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
+    artifact_path = run_artifact_path(name, seed)
+    np.savez_compressed(
+        artifact_path,
+        calibration_residuals=calibration_residuals.astype(np.float32),
+        coordinate_quantiles=coordinate_quantiles.astype(np.float32),
+        test_predictions=test_pred.astype(np.float32),
+        coverage_by_horizon=np.asarray(
+            coverage_by_horizon, dtype=np.float64
+        ),
+        interval_width_by_horizon=np.asarray(
+            width_by_horizon, dtype=np.float64
+        ),
+    )
+    return Metrics(
+        mae=mae,
+        rmse=rmse,
+        conformal_coverage_90=coverage,
+        conformal_interval_width=interval_width,
+        best_val_mae=best_val,
+        best_epoch=best_epoch,
+        train_seconds=train_seconds,
+        num_parameters=num_params,
+        validation_mae_history=validation_mae_history,
+        coverage_by_horizon=coverage_by_horizon,
+        interval_width_by_horizon=width_by_horizon,
+        conformal_rank=rank,
+        run_artifact_path=artifact_path.as_posix(),
+        run_artifact_sha256=file_sha256(artifact_path),
+    )
 
 
 def summarize(results):
     summary = {}
     for name, rows in results.items():
         summary[name] = {}
-        for field in Metrics.__dataclass_fields__:
+        for field in SUMMARY_FIELDS:
             values = np.array([getattr(row, field) for row in rows], dtype=float)
             summary[name][f"{field}_mean"] = float(values.mean())
             summary[name][f"{field}_std"] = float(values.std(ddof=1)) if len(values) > 1 else 0.0
@@ -295,13 +428,31 @@ def protocol_manifest(
     source_data: np.ndarray,
     mean: float,
     std: float,
-    split_counts: dict[str, int],
+    split_indices: dict[str, np.ndarray],
+    excluded_indices: np.ndarray,
+    total_windows: int,
+    protocol_arrays_sha256: str,
 ) -> dict:
     column_means = source_data.mean(axis=0)
     column_stds = source_data.std(axis=0)
+    partition_details = {
+        name: {
+            "first_window_index": int(indices[0]),
+            "last_window_index": int(indices[-1]),
+            "window_count": int(len(indices)),
+            "first_target_week_index": int(indices[0] + INPUT_LEN),
+            "last_target_week_index": int(
+                indices[-1] + INPUT_LEN + OUTPUT_LEN - 1
+            ),
+        }
+        for name, indices in split_indices.items()
+    }
     return {
-        "schema_version": 1,
-        "role": "secondary graph-native non-traffic protocol illustration",
+        "schema_version": 2,
+        "role": (
+            "secondary graph-native non-traffic experiment with target-disjoint "
+            "model-selection, calibration, and evaluation periods"
+        ),
         "ranking_scope": "not pooled with the main traffic-domain rankings",
         "dataset": {
             "name": "Hungarian Chickenpox Cases",
@@ -312,8 +463,13 @@ def protocol_manifest(
             "nodes": 20,
             "source_edges": 102,
             "value_scale": (
-                "county-wise standardized FX signal units in the upstream JSON; "
+                "county-wise standardized FX signal units in the dataset-provided JSON; "
                 "not raw weekly case counts"
+            ),
+            "source_preprocessing_limitation": (
+                "The dataset-provided FX columns were standardized over all 521 "
+                "source weeks before this experiment. Only the additional "
+                "optimization transform below is estimated from training data."
             ),
             "source_fx_standardization": {
                 "axis": "each county column over all 521 source weeks",
@@ -325,11 +481,32 @@ def protocol_manifest(
             },
         },
         "forecast_task": {
-            "input_weeks": 12,
-            "output_weeks": 12,
-            "total_windows": sum(split_counts.values()),
-            "chronological_split_ratio": [0.7, 0.1, 0.2],
-            "split_windows": split_counts,
+            "input_weeks": INPUT_LEN,
+            "output_weeks": OUTPUT_LEN,
+            "total_forecast_origin_windows": total_windows,
+            "assigned_windows": int(
+                sum(len(indices) for indices in split_indices.values())
+            ),
+            "split_windows": {
+                name: int(len(indices))
+                for name, indices in split_indices.items()
+            },
+            "partition_details": partition_details,
+            "excluded_boundary_window_indices": excluded_indices.tolist(),
+            "excluded_boundary_ranges": [
+                {
+                    "first_window_index": start,
+                    "last_window_index": stop - 1,
+                    "window_count": stop - start,
+                }
+                for start, stop in EXCLUDED_BOUNDS
+            ],
+            "boundary_exclusion_reason": (
+                "Eleven forecast origins (output horizon minus one) are omitted at "
+                "each boundary so adjacent partitions share no target weeks."
+            ),
+            "target_periods_are_disjoint": True,
+            "test_partition_matches_previous_protocol": True,
         },
         "preprocessing": {
             "optimization_transform": (
@@ -343,7 +520,7 @@ def protocol_manifest(
                 "reverses only the additional training-target scalar transform"
             ),
             "reported_error_units": (
-                "upstream county-wise standardized FX signal units"
+                "dataset-provided county-wise standardized FX signal units"
             ),
             "time_features": "week index modulo 52 plus one zero dummy channel",
         },
@@ -391,31 +568,95 @@ def protocol_manifest(
             "STAEformer": "input/time embeddings=8, adaptive embedding=16, feed-forward=64, heads=4, layer=1",
         },
         "interval_diagnostic": {
-            "calibration_split": "chronological validation split",
-            "calibration_windows": split_counts["val"],
+            "nominal_coverage": 0.90,
+            "calibration_split": "dedicated chronological calibration partition",
+            "calibration_origins": int(len(split_indices["calibration"])),
             "evaluation_split": "chronological test split",
-            "evaluation_windows": split_counts["test"],
-            "calibration_targets": split_counts["val"] * 20 * 12,
-            "evaluation_targets": split_counts["test"] * 20 * 12,
-            "score": "absolute validation residual",
-            "quantile": "NumPy higher empirical quantile at 0.90",
-            "interval": "point prediction plus or minus the model-and-seed validation residual quantile",
+            "evaluation_origins": int(len(split_indices["test"])),
+            "coordinates_per_origin": 20 * OUTPUT_LEN,
+            "calibration_coordinate_values": int(
+                len(split_indices["calibration"]) * 20 * OUTPUT_LEN
+            ),
+            "evaluation_coordinate_values": int(
+                len(split_indices["test"]) * 20 * OUTPUT_LEN
+            ),
+            "score": "absolute residual at each horizon-county coordinate",
+            "replication_axis": "forecast origin",
+            "pooling": (
+                "No pooling across horizons or counties; each coordinate uses "
+                "its 50 origin-level calibration residuals."
+            ),
+            "finite_sample_rank": 46,
+            "rank_formula": "ceil((50 + 1) * (1 - 0.10))",
+            "interval": (
+                "point prediction plus or minus the model-and-seed coordinate-wise "
+                "calibration residual quantile"
+            ),
             "temporal_dependence_caveat": (
                 "reported coverage is an empirical diagnostic, not an exchangeability guarantee"
+            ),
+        },
+        "artifacts": {
+            "protocol_arrays_path": PROTOCOL_ARRAYS_PATH.as_posix(),
+            "protocol_arrays_sha256": protocol_arrays_sha256,
+            "protocol_arrays_contents": (
+                "partition indices, excluded boundary indices, calibration targets, "
+                "and unchanged test targets in dataset-provided FX units"
             ),
         },
     }
 
 
-def write_outputs(summary, results, source_data, mean, std, split_counts):
-    protocol = protocol_manifest(source_data, mean, std, split_counts)
+def write_outputs(
+    summary,
+    results,
+    source_data,
+    window_targets,
+    mean,
+    std,
+    split_indices,
+    excluded_indices,
+):
+    np.savez_compressed(
+        PROTOCOL_ARRAYS_PATH,
+        train_window_indices=split_indices["train"],
+        validation_window_indices=split_indices["val"],
+        calibration_window_indices=split_indices["calibration"],
+        test_window_indices=split_indices["test"],
+        excluded_boundary_window_indices=excluded_indices,
+        calibration_targets=window_targets[split_indices["calibration"]],
+        test_targets=window_targets[split_indices["test"]],
+    )
+    protocol = protocol_manifest(
+        source_data,
+        mean,
+        std,
+        split_indices,
+        excluded_indices,
+        int(window_targets.shape[0]),
+        file_sha256(PROTOCOL_ARRAYS_PATH),
+    )
     protocol["optimization"]["best_epochs"] = {
         name: {
             str(seed): row.best_epoch
-            for seed, row in zip((43, 44, 45), rows)
+            for seed, row in zip(SEEDS, rows)
         }
         for name, rows in results.items()
     }
+    protocol["artifacts"]["run_artifacts"] = [
+        {
+            "model": name,
+            "seed": seed,
+            "path": row.run_artifact_path,
+            "sha256": row.run_artifact_sha256,
+            "contents": (
+                "calibration residuals, coordinate quantiles, test predictions, "
+                "and horizon-wise coverage and width"
+            ),
+        }
+        for name, rows in results.items()
+        for seed, row in zip(SEEDS, rows)
+    ]
     protocol["generation_script"] = "scripts/run_chickenpox_all_baselines.py"
     protocol["result_path"] = (
         "results/nontraffic_graph_sanity/chickenpox_all_baselines_summary.json"
@@ -423,17 +664,23 @@ def write_outputs(summary, results, source_data, mean, std, split_counts):
     payload = {
         "dataset": "Hungarian Chickenpox Cases",
         "task": (
-            "12-week input to 12-week output forecasting in the upstream "
+            "12-week input to 12-week output forecasting in the dataset-provided "
             "county-wise standardized FX signal units"
         ),
-        "split": "chronological 70/10/20 train/validation/test",
+        "split": (
+            "target-disjoint chronological train/validation/calibration/test "
+            "partitions with 11 excluded origins at each boundary"
+        ),
         "models": list(results.keys()),
-        "seeds": [43, 44, 45],
+        "seeds": list(SEEDS),
         "protocol_manifest_path": "results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json",
         "protocol": protocol,
         "summary": summary,
         "per_seed": {name: [asdict(row) for row in rows] for name, rows in results.items()},
-        "interpretation": "Secondary graph-native non-traffic protocol illustration using the same seven model classes; not pooled with the main traffic ranking.",
+        "interpretation": (
+            "Secondary graph-native non-traffic experiment using the same seven "
+            "model classes; not pooled with the main traffic ranking."
+        ),
     }
     json_path = OUT_DIR / "chickenpox_all_baselines_summary.json"
     protocol_path = OUT_DIR / "chickenpox_protocol_manifest.json"
@@ -449,6 +696,8 @@ def write_outputs(summary, results, source_data, mean, std, split_counts):
         "",
         "Secondary graph-native non-traffic experiment using the same seven model classes from the traffic benchmark with compact Chickenpox-specific dimensions.",
         "",
+        "The target-disjoint split uses 286 training, 30 validation, 50 calibration, and 99 unchanged test origins. Eleven origins are excluded at each boundary so 12-week forecast targets do not overlap across partitions.",
+        "",
         "| Model | MAE | RMSE | 90% coverage | Width | Params |",
         "|---|---:|---:|---:|---:|---:|",
     ]
@@ -459,9 +708,11 @@ def write_outputs(summary, results, source_data, mean, std, split_counts):
         )
     lines += [
         "",
-        "The protocol and per-seed best epochs are recorded in the companion JSON. This secondary experiment is not pooled with the traffic-domain model rankings.",
+        "The protocol, validation histories, per-seed best epochs, calibration residuals, coordinate quantiles, and test predictions are retained with the release. This secondary experiment is not pooled with the traffic-domain model rankings.",
         "",
-        "MAE, RMSE, and interval width remain in the upstream county-wise standardized FX signal units. They are not numbers of weekly cases.",
+        "MAE, RMSE, and interval width remain in the dataset-provided county-wise standardized FX signal units. They are not numbers of weekly cases.",
+        "",
+        "Coverage is an empirical chronological diagnostic under temporal dependence, not a distribution-free guarantee under arbitrary temporal shift.",
     ]
     md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -470,27 +721,28 @@ def main():
     dataset = fetch_dataset()
     source_data = np.array(dataset["FX"], dtype=np.float64)
     data = source_data.astype(np.float32)
-    x, y = build_windows(data, 12, 12)
-    raw = split_data(x, y)
+    x, y = build_windows(data, INPUT_LEN, OUTPUT_LEN)
+    raw, split_indices, excluded_indices = split_data(x, y)
     scaled, mean, std = standardize(raw)
-    tensors = prepare_tensors(raw, scaled, 12, 12)
+    tensors = prepare_tensors(scaled, split_indices)
     adj = normalized_adj(dataset["edges"], data.shape[1])
     results = {}
-    for name in ["D2STGNN", "MegaCRN", "MTGNN", "STNorm", "STGCN-Cheb", "STID", "STAEformer"]:
+    for name in MODELS:
         print(f"Running {name}...")
         rows = []
-        for seed in [43, 44, 45]:
+        for seed in SEEDS:
             rows.append(train_one(name, tensors, adj, mean, std, seed))
             print(f"  seed {seed}: MAE={rows[-1].mae:.4f}, coverage={rows[-1].conformal_coverage_90:.4f}")
         results[name] = rows
-    split_counts = {name: int(parts[0].shape[0]) for name, parts in raw.items()}
     write_outputs(
         summarize(results),
         results,
         source_data,
+        y,
         mean,
         std,
-        split_counts,
+        split_indices,
+        excluded_indices,
     )
     print((OUT_DIR / "chickenpox_all_baselines_summary.md").resolve())
 

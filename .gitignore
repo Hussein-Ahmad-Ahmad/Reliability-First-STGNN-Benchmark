@@ -15,6 +15,11 @@ datasets/**/*.npy
 datasets/**/*.pkl
 datasets/**/*.dat
 
+# Keep the compact, manuscript-linked Chickenpox verification arrays
+!results/nontraffic_graph_sanity/chickenpox_protocol_arrays.npz
+!results/nontraffic_graph_sanity/chickenpox_run_artifacts/
+!results/nontraffic_graph_sanity/chickenpox_run_artifacts/*.npz
+
 # Raw inference prediction dumps (6.5GB — too large for GitHub)
 results/task1_point_forecasting/fresh_inference_dumps/
 
@@ -108,6 +113,7 @@ MANUSCRIPT_INTEGRATION_FIX_REPORT.md
 reviewer_response_assessment_extracted.txt
 color_*_extracted.txt
 .manuscript_work/
+.v2_manuscript_work/
 .tmp_manuscript_*/
 pytest-cache-files-*/
 PRISMA_AND_16_JUNE_AUDIT_*.md

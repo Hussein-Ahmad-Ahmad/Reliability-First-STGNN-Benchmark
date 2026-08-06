@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "role": "secondary graph-native non-traffic protocol illustration",
+  "schema_version": 2,
+  "role": "secondary graph-native non-traffic experiment with target-disjoint model-selection, calibration, and evaluation periods",
   "ranking_scope": "not pooled with the main traffic-domain rankings",
   "dataset": {
     "name": "Hungarian Chickenpox Cases",
@@ -10,7 +10,8 @@
     "time_steps": 521,
     "nodes": 20,
     "source_edges": 102,
-    "value_scale": "county-wise standardized FX signal units in the upstream JSON; not raw weekly case counts",
+    "value_scale": "county-wise standardized FX signal units in the dataset-provided JSON; not raw weekly case counts",
+    "source_preprocessing_limitation": "The dataset-provided FX columns were standardized over all 521 source weeks before this experiment. Only the additional optimization transform below is estimated from training data.",
     "source_fx_standardization": {
       "axis": "each county column over all 521 source weeks",
       "maximum_absolute_column_mean": 4.6028440176398046e-17,
@@ -21,25 +22,107 @@
   "forecast_task": {
     "input_weeks": 12,
     "output_weeks": 12,
-    "total_windows": 498,
-    "chronological_split_ratio": [
-      0.7,
-      0.1,
-      0.2
-    ],
+    "total_forecast_origin_windows": 498,
+    "assigned_windows": 465,
     "split_windows": {
-      "train": 349,
-      "val": 50,
+      "train": 286,
+      "val": 30,
+      "calibration": 50,
       "test": 99
-    }
+    },
+    "partition_details": {
+      "train": {
+        "first_window_index": 0,
+        "last_window_index": 285,
+        "window_count": 286,
+        "first_target_week_index": 12,
+        "last_target_week_index": 308
+      },
+      "val": {
+        "first_window_index": 297,
+        "last_window_index": 326,
+        "window_count": 30,
+        "first_target_week_index": 309,
+        "last_target_week_index": 349
+      },
+      "calibration": {
+        "first_window_index": 338,
+        "last_window_index": 387,
+        "window_count": 50,
+        "first_target_week_index": 350,
+        "last_target_week_index": 410
+      },
+      "test": {
+        "first_window_index": 399,
+        "last_window_index": 497,
+        "window_count": 99,
+        "first_target_week_index": 411,
+        "last_target_week_index": 520
+      }
+    },
+    "excluded_boundary_window_indices": [
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      388,
+      389,
+      390,
+      391,
+      392,
+      393,
+      394,
+      395,
+      396,
+      397,
+      398
+    ],
+    "excluded_boundary_ranges": [
+      {
+        "first_window_index": 286,
+        "last_window_index": 296,
+        "window_count": 11
+      },
+      {
+        "first_window_index": 327,
+        "last_window_index": 337,
+        "window_count": 11
+      },
+      {
+        "first_window_index": 388,
+        "last_window_index": 398,
+        "window_count": 11
+      }
+    ],
+    "boundary_exclusion_reason": "Eleven forecast origins (output horizon minus one) are omitted at each boundary so adjacent partitions share no target weeks.",
+    "target_periods_are_disjoint": true,
+    "test_partition_matches_previous_protocol": true
   },
   "preprocessing": {
     "optimization_transform": "additional single scalar mean and standard deviation estimated from training targets only",
-    "training_target_mean": -0.0015624482184648514,
-    "training_target_std": 0.9830290079116821,
+    "training_target_mean": -0.005183563567698002,
+    "training_target_std": 0.9916250705718994,
     "same_transform_for_all_models": true,
     "evaluation_inverse_transform": "reverses only the additional training-target scalar transform",
-    "reported_error_units": "upstream county-wise standardized FX signal units",
+    "reported_error_units": "dataset-provided county-wise standardized FX signal units",
     "time_features": "week index modulo 52 plus one zero dummy channel"
   },
   "graph": {
@@ -62,43 +145,6 @@
     "early_stopping_patience": 25,
     "checkpoint_selector": "minimum validation MAE",
     "checkpoint_storage": "best state retained in memory; no checkpoint files written by this script",
-    "best_epochs": {
-      "D2STGNN": {
-        "43": 9,
-        "44": 14,
-        "45": 12
-      },
-      "MegaCRN": {
-        "43": 4,
-        "44": 10,
-        "45": 5
-      },
-      "MTGNN": {
-        "43": 10,
-        "44": 5,
-        "45": 11
-      },
-      "STNorm": {
-        "43": 12,
-        "44": 12,
-        "45": 9
-      },
-      "STGCN-Cheb": {
-        "43": 32,
-        "44": 50,
-        "45": 35
-      },
-      "STID": {
-        "43": 4,
-        "44": 5,
-        "45": 3
-      },
-      "STAEformer": {
-        "43": 4,
-        "44": 4,
-        "45": 4
-      }
-    },
     "loss": "L1",
     "optimizer": "Adam",
     "weight_decay": 1e-05,
@@ -113,6 +159,43 @@
       "STGCN-Cheb": 0.001,
       "STID": 0.003,
       "STAEformer": 0.001
+    },
+    "best_epochs": {
+      "D2STGNN": {
+        "43": 12,
+        "44": 14,
+        "45": 9
+      },
+      "MegaCRN": {
+        "43": 5,
+        "44": 11,
+        "45": 8
+      },
+      "MTGNN": {
+        "43": 8,
+        "44": 9,
+        "45": 4
+      },
+      "STNorm": {
+        "43": 11,
+        "44": 12,
+        "45": 8
+      },
+      "STGCN-Cheb": {
+        "43": 27,
+        "44": 36,
+        "45": 49
+      },
+      "STID": {
+        "43": 12,
+        "44": 9,
+        "45": 11
+      },
+      "STAEformer": {
+        "43": 27,
+        "44": 7,
+        "45": 7
+      }
     }
   },
   "model_dimensions": {
@@ -125,16 +208,175 @@
     "STAEformer": "input/time embeddings=8, adaptive embedding=16, feed-forward=64, heads=4, layer=1"
   },
   "interval_diagnostic": {
-    "calibration_split": "chronological validation split",
-    "calibration_windows": 50,
+    "nominal_coverage": 0.9,
+    "calibration_split": "dedicated chronological calibration partition",
+    "calibration_origins": 50,
     "evaluation_split": "chronological test split",
-    "evaluation_windows": 99,
-    "calibration_targets": 12000,
-    "evaluation_targets": 23760,
-    "score": "absolute validation residual",
-    "quantile": "NumPy higher empirical quantile at 0.90",
-    "interval": "point prediction plus or minus the model-and-seed validation residual quantile",
+    "evaluation_origins": 99,
+    "coordinates_per_origin": 240,
+    "calibration_coordinate_values": 12000,
+    "evaluation_coordinate_values": 23760,
+    "score": "absolute residual at each horizon-county coordinate",
+    "replication_axis": "forecast origin",
+    "pooling": "No pooling across horizons or counties; each coordinate uses its 50 origin-level calibration residuals.",
+    "finite_sample_rank": 46,
+    "rank_formula": "ceil((50 + 1) * (1 - 0.10))",
+    "interval": "point prediction plus or minus the model-and-seed coordinate-wise calibration residual quantile",
     "temporal_dependence_caveat": "reported coverage is an empirical diagnostic, not an exchangeability guarantee"
+  },
+  "artifacts": {
+    "protocol_arrays_path": "results/nontraffic_graph_sanity/chickenpox_protocol_arrays.npz",
+    "protocol_arrays_sha256": "752eee8a947081fd177b56a25f9e417ffaafcdd898c56eab2b4e7ab988e7e313",
+    "protocol_arrays_contents": "partition indices, excluded boundary indices, calibration targets, and unchanged test targets in dataset-provided FX units",
+    "run_artifacts": [
+      {
+        "model": "D2STGNN",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/d2stgnn_seed43.npz",
+        "sha256": "4f03b29f7a15df1385ae360556787de5eb0900356416d24efc0a0d47cda170cc",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "D2STGNN",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/d2stgnn_seed44.npz",
+        "sha256": "6e18cad0ee74cd82d79ba42ff5f54fda57b38a7ad62b9e592a9d5b623dbcc07f",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "D2STGNN",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/d2stgnn_seed45.npz",
+        "sha256": "056d3a22731dd272d7541e98f9656238d99b91c9951c20126d3a1a389d53b793",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "MegaCRN",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/megacrn_seed43.npz",
+        "sha256": "950dfbd2ad70e6a57e2840983c4a2048ee6934678396c891420e413ab39955e6",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "MegaCRN",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/megacrn_seed44.npz",
+        "sha256": "3d305314ca6eb47a89e91931a03f1435d31bb932237343810ad689a6df8896d7",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "MegaCRN",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/megacrn_seed45.npz",
+        "sha256": "67c71ca7279bb6acc587140ec70acd893e51d7c15890e523068a6320a2f56f7b",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "MTGNN",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/mtgnn_seed43.npz",
+        "sha256": "887e6197c451e4d64ebf718223142a19943f6f6ff09a7a030a4f211ebe99b16e",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "MTGNN",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/mtgnn_seed44.npz",
+        "sha256": "dbc144c9dc7a793d5767dcebfc9ee819c384f2dbf555aac6d0bb035e700bbe8a",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "MTGNN",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/mtgnn_seed45.npz",
+        "sha256": "b72564f4a4b866ce823e8c9827a01224a2934a0b62629a34e638c81ccbc57257",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STNorm",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stnorm_seed43.npz",
+        "sha256": "00b565dae842d1d544d0ec5b4f1358de129eb89aba7ee5378a09d720caac4e5e",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STNorm",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stnorm_seed44.npz",
+        "sha256": "cc3d15528df6eb40656cda286ac966ddd010084ab250b93815f3c45d29cbfff0",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STNorm",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stnorm_seed45.npz",
+        "sha256": "732e6e5d60ec1ca4481dad7c98a03bbfda11b58ffeb328af1c0ceab45afe4b3f",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STGCN-Cheb",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stgcn_cheb_seed43.npz",
+        "sha256": "2b9e42cfc9f206a188390cf8af33bc9ee13ad3dd8edd3bbe4a20b3e0af71073d",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STGCN-Cheb",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stgcn_cheb_seed44.npz",
+        "sha256": "197fd6c8e02835d379db60e5d813a57e2253d7faf9bf9dca3dd713b209ffa161",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STGCN-Cheb",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stgcn_cheb_seed45.npz",
+        "sha256": "d2ca0a5272dd252f3a6941d7e30c8d6bdeeb20ab64a6293c78971c9bbe18288c",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STID",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stid_seed43.npz",
+        "sha256": "18af75d39405058127eac5d5b57cdd2329f323d7f7157ef22f342a7e3278722a",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STID",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stid_seed44.npz",
+        "sha256": "da082bb7e93982d8f8d9afec79675fc980eb852567ff40b28620bc3393e7f701",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STID",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/stid_seed45.npz",
+        "sha256": "4cb9cccc2d44fa33b81b1b43fbab2201a7901afd48c929434e89d08ebd1be8b1",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STAEformer",
+        "seed": 43,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/staeformer_seed43.npz",
+        "sha256": "9f1e26066b20c7df2385440d87a735fd4fedb90b6c631cf8504cf270035ab5ea",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STAEformer",
+        "seed": 44,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/staeformer_seed44.npz",
+        "sha256": "051864efe24a3fc96209de1a0a49e31dd246d58d33c7905de5002b16d7f2723a",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      },
+      {
+        "model": "STAEformer",
+        "seed": 45,
+        "path": "results/nontraffic_graph_sanity/chickenpox_run_artifacts/staeformer_seed45.npz",
+        "sha256": "09f1de064abe70b77b687c7d2f72413cc50d54010c94d143c8984d24e17a1705",
+        "contents": "calibration residuals, coordinate quantiles, test predictions, and horizon-wise coverage and width"
+      }
+    ]
   },
   "generation_script": "scripts/run_chickenpox_all_baselines.py",
   "result_path": "results/nontraffic_graph_sanity/chickenpox_all_baselines_summary.json"

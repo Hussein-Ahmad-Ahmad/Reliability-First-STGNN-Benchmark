@@ -25,6 +25,8 @@ REQUIRED_PATHS = (
     "results/task3_explainability",
     "results/compute/METR-LA_runtime_provenance.json",
     "results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json",
+    "results/nontraffic_graph_sanity/chickenpox_protocol_arrays.npz",
+    "results/nontraffic_graph_sanity/chickenpox_run_artifacts",
 )
 
 

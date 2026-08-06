@@ -6,8 +6,7 @@
 
 <p align="center">
   <a href="#quick-start"><img alt="Python 3.9" src="https://img.shields.io/badge/Python-3.9-3776AB?style=for-the-badge&logo=python&logoColor=white"/></a>
-  <a href="#compute-environment"><img alt="PyTorch 2.11" src="https://img.shields.io/badge/PyTorch-2.11-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/></a>
-  <a href="#compute-environment"><img alt="CUDA 12.6" src="https://img.shields.io/badge/CUDA-12.6-76B900?style=for-the-badge&logo=nvidia&logoColor=white"/></a>
+  <a href="#compute-environment"><img alt="PyTorch 2.0 or later" src="https://img.shields.io/badge/PyTorch-%3E%3D2.0-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/></a>
   <a href="#models"><img alt="Seven models" src="https://img.shields.io/badge/Models-7-0EA5E9?style=for-the-badge"/></a>
   <a href="#benchmark-scope"><img alt="Traffic datasets" src="https://img.shields.io/badge/Traffic_Datasets-3-F59E0B?style=for-the-badge"/></a>
   <a href="#license"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-111827?style=for-the-badge"/></a>
@@ -29,11 +28,11 @@ Repository for:
 
 ## Public Code-and-Artifact Snapshot
 
-The versioned tag `v1.2.0` identifies the public snapshot supporting the
+The versioned tag `v1.3.0` identifies the public snapshot supporting the
 manuscript. It includes evaluation code, compact results, provenance metadata,
 regression tests, and the complete SHA-256 artifact manifest. The snapshot
 supports code inspection, compact-artifact verification, and retraining-based
-reproduction. Large retained prediction arrays and trained checkpoints are not
+reproduction. Large traffic prediction arrays and trained checkpoints are not
 distributed in this repository.
 
 The clean-clone procedure is documented in
@@ -138,7 +137,7 @@ aggregate loss at the forecast-origin level and resample one-day blocks.
 
 The conformal analysis uses a six-architecture METR-LA ensemble and
 nine-member D2STGNN/MTGNN/STID ensembles on PEMS-BAY and PEMS04. Exact member
-order, checkpoint-selection epochs, seeds where retained, selection rules, and
+order, checkpoint-selection epochs, seeds where recorded, selection rules, and
 generation code are stored under
 [`results/task2_uncertainty/conformal/`](results/task2_uncertainty/conformal/).
 The compact metrics and metadata are public. The large prediction arrays and
@@ -177,15 +176,19 @@ python scripts/generate_sensor_dropout_figure.py
 ### Graph-Native Non-Traffic Protocol Illustration
 
 The secondary Chickenpox experiment uses the same seven model classes with
-compact dimensions on a 20-node weekly graph. Its 349/50/99 chronological
-window split, train-only scaling, graph preprocessing, optimization settings,
-per-seed best epochs, and validation-residual interval construction are recorded
-in
+compact dimensions on a 20-node weekly graph. It uses 286 training, 30
+validation, 50 calibration, and 99 unchanged test origins. Eleven forecast
+origins are omitted at each boundary so the 12-week target periods do not
+overlap. Checkpoint selection uses validation only; coordinate-wise 90%
+intervals use the dedicated calibration period with finite-sample rank 46.
+The split, graph preprocessing, optimization settings, per-seed best epochs,
+and compact verification arrays are recorded in
 [`chickenpox_protocol_manifest.json`](results/nontraffic_graph_sanity/chickenpox_protocol_manifest.json).
-The archived `FX` matrix is standardized independently by county over the 521
-source weeks. Evaluation reverses only the experiment's additional
-training-target scalar transform, so MAE, RMSE, and interval width remain in
-standardized `FX` signal units rather than weekly case counts.
+The dataset-provided `FX` matrix was standardized independently by county over
+all 521 source weeks. Only the experiment's additional scalar transform is
+estimated from training targets. Evaluation reverses that additional transform,
+so MAE, RMSE, and interval width remain in standardized `FX` signal units rather
+than weekly case counts.
 
 ### Explanation Diagnostics
 
@@ -197,15 +200,18 @@ results/task3_explainability/case_studies/
 
 ## Compute Environment
 
-The main traffic benchmark was run as a multi-seed GPU experiment. Post-hoc analysis scripts can be run on CPU when prediction and result artifacts are already available.
+The main traffic benchmark was run as a multi-seed GPU experiment. The
+canonical timing logs support the extracted wall-clock measurements but do not
+embed a machine-readable GPU, CPU, RAM, CUDA, or PyTorch record. Exact execution
+hardware is therefore not attributed in this release. Post-hoc analysis scripts
+can be run on CPU when prediction and result artifacts are already available.
 
-| Item | Reference setup / usage |
+| Item | Archived evidence / reproduction usage |
 |---|---|
-| Main GPU | NVIDIA GeForce RTX 4090, 24 GB VRAM |
-| CPU / memory | AMD Ryzen 9 7900X, 12 cores / 24 threads, 64 GB RAM |
-| CUDA / PyTorch | CUDA 12.6, PyTorch 2.11.0+cu126 |
+| Original execution host | Exact hardware and driver versions are not encoded in the canonical timing logs |
+| Reproduction environment | Python 3.9; PyTorch >= 2.0; pinned core packages are listed in `requirements.txt` and `environment.yml` |
 | Main framework | BasicTS + EasyTorch 1.3.3 |
-| Python stack | Python 3.9, NumPy 1.24.4, TensorBoard 2.18.0, PyG >= 2.3.0, SciPy >= 1.10, Captum >= 0.6 |
+| Python stack | NumPy 1.24.4, TensorBoard 2.18.0, PyG >= 2.3.0, SciPy >= 1.10, Captum >= 0.6 |
 | Main traffic point-forecast training | 63 runs: 3 datasets x 7 models x 3 seeds, 100 epochs per run |
 | Auxiliary executions | UQ, robustness, XAI, profiling, bootstrap, and Chickenpox experiments are reported separately |
 | Seeds | 43, 44, 45 |
@@ -260,7 +266,7 @@ Verify the Git identity, required artifact families, repository-wide manifest,
 and focused regression tests together:
 
 ```bash
-python scripts/verify_release.py --expect-tag v1.2.0 --expect-manifest-entries 356 --expect-tests 8
+python scripts/verify_release.py --expect-tag v1.3.0 --expect-manifest-entries 378 --expect-tests 8
 ```
 
 ## Key Artifacts

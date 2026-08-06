@@ -7,9 +7,9 @@ manifest, and eight focused regression tests.
 ## Clean-Clone Check
 
 ```bash
-git clone --branch v1.2.0 --depth 1 https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark.git
+git clone --branch v1.3.0 --depth 1 https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark.git
 cd Reliability-First-STGNN-Benchmark
-python scripts/verify_release.py --expect-tag v1.2.0 --expect-manifest-entries 356 --expect-tests 8 --require-clean
+python scripts/verify_release.py --expect-tag v1.3.0 --expect-manifest-entries 378 --expect-tests 8 --require-clean
 ```
 
 To check the manuscript's full commit identifier as well, append
@@ -20,6 +20,6 @@ count, and test count.
 ## Scope
 
 The public snapshot supports source inspection, compact-artifact verification,
-and retraining-based reproduction. Large retained prediction arrays and trained
+and retraining-based reproduction. Large traffic prediction arrays and trained
 checkpoints are not distributed in this Git repository, so the verifier does
-not claim direct regeneration from those private retained artifacts.
+not claim direct regeneration from those internally archived artifacts.

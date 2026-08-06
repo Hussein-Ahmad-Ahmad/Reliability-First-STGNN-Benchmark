@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import statistics
 import unittest
 from pathlib import Path
@@ -11,6 +12,10 @@ from pipelines.run_sensor_dropout import make_masks
 from scripts.generate_conformal_intervals import (
     compute_conformal_metrics,
     higher_quantile,
+)
+from scripts.run_chickenpox_all_baselines import (
+    coordinate_conformal_quantile,
+    split_data,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -176,13 +181,43 @@ class ArchivedArtifactTests(unittest.TestCase):
         protocol = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(
             protocol["forecast_task"]["split_windows"],
-            {"train": 349, "val": 50, "test": 99},
+            {"train": 286, "val": 30, "calibration": 50, "test": 99},
         )
         self.assertEqual(
-            protocol["interval_diagnostic"]["calibration_targets"], 12000
+            protocol["forecast_task"]["excluded_boundary_window_indices"],
+            list(range(286, 297))
+            + list(range(327, 338))
+            + list(range(388, 399)),
+        )
+        self.assertTrue(
+            protocol["forecast_task"]["target_periods_are_disjoint"]
+        )
+        details = protocol["forecast_task"]["partition_details"]
+        self.assertEqual(
+            {
+                name: (
+                    record["first_window_index"],
+                    record["last_window_index"],
+                    record["first_target_week_index"],
+                    record["last_target_week_index"],
+                )
+                for name, record in details.items()
+            },
+            {
+                "train": (0, 285, 12, 308),
+                "val": (297, 326, 309, 349),
+                "calibration": (338, 387, 350, 410),
+                "test": (399, 497, 411, 520),
+            },
         )
         self.assertEqual(
-            protocol["interval_diagnostic"]["evaluation_targets"], 23760
+            protocol["interval_diagnostic"]["calibration_origins"], 50
+        )
+        self.assertEqual(
+            protocol["interval_diagnostic"]["evaluation_origins"], 99
+        )
+        self.assertEqual(
+            protocol["interval_diagnostic"]["finite_sample_rank"], 46
         )
         self.assertEqual(
             sorted(protocol["optimization"]["seeds"]), [43, 44, 45]
@@ -199,8 +234,42 @@ class ArchivedArtifactTests(unittest.TestCase):
         )
         self.assertEqual(
             protocol["preprocessing"]["reported_error_units"],
-            "upstream county-wise standardized FX signal units",
+            "dataset-provided county-wise standardized FX signal units",
         )
+        protocol_arrays = ROOT / protocol["artifacts"]["protocol_arrays_path"]
+        self.assertTrue(protocol_arrays.exists())
+        self.assertEqual(
+            hashlib.sha256(protocol_arrays.read_bytes()).hexdigest(),
+            protocol["artifacts"]["protocol_arrays_sha256"],
+        )
+        with np.load(protocol_arrays) as arrays:
+            np.testing.assert_array_equal(
+                arrays["test_window_indices"], np.arange(399, 498)
+            )
+            self.assertEqual(arrays["test_targets"].shape, (99, 20, 12))
+        self.assertEqual(len(protocol["artifacts"]["run_artifacts"]), 21)
+        for artifact in protocol["artifacts"]["run_artifacts"]:
+            artifact_path = ROOT / artifact["path"]
+            self.assertTrue(artifact_path.exists())
+            self.assertEqual(
+                hashlib.sha256(artifact_path.read_bytes()).hexdigest(),
+                artifact["sha256"],
+            )
+
+        dummy = np.zeros((498, 1, 1), dtype=np.float32)
+        _, split_indices, excluded = split_data(dummy, dummy)
+        np.testing.assert_array_equal(split_indices["test"], np.arange(399, 498))
+        self.assertEqual(excluded.size, 33)
+        calibration_pred = np.zeros((50, 12, 20, 1), dtype=np.float32)
+        calibration_true = np.broadcast_to(
+            np.arange(1, 51, dtype=np.float32)[:, None, None, None],
+            calibration_pred.shape,
+        )
+        _, quantiles, rank = coordinate_conformal_quantile(
+            calibration_pred, calibration_true
+        )
+        self.assertEqual(rank, 46)
+        self.assertTrue(np.all(quantiles == 46.0))
         script = (
             ROOT / "scripts" / "run_chickenpox_all_baselines.py"
         ).read_text(encoding="utf-8")
