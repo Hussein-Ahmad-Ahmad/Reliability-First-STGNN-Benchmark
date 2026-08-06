@@ -5,28 +5,33 @@
 </p>
 
 <p align="center">
-  <a href="#quick-start"><img alt="Python 3.9" src="https://img.shields.io/badge/Python-3.9-3776AB?style=for-the-badge&logo=python&logoColor=white"/></a>
-  <a href="#compute-environment"><img alt="PyTorch 2.0 or later" src="https://img.shields.io/badge/PyTorch-%3E%3D2.0-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/></a>
-  <a href="#models"><img alt="Seven models" src="https://img.shields.io/badge/Models-7-0EA5E9?style=for-the-badge"/></a>
-  <a href="#benchmark-scope"><img alt="Traffic datasets" src="https://img.shields.io/badge/Traffic_Datasets-3-F59E0B?style=for-the-badge"/></a>
-  <a href="#license"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-111827?style=for-the-badge"/></a>
+  <strong>Reproducible traffic forecasting across accuracy, calibration, robustness, explanation, and compute.</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml"><img alt="Repository verification" src="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml/badge.svg?branch=main"/></a>
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.0"><img alt="Research snapshot v1.3.0" src="https://img.shields.io/badge/research_snapshot-v1.3.0-0f766e?style=flat-square"/></a>
+  <a href="#quick-start"><img alt="Python 3.9" src="https://img.shields.io/badge/Python-3.9-3776AB?style=flat-square&logo=python&logoColor=white"/></a>
+  <a href="#models"><img alt="Seven models" src="https://img.shields.io/badge/models-7-0891b2?style=flat-square"/></a>
+  <a href="#benchmark-scope"><img alt="Three traffic datasets" src="https://img.shields.io/badge/traffic_datasets-3-f59e0b?style=flat-square"/></a>
+  <a href="#license"><img alt="MIT License" src="https://img.shields.io/github/license/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark?style=flat-square&color=334155"/></a>
 </p>
 
 <p align="center">
   <a href="#overview">Overview</a> |
   <a href="#benchmark-scope">Scope</a> |
   <a href="#models">Models</a> |
-  <a href="#result-gallery">Result Gallery</a> |
-  <a href="#compute-environment">Compute</a> |
+  <a href="#result-gallery">Gallery</a> |
+  <a href="#reproducibility-dashboard">Reproducibility</a> |
   <a href="#quick-start">Quick Start</a> |
-  <a href="#key-artifacts">Artifacts</a>
+  <a href="#citation">Citation</a>
 </p>
 
-Repository for:
+<p align="center">
+  Research artifact for <strong>Reliability-First Spatio-Temporal Graph Forecasting: A Survey and Traffic-Domain Benchmark for Calibration, Robustness, and Explanation Diagnostics</strong>
+</p>
 
-**Reliability-First Spatio-Temporal Graph Forecasting: A Survey and Traffic-Domain Benchmark for Calibration, Robustness, and Explanation Diagnostics**
-
-## Public Code-and-Artifact Snapshot
+## Verified Research Snapshot
 
 The versioned tag `v1.3.0` identifies the public snapshot supporting the
 manuscript. It includes evaluation code, compact results, provenance metadata,
@@ -37,7 +42,9 @@ distributed in this repository.
 
 The clean-clone procedure is documented in
 [`REPRODUCIBILITY_CHECK.md`](REPRODUCIBILITY_CHECK.md) and automated by
-[`scripts/verify_release.py`](scripts/verify_release.py).
+[`scripts/verify_release.py`](scripts/verify_release.py). GitHub Actions runs
+the same integrity and regression checks on pushes, pull requests, manual
+dispatches, and a weekly schedule.
 
 ## Overview
 
@@ -51,6 +58,16 @@ This repository provides the code structure, configurations, figures, and compac
     <td align="center" width="25%"><strong>Reliability diagnostics</strong><br/>Accuracy, ranking sensitivity, uncertainty, robustness, XAI, and compute</td>
   </tr>
 </table>
+
+## Reproducibility Dashboard
+
+| Signal | Current evidence |
+|---|---|
+| Research snapshot | [`v1.3.0`](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.0), the manuscript-linked code and artifact state |
+| Repository health | [Automated verification](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml) on every push and pull request, weekly, and on demand |
+| Artifact integrity | SHA-256 verification plus a completeness check against the tracked release tree |
+| Regression coverage | Eight focused tests for conformal calibration, fixed sensor masks, archived summaries, and the Chickenpox protocol |
+| Reproduction boundary | Compact artifacts are public; large prediction arrays and checkpoint files require local retraining or the internal experiment archive |
 
 ## Benchmark Scope
 
@@ -262,12 +279,28 @@ conda activate stgnn-benchmark
 
 Full traffic-model retraining requires the original datasets, trained-checkpoint storage, and GPU resources.
 
-Verify the Git identity, required artifact families, repository-wide manifest,
-and focused regression tests together:
+Verify the current checkout, required artifact families, complete SHA-256
+manifest, and focused regression tests together:
 
 ```bash
-python scripts/verify_release.py --expect-tag v1.3.0 --expect-manifest-entries 378 --expect-tests 8
+python scripts/verify_release.py --expect-tests 8
 ```
+
+For the exact manuscript-linked snapshot:
+
+```bash
+git switch --detach v1.3.0
+python scripts/verify_release.py --expect-tag v1.3.0 --expect-manifest-entries 378 --expect-tests 8 --require-clean
+```
+
+## Automated Verification
+
+The [repository-verification workflow](.github/workflows/verify.yml) runs on
+every push and pull request, each Monday, and by manual dispatch. It installs a
+minimal CPU test environment, checks that the manifest covers the complete
+tracked release tree, verifies every recorded SHA-256 digest, and runs the
+focused regression suite. Each run publishes a machine-readable verification
+summary as a workflow artifact.
 
 ## Key Artifacts
 
@@ -286,15 +319,18 @@ python scripts/verify_release.py --expect-tag v1.3.0 --expect-manifest-entries 3
 
 ## Citation
 
+GitHub exposes the repository's citation through [`CITATION.cff`](CITATION.cff).
+
 ```bibtex
-@misc{ahmad2026reliability,
+@software{ahmad2026reliability,
   title  = {Reliability-First Spatio-Temporal Graph Forecasting: A Survey and
             Traffic-Domain Benchmark for Calibration, Robustness, and
             Explanation Diagnostics},
   author = {Ahmad, Hussein Ahmad and Mortazavi, Seyyed Kasra and Benarbia, Taha
             and Al Machot, Fadi and Kyamakya, Kyandoghere},
   year   = {2026},
-  note   = {Manuscript prepared for IEEE Access submission}
+  version = {1.3.0},
+  url    = {https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark}
 }
 ```
 

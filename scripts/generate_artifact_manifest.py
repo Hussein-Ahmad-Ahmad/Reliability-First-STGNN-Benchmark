@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = ROOT / "ARTIFACT_MANIFEST.sha256"
 RELEASE_ROOTS = (
+    ".github/",
     "configs/",
     "datasets/",
     "figures/",
@@ -25,6 +26,7 @@ RELEASE_ROOTS = (
 ROOT_FILES = {
     ".gitattributes",
     ".gitignore",
+    "CITATION.cff",
     "LICENSE",
     "README.md",
     "REPRODUCIBILITY_CHECK.md",
@@ -95,7 +97,7 @@ def generate(output: Path) -> None:
 
 def verify(manifest: Path) -> None:
     failures = []
-    checked = 0
+    entries: dict[str, str] = {}
     for line_number, line in enumerate(
         manifest.read_text(encoding="utf-8").splitlines(), start=1
     ):
@@ -106,17 +108,41 @@ def verify(manifest: Path) -> None:
         except ValueError:
             failures.append(f"line {line_number}: malformed")
             continue
+        if relative in entries:
+            failures.append(f"{relative}: duplicate manifest entry")
+            continue
+        if len(expected) != 64 or any(
+            character not in "0123456789abcdef" for character in expected
+        ):
+            failures.append(f"{relative}: invalid SHA-256 digest")
+            continue
+        entries[relative] = expected
         path = ROOT / relative
-        checked += 1
+        try:
+            path.resolve().relative_to(ROOT)
+        except ValueError:
+            failures.append(f"{relative}: path escapes repository root")
+            continue
         if not path.is_file():
             failures.append(f"{relative}: missing")
         elif sha256(path) != expected:
             failures.append(f"{relative}: checksum mismatch")
+
+    discovered = {
+        path.relative_to(ROOT).as_posix()
+        for path in discover_release_files(manifest)
+    }
+    recorded = set(entries)
+    for relative in sorted(discovered - recorded):
+        failures.append(f"{relative}: missing from manifest")
+    for relative in sorted(recorded - discovered):
+        failures.append(f"{relative}: not in tracked release tree")
+
     if failures:
         raise SystemExit(
             "Manifest verification failed:\n" + "\n".join(failures)
         )
-    print(f"Verified {checked} files from {manifest}")
+    print(f"Verified {len(entries)} files from {manifest}")
 
 
 def main() -> None:
