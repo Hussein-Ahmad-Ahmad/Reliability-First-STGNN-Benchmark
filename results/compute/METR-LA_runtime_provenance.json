@@ -6,7 +6,8 @@
     44,
     45
   ],
-  "hardware_context": "single NVIDIA GeForce RTX 4090 reference setup",
+  "hardware_context": "Exact execution hardware is not attributed because the canonical timing logs do not embed machine-readable GPU, CPU, RAM, CUDA, or PyTorch metadata.",
+  "hardware_provenance_note": "Earlier working documents contained conflicting GPU labels. Neither label is independently supported by the canonical logs, so this release withdraws the model-specific attribution without changing the extracted timing values.",
   "aggregation": {
     "train_seconds_per_epoch": "median across three per-seed medians; each per-seed median uses the final ten logged training epochs",
     "recorded_log_span_minutes": "median across three per-seed spans between the first and last timestamped records in each selected canonical training log",
