@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml"><img alt="Repository verification" src="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml/badge.svg?branch=main"/></a>
-  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.1"><img alt="Research snapshot v1.3.1" src="https://img.shields.io/badge/research_snapshot-v1.3.1-0f766e?style=flat-square"/></a>
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.2"><img alt="Research snapshot v1.3.2" src="https://img.shields.io/badge/research_snapshot-v1.3.2-0f766e?style=flat-square"/></a>
   <a href="#quick-start"><img alt="Python 3.9" src="https://img.shields.io/badge/Python-3.9-3776AB?style=flat-square&logo=python&logoColor=white"/></a>
   <a href="#models"><img alt="Seven models" src="https://img.shields.io/badge/models-7-0891b2?style=flat-square"/></a>
   <a href="#benchmark-scope"><img alt="Three traffic datasets" src="https://img.shields.io/badge/traffic_datasets-3-f59e0b?style=flat-square"/></a>
@@ -33,7 +33,7 @@
 
 ## Verified Research Snapshot
 
-The versioned tag `v1.3.1` identifies the public snapshot supporting the
+The versioned tag `v1.3.2` identifies the public snapshot supporting the
 manuscript. It includes evaluation code, compact results, provenance metadata,
 regression tests, and the complete SHA-256 artifact manifest. The snapshot
 supports code inspection, compact-artifact verification, and retraining-based
@@ -63,7 +63,7 @@ This repository provides the code structure, configurations, figures, and compac
 
 | Signal | Current evidence |
 |---|---|
-| Research snapshot | [`v1.3.1`](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.1), the manuscript-linked code and artifact state |
+| Research snapshot | [`v1.3.2`](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.2), the manuscript-linked code and artifact state |
 | Repository health | [Automated verification](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml) on every push and pull request, weekly, and on demand |
 | Artifact integrity | SHA-256 verification plus a completeness check against the tracked release tree |
 | Regression coverage | Eight focused tests for conformal calibration, fixed sensor masks, archived summaries, and the Chickenpox protocol |
@@ -289,8 +289,8 @@ python scripts/verify_release.py --expect-tests 8
 For the exact manuscript-linked snapshot:
 
 ```bash
-git switch --detach v1.3.1
-python scripts/verify_release.py --expect-tag v1.3.1 --expect-manifest-entries 380 --expect-tests 8 --require-clean
+git switch --detach v1.3.2
+python scripts/verify_release.py --expect-tag v1.3.2 --expect-manifest-entries 380 --expect-tests 8 --require-clean
 ```
 
 ## Automated Verification
@@ -329,7 +329,7 @@ GitHub exposes the repository's citation through [`CITATION.cff`](CITATION.cff).
   author = {Ahmad, Hussein Ahmad and Mortazavi, Seyyed Kasra and Benarbia, Taha
             and Al Machot, Fadi and Kyamakya, Kyandoghere},
   year   = {2026},
-  version = {1.3.1},
+  version = {1.3.2},
   url    = {https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark}
 }
 ```

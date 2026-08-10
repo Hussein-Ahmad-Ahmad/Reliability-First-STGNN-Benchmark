@@ -137,7 +137,7 @@ def main() -> None:
     if args.json_output:
         output = args.json_output.expanduser().resolve()
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(rendered + "\n", encoding="utf-8", newline="\n")
+        output.write_text(rendered + "\n", encoding="utf-8")
         print(f"Wrote verification summary to {output}")
 
 
