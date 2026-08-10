@@ -110,7 +110,12 @@ def main() -> None:
         )
 
     sys.path.insert(0, str(ROOT))
-    suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"))
+    loader = unittest.TestLoader()
+    suite = loader.discover(str(ROOT / "tests"))
+    if loader.errors:
+        raise SystemExit(
+            "Focused test discovery failed:\n" + "\n".join(loader.errors)
+        )
     test_count = suite.countTestCases()
     if args.expect_tests is not None and test_count != args.expect_tests:
         raise SystemExit(

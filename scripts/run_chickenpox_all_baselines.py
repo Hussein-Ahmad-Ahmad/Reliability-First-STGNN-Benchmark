@@ -26,15 +26,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "framework"))
 
-from models.D2STGNN.arch import D2STGNN
-from models.MTGNN.arch import MTGNN
-from models.MegaCRN.arch import MegaCRN
-from models.STAEformer.arch import STAEformer
-from models.STGCNChebGraphConv.arch.stgcn_arch import STGCNChebGraphConv
-from models.STID.arch import STID
-from models.STNorm.arch import STNorm
-
-
 DATA_URL = "https://raw.githubusercontent.com/benedekrozemberczki/pytorch_geometric_temporal/master/dataset/chickenpox.json"
 OUT_DIR = Path("results/nontraffic_graph_sanity")
 DATA_PATH = OUT_DIR / "chickenpox.json"
@@ -240,6 +231,8 @@ def normalize_output_shape(pred: torch.Tensor) -> torch.Tensor:
 
 def make_model(name: str, n: int, input_len: int, output_len: int, adj: torch.Tensor) -> nn.Module:
     if name == "STID":
+        from models.STID.arch import STID
+
         return STID(
             num_nodes=n,
             input_len=input_len,
@@ -257,16 +250,28 @@ def make_model(name: str, n: int, input_len: int, output_len: int, adj: torch.Te
             day_of_week_size=1,
         )
     if name == "STNorm":
+        from models.STNorm.arch import STNorm
+
         return STNorm(n, True, True, 1, output_len, 16, 2, 4, 2)
     if name == "MTGNN":
+        from models.MTGNN.arch import MTGNN
+
         return MTGNN(True, True, 2, n, None, None, 0.1, min(20, n), 16, 1, 16, 16, 32, 64, input_len, 1, output_len, 2)
     if name == "STAEformer":
+        from models.STAEformer.arch import STAEformer
+
         return STAEformer(n, input_len, output_len, 52, 3, 1, 8, 8, 0, 0, 16, 64, 4, 1, 0.1, True)
     if name == "STGCN-Cheb":
+        from models.STGCNChebGraphConv.arch.stgcn_arch import STGCNChebGraphConv
+
         return STGCNChebGraphConv(3, 3, [[1], [16, 8, 16], [16, 8, 16], [32, 32], [output_len]], input_len, n, "glu", "cheb_graph_conv", norm_lap(adj), True, 0.2)
     if name == "MegaCRN":
+        from models.MegaCRN.arch import MegaCRN
+
         return MegaCRN(n, 1, 1, output_len, 32, 1, 2, 1, 10, 16, 2000, False)
     if name == "D2STGNN":
+        from models.D2STGNN.arch import D2STGNN
+
         return D2STGNN(
             num_feat=1,
             num_hidden=16,
