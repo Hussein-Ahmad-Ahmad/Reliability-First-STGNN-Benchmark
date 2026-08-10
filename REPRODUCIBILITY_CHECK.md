@@ -7,11 +7,11 @@ manifest, and eight focused regression tests.
 ## Clean-Clone Check
 
 ```bash
-git clone --branch v1.3.1 --depth 1 https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark.git
+git clone --branch v1.3.2 --depth 1 https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark.git
 cd Reliability-First-STGNN-Benchmark
 python -m pip install numpy==1.24.4
 python -m pip install torch==2.2.2 --index-url https://download.pytorch.org/whl/cpu
-python scripts/verify_release.py --expect-tag v1.3.1 --expect-manifest-entries 380 --expect-tests 8 --require-clean
+python scripts/verify_release.py --expect-tag v1.3.2 --expect-manifest-entries 380 --expect-tests 8 --require-clean
 ```
 
 To check the manuscript's full commit identifier as well, append
