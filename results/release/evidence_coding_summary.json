@@ -1,0 +1,18 @@
+{
+  "source": "35-page supplied PDF, Section II and Table A.8",
+  "provenance_scope": "Publication-reported aggregate statistics; independent raw coding sheets are not included in this release",
+  "studies": ["MTGNN", "MegaCRN", "D2STGNN", "STID", "DeepSTUQ", "CASTMGCN", "GCN-M", "STExplainer", "BasicTS", "BGSLF"],
+  "decisions": 90,
+  "agreements": 66,
+  "agreements_by_requirement": [0, 10, 8, 7, 10, 10, 10, 5, 6],
+  "primary_marginals": {"M": 25, "P": 35, "NR": 30},
+  "independent_marginals": {"M": 43, "P": 14, "NR": 33},
+  "reported_kappa": 0.610,
+  "reconciled_changes": [
+    {"study": "MTGNN", "requirement": "RER-8", "from": "P", "to": "M"},
+    {"study": "MegaCRN", "requirement": "RER-8", "from": "P", "to": "M"},
+    {"study": "D2STGNN", "requirement": "RER-8", "from": "P", "to": "M"},
+    {"study": "CASTMGCN", "requirement": "RER-8", "from": "P", "to": "M"},
+    {"study": "CASTMGCN", "requirement": "RER-9", "from": "NR", "to": "P"}
+  ]
+}

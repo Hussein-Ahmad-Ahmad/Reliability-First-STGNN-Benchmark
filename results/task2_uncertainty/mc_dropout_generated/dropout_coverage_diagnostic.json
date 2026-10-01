@@ -1,0 +1,228 @@
+{
+  "D2STGNN": {
+    "plain_dropout_modules": [
+      {
+        "name": "layers.0.dif_layer.localized_st_conv.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.0.inh_layer.pos_encoder.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.0.inh_layer.rnn_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.0.inh_layer.transformer_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.1.dif_layer.localized_st_conv.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.1.inh_layer.rnn_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.1.inh_layer.transformer_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.2.dif_layer.localized_st_conv.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.2.inh_layer.rnn_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.2.inh_layer.transformer_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.3.dif_layer.localized_st_conv.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.3.inh_layer.rnn_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.3.inh_layer.transformer_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.4.dif_layer.localized_st_conv.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.4.inh_layer.rnn_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "layers.4.inh_layer.transformer_layer.dropout",
+        "p": 0.1
+      },
+      {
+        "name": "dynamic_graph_constructor.distance_function.dropout",
+        "p": 0.1
+      }
+    ],
+    "multihead_attention_modules": [
+      {
+        "name": "layers.0.inh_layer.transformer_layer.multi_head_self_attention",
+        "dropout_p": 0.1
+      },
+      {
+        "name": "layers.1.inh_layer.transformer_layer.multi_head_self_attention",
+        "dropout_p": 0.1
+      },
+      {
+        "name": "layers.2.inh_layer.transformer_layer.multi_head_self_attention",
+        "dropout_p": 0.1
+      },
+      {
+        "name": "layers.3.inh_layer.transformer_layer.multi_head_self_attention",
+        "dropout_p": 0.1
+      },
+      {
+        "name": "layers.4.inh_layer.transformer_layer.multi_head_self_attention",
+        "dropout_p": 0.1
+      }
+    ],
+    "multihead_attention_dropout_active_after_fix": true,
+    "old_rule_mean_predictive_std": 0.5466888546943665,
+    "fixed_rule_mean_predictive_std": 0.5620617270469666,
+    "fix_changes_variance": true
+  },
+  "MegaCRN": {
+    "plain_dropout_modules": [],
+    "multihead_attention_modules": [],
+    "multihead_attention_dropout_active_after_fix": false,
+    "old_rule_mean_predictive_std": 3.4398844945826568e-06,
+    "fixed_rule_mean_predictive_std": 3.4398844945826568e-06,
+    "fix_changes_variance": false
+  },
+  "MTGNN": {
+    "plain_dropout_modules": [],
+    "multihead_attention_modules": [],
+    "multihead_attention_dropout_active_after_fix": false,
+    "old_rule_mean_predictive_std": 3.4244196740473853e-06,
+    "fixed_rule_mean_predictive_std": 0.6048981547355652,
+    "fix_changes_variance": true
+  },
+  "STGCNChebGraphConv": {
+    "plain_dropout_modules": [
+      {
+        "name": "st_blocks.0.dropout",
+        "p": 0.5
+      },
+      {
+        "name": "st_blocks.1.dropout",
+        "p": 0.5
+      },
+      {
+        "name": "output.dropout",
+        "p": 0.5
+      }
+    ],
+    "multihead_attention_modules": [],
+    "multihead_attention_dropout_active_after_fix": false,
+    "old_rule_mean_predictive_std": 0.9009369015693665,
+    "fixed_rule_mean_predictive_std": 0.904157817363739,
+    "fix_changes_variance": true
+  },
+  "STID": {
+    "plain_dropout_modules": [
+      {
+        "name": "encoder.0.drop",
+        "p": 0.15
+      },
+      {
+        "name": "encoder.1.drop",
+        "p": 0.15
+      },
+      {
+        "name": "encoder.2.drop",
+        "p": 0.15
+      }
+    ],
+    "multihead_attention_modules": [],
+    "multihead_attention_dropout_active_after_fix": false,
+    "old_rule_mean_predictive_std": 0.6911168098449707,
+    "fixed_rule_mean_predictive_std": 0.6944654583930969,
+    "fix_changes_variance": true
+  },
+  "STNorm": {
+    "plain_dropout_modules": [
+      {
+        "name": "dropout",
+        "p": 0.2
+      }
+    ],
+    "multihead_attention_modules": [],
+    "multihead_attention_dropout_active_after_fix": false,
+    "old_rule_mean_predictive_std": 3.444919684625347e-06,
+    "fixed_rule_mean_predictive_std": 3.444919684625347e-06,
+    "fix_changes_variance": false
+  },
+  "STAEformer": {
+    "plain_dropout_modules": [
+      {
+        "name": "attn_layers_t.0.dropout1",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_t.0.dropout2",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_t.1.dropout1",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_t.1.dropout2",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_t.2.dropout1",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_t.2.dropout2",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_s.0.dropout1",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_s.0.dropout2",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_s.1.dropout1",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_s.1.dropout2",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_s.2.dropout1",
+        "p": 0.1
+      },
+      {
+        "name": "attn_layers_s.2.dropout2",
+        "p": 0.1
+      }
+    ],
+    "multihead_attention_modules": [],
+    "multihead_attention_dropout_active_after_fix": false,
+    "old_rule_mean_predictive_std": 0.48000645637512207,
+    "fixed_rule_mean_predictive_std": 0.4814077317714691,
+    "fix_changes_variance": true
+  }
+}

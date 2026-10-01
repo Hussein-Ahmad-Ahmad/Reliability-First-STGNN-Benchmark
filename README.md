@@ -1,57 +1,23 @@
 # Reliability-First STGNN Benchmark
 
-<p align="center">
-  <img src="figures/readme/reliability_first_stgnn_banner.svg" width="100%" alt="Reliability-First STGNN Benchmark banner"/>
-</p>
+<p align="center"><img src="figures/readme/benchmark.gif" width="100%" alt="Reliability-First STGNN Benchmark: seven models, three traffic graphs, 63 runs"/></p>
 
 <p align="center">
-  <strong>Traffic forecasting across accuracy, calibration, robustness, explanation, and compute.</strong>
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml"><img alt="Artifact checks" src="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml/badge.svg?branch=main"/></a>
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.0"><img alt="v1.4.0" src="https://img.shields.io/badge/release-v1.4.0-00897b?style=flat-square"/></a>
+  <img alt="Seven models" src="https://img.shields.io/badge/models-7-e65176?style=flat-square"/>
+  <img alt="Three traffic datasets" src="https://img.shields.io/badge/traffic_graphs-3-e8a317?style=flat-square"/>
+  <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-67717d?style=flat-square"/></a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml"><img alt="Project checks" src="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml/badge.svg?branch=main"/></a>
-  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.2"><img alt="Project state v1.3.2" src="https://img.shields.io/badge/project_state-v1.3.2-0f766e?style=flat-square"/></a>
-  <a href="#quick-start"><img alt="Python 3.9" src="https://img.shields.io/badge/Python-3.9-3776AB?style=flat-square&logo=python&logoColor=white"/></a>
-  <a href="#license"><img alt="MIT License" src="https://img.shields.io/github/license/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark?style=flat-square&color=334155"/></a>
-</p>
+<p align="center"><strong>Accuracy · Calibration · Robustness · Explanation · Compute</strong></p>
+<p align="center"><a href="RESULTS.md">Explore results</a> &nbsp; | &nbsp; <a href="configs/">Configurations</a> &nbsp; | &nbsp; <a href="REPRODUCIBILITY_CHECK.md">Verify artifacts</a> &nbsp; | &nbsp; <a href="CITATION.cff">Cite</a></p>
 
-## Overview
-
-This project contains code, configuration files, figures, and compact result
-artifacts for a traffic-domain study of spatio-temporal graph neural network
-forecasting. The evaluation covers point accuracy, ranking sensitivity,
-uncertainty calibration, sensor-dropout robustness, explanation diagnostics,
-and compute summaries.
-
-| Scope | Details |
-|---|---|
-| Models | D2STGNN, MegaCRN, MTGNN, STNorm, STGCN-Cheb, STID, STAEformer |
-| Traffic datasets | METR-LA, PEMS-BAY, PEMS04 |
-| Main traffic runs | 3 datasets x 7 models x 3 seeds |
-| Versioned state | [`v1.3.2`](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.3.2) |
-| Automated checks | SHA-256 manifest coverage plus eight focused tests |
-
-## Snapshot
-
-The `v1.3.2` project state includes compact metrics, run metadata, plotting
-assets, utility scripts, and a 380-entry SHA-256 manifest. Full traffic-model
-training produces large checkpoint and prediction files locally; the public
-tree keeps compact artifacts for inspection and reproducible post-processing.
-
-```bash
-python scripts/verify_release.py --expect-tests 8
-```
-
-For the versioned project state:
-
-```bash
-git switch --detach v1.3.2
-python scripts/verify_release.py --expect-tag v1.3.2 --expect-manifest-entries 380 --expect-tests 8 --require-clean
-```
+Seven architecture-configuration pairs on **METR-LA, PEMS-BAY, and PEMS04**, with seeds **43/44/45**. Reliability diagnostics cover the disclosed subsets and pipelines, rather than a fully crossed comparison of every method on every dataset.
 
 ## Results At A Glance
 
-Mean test MAE over seeds 43, 44, and 45:
+Mean test MAE across three seeds; lower is better.
 
 | Model | METR-LA | PEMS-BAY | PEMS04 |
 |---|---:|---:|---:|
@@ -64,69 +30,25 @@ Mean test MAE over seeds 43, 44, and 45:
 | STGCN-Cheb | 3.137 | 1.702 | 19.963 |
 
 <table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="figures/main/pf1_cross_dataset_mae.png" width="100%" alt="Cross-dataset MAE comparison"/><br/>
-      <sub><strong>Point forecasting.</strong> Mean test MAE across fixed seeds.</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="figures/appendix/uq2_conformal_cross_dataset.png" width="100%" alt="Cross-dataset conformal diagnostics"/><br/>
-      <sub><strong>Calibration.</strong> Fixed and per-horizon conformal summaries.</sub>
-    </td>
-  </tr>
+<tr><td width="50%"><img src="figures/results/figure_4_1.png" width="100%" alt="Three-seed cross-dataset MAE"/><p align="center"><strong>Point Forecasting</strong></p></td><td width="50%"><img src="figures/results/figure_5_1.png" width="100%" alt="Empirical coverage by forecast horizon"/><p align="center"><strong>Horizon-Wise Calibration</strong></p></td></tr>
+<tr><td width="50%"><img src="figures/results/figure_7_1.png" width="100%" alt="Checkpoint and mask variability across 14 cells"/><p align="center"><strong>Sensor Zero-Ablation</strong></p></td><td width="50%"><img src="figures/results/figure_8_1.png" width="100%" alt="Degree-matched sensor-ranking control"/><p align="center"><strong>Explanation Diagnostics</strong></p></td></tr>
 </table>
 
-## Key Locations
-
-| Area | Path |
-|---|---|
-| Configurations | [`configs/`](configs/) |
-| Main figures | [`figures/main/`](figures/main/) |
-| Point forecasting and bootstrap summaries | [`results/task1_point_forecasting/`](results/task1_point_forecasting/) |
-| Uncertainty and conformal summaries | [`results/task2_uncertainty/`](results/task2_uncertainty/) |
-| Sensor-dropout summaries | [`results/robustness/`](results/robustness/) |
-| Explanation summaries | [`results/task3_explainability/`](results/task3_explainability/) |
-| Secondary graph-native protocol illustration | [`results/nontraffic_graph_sanity/`](results/nontraffic_graph_sanity/) |
-| Runtime summaries | [`results/compute/`](results/compute/) |
-| Utility scripts | [`scripts/`](scripts/) |
-| Checksum manifest | [`ARTIFACT_MANIFEST.sha256`](ARTIFACT_MANIFEST.sha256) |
+**v1.4.0** adds sample-SD summaries, naive anchors, flat-pooled bootstrap and block-length sensitivity, the METR-LA plain conformal control, seven stochastic-inference summaries, repeated masks, degree-matched controls, and all 23 numbered figures from the supplied 35-page PDF. [Results and scope](RESULTS.md) identify supporting artifacts and availability limits. The earlier **v1.3.2** snapshot remains available separately.
 
 ## Quick Start
 
-Create a local environment:
-
 ```bash
 pip install -r requirements.txt
+python scripts/verify_release.py --expect-tests 16
 ```
 
-or:
+Checks cover public-file integrity and compact-result consistency. Traffic training and array-dependent post-processing additionally require original datasets, checkpoints, and retained prediction arrays; these large files are not distributed here.
 
-```bash
-conda env create -f environment.yml
-conda activate stgnn-benchmark
-```
-
-Full traffic-model training requires the original datasets, checkpoint storage,
-and GPU resources. Compact artifact checks and plotting utilities can be run
-from the public tree.
-
-## Citation
-
-GitHub exposes the repository citation through [`CITATION.cff`](CITATION.cff).
-
-```bibtex
-@software{ahmad2026reliability,
-  title  = {Reliability-First Spatio-Temporal Graph Forecasting: A Survey and
-            Traffic-Domain Benchmark for Calibration, Robustness, and
-            Explanation Diagnostics},
-  author = {Ahmad, Hussein Ahmad and Mortazavi, Seyyed Kasra and Benarbia, Taha
-            and Al Machot, Fadi and Kyamakya, Kyandoghere},
-  year   = {2026},
-  version = {1.3.2},
-  url    = {https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark}
-}
-```
-
-## License
-
-This project is released under the MIT License. See [`LICENSE`](LICENSE).
+| Browse | Location |
+|---|---|
+| Results and numbered figures | [RESULTS.md](RESULTS.md) |
+| Model configurations | [configs/](configs/) |
+| Analysis utilities | [scripts/](scripts/) |
+| SHA-256 inventory | [ARTIFACT_MANIFEST.sha256](ARTIFACT_MANIFEST.sha256) |
+| License and citation | [MIT](LICENSE) · [CITATION.cff](CITATION.cff) |

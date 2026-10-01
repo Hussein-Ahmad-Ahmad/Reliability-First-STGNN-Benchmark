@@ -1,0 +1,245 @@
+{
+  "checkpoint_seed": 45,
+  "n_mask_realizations_total": 5,
+  "mask_seeds_used": [
+    7,
+    11,
+    19,
+    23,
+    31
+  ],
+  "note": "mean/std computed across all mask realizations for this checkpoint seed. This reports whether the single-mask relative-MAE-change numbers in the main robustness table are representative or an artifact of one draw.",
+  "rows": [
+    {
+      "dataset": "METR-LA",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 20.51473731706697,
+      "std_relative_mae_change_percent": 3.576443616662752,
+      "min": 15.23992793508446,
+      "max": 23.352274796840792
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 80.33867178705536,
+      "std_relative_mae_change_percent": 2.310574501776434,
+      "min": 76.4474944803515,
+      "max": 82.00413712969639
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "MegaCRN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "MegaCRN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 19.03585884041383,
+      "std_relative_mae_change_percent": 9.273767452904668,
+      "min": 12.455851420512767,
+      "max": 34.67909815663709
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "MegaCRN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 74.61541698152779,
+      "std_relative_mae_change_percent": 12.498169762877858,
+      "min": 56.35595650982923,
+      "max": 85.02521702128493
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 18.325646476370547,
+      "std_relative_mae_change_percent": 2.9403825529615277,
+      "min": 13.437942712203057,
+      "max": 21.251121250034018
+    },
+    {
+      "dataset": "METR-LA",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 56.644480841717254,
+      "std_relative_mae_change_percent": 1.8394656037706767,
+      "min": 54.43120486815777,
+      "max": 58.262429988360466
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 28.952391850944302,
+      "std_relative_mae_change_percent": 1.9300742347805175,
+      "min": 26.397709565429917,
+      "max": 30.72415335286694
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 86.2601599829525,
+      "std_relative_mae_change_percent": 0.974299763299003,
+      "min": 84.85242956798245,
+      "max": 87.39357949370644
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 25.43566320068762,
+      "std_relative_mae_change_percent": 1.628770584227077,
+      "min": 23.441859940815394,
+      "max": 27.01276236958296
+    },
+    {
+      "dataset": "PEMS-BAY",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 75.42423346071064,
+      "std_relative_mae_change_percent": 1.2361380143443452,
+      "min": 73.56964756086306,
+      "max": 76.77215021687691
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 66.58453039664963,
+      "std_relative_mae_change_percent": 4.549121981713972,
+      "min": 60.73938514432867,
+      "max": 72.73944615372034
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "D2STGNN",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 185.362545827648,
+      "std_relative_mae_change_percent": 7.783831662706139,
+      "min": 176.4260647784105,
+      "max": 195.17757924871876
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "0%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 0.0,
+      "std_relative_mae_change_percent": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "10%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 60.10307876176207,
+      "std_relative_mae_change_percent": 4.258099116437672,
+      "min": 55.31812890845974,
+      "max": 66.56861668428161
+    },
+    {
+      "dataset": "PEMS04",
+      "model": "STID",
+      "checkpoint_seed": 45,
+      "dropout_rate": "30%",
+      "n_mask_realizations": 5,
+      "mean_relative_mae_change_percent": 178.48238417869828,
+      "std_relative_mae_change_percent": 7.599053577364869,
+      "min": 171.10866180719628,
+      "max": 190.35447916158193
+    }
+  ]
+}

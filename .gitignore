@@ -94,6 +94,7 @@ STID_FORENSIC_*.md
 VERIFICATION_REPORT_*.md
 results-path-original.md
 results.md
+!/RESULTS.md
 results140426.md
 fix_two_figures.py
 patch_uq8*.py

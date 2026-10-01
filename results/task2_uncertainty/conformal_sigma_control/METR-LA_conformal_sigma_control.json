@@ -1,0 +1,195 @@
+{
+  "dataset": "METR-LA",
+  "normalized_split_conformal": {
+    "dataset": "METR-LA",
+    "method": "normalized_split_conformal_marginal_diagnostic",
+    "alpha": 0.1,
+    "target_coverage": 0.9,
+    "member_count": 6,
+    "ensemble_std_ddof": 0,
+    "epsilon": 1e-06,
+    "chronological_split": {
+      "calibration_origins": 3415,
+      "evaluation_origins": 3416
+    },
+    "score_pooling": "valid origin-sensor-horizon elements",
+    "null_target_rule": "finite targets not equal to zero",
+    "dependence_caveat": "Coverage is an empirical marginal diagnostic. Pooled elements share origins, sensors, and horizons, so no independent-element or finite-sample exchangeability guarantee is claimed.",
+    "variant": "fixed",
+    "calibration": {
+      "threshold": 11.178131103515625,
+      "valid_score_count": 7789656,
+      "quantile_level": 0.9000001155378363,
+      "quantile_method": "higher",
+      "score_min": 0.0,
+      "score_max": 1502.884765625,
+      "score_mean": 5.3933892250061035,
+      "score_median": 2.98905611038208
+    },
+    "evaluation_set": {
+      "PICP": 0.9056418267336739,
+      "MPIW": 23.308826446533203,
+      "valid_target_count": 7005816,
+      "per_horizon": {
+        "horizon_1": {
+          "PICP": 0.923680209230727,
+          "MPIW": 15.576190948486328,
+          "valid_target_count": 582706
+        },
+        "horizon_2": {
+          "PICP": 0.8939518446402073,
+          "MPIW": 16.815099716186523,
+          "valid_target_count": 582905
+        },
+        "horizon_3": {
+          "PICP": 0.8899167215453847,
+          "MPIW": 18.738197326660156,
+          "valid_target_count": 583104
+        },
+        "horizon_4": {
+          "PICP": 0.8921598880865683,
+          "MPIW": 20.593061447143555,
+          "valid_target_count": 583308
+        },
+        "horizon_5": {
+          "PICP": 0.8944614678018619,
+          "MPIW": 22.17088508605957,
+          "valid_target_count": 583512
+        },
+        "horizon_6": {
+          "PICP": 0.8994768003618198,
+          "MPIW": 23.55687713623047,
+          "valid_target_count": 583716
+        },
+        "horizon_7": {
+          "PICP": 0.9018307302370188,
+          "MPIW": 24.69538688659668,
+          "valid_target_count": 583920
+        },
+        "horizon_8": {
+          "PICP": 0.9051639720333354,
+          "MPIW": 25.68290901184082,
+          "valid_target_count": 584124
+        },
+        "horizon_9": {
+          "PICP": 0.910145741061466,
+          "MPIW": 26.655550003051758,
+          "valid_target_count": 584324
+        },
+        "horizon_10": {
+          "PICP": 0.9143171926751157,
+          "MPIW": 27.47779655456543,
+          "valid_target_count": 584528
+        },
+        "horizon_11": {
+          "PICP": 0.9192382151139326,
+          "MPIW": 28.401613235473633,
+          "valid_target_count": 584732
+        },
+        "horizon_12": {
+          "PICP": 0.923268659701814,
+          "MPIW": 29.28007698059082,
+          "valid_target_count": 584937
+        }
+      }
+    }
+  },
+  "plain_sigma1_control": {
+    "dataset": "METR-LA",
+    "method": "plain_split_conformal_sigma1_control",
+    "alpha": 0.1,
+    "target_coverage": 0.9,
+    "note": "Calibration score is the raw absolute residual (no division by predictive std). The resulting interval half-width is constant across sensors and horizons, unlike the normalized pipeline.",
+    "chronological_split": {
+      "calibration_origins": 3415,
+      "evaluation_origins": 3416
+    },
+    "calibration": {
+      "half_width": 6.8948516845703125,
+      "valid_score_count": 7789656,
+      "quantile_level": 0.9000001155378363,
+      "quantile_method": "higher"
+    },
+    "evaluation_set": {
+      "PICP": 0.9021210377206595,
+      "MPIW": 13.789703369140625,
+      "valid_target_count": 7005816,
+      "per_horizon": {
+        "horizon_1": {
+          "PICP": 0.9388044742975017,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 582706
+        },
+        "horizon_2": {
+          "PICP": 0.9238812499463892,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 582905
+        },
+        "horizon_3": {
+          "PICP": 0.9148265146526177,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 583104
+        },
+        "horizon_4": {
+          "PICP": 0.9081274386773368,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 583308
+        },
+        "horizon_5": {
+          "PICP": 0.9030594058048507,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 583512
+        },
+        "horizon_6": {
+          "PICP": 0.8993020578500504,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 583716
+        },
+        "horizon_7": {
+          "PICP": 0.8958984107411975,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 583920
+        },
+        "horizon_8": {
+          "PICP": 0.8928326862104622,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 584124
+        },
+        "horizon_9": {
+          "PICP": 0.8905966552802898,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 584324
+        },
+        "horizon_10": {
+          "PICP": 0.8881798647797882,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 584528
+        },
+        "horizon_11": {
+          "PICP": 0.8861307402365528,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 584732
+        },
+        "horizon_12": {
+          "PICP": 0.8840302459923034,
+          "MPIW": 13.789703369140625,
+          "valid_target_count": 584937
+        }
+      }
+    }
+  },
+  "comparison": {
+    "dataset": "METR-LA",
+    "alpha": 0.1,
+    "normalized_variant": {
+      "PICP": 0.9056418267336739,
+      "MPIW": 23.308826446533203
+    },
+    "plain_sigma1_variant": {
+      "PICP": 0.9021210377206595,
+      "MPIW": 13.789703369140625
+    },
+    "picp_difference_normalized_minus_plain": 0.003520789013014336,
+    "mpiw_difference_normalized_minus_plain": 9.519123077392578
+  }
+}

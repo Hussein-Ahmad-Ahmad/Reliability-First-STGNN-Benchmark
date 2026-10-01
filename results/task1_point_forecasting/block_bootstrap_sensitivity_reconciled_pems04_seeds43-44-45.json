@@ -1,0 +1,793 @@
+{
+  "dataset": "PEMS04",
+  "seeds": [
+    43,
+    44,
+    45
+  ],
+  "n_bootstrap": 10000,
+  "alpha": 0.05,
+  "block_lengths_tested": [
+    72,
+    144,
+    288
+  ],
+  "aggregation": "flat-pooled sum/count, matching Table 12 and official masked_mae (see run_block_bootstrap_reconciled.py)",
+  "supersedes": "results/task1_point_forecasting/block_bootstrap_sensitivity_<dataset>_seeds43-44-45.json (buggy mean-of-per-origin-means aggregation)",
+  "results_by_block_len": {
+    "72": {
+      "block_len": 72,
+      "n_pairs": 21,
+      "n_ci_excluding_zero": 19,
+      "pairs": [
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STAEformer",
+          "mean_loss_diff_a_minus_b": 0.1688072330302397,
+          "ci_low": 0.07599452255103892,
+          "ci_high": 0.2596350497228084,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "MegaCRN",
+          "mean_loss_diff_a_minus_b": -0.4570095865581827,
+          "ci_low": -0.555881387771805,
+          "ci_high": -0.37076427492684133,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.6534270811517331,
+          "ci_low": -0.7858419371781864,
+          "ci_high": -0.5197670248995688,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": -0.02342719130340498,
+          "ci_low": -0.09210296099053066,
+          "ci_high": 0.038823021642294966,
+          "ci_excludes_zero": false,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.6496126007707446,
+          "ci_low": -0.7832897816730388,
+          "ci_high": -0.5219507119341599,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.578671472436568,
+          "ci_low": -1.784290098165629,
+          "ci_high": -1.3836542966393581,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "MegaCRN",
+          "mean_loss_diff_a_minus_b": -0.7493383701433061,
+          "ci_low": -0.8552179701632144,
+          "ci_high": -0.6493363972978429,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.9457558647368565,
+          "ci_low": -1.087432234699329,
+          "ci_high": -0.8064877057521548,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": -0.19223442433364468,
+          "ci_low": -0.32257302155182305,
+          "ci_high": -0.07310330879455418,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.8184198338009843,
+          "ci_low": -0.9283778032458933,
+          "ci_high": -0.7132097503684075,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.7474787054668077,
+          "ci_low": -1.9770739867362424,
+          "ci_high": -1.5413171895402624,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.1964174945935504,
+          "ci_low": -0.31104028515075177,
+          "ci_high": -0.09063069825045508,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": 0.418756292096262,
+          "ci_low": 0.28853907939483203,
+          "ci_high": 0.5421162212987518,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.25950555893546223,
+          "ci_low": -0.36903307919318584,
+          "ci_high": -0.15952460814925593,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.052191164286473,
+          "ci_low": -1.2405302283968098,
+          "ci_high": -0.8888828964071499,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": 0.6151737866898124,
+          "ci_low": 0.4481422913813586,
+          "ci_high": 0.7783211915835172,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.06308806434191183,
+          "ci_low": -0.2058457939621337,
+          "ci_high": 0.07267318174728431,
+          "ci_excludes_zero": false,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -0.8557736696929226,
+          "ci_low": -1.0190844019940597,
+          "ci_high": -0.7286040163964609,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STID",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.6261854094673396,
+          "ci_low": -0.7750841885257089,
+          "ci_high": -0.4811430797832022,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STID",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.555244281133163,
+          "ci_low": -1.7692277093433741,
+          "ci_high": -1.3445265671313509,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STNorm",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -0.9290588716658235,
+          "ci_low": -1.1082928988296743,
+          "ci_high": -0.76204133066197,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        }
+      ]
+    },
+    "144": {
+      "block_len": 144,
+      "n_pairs": 21,
+      "n_ci_excluding_zero": 19,
+      "pairs": [
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STAEformer",
+          "mean_loss_diff_a_minus_b": 0.1688072330302397,
+          "ci_low": 0.0740167580324629,
+          "ci_high": 0.28502532555766363,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "MegaCRN",
+          "mean_loss_diff_a_minus_b": -0.4570095865581827,
+          "ci_low": -0.5481861123412075,
+          "ci_high": -0.3655320192374471,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.6534270811517331,
+          "ci_low": -0.7949608011145844,
+          "ci_high": -0.4981644297277921,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": -0.02342719130340498,
+          "ci_low": -0.10796272846214174,
+          "ci_high": 0.05071557886462638,
+          "ci_excludes_zero": false,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.6496126007707446,
+          "ci_low": -0.7751128235221448,
+          "ci_high": -0.5107474893087465,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.578671472436568,
+          "ci_low": -1.762677825433246,
+          "ci_high": -1.381978827873599,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "MegaCRN",
+          "mean_loss_diff_a_minus_b": -0.7493383701433061,
+          "ci_low": -0.8465738309510935,
+          "ci_high": -0.6547243593543913,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.9457558647368565,
+          "ci_low": -1.0806109706461196,
+          "ci_high": -0.8016177452281493,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": -0.19223442433364468,
+          "ci_low": -0.3664356335758801,
+          "ci_high": -0.06364884721657094,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.8184198338009843,
+          "ci_low": -0.918101569566531,
+          "ci_high": -0.7143617521805795,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.7474787054668077,
+          "ci_low": -1.9563085857373834,
+          "ci_high": -1.556912465419976,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.1964174945935504,
+          "ci_low": -0.30904269325218336,
+          "ci_high": -0.08880804535406846,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": 0.418756292096262,
+          "ci_low": 0.24810540613307133,
+          "ci_high": 0.5660378193576432,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.25950555893546223,
+          "ci_low": -0.3575804087210284,
+          "ci_high": -0.14802539145764762,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.052191164286473,
+          "ci_low": -1.2301522643168554,
+          "ci_high": -0.8980187123344652,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": 0.6151737866898124,
+          "ci_low": 0.3971069877856099,
+          "ci_high": 0.8044685137703093,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.06308806434191183,
+          "ci_low": -0.2096601248806067,
+          "ci_high": 0.08804640670219706,
+          "ci_excludes_zero": false,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -0.8557736696929226,
+          "ci_low": -1.0097605100547864,
+          "ci_high": -0.7406545336530556,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STID",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.6261854094673396,
+          "ci_low": -0.7836670784747792,
+          "ci_high": -0.4504626682763815,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STID",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.555244281133163,
+          "ci_low": -1.7679402998804143,
+          "ci_high": -1.3305512464018467,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STNorm",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -0.9290588716658235,
+          "ci_low": -1.1008969457638176,
+          "ci_high": -0.7698025155751209,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        }
+      ]
+    },
+    "288": {
+      "block_len": 288,
+      "n_pairs": 21,
+      "n_ci_excluding_zero": 19,
+      "pairs": [
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STAEformer",
+          "mean_loss_diff_a_minus_b": 0.1688072330302397,
+          "ci_low": 0.09816569567015013,
+          "ci_high": 0.31258061706932194,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "MegaCRN",
+          "mean_loss_diff_a_minus_b": -0.4570095865581827,
+          "ci_low": -0.5409095129193136,
+          "ci_high": -0.3605550491519107,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.6534270811517331,
+          "ci_low": -0.8062462350353186,
+          "ci_high": -0.47465327289898523,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": -0.02342719130340498,
+          "ci_low": -0.1271715748325545,
+          "ci_high": 0.07468814475004437,
+          "ci_excludes_zero": false,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.6496126007707446,
+          "ci_low": -0.7103075874386942,
+          "ci_high": -0.5255853264979973,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "D2STGNN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.578671472436568,
+          "ci_low": -1.7212115065416425,
+          "ci_high": -1.399090304358084,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "MegaCRN",
+          "mean_loss_diff_a_minus_b": -0.7493383701433061,
+          "ci_low": -0.8331015856214685,
+          "ci_high": -0.6739846259612539,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.9457558647368565,
+          "ci_low": -1.081208184777625,
+          "ci_high": -0.8047366843719858,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": -0.19223442433364468,
+          "ci_low": -0.4128161010177444,
+          "ci_high": -0.06338239908390009,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.8184198338009843,
+          "ci_low": -0.8886881855962674,
+          "ci_high": -0.7315792221992891,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STAEformer",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.7474787054668077,
+          "ci_low": -1.9238731259155168,
+          "ci_high": -1.5869534156331064,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "MTGNN",
+          "mean_loss_diff_a_minus_b": -0.1964174945935504,
+          "ci_low": -0.31115329440624695,
+          "ci_high": -0.076248901142941,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": 0.418756292096262,
+          "ci_low": 0.19874132733716995,
+          "ci_high": 0.5917468274563128,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.25950555893546223,
+          "ci_low": -0.3310237316923132,
+          "ci_high": -0.1487092016363318,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MegaCRN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.052191164286473,
+          "ci_low": -1.1867748019742554,
+          "ci_high": -0.9253779401300318,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STID",
+          "mean_loss_diff_a_minus_b": 0.6151737866898124,
+          "ci_low": 0.32898318874860044,
+          "ci_high": 0.8476095919429882,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.06308806434191183,
+          "ci_low": -0.21011517152200482,
+          "ci_high": 0.11731531558102491,
+          "ci_excludes_zero": false,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "MTGNN",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -0.8557736696929226,
+          "ci_low": -0.9981704745637923,
+          "ci_high": -0.7549104947180675,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43
+          ]
+        },
+        {
+          "model_a": "STID",
+          "model_b": "STNorm",
+          "mean_loss_diff_a_minus_b": -0.6261854094673396,
+          "ci_low": -0.7571561888610351,
+          "ci_high": -0.4237332415189557,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STID",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -1.555244281133163,
+          "ci_low": -1.7597402628632899,
+          "ci_high": -1.3249945612067726,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "model_a": "STNorm",
+          "model_b": "STGCNChebGraphConv",
+          "mean_loss_diff_a_minus_b": -0.9290588716658235,
+          "ci_low": -1.0663877674505686,
+          "ci_high": -0.8252278465790984,
+          "ci_excludes_zero": true,
+          "seeds_used": [
+            43,
+            44,
+            45
+          ]
+        }
+      ]
+    }
+  }
+}

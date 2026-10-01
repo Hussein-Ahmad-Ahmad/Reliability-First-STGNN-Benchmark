@@ -1,0 +1,15 @@
+{
+  "source": "21 public target-disjoint run arrays",
+  "runs": 21,
+  "origin_groups": [
+    33,
+    33,
+    33
+  ],
+  "coverage": {
+    "all": 0.879820025653359,
+    "first_third": 0.8224146224146223,
+    "middle_third": 0.9229256854256856,
+    "final_third": 0.894119769119769
+  }
+}

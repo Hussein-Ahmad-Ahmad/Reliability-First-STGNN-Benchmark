@@ -1,0 +1,830 @@
+{
+  "checkpoint_seed": 43,
+  "checkpoint_seed_role": "same fixed checkpoint used by the archived seed-42 mask run",
+  "new_mask_seeds": [
+    7,
+    11,
+    19,
+    23,
+    31
+  ],
+  "archived_mask_seed_reused": 42,
+  "dropout_rates": [
+    0.0,
+    0.1,
+    0.3
+  ],
+  "results": {
+    "METR-LA": {
+      "D2STGNN": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 2.8790194615905356,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.340209215716452,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 16.018987029393987
+              },
+              "30%": {
+                "mae": 4.944761777505676,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 71.75159263334419
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 2.8790194615905356,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.5383786044145316,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 22.902212076736994
+              },
+              "30%": {
+                "mae": 5.148882601183609,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 78.84153510859113
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 2.8790194615905356,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.6079250771145093,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 25.317842593578177
+              },
+              "30%": {
+                "mae": 5.059248531147013,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 75.72818102285399
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 2.8790194615905356,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.639084993187117,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 26.40015261226048
+              },
+              "30%": {
+                "mae": 4.958019894011945,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 72.21210068767128
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 2.8790194615905356,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.4791945598929224,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 20.846510637021385
+              },
+              "30%": {
+                "mae": 5.016120782404514,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 74.23017973047398
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      },
+      "MegaCRN": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.149722731109455,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.6089119478731315,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 14.578718698897422
+              },
+              "30%": {
+                "mae": 5.20304129817084,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 65.19045460036816
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.149722731109455,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 4.193949449720371,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 33.15297274573432
+              },
+              "30%": {
+                "mae": 5.81495102821818,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 84.61787035362089
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.149722731109455,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.8599729263109546,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 22.549610103341443
+              },
+              "30%": {
+                "mae": 6.020570550998953,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 91.14604887390433
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.149722731109455,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.7108182559591647,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 17.814124376975563
+              },
+              "30%": {
+                "mae": 5.5820589064267,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 77.2238188235852
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.149722731109455,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.638369144546119,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 15.513950120445804
+              },
+              "30%": {
+                "mae": 5.720989574708038,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 81.63470448374619
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      },
+      "STID": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.1264295644448103,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.5828635728865565,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 14.599209706577845
+              },
+              "30%": {
+                "mae": 4.879305831848479,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 56.06639239016229
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.1264295644448103,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.7228010541195053,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 19.075161534323527
+              },
+              "30%": {
+                "mae": 4.917207634017481,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 57.278695478645005
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.1264295644448103,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.782832734674115,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 20.995296925739897
+              },
+              "30%": {
+                "mae": 4.952172629250424,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 58.39706371666903
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.1264295644448103,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.7076490740564005,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 18.590519876778444
+              },
+              "30%": {
+                "mae": 4.8520580774882,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 55.194862941037535
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 3.1264295644448103,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 3.7007761862874555,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 18.37068803258446
+              },
+              "30%": {
+                "mae": 4.906462850530467,
+                "valid_target_count": 14908092,
+                "relative_mae_change_percent": 56.935019625230346
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      }
+    },
+    "PEMS-BAY": {
+      "D2STGNN": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.5140804685408924,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.8843692927326137,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 24.45635036482346
+              },
+              "30%": {
+                "mae": 2.717171566231531,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 79.46018211634737
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.5140804685408924,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.910150990968396,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 26.159146138989147
+              },
+              "30%": {
+                "mae": 2.7821988349425046,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 83.75501783096693
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.5140804685408924,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9419376017299594,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 28.258546495972546
+              },
+              "30%": {
+                "mae": 2.7470175395358325,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 81.43140979707056
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.5140804685408924,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9413904255872017,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 28.222407324103756
+              },
+              "30%": {
+                "mae": 2.743925001081945,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 81.22715787531718
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.5140804685408924,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.926278470595679,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 27.2243127508288
+              },
+              "30%": {
+                "mae": 2.7530020518000575,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 81.82666701018238
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      },
+      "STID": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.563498656434216,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9213724958908593,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 22.889296257716417
+              },
+              "30%": {
+                "mae": 2.691391070460048,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 72.13900756385382
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.563498656434216,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9317108229736781,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 23.55052657219566
+              },
+              "30%": {
+                "mae": 2.7263554141197197,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 74.3752962562543
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.563498656434216,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9749218314562282,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 26.314264699166557
+              },
+              "30%": {
+                "mae": 2.712443741794469,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 73.4855179204687
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.563498656434216,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9756651919398047,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 26.36180938240101
+              },
+              "30%": {
+                "mae": 2.7276528592673666,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 74.4582797076508
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 1.563498656434216,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 1.9626501672720327,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 25.52937984277769
+              },
+              "30%": {
+                "mae": 2.7427496887522533,
+                "valid_target_count": 40557396,
+                "relative_mae_change_percent": 75.42385965380292
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      }
+    },
+    "PEMS04": {
+      "D2STGNN": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.402960571672523,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 31.12637691836377,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 69.1378775558334
+              },
+              "30%": {
+                "mae": 50.05709773220351,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 172.0056783105641
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.402960571672523,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 29.487248156853184,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 60.2310021912593
+              },
+              "30%": {
+                "mae": 49.61731997442113,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 169.61596630705458
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.402960571672523,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 28.921214618865136,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 57.15522785710494
+              },
+              "30%": {
+                "mae": 51.475843732474644,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 179.71501396199722
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.402960571672523,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 28.84088714650821,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 56.7187357391977
+              },
+              "30%": {
+                "mae": 53.38994474244606,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 190.11606330683892
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.402960571672523,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 28.9823253763057,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 57.487298108533025
+              },
+              "30%": {
+                "mae": 50.70981312832966,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 175.55247391219606
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      },
+      "STID": {
+        "checkpoint_seed": 43,
+        "mask_runs": [
+          {
+            "mask_seed": 7,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.427375366129823,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 30.387142403231067,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 64.90217298706426
+              },
+              "30%": {
+                "mae": 49.41926328791866,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 168.18395081240402
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 11,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.427375366129823,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 29.276534974741153,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 58.875229885165716
+              },
+              "30%": {
+                "mae": 49.27988254168398,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 167.4275720907177
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 19,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.427375366129823,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 28.262933269910615,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 53.37470859718254
+              },
+              "30%": {
+                "mae": 50.148184516023626,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 172.13959405308358
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 23,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.427375366129823,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 28.758726608242718,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 56.065234667668896
+              },
+              "30%": {
+                "mae": 52.39962545620342,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 184.35750840847257
+              }
+            },
+            "source": "newly_computed"
+          },
+          {
+            "mask_seed": 31,
+            "checkpoint_seed": 43,
+            "rates": {
+              "0%": {
+                "mae": 18.427375366129823,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 0.0
+              },
+              "10%": {
+                "mae": 29.18326053098045,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 58.369056640699526
+              },
+              "30%": {
+                "mae": 50.4699120006996,
+                "valid_target_count": 12272795,
+                "relative_mae_change_percent": 173.88551542432413
+              }
+            },
+            "source": "newly_computed"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "METR-LA": {
+    "dataset": "METR-LA",
+    "seasonal_period": "one day",
+    "seasonal_period_steps": 288,
+    "input_len": 12,
+    "output_len": 12,
+    "n_test_origins": 6832,
+    "windowing_note": "Non-overlapping-origin sliding window over the full raw test_data.npy array with a one-day lookback buffer borrowed from val_data.npy for seasonal-naive; origin count may differ slightly from a given model's own test loader boundary handling.",
+    "persistence": {
+      "mae": 5.145479191169041,
+      "rmse": 11.280256992691347,
+      "valid_target_count": 14910564,
+      "test_origins": 6832
+    },
+    "seasonal_naive": {
+      "mae": 10.33530810457536,
+      "rmse": 20.703821424271222,
+      "valid_target_count": 14910564,
+      "test_origins": 6832
+    }
+  },
+  "PEMS-BAY": {
+    "dataset": "PEMS-BAY",
+    "seasonal_period": "one day",
+    "seasonal_period_steps": 288,
+    "input_len": 12,
+    "output_len": 12,
+    "n_test_origins": 10401,
+    "windowing_note": "Non-overlapping-origin sliding window over the full raw test_data.npy array with a one-day lookback buffer borrowed from val_data.npy for seasonal-naive; origin count may differ slightly from a given model's own test loader boundary handling.",
+    "persistence": {
+      "mae": 2.173404905918128,
+      "rmse": 5.1502166431725245,
+      "valid_target_count": 40561296,
+      "test_origins": 10401
+    },
+    "seasonal_naive": {
+      "mae": 3.368265083480518,
+      "rmse": 7.727075870839516,
+      "valid_target_count": 40561296,
+      "test_origins": 10401
+    }
+  },
+  "PEMS04": {
+    "dataset": "PEMS04",
+    "seasonal_period": "one day",
+    "seasonal_period_steps": 288,
+    "input_len": 12,
+    "output_len": 12,
+    "n_test_origins": 3376,
+    "windowing_note": "Non-overlapping-origin sliding window over the full raw test_data.npy array with a one-day lookback buffer borrowed from val_data.npy for seasonal-naive; origin count may differ slightly from a given model's own test loader boundary handling.",
+    "persistence": {
+      "mae": 31.616039868332845,
+      "rmse": 48.43894733343496,
+      "valid_target_count": 12276410,
+      "test_origins": 3376
+    },
+    "seasonal_naive": {
+      "mae": 40.65589378328029,
+      "rmse": 66.6144128317658,
+      "valid_target_count": 12276410,
+      "test_origins": 3376
+    }
+  },
+  "Chickenpox": {
+    "dataset": "Hungarian Chickenpox Cases",
+    "seasonal_period": "52 weeks (one year)",
+    "seasonal_period_steps": 52,
+    "input_len": 12,
+    "output_len": 12,
+    "n_test_origins": 99,
+    "windowing_note": "Uses the identical target-disjoint test-window start indices as run_chickenpox_all_baselines.py, in the dataset-provided county-wise standardized FX signal units (not raw weekly case counts).",
+    "persistence": {
+      "mae": 1.0041128357829934,
+      "rmse": 1.4800767550413554,
+      "valid_target_count": 23760,
+      "test_origins": 99
+    },
+    "seasonal_naive": {
+      "mae": 0.9054194431793157,
+      "rmse": 1.3166255134246614,
+      "valid_target_count": 23760,
+      "test_origins": 99
+    }
+  }
+}
