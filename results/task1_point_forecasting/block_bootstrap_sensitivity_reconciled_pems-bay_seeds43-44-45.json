@@ -12,7 +12,7 @@
     144,
     288
   ],
-  "aggregation": "flat-pooled sum/count, matching Table 12 and official masked_mae (see run_block_bootstrap_reconciled.py)",
+  "aggregation": "flat-pooled sum/count, matching masked_mae (see run_block_bootstrap_reconciled.py)",
   "supersedes": "results/task1_point_forecasting/block_bootstrap_sensitivity_<dataset>_seeds43-44-45.json (buggy mean-of-per-origin-means aggregation)",
   "results_by_block_len": {
     "72": {

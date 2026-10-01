@@ -113,6 +113,7 @@ class ExpandedResultsTests(unittest.TestCase):
 
     def test_public_overview_links(self):
         import re
+        import subprocess
 
         for name in ["README.md", "RESULTS.md", "REPRODUCIBILITY_CHECK.md"]:
             text = (ROOT / name).read_text(encoding="utf-8")
@@ -122,6 +123,12 @@ class ExpandedResultsTests(unittest.TestCase):
             for target in targets:
                 if not target.startswith(("https://", "http://", "#")):
                     self.assertTrue((ROOT / target).exists(), target)
+        tracked = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True).splitlines()
+        for name in tracked:
+            path = ROOT / name
+            if path.is_file() and name.startswith(("scripts/", "results/")) and path.suffix in {".py", ".json", ".md"}:
+                self.assertNotRegex(path.read_text(encoding="utf-8").lower(),
+                                    r"manuscript|reviewer|resubmission", name)
 
 
 if __name__ == "__main__":

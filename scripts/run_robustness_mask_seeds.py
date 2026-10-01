@@ -1,29 +1,4 @@
-"""Repeat the fixed-mask sensor-dropout robustness check across mask seeds (C9).
-
-The archived results/robustness/sensor_dropout_fixed_masks_seed42.json uses
-one nested sensor mask per dataset (drawn from RandomState(42)) shared
-across all evaluated models. Reviewer concern C9 wants to know whether the
-reported relative-MAE-change numbers are sensitive to that one specific
-mask draw. This script draws five additional independent mask seeds,
-re-evaluates the same (dataset, model) pairs and dropout rates as the
-archived run, and reports the mean/std of relative_mae_change_percent
-across all six mask realizations (the original seed-42 numbers are reused
-from the archived file, not recomputed).
-
-This uses the current checkpoint layout (checkpoints/<model>/<dataset>_seed43/
-best_model.pt) via the same config/model loading path as
-run_mc_dropout_inference.py, not the older easytorch-runner pipeline in
-pipelines/run_sensor_dropout.py (which expects a different, no-longer-present
-checkpoint directory naming convention).
-
-Usage:
-    python scripts/run_robustness_mask_seeds.py
-    python scripts/run_robustness_mask_seeds.py --mask-seeds 7 11 19 23 31
-
-Output:
-    results/robustness/sensor_dropout_additional_mask_seeds.json
-    results/robustness/sensor_dropout_mask_seed_sensitivity_summary.json
-"""
+"""Evaluate sensor zero-ablation across checkpoint seeds and repeated nested masks."""
 
 from __future__ import annotations
 
@@ -107,8 +82,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Repeated-mask-seed robustness sensitivity check")
     parser.add_argument("--mask-seeds", type=int, nargs="+", default=list(DEFAULT_MASK_SEEDS))
     parser.add_argument("--checkpoint-seed", type=int, default=43, choices=(43, 44, 45),
-                         help="Which trained checkpoint to run the mask sweep against (Reviewer 1's "
-                              "checkpoint-seed robustness concern: default 43 matches the archived "
+                         help="Which trained checkpoint to run the mask sweep against ("
+                              "default 43 matches the archived "
                               "seed-42 mask run; 44/45 extend coverage to the other two checkpoints.")
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--device", default=None, help="Defaults to cuda if available, else cpu")
@@ -167,8 +142,7 @@ def main() -> None:
         "checkpoint_seed": args.checkpoint_seed,
         "checkpoint_seed_role": (
             "same fixed checkpoint used by the archived seed-42 mask run" if reuse_archived
-            else "extension to a different checkpoint seed (Reviewer 1's checkpoint-seed robustness "
-                 "concern) - not comparable to the archived seed-42 run, which used checkpoint seed 43"
+            else "different checkpoint seed; the archived seed-42 mask run used checkpoint seed 43"
         ),
         "new_mask_seeds": args.mask_seeds,
         "archived_mask_seed_reused": 42 if reuse_archived else None,

@@ -147,7 +147,7 @@ def build_payload(basicts_root: Path) -> dict:
                 "median across three per-seed spans between the first and last "
                 "timestamped records in each selected canonical training log"
             ),
-            "rounding": "manuscript table displays two decimal places",
+            "rounding": "display values rounded to two decimal places",
         },
         "source_boundary": {
             "raw_logs_in_public_repository": False,

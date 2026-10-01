@@ -225,7 +225,7 @@ def main() -> None:
         default=None,
         help=(
             "Optional external BasicTS checkpoint root used as a fallback for test_results. "
-            "Use only after verifying those arrays match the official manuscript metrics."
+            "Use only after verifying those arrays match the archived reference metrics."
         ),
     )
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)

@@ -1,31 +1,4 @@
-"""Reconciled forecast-origin bootstrap whose point estimates match Table 12 (C6 fix).
-
-The original run_block_bootstrap_pairwise.py computes a per-origin MAE by
-averaging each origin's own valid elements, then takes a simple unweighted
-mean of those per-origin means across origins. That is a *different*
-aggregation than the official BasicTS masked_mae metric used for every
-archived test_metrics.json (and therefore Table 12): masked_mae accumulates
-a single global sum of absolute error over all valid elements divided by the
-global count of valid elements (a flat pooled mean; see
-framework/basicts/runners/base_tsf_runner.py's AvgMeter usage and
-framework/basicts/metrics/mae.py's null masking with atol=5e-5, rtol=0).
-Origins do not all have the same number of valid elements (null-masked
-entries are not evenly distributed), so the two aggregations diverge, and
-the divergence is model-dependent - which is exactly why the previously
-extracted pairwise bootstrap differences did not match Table 12's pairwise
-differences (a discrepancy up to ~0.017 MAE, not floating-point noise).
-
-Fix: resample per-origin (sum_of_abs_error, valid_count) pairs jointly for
-both models in a pair, and compute each bootstrap replicate's MAE as
-sum(resampled sums) / sum(resampled counts) - the same flat-pooled
-definition Table 12 uses. The unresampled point estimate is verified to
-match Table 12's own pairwise difference before any CI is trusted.
-
-Usage:
-    python scripts/run_block_bootstrap_reconciled.py --dataset METR-LA
-    python scripts/run_block_bootstrap_reconciled.py --dataset PEMS-BAY
-    python scripts/run_block_bootstrap_reconciled.py --dataset PEMS04
-"""
+"""Forecast-origin moving-block bootstrap with flat-pooled sum/count aggregation."""
 
 from __future__ import annotations
 
@@ -110,7 +83,7 @@ def bootstrap_flat_pooled_diff(
 
     One shared set of block-start indices is drawn per replicate and applied to
     both models (they share the same origin/target timestamps), matching
-    reviewer comment 7's own description of the target quantity: origin-level
+    the seed-aggregated forecast-origin estimand: origin-level
     losses are seed-averaged (here, seed-summed, which is equivalent up to a
     constant factor for the ratio in mae_a/mae_b) before differencing, so the
     resampling unit should be one seed-aggregated temporal sequence, not
@@ -130,7 +103,7 @@ def bootstrap_flat_pooled_diff(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Reconciled (Table-12-consistent) forecast-origin bootstrap")
+    parser = argparse.ArgumentParser(description="Flat-pooled forecast-origin bootstrap")
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--seeds", nargs="+", type=int, default=[43, 44, 45])
     parser.add_argument("--n-bootstrap", type=int, default=10000)
@@ -163,7 +136,7 @@ def main() -> None:
         raise RuntimeError(f"Need at least two models with usable dumps for {args.dataset}")
 
     # Headline per-model flat-pooled MAE using each model's own full available
-    # seed set (matches Table 12's own convention when all 3 seeds are present).
+    # seed set (matches the archived metric convention when all 3 seeds are present).
     # NOT necessarily what a given pair's point estimate uses - see below.
     model_mae_full = {}
     model_seed_counts = {}
@@ -237,27 +210,8 @@ def main() -> None:
 
     output = {
         "method": "moving block bootstrap over forecast origins, flat-pooled (sum/count) aggregation matching official masked_mae",
-        "fix_note": (
-            "Point estimates below reproduce the Table-12 aggregation convention "
-            "(flat-pooled: sum of absolute error over all valid elements / count of "
-            "valid elements), with small residual differences attributable to "
-            "separately regenerated inference artifacts (observed ~0.0002-0.005 MAE "
-            "per model on METR-LA) - this is not claimed to be an exact "
-            "reproduction. Earlier block_bootstrap_pairwise.py outputs used a "
-            "per-origin-mean-then-uniform-average convention that does not match "
-            "Table 12 whenever valid-element counts differ across origins, producing "
-            "pairwise differences up to ~0.017 MAE away from Table 12's own "
-            "differences - an order of magnitude larger than the residual above, "
-            "and the actual bug this script fixes."
-        ),
-        "block_sampling_design": (
-            "One shared block-start sample is drawn per bootstrap replicate from a "
-            "single seed-aggregated per-origin sequence (sums/counts summed across "
-            "seeds 43/44/45 at each origin index, valid since origin windowing does "
-            "not depend on training seed), not independently resampled per seed and "
-            "recombined. This matches reviewer comment 7's framing of the target "
-            "quantity as one origin-indexed, seed-aggregated sequence."
-        ),
+        "aggregation_note": "Flat-pooled MAE is the sum of absolute errors over valid elements divided by their count. Regenerated inference artifacts differ from the archived metrics by approximately 0.0002-0.005 MAE per model on METR-LA; exact historical reproduction is not claimed. Earlier per-origin-mean aggregation differs from flat pooling when valid-element counts vary, with pairwise differences of up to approximately 0.017 MAE.",
+        "block_sampling_design": "One shared block-start sample is drawn per replicate from a seed-aggregated per-origin sum/count sequence and applied to both models. Seeds are not independently resampled; each pair uses its disclosed common seed intersection.",
         "dataset": args.dataset,
         "block_len": block_len,
         "n_bootstrap": args.n_bootstrap,

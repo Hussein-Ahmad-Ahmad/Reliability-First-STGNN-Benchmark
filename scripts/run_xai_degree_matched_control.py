@@ -1,39 +1,4 @@
-"""Degree-matched random control for GNNExplainer sensor-deletion fidelity.
-
-Reviewer concern C4: the existing fidelity artifacts
-(results/task3_explainability/gnnexplainer/<model>/<dataset>_fidelity_metrics.json)
-compare deleting the top-K "important" sensors against deleting K
-*uniformly* random sensors. A uniform random control can differ from the
-important set simply because high-degree (well-connected) sensors are
-easier to predict from neighbors, independent of whether GNNExplainer
-picked them for a meaningful reason. A degree-matched control samples
-random sensors whose graph degree distribution matches the important set,
-isolating the "is this explanation better than a degree-equivalent guess"
-question.
-
-The original GNNExplainerWrapper class referenced by pipelines/task3_run.py
-is no longer present in this repository (src/explainability/spatial_saliency.py
-does not define it), so this script does not attempt to reproduce its exact
-deletion-fidelity numbers. Instead it defines one explicit, self-contained
-deletion protocol and applies it identically to all three sensor sets
-(important / uniform-random / degree-matched-random), so the three numbers
-are directly comparable even though they are not bit-identical to the
-archived fidelity_metrics.json values.
-
-Protocol: after BasicTS scaler normalization, set the selected sensors'
-full 12-step input history to zero (same masking convention as the sensor
-dropout robustness pipeline). Run the retained seed-43 checkpoint over the
-full test set and report the increase in overall test MAE relative to an
-unmasked clean pass.
-
-Usage:
-    python scripts/run_xai_degree_matched_control.py ^
-        --model D2STGNN --dataset METR-LA --seed 43 --k 10 ^
-        --n-random-draws 30
-
-Output:
-    results/task3_explainability/degree_matched_control/<model>_<dataset>_seed<seed>_degree_matched_control.json
-"""
+"""Compare selected-sensor ablation with uniform and degree-matched random controls."""
 
 from __future__ import annotations
 

@@ -1,27 +1,4 @@
-"""Compare normalized split conformal against a plain (sigma = 1) control.
-
-Reviewer concern C3 asks for an unnormalized conformal control: the same
-chronological calibration/evaluation split as the normalized pipeline in
-generate_conformal_intervals.py, but with the calibration score defined as
-the raw absolute residual (no division by predictive std) and a constant
-half-width applied uniformly to every sensor/horizon. Both PICP and MPIW are
-reported for both variants so the manuscript can state whether normalization
-changes coverage, width, or both.
-
-This does not retrain or re-run inference. It re-reads the same ensemble
-prediction and target arrays already used by generate_conformal_intervals.py.
-
-Usage (repeat per dataset with its existing ensemble prediction arrays):
-
-    python scripts/run_conformal_sigma_control.py ^
-        --ensemble-predictions results/task2_uncertainty/<dataset>_ensemble_predictions.npy ^
-        --targets results/task2_uncertainty/<dataset>_targets.npy ^
-        --dataset METR-LA ^
-        --output-dir results/task2_uncertainty/conformal_sigma_control
-
-Output:
-    <output-dir>/<dataset>_conformal_sigma_control.json
-"""
+"""Compare normalized and constant-scale conformal intervals at matched nominal coverage."""
 
 from __future__ import annotations
 

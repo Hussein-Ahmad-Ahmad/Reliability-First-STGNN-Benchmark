@@ -1,36 +1,4 @@
-"""Persistence and seasonal-naive anchor baselines (C11).
-
-Reviewer concern C11 wants simple non-learned anchors reported alongside the
-seven model classes, on the same chronological test windows, so a reader can
-see how much of each model's accuracy comes from the forecasting task being
-easy (strong autocorrelation / seasonality) rather than from the model.
-
-Two anchors, per dataset:
-  - persistence: repeat the last observed value across all output-horizon steps.
-  - seasonal-naive: use the value exactly one seasonal period earlier for each
-    horizon step (one day earlier for the 5-minute traffic datasets, one year
-    (52 weeks) earlier for the weekly Chickenpox series).
-
-Traffic datasets (METR-LA / PEMS-BAY / PEMS04) are read directly from the
-raw test_data.npy (already the chronological test partition, in original
-units) with the last day of the validation partition prepended so the
-seasonal-naive lookback is defined for the first test origins too. This
-windowing (non-overlapping origin step of 1 over the whole test array) is
-the standard BasicTS convention; it may include a handful more or fewer
-origins than a given model's own test loader if that loader trims boundary
-origins, so treat small origin-count differences as expected, not an error.
-
-Chickenpox reuses the exact target-disjoint test-partition window indices
-from run_chickenpox_all_baselines.py so the comparison is on the identical
-99 test origins used by the seven model classes there.
-
-Usage:
-    python scripts/run_naive_baselines.py
-    python scripts/run_naive_baselines.py --datasets METR-LA PEMS04
-
-Output:
-    results/task1_point_forecasting/naive_baselines.json
-"""
+"""Evaluate persistence and seasonal-naive forecasting anchors on chronological test data."""
 
 from __future__ import annotations
 

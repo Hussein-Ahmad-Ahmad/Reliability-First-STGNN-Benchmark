@@ -1,10 +1,4 @@
-"""Run native MC Dropout inference from a retained traffic checkpoint.
-
-This command is deliberately separate from the manuscript-generation workflow.
-It uses the archived configuration, test partition, training-fitted scaler, and
-checkpoint for one model/dataset/seed case. It writes a new artifact directory
-and never overwrites the existing summary JSON files.
-"""
+"""Evaluate configuration-dependent MC-Dropout predictive moments and interval coverage."""
 
 from __future__ import annotations
 

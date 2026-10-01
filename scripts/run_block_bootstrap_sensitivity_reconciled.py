@@ -1,21 +1,4 @@
-"""Block-length sensitivity sweep using the RECONCILED (Table-12-consistent) bootstrap.
-
-scripts/run_block_bootstrap_sensitivity.py shares the same aggregation bug
-found and fixed in scripts/run_block_bootstrap_reconciled.py: it calls the
-original run_block_bootstrap_pairwise.py's masked_per_origin_mae (mean of
-per-origin means), not the flat-pooled aggregation that Table 12 and every
-archived test_metrics.json actually use. That produced pairwise differences
-disagreeing with Table 12 by up to ~0.017 MAE, which changes which CIs
-exclude zero. This script re-runs the same 72/144/288-origin sensitivity
-sweep using run_block_bootstrap_reconciled.py's per-origin (sum, count)
-resampling instead, and is the corrected replacement for that sweep's
-results. The original run_block_bootstrap_sensitivity.py is left in place
-for provenance; do not use its output for Table 15 sensitivity reporting.
-
-Usage:
-    python scripts/run_block_bootstrap_sensitivity_reconciled.py
-    python scripts/run_block_bootstrap_sensitivity_reconciled.py --dataset METR-LA
-"""
+"""Compare flat-pooled forecast-origin bootstrap intervals across block lengths."""
 
 from __future__ import annotations
 
@@ -130,7 +113,7 @@ def main() -> None:
             "n_bootstrap": args.n_bootstrap,
             "alpha": args.alpha,
             "block_lengths_tested": list(BLOCK_LENGTHS),
-            "aggregation": "flat-pooled sum/count, matching Table 12 and official masked_mae (see run_block_bootstrap_reconciled.py)",
+            "aggregation": "flat-pooled sum/count, matching masked_mae (see run_block_bootstrap_reconciled.py)",
             "supersedes": "results/task1_point_forecasting/block_bootstrap_sensitivity_<dataset>_seeds43-44-45.json (buggy mean-of-per-origin-means aggregation)",
             "results_by_block_len": by_block_len,
         }

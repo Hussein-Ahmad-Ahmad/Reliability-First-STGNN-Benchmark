@@ -75,9 +75,6 @@ def banner():
         draw.text((48, 37), "RELIABILITY-FIRST", font=font(17, True), fill=colors[0])
         draw.text((45, 82), "STGNN Benchmark", font=font(48, True), fill="#ffffff")
         draw.text((48, 155), "Traffic forecasting beyond point accuracy", font=font(22), fill="#d8e3e4")
-        for offset, (title, color) in enumerate(zip(["7 MODELS", "3 TRAFFIC GRAPHS", "63 RUNS"], colors)):
-            x = [48, 225, 472][offset]
-            draw.text((x, 235), title, font=font(18, True), fill=color)
         for number, (a, b) in enumerate(edges):
             draw.line([points[a], points[b]], fill="#496366", width=2)
             t = ((step + number * 3) % 36) / 36
