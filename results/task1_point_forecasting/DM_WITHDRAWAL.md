@@ -1,22 +1,12 @@
-# Flattened DM Analysis Withdrawn
+# Statistical Analysis Scope
 
-The legacy METR-LA 21-pair Diebold-Mariano matrix is not part of the corrected
-benchmark evidence.
+The legacy flattened Diebold-Mariano output is not part of the supported
+analysis workflow. Sensor-horizon losses within a forecast origin are
+dependent; the legacy direction labels and multiplicity adjustment could not
+be supported by a consistent, reproducible calculation.
 
-The June 20, 2026 v1.0.0 artifact flattened sensor-horizon losses from shared
-forecast origins and attached direction labels to legacy statistics that could
-not be regenerated as one sign-consistent, provenance-complete output. Later
-exploratory recomputations also did not provide a stable replacement: they used
-different analysis units or masking rules, and one Holm adjustment path was not
-valid for the original pair ordering.
-
-For those reasons, the flattened DM JSON, its figure generator, and its
-manuscript claims were withdrawn rather than relabeled. The dependence-aware
-pairwise sensitivity evidence retained by the corrected study is the
-forecast-origin moving-block bootstrap:
-
-- block_bootstrap_pairwise_metr-la_seeds43-44-45.csv
-- block_bootstrap_pairwise_pems04_seeds43-44-45.csv
-
-These files aggregate loss at the forecast-origin level before resampling
-one-day blocks. They should not be described as Diebold-Mariano tests.
+Current pairwise sensitivity uses forecast-origin moving-block bootstrap with
+flat-pooled sum/count aggregation. Use `block_bootstrap_reconciled_*.json` and
+`block_bootstrap_sensitivity_reconciled_*.json`. These outputs are not
+Diebold-Mariano tests. Intervals are pointwise exploratory diagnostics and are
+not multiplicity-adjusted.

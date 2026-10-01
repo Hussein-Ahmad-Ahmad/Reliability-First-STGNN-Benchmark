@@ -3,8 +3,9 @@
 This directory contains **metadata only**. The raw traffic speed `.npy` files must be
 downloaded separately from the original sources due to their size.
 
-The exact split files and metadata used in the manuscript are provided in each dataset
-folder through `meta.json` and the corresponding configuration files.
+Split specifications and metadata are provided in each dataset folder through
+`meta.json` and the corresponding configuration files. Raw split arrays must be
+downloaded or prepared separately.
 
 ---
 

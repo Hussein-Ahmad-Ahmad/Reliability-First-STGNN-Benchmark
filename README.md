@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml"><img alt="Artifact checks" src="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml/badge.svg?branch=main"/></a>
-  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.0"><img alt="v1.4.0" src="https://img.shields.io/badge/release-v1.4.0-00897b?style=flat-square"/></a>
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.1"><img alt="v1.4.1" src="https://img.shields.io/badge/release-v1.4.1-00897b?style=flat-square"/></a>
   <img alt="Seven models" src="https://img.shields.io/badge/models-7-e65176?style=flat-square"/>
   <img alt="Three traffic datasets" src="https://img.shields.io/badge/traffic_graphs-3-e8a317?style=flat-square"/>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-67717d?style=flat-square"/></a>
@@ -30,11 +30,11 @@ Mean test MAE across three seeds; lower is better.
 | STGCN-Cheb | 3.137 | 1.702 | 19.963 |
 
 <table>
-<tr><td width="50%"><img src="figures/results/figure_4_1.png" width="100%" alt="Three-seed cross-dataset MAE"/><p align="center"><strong>Point Forecasting</strong></p></td><td width="50%"><img src="figures/results/figure_5_1.png" width="100%" alt="Empirical coverage by forecast horizon"/><p align="center"><strong>Horizon-Wise Calibration</strong></p></td></tr>
-<tr><td width="50%"><img src="figures/results/figure_7_1.png" width="100%" alt="Checkpoint and mask variability across 14 cells"/><p align="center"><strong>Sensor Zero-Ablation</strong></p></td><td width="50%"><img src="figures/results/figure_8_1.png" width="100%" alt="Degree-matched sensor-ranking control"/><p align="center"><strong>Explanation Diagnostics</strong></p></td></tr>
+<tr><td width="50%"><img src="figures/results/cross_dataset_mae.png" width="100%" alt="Three-seed cross-dataset MAE"/><p align="center"><strong>Point Forecasting</strong></p></td><td width="50%"><img src="figures/results/horizon_coverage.png" width="100%" alt="Empirical coverage by forecast horizon"/><p align="center"><strong>Horizon-Wise Calibration</strong></p></td></tr>
+<tr><td width="50%"><img src="figures/results/checkpoint_mask_variability.png" width="100%" alt="Checkpoint and mask variability across 14 cells"/><p align="center"><strong>Sensor Zero-Ablation</strong></p></td><td width="50%"><img src="figures/results/degree_matched_fidelity.png" width="100%" alt="Degree-matched sensor-ranking control"/><p align="center"><strong>Explanation Diagnostics</strong></p></td></tr>
 </table>
 
-**v1.4.0** adds sample-SD summaries, naive anchors, flat-pooled bootstrap and block-length sensitivity, the METR-LA plain conformal control, seven stochastic-inference summaries, repeated masks, degree-matched controls, and all 23 numbered figures from the supplied 35-page PDF. [Results and scope](RESULTS.md) identify supporting artifacts and availability limits. The earlier **v1.3.2** snapshot remains available separately.
+Browse [benchmark results](RESULTS.md) for compact metrics, analysis outputs, and protocol details.
 
 ## Quick Start
 
@@ -47,7 +47,7 @@ Checks cover public-file integrity and compact-result consistency. Traffic train
 
 | Browse | Location |
 |---|---|
-| Results and numbered figures | [RESULTS.md](RESULTS.md) |
+| Results and plots | [RESULTS.md](RESULTS.md) |
 | Model configurations | [configs/](configs/) |
 | Analysis utilities | [scripts/](scripts/) |
 | SHA-256 inventory | [ARTIFACT_MANIFEST.sha256](ARTIFACT_MANIFEST.sha256) |

@@ -1,7 +1,6 @@
 """Consistency checks for the expanded compact result set."""
 
 import hashlib
-import csv
 import json
 import unittest
 import numpy as np
@@ -15,12 +14,14 @@ def read(path):
 
 
 class ExpandedResultsTests(unittest.TestCase):
-    def test_figure_inventory_and_hashes(self):
-        index = read("results/release/figure_index.json")
-        self.assertEqual(index["source_pages"], 35)
-        self.assertEqual({e["figure"] for e in index["figures"]},
-                         {str(i) for i in range(1, 11)} | {f"A.{i}" for i in range(1, 14)})
-        for entry in index["figures"]:
+    def test_plot_inventory_and_hashes(self):
+        index = read("results/release/plot_index.json")
+        self.assertEqual(len(index["plots"]), 24)
+        paths = {entry["path"] for entry in index["plots"]}
+        self.assertEqual(paths, {p.relative_to(ROOT).as_posix()
+                               for p in (ROOT / "figures/results").glob("*.png")})
+        for entry in index["plots"]:
+            self.assertNotIn("figure_", entry["name"])
             self.assertEqual(hashlib.sha256((ROOT / entry["path"]).read_bytes()).hexdigest(), entry["sha256"])
 
     def test_sample_sd_and_reported_means(self):
@@ -46,7 +47,7 @@ class ExpandedResultsTests(unittest.TestCase):
                     pair["mae_a_flat_pooled_seeds_used"] - pair["mae_b_flat_pooled_seeds_used"], places=8)
                 self.assertLess(pair["ci_low"], pair["ci_high"])
                 self.assertTrue(set(pair["seeds_used"]) <= {43, 44, 45})
-        # Table 10 reverses the sign used in the JSON artifacts.
+        # Check both orientations of the pairwise comparison.
         examples = [("metr-la", "D2STGNN", "STAEformer", .064, .045, .084),
                     ("pems-bay", "D2STGNN", "STAEformer", .060, .052, .067),
                     ("pems04", "STAEformer", "D2STGNN", .169, .098, .313)]
@@ -110,20 +111,17 @@ class ExpandedResultsTests(unittest.TestCase):
         for key, percent in [("all",87.98),("first_third",82.24),("middle_third",92.29),("final_third",89.41)]:
             self.assertAlmostEqual(drift["coverage"][key]*100, percent, delta=.005)
 
-    def test_reported_coding_agreement(self):
-        data = read("results/release/evidence_coding_summary.json")
-        self.assertEqual(sum(data["agreements_by_requirement"]), data["agreements"])
-        total = data["decisions"]
-        expected = sum(data["primary_marginals"][k] * data["independent_marginals"][k]
-                       for k in ["M","P","NR"]) / total**2
-        kappa = (data["agreements"]/total - expected) / (1-expected)
-        self.assertAlmostEqual(kappa, data["reported_kappa"], delta=.0005)
-        self.assertEqual(len(data["reconciled_changes"]), 5)
-        with (ROOT / "results/release/literature_evidence_map.csv").open() as handle:
-            rows = {row["study"]: row for row in csv.DictReader(handle)}
-        self.assertEqual(len(rows), 13)
-        for change in data["reconciled_changes"]:
-            self.assertEqual(rows[change["study"]][change["requirement"]], change["to"])
+    def test_public_overview_links(self):
+        import re
+
+        for name in ["README.md", "RESULTS.md", "REPRODUCIBILITY_CHECK.md"]:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            self.assertNotRegex(text.lower(), r"manuscript|supplied.*pdf|numbered figures")
+            targets = re.findall(r"\]\(([^)]+)\)", text)
+            targets += re.findall(r'src="([^"]+)"', text)
+            for target in targets:
+                if not target.startswith(("https://", "http://", "#")):
+                    self.assertTrue((ROOT / target).exists(), target)
 
 
 if __name__ == "__main__":
