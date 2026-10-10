@@ -20,6 +20,8 @@ class LiteratureCodingTests(unittest.TestCase):
     def test_coder_identity_and_status_totals(self):
         metadata = json.loads((DEFAULT_DIRECTORY / 'metadata.json').read_text(encoding='utf-8'))
         self.assertEqual(metadata['second_coder'], 'Taha Benarbia')
+        self.assertIn('shared RER specifications', metadata['instruction_basis'])
+        self.assertIsNone(metadata['instruction_version_identifier'])
         result, _ = calculate(DEFAULT_DIRECTORY)
         self.assertEqual(result['primary_category_totals'], {'M': 25, 'P': 35, 'NR': 30})
         self.assertEqual(result['computed_category_totals'], {'M': 43, 'P': 14, 'NR': 33})

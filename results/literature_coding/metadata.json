@@ -7,5 +7,6 @@
   "dimensions": 9,
   "status_labels": {"M": "Met", "P": "Partial", "NR": "Not Reported", "N/A": "Not Applicable"},
   "original_human_records": "Retained by the authors",
-  "rule_version": "Original shared instruction record requires author confirmation"
+  "instruction_basis": "Author-confirmed shared RER specifications, received before independent coding; primary assignments were not shown to the second coder",
+  "instruction_version_identifier": null
 }

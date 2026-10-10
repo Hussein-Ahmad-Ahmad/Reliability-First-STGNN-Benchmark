@@ -16,7 +16,7 @@ authors:
     given-names: Fadi
   - family-names: Kyamakya
     given-names: Kyandoghere
-version: 1.4.3
+version: 1.4.4
 date-released: 2026-10-10
 repository-code: >-
   https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark
