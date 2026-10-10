@@ -21,6 +21,8 @@ for path in (ROOT, FRAMEWORK):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
+from scripts.mc_dropout_metrics import summarize_moments
+
 Z_90 = 1.6448536269514722
 
 
@@ -90,7 +92,10 @@ def load_model(cfg, checkpoint_path: Path, device: torch.device) -> nn.Module:
     return model
 
 
-def run_case(model_name: str, dataset: str, seed: int, n_passes: int, batch_size: int, device: torch.device) -> Path:
+def run_case(model_name: str, dataset: str, seed: int, n_passes: int, batch_size: int, device: torch.device,
+             sampling_seed: int = 20261005) -> Path:
+    torch.manual_seed(sampling_seed)
+    np.random.seed(sampling_seed)
     cfg = load_config(model_name, dataset, seed)
     checkpoint_path = ROOT / "checkpoints" / model_name / f"{dataset}_seed{seed}" / "best_model.pt"
     if not checkpoint_path.is_file():
@@ -122,7 +127,7 @@ def run_case(model_name: str, dataset: str, seed: int, n_passes: int, batch_size
             future = scaler.transform(future.clone())
             history = history[..., cfg.MODEL.FORWARD_FEATURES]
             decoder_future = future[..., cfg.MODEL.FORWARD_FEATURES].clone()
-            decoder_future[..., 0] = torch.empty_like(decoder_future[..., 0])
+            decoder_future[..., 0] = 0.0
 
             batch_passes = []
             for pass_index in range(n_passes):
@@ -149,13 +154,8 @@ def run_case(model_name: str, dataset: str, seed: int, n_passes: int, batch_size
     mean_prediction = np.concatenate(predictions, axis=0)
     std_prediction = np.concatenate(predictive_std, axis=0)
     target = np.concatenate(targets, axis=0)
-    lower = mean_prediction - Z_90 * std_prediction
-    upper = mean_prediction + Z_90 * std_prediction
-
-    coverage = float(np.mean((target >= lower) & (target <= upper)))
-    width = float(np.mean(upper - lower))
-    variance = float(np.mean(np.square(std_prediction)))
-    status = "functional" if variance > 1e-12 else "degenerate"
+    pass_hashes = [digest.hexdigest() for digest in pass_digests]
+    diagnostics = summarize_moments(mean_prediction, std_prediction, target, Z_90, pass_hashes)
 
     output_dir = ROOT / "results" / "task2_uncertainty" / "mc_dropout_generated" / model_name / dataset / f"seed{seed}"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -169,16 +169,14 @@ def run_case(model_name: str, dataset: str, seed: int, n_passes: int, batch_size
         "model": model_name,
         "dataset": dataset,
         "seed": seed,
+        "sampling_seed": sampling_seed,
         "n_passes": n_passes,
         "device": str(device),
         "dropout_module_count": dropout_modules,
         "test_origins": int(mean_prediction.shape[0]),
         "interval_z_value": Z_90,
-        "variance_mean": variance,
-        "picp_uncalibrated": coverage,
-        "mpiw_uncalibrated": width,
-        "status": status,
-        "pass_prediction_sha256": [digest.hexdigest() for digest in pass_digests],
+        **diagnostics,
+        "pass_prediction_sha256": pass_hashes,
         "artifact": f"{model_name}_{dataset}_seed{seed}_{n_passes}pass_moments.npz",
     }
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
@@ -191,6 +189,7 @@ def main() -> None:
     parser.add_argument("--dataset", required=True, choices=("METR-LA", "PEMS-BAY", "PEMS04"))
     parser.add_argument("--seed", type=int, default=43, choices=(43, 44, 45))
     parser.add_argument("--passes", type=int, default=50)
+    parser.add_argument("--sampling-seed", type=int, default=20261005)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     args = parser.parse_args()
@@ -207,6 +206,7 @@ def main() -> None:
         args.passes,
         args.batch_size,
         torch.device(args.device),
+        args.sampling_seed,
     )
     print(f"Wrote generated MC Dropout artifacts to {output_dir}")
 

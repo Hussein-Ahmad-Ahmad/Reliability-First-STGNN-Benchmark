@@ -13,7 +13,7 @@
     288
   ],
   "aggregation": "flat-pooled sum/count, matching masked_mae (see run_block_bootstrap_reconciled.py)",
-  "supersedes": "results/task1_point_forecasting/block_bootstrap_sensitivity_<dataset>_seeds43-44-45.json (buggy mean-of-per-origin-means aggregation)",
+  "input_validation": "Complete chronological exports; per-case MAE correspondence and SHA-256 identity required",
   "results_by_block_len": {
     "72": {
       "block_len": 72,
@@ -23,277 +23,326 @@
         {
           "model_a": "D2STGNN",
           "model_b": "STAEformer",
-          "mean_loss_diff_a_minus_b": -0.06413059270395438,
-          "ci_low": -0.08273617251571992,
-          "ci_high": -0.047394612678542426,
+          "mean_loss_diff_a_minus_b": -0.06432870210164587,
+          "ci_low": -0.08312776326080293,
+          "ci_high": -0.04779579261007998,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "D2STGNN",
           "model_b": "MegaCRN",
-          "mean_loss_diff_a_minus_b": -0.13360468755296173,
-          "ci_low": -0.1647889782161676,
-          "ci_high": -0.10435760205276198,
+          "mean_loss_diff_a_minus_b": -0.13335867318079586,
+          "ci_low": -0.1646115451405794,
+          "ci_high": -0.10428431163061831,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "D2STGNN",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.14328664351540565,
-          "ci_low": -0.18026493953914022,
-          "ci_high": -0.11305992122733201,
+          "mean_loss_diff_a_minus_b": -0.14336637791699047,
+          "ci_low": -0.18111722571012465,
+          "ci_high": -0.1139529272661064,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.23992961494500653,
-          "ci_low": -0.2894565570489348,
-          "ci_high": -0.1940808413254118,
+          "mean_loss_diff_a_minus_b": -0.2411046419771372,
+          "ci_low": -0.2920137166729789,
+          "ci_high": -0.19601678983215412,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.25316697744798944,
-          "ci_low": -0.29508968505960315,
-          "ci_high": -0.21286029186741123,
+          "mean_loss_diff_a_minus_b": -0.2537330692565112,
+          "ci_low": -0.2967988180438909,
+          "ci_high": -0.21489548064738542,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.25929967459608516,
-          "ci_low": -0.2953974964144683,
-          "ci_high": -0.22522931107641375,
+          "mean_loss_diff_a_minus_b": -0.2592203305110363,
+          "ci_low": -0.29595364348325415,
+          "ci_high": -0.22566108247829972,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STAEformer",
           "model_b": "MegaCRN",
-          "mean_loss_diff_a_minus_b": -0.06947409484900735,
-          "ci_low": -0.10196624029241311,
-          "ci_high": -0.03862671426272992,
+          "mean_loss_diff_a_minus_b": -0.06902997107914999,
+          "ci_low": -0.10149252628870441,
+          "ci_high": -0.038053549502912454,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STAEformer",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.07915605081145127,
-          "ci_low": -0.1109956582981815,
-          "ci_high": -0.05430093017639106,
+          "mean_loss_diff_a_minus_b": -0.0790376758153446,
+          "ci_low": -0.1114753709229335,
+          "ci_high": -0.05485842484675463,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STAEformer",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.17579902224105215,
-          "ci_low": -0.21149138180343352,
-          "ci_high": -0.14222306498846377,
+          "mean_loss_diff_a_minus_b": -0.17677593987549134,
+          "ci_low": -0.21419815045398127,
+          "ci_high": -0.1442857433700319,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STAEformer",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.18903638474403506,
-          "ci_low": -0.2193177638266102,
-          "ci_high": -0.15925276725416807,
+          "mean_loss_diff_a_minus_b": -0.1894043671548653,
+          "ci_low": -0.22044173157129002,
+          "ci_high": -0.1606295308549945,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STAEformer",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.19516908189213078,
-          "ci_low": -0.22374869811464157,
-          "ci_high": -0.16739392093017436,
+          "mean_loss_diff_a_minus_b": -0.19489162840939045,
+          "ci_low": -0.22382750219063008,
+          "ci_high": -0.1674546511102475,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MegaCRN",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.009681955962443922,
-          "ci_low": -0.043713243364498076,
-          "ci_high": 0.022146225424058374,
+          "mean_loss_diff_a_minus_b": -0.010007704736194611,
+          "ci_low": -0.044796845948150976,
+          "ci_high": 0.021169542810080103,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.1063249273920448,
-          "ci_low": -0.15847938731217076,
-          "ci_high": -0.056872117199655105,
+          "mean_loss_diff_a_minus_b": -0.10774596879634135,
+          "ci_low": -0.16139848597405748,
+          "ci_high": -0.059612177138852855,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.1195622898950277,
-          "ci_low": -0.15774192923426775,
-          "ci_high": -0.08123797993263832,
+          "mean_loss_diff_a_minus_b": -0.12037439607571532,
+          "ci_low": -0.15966092738193594,
+          "ci_high": -0.08323000002209376,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.12569498704312343,
-          "ci_low": -0.15786743872357645,
-          "ci_high": -0.09423712130177783,
+          "mean_loss_diff_a_minus_b": -0.12586165733024046,
+          "ci_low": -0.15815486741587947,
+          "ci_high": -0.09463102419502467,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MTGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.09664297142960088,
-          "ci_low": -0.1372030496620278,
-          "ci_high": -0.05567887611767379,
+          "mean_loss_diff_a_minus_b": -0.09773826406014674,
+          "ci_low": -0.139039118492674,
+          "ci_high": -0.05718005710407962,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MTGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.10988033393258378,
-          "ci_low": -0.13548456703630574,
-          "ci_high": -0.0831964225656292,
+          "mean_loss_diff_a_minus_b": -0.1103666913395207,
+          "ci_low": -0.13621798203106006,
+          "ci_high": -0.0838383512868579,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "MTGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.11601303108067951,
-          "ci_low": -0.14752274817934552,
-          "ci_high": -0.0776184520778976,
+          "mean_loss_diff_a_minus_b": -0.11585395259404585,
+          "ci_low": -0.14682789313421551,
+          "ci_high": -0.07713713604804816,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STID",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.013237362502982908,
-          "ci_low": -0.03732366184420338,
-          "ci_high": 0.013002106471100252,
+          "mean_loss_diff_a_minus_b": -0.012628427279373966,
+          "ci_low": -0.036692622130241645,
+          "ci_high": 0.013801708456637016,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STID",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.01937005965107863,
-          "ci_low": -0.05101687276078111,
-          "ci_high": 0.014092376718406475,
+          "mean_loss_diff_a_minus_b": -0.01811568853389911,
+          "ci_low": -0.04821189289071315,
+          "ci_high": 0.015923356390242692,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         },
         {
           "model_a": "STNorm",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.006132697148095723,
-          "ci_low": -0.029470447436207102,
-          "ci_high": 0.0195583563936056,
+          "mean_loss_diff_a_minus_b": -0.005487261254525144,
+          "ci_low": -0.027843968712797484,
+          "ci_high": 0.020417293953534397,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 95
         }
-      ]
+      ],
+      "origin_counts": [
+        6831
+      ],
+      "block_counts": [
+        95
+      ],
+      "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations"
     },
     "144": {
       "block_len": 144,
@@ -303,277 +352,326 @@
         {
           "model_a": "D2STGNN",
           "model_b": "STAEformer",
-          "mean_loss_diff_a_minus_b": -0.06413059270395438,
-          "ci_low": -0.08432694661977494,
-          "ci_high": -0.04571181432570501,
+          "mean_loss_diff_a_minus_b": -0.06432870210164587,
+          "ci_low": -0.08480247697372685,
+          "ci_high": -0.04613786578660232,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "D2STGNN",
           "model_b": "MegaCRN",
-          "mean_loss_diff_a_minus_b": -0.13360468755296173,
-          "ci_low": -0.1694898791433717,
-          "ci_high": -0.10053659267780672,
+          "mean_loss_diff_a_minus_b": -0.13335867318079586,
+          "ci_low": -0.16925862448107468,
+          "ci_high": -0.10019044618514568,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "D2STGNN",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.14328664351540565,
-          "ci_low": -0.17924197707742204,
-          "ci_high": -0.11200038834949205,
+          "mean_loss_diff_a_minus_b": -0.14336637791699047,
+          "ci_low": -0.18035490790219905,
+          "ci_high": -0.11335926559111163,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.23992961494500653,
-          "ci_low": -0.290885655453701,
-          "ci_high": -0.19315216111308559,
+          "mean_loss_diff_a_minus_b": -0.2411046419771372,
+          "ci_low": -0.2932698970456566,
+          "ci_high": -0.19586468212206323,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.25316697744798944,
-          "ci_low": -0.29156289717569517,
-          "ci_high": -0.21267696100782194,
+          "mean_loss_diff_a_minus_b": -0.2537330692565112,
+          "ci_low": -0.29356674762061524,
+          "ci_high": -0.21507201987204805,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.25929967459608516,
-          "ci_low": -0.2946180432184064,
-          "ci_high": -0.22250089391553296,
+          "mean_loss_diff_a_minus_b": -0.2592203305110363,
+          "ci_low": -0.2950205780815548,
+          "ci_high": -0.22286768633380177,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STAEformer",
           "model_b": "MegaCRN",
-          "mean_loss_diff_a_minus_b": -0.06947409484900735,
-          "ci_low": -0.10678191993862685,
-          "ci_high": -0.03303352697401989,
+          "mean_loss_diff_a_minus_b": -0.06902997107914999,
+          "ci_low": -0.10622510419250306,
+          "ci_high": -0.032299968381065344,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STAEformer",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.07915605081145127,
-          "ci_low": -0.10860226266260783,
-          "ci_high": -0.054154776355230014,
+          "mean_loss_diff_a_minus_b": -0.0790376758153446,
+          "ci_low": -0.10934603095385004,
+          "ci_high": -0.054978284698528626,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STAEformer",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.17579902224105215,
-          "ci_low": -0.21339516980359885,
-          "ci_high": -0.14139167011249168,
+          "mean_loss_diff_a_minus_b": -0.17677593987549134,
+          "ci_low": -0.2161281957560323,
+          "ci_high": -0.14391513811084425,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STAEformer",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.18903638474403506,
-          "ci_low": -0.21566291904819263,
-          "ci_high": -0.16074423250276143,
+          "mean_loss_diff_a_minus_b": -0.1894043671548653,
+          "ci_low": -0.21716538387039525,
+          "ci_high": -0.16264095305228932,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STAEformer",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.19516908189213078,
-          "ci_low": -0.22528246186300316,
-          "ci_high": -0.16557490759052546,
+          "mean_loss_diff_a_minus_b": -0.19489162840939045,
+          "ci_low": -0.22537714243664844,
+          "ci_high": -0.1655862548293331,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MegaCRN",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.009681955962443922,
-          "ci_low": -0.04797656946921688,
-          "ci_high": 0.02712818134512364,
+          "mean_loss_diff_a_minus_b": -0.010007704736194611,
+          "ci_low": -0.049175994014751576,
+          "ci_high": 0.02608241071833313,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.1063249273920448,
-          "ci_low": -0.1666680082951065,
-          "ci_high": -0.05263487363577972,
+          "mean_loss_diff_a_minus_b": -0.10774596879634135,
+          "ci_low": -0.16886019645469183,
+          "ci_high": -0.055578767928947524,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.1195622898950277,
-          "ci_low": -0.16137815980362336,
-          "ci_high": -0.0786650813785251,
+          "mean_loss_diff_a_minus_b": -0.12037439607571532,
+          "ci_low": -0.16375209877218594,
+          "ci_high": -0.08059789525526762,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.12569498704312343,
-          "ci_low": -0.15858854045006074,
-          "ci_high": -0.09333347386633385,
+          "mean_loss_diff_a_minus_b": -0.12586165733024046,
+          "ci_low": -0.15948847158471036,
+          "ci_high": -0.09388909822492258,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MTGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.09664297142960088,
-          "ci_low": -0.13968022243372144,
-          "ci_high": -0.05448924773498261,
+          "mean_loss_diff_a_minus_b": -0.09773826406014674,
+          "ci_low": -0.1415560917434614,
+          "ci_high": -0.05576639852789801,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MTGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.10988033393258378,
-          "ci_low": -0.13599724301040528,
-          "ci_high": -0.08181932129286316,
+          "mean_loss_diff_a_minus_b": -0.1103666913395207,
+          "ci_low": -0.13699475619033372,
+          "ci_high": -0.08280392601469384,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "MTGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.11601303108067951,
-          "ci_low": -0.1481018470719968,
-          "ci_high": -0.07650761619552747,
+          "mean_loss_diff_a_minus_b": -0.11585395259404585,
+          "ci_low": -0.14739182390453492,
+          "ci_high": -0.07570700753921059,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STID",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.013237362502982908,
-          "ci_low": -0.03625261340992052,
-          "ci_high": 0.014009790452144686,
+          "mean_loss_diff_a_minus_b": -0.012628427279373966,
+          "ci_low": -0.03558255389070899,
+          "ci_high": 0.014779825195160773,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STID",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.01937005965107863,
-          "ci_low": -0.05472900018788729,
-          "ci_high": 0.01797205089024644,
+          "mean_loss_diff_a_minus_b": -0.01811568853389911,
+          "ci_low": -0.052572529570179515,
+          "ci_high": 0.02023657834647573,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         },
         {
           "model_a": "STNorm",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.006132697148095723,
-          "ci_low": -0.03175620175580553,
-          "ci_high": 0.020886592594471873,
+          "mean_loss_diff_a_minus_b": -0.005487261254525144,
+          "ci_low": -0.02999238013643648,
+          "ci_high": 0.02204340774000209,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 48
         }
-      ]
+      ],
+      "origin_counts": [
+        6831
+      ],
+      "block_counts": [
+        48
+      ],
+      "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations"
     },
     "288": {
       "block_len": 288,
@@ -583,277 +681,326 @@
         {
           "model_a": "D2STGNN",
           "model_b": "STAEformer",
-          "mean_loss_diff_a_minus_b": -0.06413059270395438,
-          "ci_low": -0.08372664773198318,
-          "ci_high": -0.044995574653172096,
+          "mean_loss_diff_a_minus_b": -0.06432870210164587,
+          "ci_low": -0.08406455522496228,
+          "ci_high": -0.045543780688814005,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "D2STGNN",
           "model_b": "MegaCRN",
-          "mean_loss_diff_a_minus_b": -0.13360468755296173,
-          "ci_low": -0.17201763163462427,
-          "ci_high": -0.09466684482032404,
+          "mean_loss_diff_a_minus_b": -0.13335867318079586,
+          "ci_low": -0.17188720447949607,
+          "ci_high": -0.09440130997440732,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "D2STGNN",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.14328664351540565,
-          "ci_low": -0.18370001367218597,
-          "ci_high": -0.11104425389420572,
+          "mean_loss_diff_a_minus_b": -0.14336637791699047,
+          "ci_low": -0.18466293070114878,
+          "ci_high": -0.11258855668318282,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.23992961494500653,
-          "ci_low": -0.2820757763657949,
-          "ci_high": -0.19353572033909058,
+          "mean_loss_diff_a_minus_b": -0.2411046419771372,
+          "ci_low": -0.28395131936617013,
+          "ci_high": -0.19750786542217544,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.25316697744798944,
-          "ci_low": -0.2850687290444509,
-          "ci_high": -0.21361713023044962,
+          "mean_loss_diff_a_minus_b": -0.2537330692565112,
+          "ci_low": -0.2865439492712501,
+          "ci_high": -0.21676396454838645,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.25929967459608516,
-          "ci_low": -0.2886084294260752,
-          "ci_high": -0.22056087978686836,
+          "mean_loss_diff_a_minus_b": -0.2592203305110363,
+          "ci_low": -0.28915905034484685,
+          "ci_high": -0.22110784470620876,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STAEformer",
           "model_b": "MegaCRN",
-          "mean_loss_diff_a_minus_b": -0.06947409484900735,
-          "ci_low": -0.11094957281957743,
-          "ci_high": -0.028267209772059987,
+          "mean_loss_diff_a_minus_b": -0.06902997107914999,
+          "ci_low": -0.1103580473866076,
+          "ci_high": -0.02759385204341875,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STAEformer",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.07915605081145127,
-          "ci_low": -0.10662552341685037,
-          "ci_high": -0.05582489076042636,
+          "mean_loss_diff_a_minus_b": -0.0790376758153446,
+          "ci_low": -0.10727731424701566,
+          "ci_high": -0.056658574942236466,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STAEformer",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.17579902224105215,
-          "ci_low": -0.2063944971608142,
-          "ci_high": -0.14287061995144146,
+          "mean_loss_diff_a_minus_b": -0.17677593987549134,
+          "ci_low": -0.20866309782802842,
+          "ci_high": -0.14596456762740354,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STAEformer",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.18903638474403506,
-          "ci_low": -0.20823076357798645,
-          "ci_high": -0.1618101942999593,
+          "mean_loss_diff_a_minus_b": -0.1894043671548653,
+          "ci_low": -0.20970701353590737,
+          "ci_high": -0.16421803355872838,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STAEformer",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.19516908189213078,
-          "ci_low": -0.22472284414320917,
-          "ci_high": -0.15890168011204353,
+          "mean_loss_diff_a_minus_b": -0.19489162840939045,
+          "ci_low": -0.22484729115308982,
+          "ci_high": -0.1590961630273296,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MegaCRN",
           "model_b": "MTGNN",
-          "mean_loss_diff_a_minus_b": -0.009681955962443922,
-          "ci_low": -0.05684505704017364,
-          "ci_high": 0.031305680974794727,
+          "mean_loss_diff_a_minus_b": -0.010007704736194611,
+          "ci_low": -0.058182967625565685,
+          "ci_high": 0.029825245463914397,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.1063249273920448,
-          "ci_low": -0.16454574400382033,
-          "ci_high": -0.04582111220012799,
+          "mean_loss_diff_a_minus_b": -0.10774596879634135,
+          "ci_low": -0.16726304243201823,
+          "ci_high": -0.048540916877415304,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.1195622898950277,
-          "ci_low": -0.1633619567435439,
-          "ci_high": -0.07087375711801394,
+          "mean_loss_diff_a_minus_b": -0.12037439607571532,
+          "ci_low": -0.16576676308061972,
+          "ci_high": -0.07296652430964325,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MegaCRN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.12569498704312343,
-          "ci_low": -0.1555514598493793,
-          "ci_high": -0.09455742297363587,
+          "mean_loss_diff_a_minus_b": -0.12586165733024046,
+          "ci_low": -0.15640214093852525,
+          "ci_high": -0.09518672574476392,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MTGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.09664297142960088,
-          "ci_low": -0.1310352521304918,
-          "ci_high": -0.057564649025290515,
+          "mean_loss_diff_a_minus_b": -0.09773826406014674,
+          "ci_low": -0.13241110930338898,
+          "ci_high": -0.05922768750647501,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MTGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.10988033393258378,
-          "ci_low": -0.13041849257221216,
-          "ci_high": -0.08174767240379564,
+          "mean_loss_diff_a_minus_b": -0.1103666913395207,
+          "ci_low": -0.13154307808200033,
+          "ci_high": -0.08290348039459795,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "MTGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.11601303108067951,
-          "ci_low": -0.14790120735099588,
-          "ci_high": -0.07124681206290964,
+          "mean_loss_diff_a_minus_b": -0.11585395259404585,
+          "ci_low": -0.1472053575953789,
+          "ci_high": -0.07068756467910664,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STID",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.013237362502982908,
-          "ci_low": -0.035667356099897504,
-          "ci_high": 0.011977213824588407,
+          "mean_loss_diff_a_minus_b": -0.012628427279373966,
+          "ci_low": -0.0348562371497669,
+          "ci_high": 0.012667138463983516,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STID",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.01937005965107863,
-          "ci_low": -0.060749775594210575,
-          "ci_high": 0.022029019128609766,
+          "mean_loss_diff_a_minus_b": -0.01811568853389911,
+          "ci_low": -0.057474484393817804,
+          "ci_high": 0.024020445016734015,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         },
         {
           "model_a": "STNorm",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.006132697148095723,
-          "ci_low": -0.035755093220472677,
-          "ci_high": 0.02430888598076183,
+          "mean_loss_diff_a_minus_b": -0.005487261254525144,
+          "ci_low": -0.033400854586464024,
+          "ci_high": 0.026207461436341378,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 6831,
+          "blocks_drawn_per_replicate": 24
         }
-      ]
+      ],
+      "origin_counts": [
+        6831
+      ],
+      "block_counts": [
+        24
+      ],
+      "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations"
     }
   }
 }

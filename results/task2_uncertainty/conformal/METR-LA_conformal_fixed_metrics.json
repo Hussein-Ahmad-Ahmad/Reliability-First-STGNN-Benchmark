@@ -4,7 +4,6 @@
   "alpha": 0.1,
   "target_coverage": 0.9,
   "member_count": 6,
-  "ensemble_manifest_path": "results/task2_uncertainty/conformal/METR-LA_ensemble_manifest.json",
   "ensemble_std_ddof": 0,
   "epsilon": 1e-06,
   "chronological_split": {
@@ -16,79 +15,79 @@
   "dependence_caveat": "Coverage is an empirical marginal diagnostic. Pooled elements share origins, sensors, and horizons, so no independent-element or finite-sample exchangeability guarantee is claimed.",
   "variant": "fixed",
   "calibration": {
-    "threshold": 11.17812442779541,
+    "threshold": 11.178125381469727,
     "valid_score_count": 7789656,
     "quantile_level": 0.9000001155378363,
     "quantile_method": "higher",
     "score_min": 0.0,
-    "score_max": 1502.884765625,
-    "score_mean": 5.3933892250061035,
-    "score_median": 2.98905611038208
+    "score_max": 1503.023681640625,
+    "score_mean": 5.393386363983154,
+    "score_median": 2.9890530109405518
   },
   "evaluation_set": {
-    "PICP": 0.9056418267336739,
-    "MPIW": 23.30881118774414,
-    "valid_target_count": 7005816,
+    "PICP": 0.9056704309766921,
+    "MPIW": 23.37816619873047,
+    "valid_target_count": 7118436,
     "per_horizon": {
       "horizon_1": {
-        "PICP": 0.923680209230727,
-        "MPIW": 15.576180458068848,
-        "valid_target_count": 582706
+        "PICP": 0.9237936642780057,
+        "MPIW": 15.634867668151855,
+        "valid_target_count": 592103
       },
       "horizon_2": {
-        "PICP": 0.8939518446402073,
-        "MPIW": 16.81509017944336,
-        "valid_target_count": 582905
+        "PICP": 0.8940491606491947,
+        "MPIW": 16.87856101989746,
+        "valid_target_count": 592303
       },
       "horizon_3": {
-        "PICP": 0.8899167215453847,
-        "MPIW": 18.738183975219727,
-        "valid_target_count": 583104
+        "PICP": 0.8899769283868605,
+        "MPIW": 18.801496505737305,
+        "valid_target_count": 592503
       },
       "horizon_4": {
-        "PICP": 0.8921598880865683,
-        "MPIW": 20.593048095703125,
-        "valid_target_count": 583308
+        "PICP": 0.892271508664542,
+        "MPIW": 20.65169334411621,
+        "valid_target_count": 592703
       },
       "horizon_5": {
-        "PICP": 0.8944614678018619,
-        "MPIW": 22.17087173461914,
-        "valid_target_count": 583512
+        "PICP": 0.8944110588072586,
+        "MPIW": 22.228500366210938,
+        "valid_target_count": 592903
       },
       "horizon_6": {
-        "PICP": 0.8994768003618198,
-        "MPIW": 23.55686378479004,
-        "valid_target_count": 583716
+        "PICP": 0.8994660286661844,
+        "MPIW": 23.616443634033203,
+        "valid_target_count": 593103
       },
       "horizon_7": {
-        "PICP": 0.9018307302370188,
-        "MPIW": 24.69537353515625,
-        "valid_target_count": 583920
+        "PICP": 0.9018208234241188,
+        "MPIW": 24.756393432617188,
+        "valid_target_count": 593303
       },
       "horizon_8": {
-        "PICP": 0.9051639720333354,
-        "MPIW": 25.682893753051758,
-        "valid_target_count": 584124
+        "PICP": 0.9051243211912998,
+        "MPIW": 25.75104331970215,
+        "valid_target_count": 593503
       },
       "horizon_9": {
-        "PICP": 0.910145741061466,
-        "MPIW": 26.655532836914062,
-        "valid_target_count": 584324
+        "PICP": 0.9101503613759742,
+        "MPIW": 26.730636596679688,
+        "valid_target_count": 593703
       },
       "horizon_10": {
-        "PICP": 0.9143171926751157,
-        "MPIW": 27.477779388427734,
-        "valid_target_count": 584528
+        "PICP": 0.9143142903807524,
+        "MPIW": 27.559635162353516,
+        "valid_target_count": 593903
       },
       "horizon_11": {
-        "PICP": 0.9192382151139326,
-        "MPIW": 28.401596069335938,
-        "valid_target_count": 584732
+        "PICP": 0.9192682077013582,
+        "MPIW": 28.49270248413086,
+        "valid_target_count": 594103
       },
       "horizon_12": {
-        "PICP": 0.923268659701814,
-        "MPIW": 29.28005599975586,
-        "valid_target_count": 584937
+        "PICP": 0.9233118459775569,
+        "MPIW": 29.375486373901367,
+        "valid_target_count": 594303
       }
     }
   }

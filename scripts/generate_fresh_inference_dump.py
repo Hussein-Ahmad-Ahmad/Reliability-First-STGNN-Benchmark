@@ -2,10 +2,8 @@
 model/dataset/seed, matching the format run_block_bootstrap_pairwise.py and
 related scripts expect under results/task1_point_forecasting/fresh_inference_dumps/.
 
-This closes specific gaps identified while auditing the C3/C5/C6 bootstrap
-and conformal analyses: MegaCRN and MTGNN are missing seed-44/45 dumps for
-PEMS04, and missing all three seeds for PEMS-BAY. Both checkpoints already
-exist (inference-only; no retraining). Single deterministic forward pass per
+Uses an existing checkpoint for inference only, without retraining.
+Single deterministic forward pass per
 batch, model.eval() throughout (no dropout sampling) - this is a point
 prediction, not MC Dropout.
 
@@ -28,6 +26,7 @@ matching the same tolerance-checked pattern used elsewhere in this repo (pipelin
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
 import sys
@@ -60,9 +59,24 @@ def _load_mc_dropout_module():
 mc = _load_mc_dropout_module()
 
 
-def run_clean_inference(model_name: str, dataset: str, seed: int, batch_size: int, device: torch.device):
-    cfg = mc.load_config(model_name, dataset, seed)
-    checkpoint_path = ROOT / "checkpoints" / model_name / f"{dataset}_seed{seed}" / "best_model.pt"
+def run_clean_inference(model_name: str, dataset: str, seed: int, batch_size: int, device: torch.device,
+                        archive_root: Path | None = None):
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
+    if archive_root is None:
+        cfg = mc.load_config(model_name, dataset, seed)
+        config_path = ROOT / 'configs' / model_name / f'{dataset}_seed{seed}.py'
+        checkpoint_path = ROOT / "checkpoints" / model_name / f"{dataset}_seed{seed}" / "best_model.pt"
+        metrics_path = checkpoint_path.parent / 'test_metrics.json'
+        source_root = ROOT
+    else:
+        sys.path.insert(0, str(archive_root))
+        from pipelines.run_sensor_dropout import find_run, load_config
+        run, config_path, checkpoint_path = find_run(archive_root, dataset, model_name, seed)
+        cfg = load_config(config_path, f'export_{model_name}_{dataset}_{seed}',
+                          fallback_paths=[archive_root / 'baselines' / model_name])
+        metrics_path = run / 'test_metrics.json'
+        source_root = archive_root
     if not checkpoint_path.is_file():
         raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
 
@@ -82,7 +96,7 @@ def run_clean_inference(model_name: str, dataset: str, seed: int, batch_size: in
             future_scaled = scaler.transform(future.clone())
             history = history[..., cfg.MODEL.FORWARD_FEATURES]
             decoder_future = future_scaled[..., cfg.MODEL.FORWARD_FEATURES].clone()
-            decoder_future[..., 0] = torch.empty_like(decoder_future[..., 0])
+            decoder_future[..., 0] = 0.0
 
             output = model(
                 history_data=history,
@@ -108,7 +122,26 @@ def run_clean_inference(model_name: str, dataset: str, seed: int, batch_size: in
         pred = pred[..., 0]
     if targ.ndim == 4 and targ.shape[-1] == 1:
         targ = targ[..., 0]
-    return pred, targ
+    metadata = {
+        'model': model_name, 'dataset': dataset, 'seed': seed,
+        'checkpoint_selection': ('minimum validation MAE' if archive_root else
+                                 'provided checkpoint; selection provenance is not established by its filename'),
+        'config': config_path.relative_to(source_root).as_posix(),
+        'config_sha256': hashlib.sha256(config_path.read_bytes()).hexdigest(),
+        'checkpoint': checkpoint_path.relative_to(source_root).as_posix(),
+        'checkpoint_sha256': hashlib.sha256(checkpoint_path.read_bytes()).hexdigest(),
+        'test_metrics': metrics_path.relative_to(source_root).as_posix(),
+        'test_metrics_sha256': hashlib.sha256(metrics_path.read_bytes()).hexdigest(),
+        'test_origins': int(len(dataset_obj)), 'batch_size': batch_size,
+        'array_order': 'chronological forecast origin, horizon, sensor',
+        'training_performed': False,
+        'cuda_matmul_allow_tf32': torch.backends.cuda.matmul.allow_tf32,
+        'cudnn_allow_tf32': torch.backends.cudnn.allow_tf32,
+        'device_name': torch.cuda.get_device_name(device) if device.type == 'cuda' else 'CPU',
+    }
+    with metrics_path.open(encoding='utf-8') as handle:
+        metadata['archived_mae'] = json.load(handle)['overall']['MAE']
+    return pred, targ, metadata
 
 
 def main() -> None:
@@ -119,27 +152,37 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument('--archive-root', type=Path, help='Original BasicTS run tree with validation-selected checkpoints')
     args = parser.parse_args()
 
     device = torch.device(args.device)
-    pred, targ = run_clean_inference(args.model, args.dataset, args.seed, args.batch_size, device)
+    pred, targ, metadata = run_clean_inference(args.model, args.dataset, args.seed, args.batch_size, device,
+                                              args.archive_root)
 
     null_val = 0.0
-    valid = np.isfinite(targ) & ~np.isclose(targ, null_val)
-    recomputed_mae = float(np.abs(pred - targ)[valid].mean())
+    valid = np.isfinite(targ) & ~np.isclose(targ, null_val, atol=5e-5, rtol=0.0)
+    if not valid.any() or not np.isfinite(pred).all():
+        raise ValueError('Inference must contain finite predictions and valid targets.')
+    recomputed_mae = float(np.abs(pred - targ)[valid].mean(dtype=np.float64))
 
-    metrics_path = ROOT / "checkpoints" / args.model / f"{args.dataset}_seed{args.seed}" / "test_metrics.json"
-    archived_mae = None
-    if metrics_path.is_file():
-        archived_mae = json.load(open(metrics_path))["overall"]["MAE"]
+    archived_mae = metadata['archived_mae']
+    if abs(recomputed_mae - archived_mae) > 1e-5:
+        raise RuntimeError(f'Clean-pass mismatch: {recomputed_mae:.9f} versus {archived_mae:.9f}; no export written.')
+    metadata.update({'exported_mae': recomputed_mae, 'mae_difference': recomputed_mae - archived_mae,
+                     'verification_absolute_tolerance': 1e-5, 'verified': True,
+                     'device': str(device), 'torch_version': torch.__version__,
+                     'null_atol': 5e-5, 'null_rtol': 0.0, 'valid_target_count': int(valid.sum())})
 
     out_dir = args.output_root / args.model / args.dataset / f"seed{args.seed}"
     out_dir.mkdir(parents=True, exist_ok=True)
     np.save(out_dir / "predictions.npy", pred)
     np.save(out_dir / "targets.npy", targ)
+    metadata['predictions_sha256'] = hashlib.sha256((out_dir / 'predictions.npy').read_bytes()).hexdigest()
+    metadata['targets_sha256'] = hashlib.sha256((out_dir / 'targets.npy').read_bytes()).hexdigest()
+    (out_dir / 'export_metadata.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
 
     print(f"{args.model}/{args.dataset}/seed{args.seed}: shape={pred.shape}")
-    print(f"  recomputed clean-pass MAE (pooled, numpy default null tolerance) = {recomputed_mae:.6f}")
+    print(f"  recomputed clean-pass MAE (pooled, atol=5e-5, rtol=0) = {recomputed_mae:.6f}")
     if archived_mae is not None:
         print(f"  archived test_metrics.json MAE                                = {archived_mae:.6f}")
         print(f"  difference = {recomputed_mae - archived_mae:+.6f}")

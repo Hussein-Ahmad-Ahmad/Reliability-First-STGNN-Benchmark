@@ -481,6 +481,20 @@ class BaseTimeSeriesClassificationRunner(BaseEpochRunner):
 
         total_samples = len(self.test_data_loader.dataset)
 
+        if batch_idx == 0:
+            self._test_results_offset = 0
+            self._test_results_next_batch = 0
+        if batch_idx != getattr(self, '_test_results_next_batch', None):
+            raise ValueError('Test results must be exported in consecutive batch order.')
+        batch_size = batch_data['inputs'].shape[0]
+        if batch_size <= 0 or any(batch_data[key].shape[0] != batch_size
+                                  for key in ('prediction', 'target')):
+            raise ValueError('Export arrays must have equal, nonempty batch lengths.')
+        start = self._test_results_offset
+        end = start + batch_size
+        if end > total_samples:
+            raise ValueError('Exported samples exceed the test dataset length.')
+
         save_dir = os.path.join(self.ckpt_save_dir, 'test_results')
         os.makedirs(save_dir, exist_ok=True)
         inputs_path = os.path.join(save_dir, 'inputs.npy')
@@ -497,14 +511,14 @@ class BaseTimeSeriesClassificationRunner(BaseEpochRunner):
             self._target_memmap = np.memmap(tgt_path, dtype=batch_data['target'].dtype, mode='w+',
                                 shape=(total_samples, *batch_data['target'].shape[1:]))
 
-        start = batch_idx * batch_data['inputs'].shape[0]
-        end = start + batch_data['inputs'].shape[0]
-
         self._inputs_memmap[start:end] = batch_data['inputs']
         self._prediction_memmap[start:end] = batch_data['prediction']
         self._target_memmap[start:end] = batch_data['target']
 
-        if batch_idx == (total_samples // batch_data['inputs'].shape[0]):
+        self._test_results_offset = end
+        self._test_results_next_batch = batch_idx + 1
+
+        if end == total_samples:
             self._inputs_memmap.flush()
             self._prediction_memmap.flush()
             self._target_memmap.flush()

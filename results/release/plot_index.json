@@ -13,12 +13,12 @@
     {
       "name": "coverage_width_tradeoff",
       "path": "figures/results/coverage_width_tradeoff.png",
-      "sha256": "67962792f0684a0d0fbbf8519186e5ee085957f26e0cc196796a701f6eb61782"
+      "sha256": "0424e6117a273aaef2b285fa816db839ca2a7d326cdb5ab8aa0c6319756b4a2d"
     },
     {
       "name": "cross_dataset_conformal",
       "path": "figures/results/cross_dataset_conformal.png",
-      "sha256": "103166d0630b015f2b0f0254460f2b40500aaddc73e8f1854750117a4f19cbd0"
+      "sha256": "6be65c9eb488880d50e1bab4920d04724a0cde75f77e637b614213d250bf5b99"
     },
     {
       "name": "cross_dataset_fidelity",
@@ -33,17 +33,17 @@
     {
       "name": "cross_method_ranking_agreement",
       "path": "figures/results/cross_method_ranking_agreement.png",
-      "sha256": "baf688cef176f7dd9ef7bd742ff9d5ddcb9cca8f84cf00ef12b1c80341663235"
+      "sha256": "695bbc666c714824e83190453374d4e3dfcca2f2ee871731279d86d7a1542c59"
     },
     {
       "name": "degree_matched_fidelity",
       "path": "figures/results/degree_matched_fidelity.png",
-      "sha256": "c2c8f36a4277d8afd3fa4a0b3a80167f7125f9fcb832a946e45fbc613b410ffd"
+      "sha256": "5e33203b65d218b7f2773e9dc64c39c5b6d0628bb189feacab6ebf11c412dc2e"
     },
     {
       "name": "forecast_interval_example",
       "path": "figures/results/forecast_interval_example.png",
-      "sha256": "1697e0c8f19ffed83e9a9d4319e9a37b6a99930dbe7a7ce99d03317cf8d744c1"
+      "sha256": "f0cd46b06657cf25b1a1af8b96d701c6b7747aec5e4e2476c4c81128770eee33"
     },
     {
       "name": "forecasting_pipeline",
@@ -53,12 +53,12 @@
     {
       "name": "horizon_coverage",
       "path": "figures/results/horizon_coverage.png",
-      "sha256": "8461ad948171ac556f770cd455ac140959dec23d38bc3dce10453bb01c92d40a"
+      "sha256": "75d2c37927e3749f6623246686c202d81e728130375266541af37ffe6991b7b4"
     },
     {
       "name": "horizon_interval_width",
       "path": "figures/results/horizon_interval_width.png",
-      "sha256": "eeac76f046495a9891722ad65fa1777fe813731ff3cb6ec5e45e9972a8a51731"
+      "sha256": "1d87c08733af10cf21cf234f0d1b3ce26c0f9b9ef18f9e4b09defdc86551dd69"
     },
     {
       "name": "horizon_mae",
@@ -68,7 +68,7 @@
     {
       "name": "horizon_marginal_coverage",
       "path": "figures/results/horizon_marginal_coverage.png",
-      "sha256": "d307fb3dc5d328c9e0265a2f037eb251bfcdef05ae5af557c517943758680753"
+      "sha256": "75d2c37927e3749f6623246686c202d81e728130375266541af37ffe6991b7b4"
     },
     {
       "name": "integrated_gradients_consensus",
@@ -83,12 +83,12 @@
     {
       "name": "mc_dropout_diagnostics",
       "path": "figures/results/mc_dropout_diagnostics.png",
-      "sha256": "294247a66e1d74a6cf765c9071e90c44f98d1e9f1dd4cfe2567b2ab217ed0725"
+      "sha256": "c6c2e136889cb94cb32c54c72c2190d86047738d52596c2a223c28b77c7ec6c1"
     },
     {
       "name": "metr_la_horizon_conformal",
       "path": "figures/results/metr_la_horizon_conformal.png",
-      "sha256": "d0d72684443e026c099098230511b3a72831dc25c6c97c20dfb5e406c3ef69a7"
+      "sha256": "bf14ca10009e7bd2df1cc14a93ad6c346a1b229c844d7e48ac79cec0a5fcb4d6"
     },
     {
       "name": "metr_la_spatial_topology",
@@ -98,7 +98,7 @@
     {
       "name": "ranking_perturbation_stability",
       "path": "figures/results/ranking_perturbation_stability.png",
-      "sha256": "9294933759767533cace5c8ba08d62ee697822b9763ed52ce92797ff3c7e1497"
+      "sha256": "76df52b3acf6e7b9eeccd5608f7df5596bd461b70d812aadc74d6cea9056d116"
     },
     {
       "name": "reliability_dimensions",
@@ -108,7 +108,7 @@
     {
       "name": "selected_random_ablation",
       "path": "figures/results/selected_random_ablation.png",
-      "sha256": "3c459c9c82ee322fdf528550092c8e4c67f7fc48a9e5e8f147d7677ea39f66c9"
+      "sha256": "f0ef8d28199d40b542c06ed70fefa723bcaa9a10c15067c8eb0adc393ef33473"
     },
     {
       "name": "sensor_budget_fidelity",
@@ -118,7 +118,7 @@
     {
       "name": "sensor_ranking_fidelity",
       "path": "figures/results/sensor_ranking_fidelity.png",
-      "sha256": "430db7e3244fdb5782301191e99d1014c6c80600fa1028ec9b53fdd7c3f99d13"
+      "sha256": "ae46313bd08794bc751ab57081453f9d6e5957cd02fe7a6e976efbbe9388ef2e"
     }
   ]
 }

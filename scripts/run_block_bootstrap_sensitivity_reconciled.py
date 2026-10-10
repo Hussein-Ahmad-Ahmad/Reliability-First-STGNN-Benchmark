@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -78,6 +79,8 @@ def run_one(dataset: str, block_len: int, seeds: list[int], n_bootstrap: int, al
             "ci_high": float(ci_high),
             "ci_excludes_zero": bool(ci_low > 0 or ci_high < 0),
             "seeds_used": seeds_used,
+            "n_forecast_origins": int(agg_sum_a.size),
+            "blocks_drawn_per_replicate": math.ceil(agg_sum_a.size / block_len),
         })
 
     return {
@@ -85,6 +88,9 @@ def run_one(dataset: str, block_len: int, seeds: list[int], n_bootstrap: int, al
         "n_pairs": len(rows),
         "n_ci_excluding_zero": int(sum(r["ci_excludes_zero"] for r in rows)),
         "pairs": rows,
+        "origin_counts": sorted({row["n_forecast_origins"] for row in rows}),
+        "block_counts": sorted({row["blocks_drawn_per_replicate"] for row in rows}),
+        "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations",
     }
 
 
@@ -114,7 +120,7 @@ def main() -> None:
             "alpha": args.alpha,
             "block_lengths_tested": list(BLOCK_LENGTHS),
             "aggregation": "flat-pooled sum/count, matching masked_mae (see run_block_bootstrap_reconciled.py)",
-            "supersedes": "results/task1_point_forecasting/block_bootstrap_sensitivity_<dataset>_seeds43-44-45.json (buggy mean-of-per-origin-means aggregation)",
+            "input_validation": "Complete chronological exports; per-case MAE correspondence and SHA-256 identity required",
             "results_by_block_len": by_block_len,
         }
 

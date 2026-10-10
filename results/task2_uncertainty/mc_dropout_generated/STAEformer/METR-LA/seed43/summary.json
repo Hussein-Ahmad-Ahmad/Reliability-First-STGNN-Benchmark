@@ -7,9 +7,9 @@
   "dropout_module_count": 12,
   "test_origins": 6831,
   "interval_z_value": 1.6448536269514722,
-  "variance_mean": 1.063179612159729,
-  "picp_uncalibrated": 0.1345249620997013,
-  "mpiw_uncalibrated": 1.5690157413482666,
+  "variance_mean": 0.7612006884858282,
+  "picp_uncalibrated": 0.15311000227259128,
+  "mpiw_uncalibrated": 1.362074844634876,
   "status": "functional",
   "pass_prediction_sha256": [
     "10b411548653451a27b28766961ac541386622785b6cd00e59a067e65e34ea6c",
@@ -63,5 +63,21 @@
     "c399bf7517fd53a00a2c36459f32653eb69686cb7296b972649150718059f0bc",
     "06e0433d56c531f05862a2fd323e4058fd11dc78c712ed517173ea4af3419414"
   ],
-  "artifact": "STAEformer_METR-LA_seed43_50pass_moments.npz"
+  "artifact": "STAEformer_METR-LA_seed43_50pass_moments.npz",
+  "predictive_std_mean": 0.4140413536854672,
+  "distinct_pass_predictions": 50,
+  "total_target_count": 16968204,
+  "valid_target_count": 14908092,
+  "excluded_target_count": 2060112,
+  "target_mask": {
+    "finite": true,
+    "null_value": 0.0,
+    "atol": 5e-05,
+    "rtol": 0.0
+  },
+  "aggregation": "flat pooled over valid target elements; float64 moment diagnostics",
+  "moments_sha256": "d906ed49aa9d47c40f0183896258ec367d8cc1ba8b473b6bb9d009190f6eeaa8",
+  "metric_source": "retained predictive moments; no new inference",
+  "sampling_seed": null,
+  "sampling_seed_note": "Historical sampling seed was not recorded"
 }

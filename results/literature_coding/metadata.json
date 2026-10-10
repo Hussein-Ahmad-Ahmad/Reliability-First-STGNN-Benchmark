@@ -1,0 +1,11 @@
+{
+  "second_coder": "Taha Benarbia",
+  "role": "Independent literature evidence coding",
+  "procedure": "Author-confirmed independent coding, blinded to primary assignments; comparison after both passes, before reconciliation",
+  "record_type": "Transcriptions of the two original assignment passes",
+  "selection": "Purposive ten-study subset",
+  "dimensions": 9,
+  "status_labels": {"M": "Met", "P": "Partial", "NR": "Not Reported", "N/A": "Not Applicable"},
+  "original_human_records": "Retained by the authors",
+  "rule_version": "Original shared instruction record requires author confirmation"
+}

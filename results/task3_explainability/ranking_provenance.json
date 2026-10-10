@@ -1,0 +1,240 @@
+{
+  "method": "learned sensor and temporal-feature input masks",
+  "edge_masking_established": false,
+  "aggregation": "mean learned sensor mask across explained samples, then descending rank",
+  "archived_source_files": [
+    {
+      "file": "gnn_explainer.py",
+      "sha256": "bfd7416d5050999a6f48e59e307452866f390ec2b208dee75bdd2031ff6af1e3"
+    },
+    {
+      "file": "xai_fidelity.py",
+      "sha256": "d1da00d9898622bc351c991d46c4bd0d04bb386a1e6e9767402d36570cf91c7e"
+    },
+    {
+      "file": "xai_stability.py",
+      "sha256": "f496f0c225e7603f3ce3a8462f5862ab408ecd4b391d8a7e8c8ab74d5717a851"
+    }
+  ],
+  "fidelity_definition": "mean across samples of selected/random absolute forecast-change ratio at forecast step 12; not target-error delta MAE",
+  "stability_definition_in_recovered_source": "value-channel noise scaled by input-tensor standard deviation; perturbed explanations evaluated at horizon 12",
+  "stability_execution_metadata": "Execution-time code hash, top-k argument, and complete horizon-alignment records unavailable",
+  "cohort_saliency_source": {
+    "file": "test_xai_metrics.py",
+    "sha256": "aa6fe84a1ce10b9205a609fc678b211013513f0d9bfc7fe7f68835cc3872c79c"
+  },
+  "cohort_saliency_definition": "Top 5 percent of flattened gradient-saliency features, averaged separately over the first and second 100 samples; not sensor top-10 overlap under input noise",
+  "cohort_saliency_values": {
+    "D2STGNN": {
+      "validity_mae_increase": -0.2940635681152344,
+      "stability_jaccard": 0.2236842105263158
+    },
+    "MegaCRN": {
+      "validity_mae_increase": -0.026599884033203125,
+      "stability_jaccard": 0.5091277890466531
+    },
+    "STID": {
+      "validity_mae_increase": -3.302459716796875,
+      "stability_jaccard": 0.6209150326797386
+    }
+  },
+  "historical_code_version": "Exact execution-time code hash was not retained; source-schema and retained-array checks performed",
+  "records": [
+    {
+      "model": "D2STGNN",
+      "dataset": "METR-LA",
+      "ranking_horizon": 12,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": true,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": true,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.2236842105263158,
+      "numeric_summary_matches_cohort_saliency": true,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "948457a854f4b30a7d33920b9789ad4f08e22e9b62423564ba68c3bd931306be",
+      "explanations_sha256": "f0904d3e1b480abdef02ef0684aa627773810a6f0d584f69cce17232c19732fa"
+    },
+    {
+      "model": "MegaCRN",
+      "dataset": "METR-LA",
+      "ranking_horizon": 12,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": true,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": null,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.5091277890466531,
+      "numeric_summary_matches_cohort_saliency": true,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "029c9997c021108c2614c600f33177b170089adf10927be7b36d656b9dc9a902",
+      "explanations_sha256": "0780dec452da6fde1367a792dfe7a4f8384225a50c12a638c7fdb33c91f397b4"
+    },
+    {
+      "model": "MTGNN",
+      "dataset": "METR-LA",
+      "ranking_horizon": 1,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": false,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": true,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.022844950213371268,
+      "numeric_summary_matches_cohort_saliency": false,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "63fb964de57eee57a137011bd9751cafb553120d2b561f982862815335b24922",
+      "explanations_sha256": "6ac1b9660f3a6b9ac7a643e76a518d473baa1a5a94eb80c96f6cc5f2c920739a"
+    },
+    {
+      "model": "STAEformer",
+      "dataset": "METR-LA",
+      "ranking_horizon": 1,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": false,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": true,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.11411642651453313,
+      "numeric_summary_matches_cohort_saliency": false,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "c58a1a2316d8ce2f3c4341d50345b6c174e388b90b4c44404f2ea0e6e726c827",
+      "explanations_sha256": "9c9c2eab1f365c71ad5d7a0ac06177b270d6348eaec4fd43fbe0e661f04bb7cc"
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "dataset": "METR-LA",
+      "ranking_horizon": 1,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": false,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": true,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.18693836140325534,
+      "numeric_summary_matches_cohort_saliency": false,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "e8153ad624c46aa91a025fee92cce0ff91f3403c8163edd2ef9a55faa8e58ae0",
+      "explanations_sha256": "85f2084a3270c5804289a173669f83046a4613659ad3ccfc32ca7e4675d119d1"
+    },
+    {
+      "model": "STID",
+      "dataset": "METR-LA",
+      "ranking_horizon": 1,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": false,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": null,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.6209150326797386,
+      "numeric_summary_matches_cohort_saliency": true,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "4fc249f02d115d3e486ef4bfd366ea3574dcd481647e0979a93601f09ad5c28b",
+      "explanations_sha256": "035c423aa151791420a7b2b5bdca80cb1fba0e47e2c15e98cb08af51d365034c"
+    },
+    {
+      "model": "STNorm",
+      "dataset": "METR-LA",
+      "ranking_horizon": 1,
+      "fidelity_horizon": 12,
+      "horizon_alignment_in_recovered_stability_source": false,
+      "same_horizon_perturbation_stability_established": false,
+      "stability_values_match_recovered_archive": true,
+      "stability_metric_definition_verified_for_public_record": false,
+      "numeric_summary_jaccard": 0.09919147716361339,
+      "numeric_summary_matches_cohort_saliency": false,
+      "top10_matches_retained_array": true,
+      "summary_matches_original": true,
+      "fidelity_values_match_original": true,
+      "retained_array_keys": [
+        "mean_node_importance",
+        "std_node_importance",
+        "mean_feature_importance",
+        "std_feature_importance",
+        "top_k_nodes"
+      ],
+      "retained_explanation_fields": [
+        "feature_importance",
+        "node_importance"
+      ],
+      "aggregate_sha256": "b56c538b8fb483d30285092cc9c06bf93dbbc57c9e75bf0057621e67186d35a7",
+      "explanations_sha256": "898d4f55310672f6051ae55ab70bd76ec88c71224c5acdb6045215ef3c64601b"
+    }
+  ]
+}

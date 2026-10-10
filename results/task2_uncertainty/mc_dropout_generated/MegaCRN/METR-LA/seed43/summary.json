@@ -7,10 +7,10 @@
   "dropout_module_count": 0,
   "test_origins": 6831,
   "interval_z_value": 1.6448536269514722,
-  "variance_mean": 5.207144715413392e-10,
-  "picp_uncalibrated": 2.09214834993733e-05,
-  "mpiw_uncalibrated": 6.476875569205731e-05,
-  "status": "functional",
+  "variance_mean": 5.146011619088718e-10,
+  "picp_uncalibrated": 2.153193044421781e-05,
+  "mpiw_uncalibrated": 6.358223938090095e-05,
+  "status": "inactive",
   "pass_prediction_sha256": [
     "bd5f66d3e0a740c06d31ef3689f78774d40bd6ae18fe5aa4b6494b79faa78165",
     "bd5f66d3e0a740c06d31ef3689f78774d40bd6ae18fe5aa4b6494b79faa78165",
@@ -63,5 +63,21 @@
     "bd5f66d3e0a740c06d31ef3689f78774d40bd6ae18fe5aa4b6494b79faa78165",
     "bd5f66d3e0a740c06d31ef3689f78774d40bd6ae18fe5aa4b6494b79faa78165"
   ],
-  "artifact": "MegaCRN_METR-LA_seed43_50pass_moments.npz"
+  "artifact": "MegaCRN_METR-LA_seed43_50pass_moments.npz",
+  "predictive_std_mean": 1.9327628409934135e-05,
+  "distinct_pass_predictions": 1,
+  "total_target_count": 16968204,
+  "valid_target_count": 14908092,
+  "excluded_target_count": 2060112,
+  "target_mask": {
+    "finite": true,
+    "null_value": 0.0,
+    "atol": 5e-05,
+    "rtol": 0.0
+  },
+  "aggregation": "flat pooled over valid target elements; float64 moment diagnostics",
+  "moments_sha256": "e25f1d9a2922d78d23cab5aff3b22d2ae7cf1dade9bf7a8ea710b98b18d573a7",
+  "metric_source": "retained predictive moments; no new inference",
+  "sampling_seed": null,
+  "sampling_seed_note": "Historical sampling seed was not recorded"
 }

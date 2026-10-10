@@ -42,7 +42,7 @@ jobs:
       - name: Verify release tree
         run: >-
           python scripts/verify_release.py
-          --expect-tests 16
+          --expect-tests 31
           --json-output "${{ runner.temp }}/verification-summary.json"
 
       - name: Publish verification summary

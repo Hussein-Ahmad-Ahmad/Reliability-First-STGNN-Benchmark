@@ -77,8 +77,8 @@ class SensorMaskTests(unittest.TestCase):
 class ArchivedArtifactTests(unittest.TestCase):
     def test_conformal_summary_values(self) -> None:
         expected = {
-            ("METR-LA", "fixed"): (0.9056418267, 23.308811),
-            ("METR-LA", "per_horizon"): (0.9056021454, 23.111981),
+            ("METR-LA", "fixed"): (0.9056704310, 23.378166),
+            ("METR-LA", "per_horizon"): (0.9056291298, 23.180659),
             ("PEMS-BAY", "fixed"): (0.9062850082, 11.690732),
             ("PEMS-BAY", "per_horizon"): (0.9063804840, 11.414535),
             ("PEMS04", "fixed"): (0.9009819565, 91.751328),

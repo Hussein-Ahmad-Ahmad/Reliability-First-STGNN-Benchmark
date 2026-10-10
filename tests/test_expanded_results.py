@@ -48,9 +48,9 @@ class ExpandedResultsTests(unittest.TestCase):
                 self.assertLess(pair["ci_low"], pair["ci_high"])
                 self.assertTrue(set(pair["seeds_used"]) <= {43, 44, 45})
         # Check both orientations of the pairwise comparison.
-        examples = [("metr-la", "D2STGNN", "STAEformer", .064, .045, .084),
+        examples = [("metr-la", "D2STGNN", "STAEformer", .064, .046, .084),
                     ("pems-bay", "D2STGNN", "STAEformer", .060, .052, .067),
-                    ("pems04", "STAEformer", "D2STGNN", .169, .098, .313)]
+                    ("pems04", "STAEformer", "D2STGNN", .171, .101, .314)]
         for dataset, a, b, mean, low, high in examples:
             records = read(f"results/task1_point_forecasting/block_bootstrap_reconciled_{dataset}_seeds43-44-45.json")["pairs"]
             pair = next(p for p in records if {p["model_a"],p["model_b"]} == {a,b})
@@ -66,11 +66,16 @@ class ExpandedResultsTests(unittest.TestCase):
             self.assertEqual(data["block_lengths_tested"], [72,144,288])
             for result in data["results_by_block_len"].values():
                 self.assertEqual((result["n_ci_excluding_zero"], result["n_pairs"]), expected)
+                n = {"metr-la": 6831, "pems-bay": 10400, "pems04": 3375}[dataset]
+                self.assertEqual(result["origin_counts"], [n])
+                for pair in result["pairs"]:
+                    self.assertEqual(pair["n_forecast_origins"], n)
+                    self.assertEqual(pair["blocks_drawn_per_replicate"], -(-n // result["block_len"]))
 
     def test_plain_control_and_mc_dropout(self):
         control = read("results/task2_uncertainty/conformal_sigma_control/METR-LA_conformal_sigma_control.json")
         self.assertEqual(control["normalized_split_conformal"]["member_count"], 6)
-        for key, picp, width in [("normalized_split_conformal", .9056, 23.309), ("plain_sigma1_control", .9021, 13.790)]:
+        for key, picp, width in [("normalized_split_conformal", .9057, 23.378), ("plain_sigma1_control", .9014, 13.790)]:
             metrics = control[key]["evaluation_set"]
             self.assertAlmostEqual(metrics["PICP"], picp, delta=.00005)
             self.assertAlmostEqual(metrics["MPIW"], width, delta=.0005)
@@ -79,7 +84,14 @@ class ExpandedResultsTests(unittest.TestCase):
         for path in paths:
             data = json.loads(path.read_text())
             self.assertEqual(data["n_passes"], 50)
-            self.assertLess(data["picp_uncalibrated"], .22)
+            self.assertLess(data["picp_uncalibrated"], .25)
+            self.assertEqual(data["valid_target_count"], 14908092)
+            self.assertEqual(data["target_mask"]["atol"], 5e-5)
+            self.assertAlmostEqual(data["mpiw_uncalibrated"],
+                                   2 * data["interval_z_value"] * data["predictive_std_mean"])
+            if data["model"] in {"MegaCRN", "STNorm"}:
+                self.assertEqual(data["status"], "inactive")
+                self.assertEqual(data["distinct_pass_predictions"], 1)
             self.assertEqual(len(data["pass_prediction_sha256"]), 50)
 
     def test_crossed_masks_and_degree_matching(self):
@@ -94,12 +106,16 @@ class ExpandedResultsTests(unittest.TestCase):
                 for record in models.values():
                     self.assertEqual(len(record["mask_runs"]), 5)
         paths = list((ROOT / "results/task3_explainability/degree_matched_control").glob("*.json"))
-        self.assertEqual(len(paths), 7)
+        self.assertEqual(len(paths), 10)
         for path in paths:
             data = json.loads(path.read_text())
             self.assertEqual(data["degree_matched_random"]["n_draws"], 30)
             for draw in data["degree_matched_random"]["draws"]:
-                self.assertEqual(sorted(draw["degrees"]), sorted(data["important_sensor_degrees"]))
+                if data["degree_matching"]["exact"]:
+                    self.assertEqual(sorted(draw["degrees"]), sorted(data["important_sensor_degrees"]))
+                else:
+                    self.assertEqual((data["model"], data["dataset"]), ("MTGNN", "METR-LA"))
+                    self.assertEqual(sum(abs(a-b) for a,b in zip(draw["degrees"],data["important_sensor_degrees"])), 3)
 
     def test_naive_anchors_and_drift(self):
         data = read("results/task1_point_forecasting/naive_baselines.json")
@@ -110,6 +126,17 @@ class ExpandedResultsTests(unittest.TestCase):
         self.assertEqual(drift["runs"], 21)
         for key, percent in [("all",87.98),("first_third",82.24),("middle_third",92.29),("final_third",89.41)]:
             self.assertAlmostEqual(drift["coverage"][key]*100, percent, delta=.005)
+
+    def test_retained_input_mask_provenance(self):
+        data = read("results/task3_explainability/ranking_provenance.json")
+        self.assertFalse(data["edge_masking_established"])
+        self.assertEqual(len(data["records"]), 7)
+        for record in data["records"]:
+            self.assertTrue(record["top10_matches_retained_array"])
+            self.assertTrue(record["fidelity_values_match_original"])
+            self.assertFalse(record["same_horizon_perturbation_stability_established"])
+            self.assertIn(record["ranking_horizon"], (1, 12))
+            self.assertEqual(record["fidelity_horizon"], 12)
 
     def test_public_overview_links(self):
         import re

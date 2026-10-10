@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml"><img alt="Artifact checks" src="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/actions/workflows/verify.yml/badge.svg?branch=main"/></a>
-  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.2"><img alt="v1.4.2" src="https://img.shields.io/badge/release-v1.4.2-00897b?style=flat-square"/></a>
+  <a href="https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.3"><img alt="v1.4.3" src="https://img.shields.io/badge/release-v1.4.3-00897b?style=flat-square"/></a>
   <img alt="Seven models" src="https://img.shields.io/badge/models-7-e65176?style=flat-square"/>
   <img alt="Three traffic datasets" src="https://img.shields.io/badge/traffic_graphs-3-e8a317?style=flat-square"/>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-67717d?style=flat-square"/></a>
@@ -40,7 +40,7 @@ Browse [benchmark results](RESULTS.md) for compact metrics, analysis outputs, an
 
 ```bash
 pip install -r requirements.txt
-python scripts/verify_release.py --expect-tests 16
+python scripts/verify_release.py --expect-tests 31
 ```
 
 Checks cover public-file integrity and compact-result consistency. Traffic training and array-dependent post-processing additionally require original datasets, checkpoints, and retained prediction arrays; these large files are not distributed here.

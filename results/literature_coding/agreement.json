@@ -1,0 +1,32 @@
+{
+  "cells": 90,
+  "exact_agreements": 66,
+  "agreement_percent": 73.33333333333333,
+  "primary_category_totals": {
+    "P": 35,
+    "M": 25,
+    "NR": 30
+  },
+  "computed_category_totals": {
+    "M": 43,
+    "NR": 33,
+    "P": 14
+  },
+  "agreements_by_requirement": [
+    0,
+    10,
+    8,
+    7,
+    10,
+    10,
+    10,
+    5,
+    6
+  ],
+  "expected_agreement": 0.3154320987654321,
+  "cohens_kappa_unweighted": 0.6104598737601442,
+  "agreement_stage": "Before rule-based reconciliation",
+  "primary_records": "primary_assignments.csv",
+  "second_records": "second_assignments.csv",
+  "final_map_used_in_agreement": false
+}

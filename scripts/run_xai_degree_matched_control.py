@@ -141,7 +141,7 @@ def run_masked_pass(
                 history[:, :, dropped, :] = 0.0
             history = history[..., cfg.MODEL.FORWARD_FEATURES]
             decoder_future = future_scaled[..., cfg.MODEL.FORWARD_FEATURES].clone()
-            decoder_future[..., 0] = torch.empty_like(decoder_future[..., 0])
+            decoder_future[..., 0] = 0.0
 
             output = model(
                 history_data=history,
@@ -154,7 +154,9 @@ def run_masked_pass(
             prediction = scaler.inverse_transform(prediction)
             target = future[..., cfg.MODEL.TARGET_FEATURES]
 
-            valid = torch.isfinite(target) & target.ne(0)
+            valid = torch.isfinite(target) & ~torch.isclose(target, torch.zeros_like(target), atol=5e-5, rtol=0)
+            if not torch.isfinite(prediction[valid]).all():
+                raise RuntimeError("Nonfinite prediction at a valid target")
             error_sum += torch.abs(prediction - target)[valid].double().sum().item()
             valid_count += int(valid.sum().item())
 
@@ -223,12 +225,16 @@ def main() -> None:
         "dataset": args.dataset,
         "seed": args.seed,
         "k": args.k,
+        "degree_source": "supplied reference adjacency; positive row entries excluding self-loops",
+        "ranking_source": "archived top-k sensor identifiers; ranking-generation path not re-established by this control",
+        "target_mask": {"finite": True, "null_value": 0.0, "atol": 5e-5, "rtol": 0.0},
+        "degree_scope": "reference-topology-degree control, not verification of learned-graph explainer masks",
         "protocol": (
-            "Post-scaler zero-masking of the selected sensors' full input history; "
+            "Post-scaler zero-masking of all selected-sensor input channels across the full input history; "
             "delta = masked test MAE minus unmasked clean-pass test MAE. "
-            "This is a self-contained protocol defined for this comparison; it does "
-            "not reproduce the archived GNNExplainerWrapper fidelity numbers, which "
-            "used a different (now-missing) implementation."
+            "This is a self-contained protocol; its target-error change differs "
+            "from archived sample-wise absolute forecast-change ratios. "
+            "The clean reference is specific to this checkpoint and loading path."
         ),
         "baseline_mae": baseline["mae"],
         "important_sensors": important,
@@ -247,10 +253,18 @@ def main() -> None:
             "draws": degree_draws,
         },
         "mask_seed": args.mask_seed,
+        "valid_target_count": baseline["valid_target_count"],
+        "degree_matching": {
+            "exact": all(draw["degrees"] == important_degrees for draw in degree_draws),
+            "mean_absolute_degree_mismatch": float(np.mean([
+                abs(a-b) for draw in degree_draws for a,b in zip(draw["degrees"], important_degrees)
+            ])),
+            "constraint": "Selected sensors excluded; nearest available degree if an exact peer is unavailable",
+        },
         "interpretation": (
-            "important_delta should exceed both control means for the explanation "
-            "to be credited with finding sensors that matter beyond what their "
-            "connectivity alone would predict."
+            "Compare selected MAE change with equal-budget controls descriptively. "
+            "Report matching discrepancies; thirty draws and unadjusted comparisons "
+            "do not establish significance or causal importance."
         ),
     }
 

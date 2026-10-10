@@ -2,17 +2,17 @@
 
 This guide verifies the identity and integrity of the public code-and-artifact
 snapshot. It checks the Git revision, required artifact families, SHA-256
-manifest, and sixteen focused regression tests. The manifest describes tracked
+manifest, and 31 focused regression tests. The manifest describes tracked
 release files, not unpublished local working files.
 
 ## Clean-Clone Check
 
 ```bash
-git clone --branch v1.4.2 --depth 1 https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark.git
+git clone --branch v1.4.3 --depth 1 https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark.git
 cd Reliability-First-STGNN-Benchmark
 python -m pip install numpy==1.24.4
 python -m pip install torch==2.2.2 --index-url https://download.pytorch.org/whl/cpu
-python scripts/verify_release.py --expect-tag v1.4.2 --expect-tests 16 --require-clean
+python scripts/verify_release.py --expect-tag v1.4.3 --expect-tests 31 --require-clean
 ```
 
 To check a specific full commit identifier as well, append
@@ -25,7 +25,7 @@ count, and test count.
 Verify the current tracked release tree with:
 
 ```bash
-python scripts/verify_release.py --expect-tests 16
+python scripts/verify_release.py --expect-tests 31
 ```
 
 The same command runs automatically through

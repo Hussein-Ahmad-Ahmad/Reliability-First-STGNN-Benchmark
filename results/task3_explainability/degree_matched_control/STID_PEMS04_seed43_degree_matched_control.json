@@ -3,7 +3,7 @@
   "dataset": "PEMS04",
   "seed": 43,
   "k": 10,
-  "protocol": "Post-scaler zero-masking of the selected sensors' full input history; delta = masked test MAE minus unmasked clean-pass test MAE. This is a self-contained protocol defined for this comparison; it does not reproduce the archived GNNExplainerWrapper fidelity numbers, which used a different (now-missing) implementation.",
+  "protocol": "Post-scaler zeroing of all selected-sensor input channels across the lookback window; target-error delta is masked minus clean full-test flat-pooled MAE, averaged over valid sensor-horizon targets. This differs from the archived sample-wise absolute forecast-change ratios. The clean reference is specific to this loading/checkpoint path, not the three-seed benchmark mean.",
   "baseline_mae": 18.427375366129823,
   "important_sensors": [
     31,
@@ -515,7 +515,8 @@
         "mae": 23.498749727124952,
         "delta": 5.071374360995129
       }
-    ]
+    ],
+    "empirical_rank_among_31": 1
   },
   "degree_matched_random": {
     "n_draws": 30,
@@ -1362,8 +1363,20 @@
         "mae": 22.049802438515478,
         "delta": 3.622427072385655
       }
-    ]
+    ],
+    "empirical_rank_among_31": 1
   },
   "mask_seed": 20260920,
-  "interpretation": "important_delta should exceed both control means for the explanation to be credited with finding sensors that matter beyond what their connectivity alone would predict."
+  "interpretation": "Compare selected MAE change with equal-budget controls descriptively. Thirty draws per control and unadjusted multiple comparisons do not establish significance or causal importance.",
+  "degree_matching": {
+    "exact": true,
+    "exact_slots": 300,
+    "total_slots": 300,
+    "mean_absolute_degree_mismatch": 0.0,
+    "constraint": "Excluded selected sensors and no repeated sensors within a draw",
+    "note": "Exact matching"
+  },
+  "degree_source": "supplied reference adjacency; positive row entries excluding self-loops",
+  "degree_scope": "reference-topology-degree control; not learned-graph or edge-mask validation",
+  "ranking_source": "retained sensor ranking; generation record not re-established for this dataset"
 }

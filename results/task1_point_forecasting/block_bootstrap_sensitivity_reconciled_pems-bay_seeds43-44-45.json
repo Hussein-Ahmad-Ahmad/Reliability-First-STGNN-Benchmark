@@ -13,7 +13,7 @@
     288
   ],
   "aggregation": "flat-pooled sum/count, matching masked_mae (see run_block_bootstrap_reconciled.py)",
-  "supersedes": "results/task1_point_forecasting/block_bootstrap_sensitivity_<dataset>_seeds43-44-45.json (buggy mean-of-per-origin-means aggregation)",
+  "input_validation": "Complete chronological exports; per-case MAE correspondence and SHA-256 identity required",
   "results_by_block_len": {
     "72": {
       "block_len": 72,
@@ -23,134 +23,161 @@
         {
           "model_a": "D2STGNN",
           "model_b": "STAEformer",
-          "mean_loss_diff_a_minus_b": -0.05987830073300282,
-          "ci_low": -0.06806105470512658,
-          "ci_high": -0.05239326343963346,
+          "mean_loss_diff_a_minus_b": -0.05969641123124614,
+          "ci_low": -0.06798165530690087,
+          "ci_high": -0.05233930197855479,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.05008560629091563,
-          "ci_low": -0.06164716266708291,
-          "ci_high": -0.03953276227596521,
+          "mean_loss_diff_a_minus_b": -0.05000264321299874,
+          "ci_low": -0.06159150479882766,
+          "ci_high": -0.03950270551409113,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.0900410190107217,
-          "ci_low": -0.10235307364936579,
-          "ci_high": -0.07796476349241152,
+          "mean_loss_diff_a_minus_b": -0.08982373885214856,
+          "ci_low": -0.10223209234844505,
+          "ci_high": -0.0778603937168865,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.18912109446044978,
-          "ci_low": -0.21465936639256755,
-          "ci_high": -0.16447769035375906,
+          "mean_loss_diff_a_minus_b": -0.18871681347655755,
+          "ci_low": -0.21444791416468684,
+          "ci_high": -0.16437261589054625,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "STAEformer",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": 0.00979269444208719,
-          "ci_low": -0.001910089560139815,
-          "ci_high": 0.019933251850978734,
+          "mean_loss_diff_a_minus_b": 0.009693768018247395,
+          "ci_low": -0.0019500210667782287,
+          "ci_high": 0.01991154671958727,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "STAEformer",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.03016271827771888,
-          "ci_low": -0.03904473013918442,
-          "ci_high": -0.021109552540827213,
+          "mean_loss_diff_a_minus_b": -0.030127327620902422,
+          "ci_low": -0.03894432007799174,
+          "ci_high": -0.02099580547973281,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "STAEformer",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.12924279372744696,
-          "ci_low": -0.15058014083344148,
-          "ci_high": -0.10902094322110376,
+          "mean_loss_diff_a_minus_b": -0.12902040224531142,
+          "ci_low": -0.1504118876623148,
+          "ci_high": -0.10894806184749824,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "STID",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.03995541271980607,
-          "ci_low": -0.0533671948983723,
-          "ci_high": -0.024672062192969718,
+          "mean_loss_diff_a_minus_b": -0.03982109563914982,
+          "ci_low": -0.053223935404690045,
+          "ci_high": -0.02457803627378038,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "STID",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.13903548816953415,
-          "ci_low": -0.16350120074523428,
-          "ci_high": -0.11417383019773228,
+          "mean_loss_diff_a_minus_b": -0.1387141702635588,
+          "ci_low": -0.16326612129746654,
+          "ci_high": -0.11411778167742768,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         },
         {
           "model_a": "STNorm",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.09908007544972808,
-          "ci_low": -0.11702643966589499,
-          "ci_high": -0.0822726602237639,
+          "mean_loss_diff_a_minus_b": -0.098893074624409,
+          "ci_low": -0.11700696236742149,
+          "ci_high": -0.08229160837078406,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 145
         }
-      ]
+      ],
+      "origin_counts": [
+        10400
+      ],
+      "block_counts": [
+        145
+      ],
+      "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations"
     },
     "144": {
       "block_len": 144,
@@ -160,134 +187,161 @@
         {
           "model_a": "D2STGNN",
           "model_b": "STAEformer",
-          "mean_loss_diff_a_minus_b": -0.05987830073300282,
-          "ci_low": -0.06814710557810205,
-          "ci_high": -0.05179632412578975,
+          "mean_loss_diff_a_minus_b": -0.05969641123124614,
+          "ci_low": -0.0681051746629823,
+          "ci_high": -0.05177237356826876,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.05008560629091563,
-          "ci_low": -0.062042316952483176,
-          "ci_high": -0.03907217530970158,
+          "mean_loss_diff_a_minus_b": -0.05000264321299874,
+          "ci_low": -0.06201581654855263,
+          "ci_high": -0.03906563522653628,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.0900410190107217,
-          "ci_low": -0.10197141735785663,
-          "ci_high": -0.07602066508214551,
+          "mean_loss_diff_a_minus_b": -0.08982373885214856,
+          "ci_low": -0.1018662906430682,
+          "ci_high": -0.0758951672038601,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.18912109446044978,
-          "ci_low": -0.21538177898237604,
-          "ci_high": -0.160757027140708,
+          "mean_loss_diff_a_minus_b": -0.18871681347655755,
+          "ci_low": -0.21522342835766675,
+          "ci_high": -0.16071491130332177,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "STAEformer",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": 0.00979269444208719,
-          "ci_low": -0.0032660049521862186,
-          "ci_high": 0.020722697320852468,
+          "mean_loss_diff_a_minus_b": 0.009693768018247395,
+          "ci_low": -0.003307926076214412,
+          "ci_high": 0.020703826989294568,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "STAEformer",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.03016271827771888,
-          "ci_low": -0.038017977725701826,
-          "ci_high": -0.01987667469082482,
+          "mean_loss_diff_a_minus_b": -0.030127327620902422,
+          "ci_low": -0.0379446423087038,
+          "ci_high": -0.019809197065673478,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "STAEformer",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.12924279372744696,
-          "ci_low": -0.15049948515065348,
-          "ci_high": -0.10649057919398401,
+          "mean_loss_diff_a_minus_b": -0.12902040224531142,
+          "ci_low": -0.15044706985621464,
+          "ci_high": -0.10644052789715097,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "STID",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.03995541271980607,
-          "ci_low": -0.053556806904384295,
-          "ci_high": -0.021865209110017807,
+          "mean_loss_diff_a_minus_b": -0.03982109563914982,
+          "ci_low": -0.05342722626006382,
+          "ci_high": -0.021799758921671766,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "STID",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.13903548816953415,
-          "ci_low": -0.16444225992053182,
-          "ci_high": -0.10957857529962672,
+          "mean_loss_diff_a_minus_b": -0.1387141702635588,
+          "ci_low": -0.16429703106607435,
+          "ci_high": -0.10954529084843635,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         },
         {
           "model_a": "STNorm",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.09908007544972808,
-          "ci_low": -0.11862027703693576,
-          "ci_high": -0.08007361120307609,
+          "mean_loss_diff_a_minus_b": -0.098893074624409,
+          "ci_low": -0.11864817652806484,
+          "ci_high": -0.08009784401544186,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 73
         }
-      ]
+      ],
+      "origin_counts": [
+        10400
+      ],
+      "block_counts": [
+        73
+      ],
+      "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations"
     },
     "288": {
       "block_len": 288,
@@ -297,134 +351,161 @@
         {
           "model_a": "D2STGNN",
           "model_b": "STAEformer",
-          "mean_loss_diff_a_minus_b": -0.05987830073300282,
-          "ci_low": -0.06703805020566254,
-          "ci_high": -0.051809425935934655,
+          "mean_loss_diff_a_minus_b": -0.05969641123124614,
+          "ci_low": -0.06699283384427523,
+          "ci_high": -0.05174959498823614,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": -0.05008560629091563,
-          "ci_low": -0.06313724893486583,
-          "ci_high": -0.037600697200879926,
+          "mean_loss_diff_a_minus_b": -0.05000264321299874,
+          "ci_low": -0.06309200473895327,
+          "ci_high": -0.03758488709444519,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.0900410190107217,
-          "ci_low": -0.1007695125680235,
-          "ci_high": -0.07279420509967272,
+          "mean_loss_diff_a_minus_b": -0.08982373885214856,
+          "ci_low": -0.10064513096981062,
+          "ci_high": -0.07265814686754256,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "D2STGNN",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.18912109446044978,
-          "ci_low": -0.21515179329547204,
-          "ci_high": -0.15614760576675513,
+          "mean_loss_diff_a_minus_b": -0.18871681347655755,
+          "ci_low": -0.2150367033122195,
+          "ci_high": -0.15608813737130514,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "STAEformer",
           "model_b": "STID",
-          "mean_loss_diff_a_minus_b": 0.00979269444208719,
-          "ci_low": -0.005000513286651897,
-          "ci_high": 0.021611788265984467,
+          "mean_loss_diff_a_minus_b": 0.009693768018247395,
+          "ci_low": -0.005000513420213432,
+          "ci_high": 0.021581948808928147,
           "ci_excludes_zero": false,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "STAEformer",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.03016271827771888,
-          "ci_low": -0.03701636401215104,
-          "ci_high": -0.01807023893647761,
+          "mean_loss_diff_a_minus_b": -0.030127327620902422,
+          "ci_low": -0.03693440851712985,
+          "ci_high": -0.01797955379412646,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "STAEformer",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.12924279372744696,
-          "ci_low": -0.1505821744150816,
-          "ci_high": -0.10197303874069256,
+          "mean_loss_diff_a_minus_b": -0.12902040224531142,
+          "ci_low": -0.1505209694313297,
+          "ci_high": -0.10197306113185552,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "STID",
           "model_b": "STNorm",
-          "mean_loss_diff_a_minus_b": -0.03995541271980607,
-          "ci_low": -0.0530336558505716,
-          "ci_high": -0.018258308275899294,
+          "mean_loss_diff_a_minus_b": -0.03982109563914982,
+          "ci_low": -0.05293547658747879,
+          "ci_high": -0.018174822856107536,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "STID",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.13903548816953415,
-          "ci_low": -0.1655371035753594,
-          "ci_high": -0.1033343243325889,
+          "mean_loss_diff_a_minus_b": -0.1387141702635588,
+          "ci_low": -0.1654482504330156,
+          "ci_high": -0.10333433602672865,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         },
         {
           "model_a": "STNorm",
           "model_b": "STGCNChebGraphConv",
-          "mean_loss_diff_a_minus_b": -0.09908007544972808,
-          "ci_low": -0.11972270246357014,
-          "ci_high": -0.07860432886793078,
+          "mean_loss_diff_a_minus_b": -0.098893074624409,
+          "ci_low": -0.11978797354532655,
+          "ci_high": -0.07861037364068539,
           "ci_excludes_zero": true,
           "seeds_used": [
             43,
             44,
             45
-          ]
+          ],
+          "n_forecast_origins": 10400,
+          "blocks_drawn_per_replicate": 37
         }
-      ]
+      ],
+      "origin_counts": [
+        10400
+      ],
+      "block_counts": [
+        37
+      ],
+      "block_count_note": "Blocks sampled from the seed-aggregated temporal sequence, not independent observations"
     }
   }
 }

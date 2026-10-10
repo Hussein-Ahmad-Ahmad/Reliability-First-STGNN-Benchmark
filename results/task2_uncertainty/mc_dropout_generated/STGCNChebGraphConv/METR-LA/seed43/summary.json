@@ -7,9 +7,9 @@
   "dropout_module_count": 3,
   "test_origins": 6831,
   "interval_z_value": 1.6448536269514722,
-  "variance_mean": 2.465299129486084,
-  "picp_uncalibrated": 0.2113690405890924,
-  "mpiw_uncalibrated": 2.6340677738189697,
+  "variance_mean": 2.2195284825053596,
+  "picp_uncalibrated": 0.24057485022228198,
+  "mpiw_uncalibrated": 2.4909637746839177,
   "status": "functional",
   "pass_prediction_sha256": [
     "b792333077bada40bc563bbd4adb698facaa3e8f9998e5b24c8ab65408fbfe92",
@@ -63,5 +63,21 @@
     "b4e19cee1ddcf7b2613f46092ba395f0057b0f8c96e250b08842d437f524925f",
     "13d665d815be4ac09fb99f36094f0c89d5b5a61d1322df446a7c72c30fda9992"
   ],
-  "artifact": "STGCNChebGraphConv_METR-LA_seed43_50pass_moments.npz"
+  "artifact": "STGCNChebGraphConv_METR-LA_seed43_50pass_moments.npz",
+  "predictive_std_mean": 0.7571992224319083,
+  "distinct_pass_predictions": 50,
+  "total_target_count": 16968204,
+  "valid_target_count": 14908092,
+  "excluded_target_count": 2060112,
+  "target_mask": {
+    "finite": true,
+    "null_value": 0.0,
+    "atol": 5e-05,
+    "rtol": 0.0
+  },
+  "aggregation": "flat pooled over valid target elements; float64 moment diagnostics",
+  "moments_sha256": "7ac3173a8a038f591898607c4e680ba1f697da4c283fc084f8efe4ed4879bc40",
+  "metric_source": "retained predictive moments; no new inference",
+  "sampling_seed": null,
+  "sampling_seed_note": "Historical sampling seed was not recorded"
 }

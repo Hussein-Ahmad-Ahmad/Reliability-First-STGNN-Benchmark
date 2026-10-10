@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import importlib.util
 import itertools
 import json
@@ -45,10 +46,25 @@ def per_origin_sum_and_count(pred: np.ndarray, target: np.ndarray, null_val: flo
 def load_sum_count_for_seed(dump_dir: Path, num_nodes: int, horizon: int, null_val: float):
     pred_path = dump_dir / "predictions.npy"
     target_path = dump_dir / "targets.npy"
+    metadata_path = dump_dir / 'export_metadata.json'
+    if not metadata_path.is_file():
+        raise ValueError(f'Validated export metadata is required: {dump_dir}')
+    metadata = json.loads(metadata_path.read_text(encoding='utf-8'))
+    if not metadata.get('verified'):
+        raise ValueError(f'Unverified export: {dump_dir}')
+    for path in (pred_path, target_path):
+        digest = hashlib.sha256()
+        with path.open('rb') as handle:
+            for chunk in iter(lambda: handle.read(4 * 1024 * 1024), b''):
+                digest.update(chunk)
+        if digest.hexdigest() != metadata[f'{path.stem}_sha256']:
+            raise ValueError(f'Export checksum mismatch: {path}')
     pred = bb.reshape_prediction(bb.read_prediction_array(pred_path, num_nodes, horizon), num_nodes, horizon, pred_path)
     target = bb.reshape_prediction(bb.read_prediction_array(target_path, num_nodes, horizon), num_nodes, horizon, target_path)
     if pred.shape != target.shape:
         raise ValueError(f"Prediction/target shape mismatch in {dump_dir}: {pred.shape} vs {target.shape}")
+    if pred.shape[0] != metadata['test_origins'] or not np.isfinite(pred).all() or not np.isfinite(target).all():
+        raise ValueError(f'Incomplete or nonfinite chronological export: {dump_dir}')
     sums, counts = per_origin_sum_and_count(pred, target, null_val)
     return sums, counts, target
 
@@ -89,16 +105,30 @@ def bootstrap_flat_pooled_diff(
     resampling unit should be one seed-aggregated temporal sequence, not
     independently-resampled per-seed blocks recombined afterward.
     """
-    n = seed_agg_sum_a.size
+    arrays = [np.asarray(value, dtype=np.float64) for value in
+              (seed_agg_sum_a, seed_agg_count_a, seed_agg_sum_b, seed_agg_count_b)]
+    n = arrays[0].size
+    if any(value.ndim != 1 or value.size != n or not np.isfinite(value).all() for value in arrays):
+        raise ValueError('Paired sums/counts must be finite, equally sized origin sequences.')
+    if not 0 < block_len <= n or n_bootstrap <= 0:
+        raise ValueError('Block length must be within the origin count and replicate count must be positive.')
+    if any(np.any(value < 0) or value.sum() <= 0 for value in (arrays[1], arrays[3])):
+        raise ValueError('Valid-element counts must be nonnegative and have positive totals.')
     max_start = n - block_len
     blocks_needed = math.ceil(n / block_len)
     boot_diffs = np.empty(n_bootstrap, dtype=np.float64)
-    for b in range(n_bootstrap):
-        starts = rng.integers(0, max_start + 1, size=blocks_needed)
-        idx = np.concatenate([np.arange(s, s + block_len) for s in starts])[:n]
-        mae_a = seed_agg_sum_a[idx].sum() / seed_agg_count_a[idx].sum()
-        mae_b = seed_agg_sum_b[idx].sum() / seed_agg_count_b[idx].sum()
-        boot_diffs[b] = mae_a - mae_b
+    prefixes = [np.concatenate(([0.0], np.cumsum(value))) for value in arrays]
+    lengths = np.full(blocks_needed, block_len, dtype=np.int64)
+    lengths[-1] = n - block_len * (blocks_needed - 1)
+    # Prefix sums preserve the shared blocks and final truncation without materializing every origin index.
+    for offset in range(0, n_bootstrap, 512):
+        stop = min(offset + 512, n_bootstrap)
+        starts = rng.integers(0, max_start + 1, size=(stop - offset, blocks_needed))
+        ends = starts + lengths
+        totals = [(prefix[ends] - prefix[starts]).sum(axis=1) for prefix in prefixes]
+        if np.any(totals[1] <= 0) or np.any(totals[3] <= 0):
+            raise ValueError('A bootstrap replicate contains no valid target elements.')
+        boot_diffs[offset:stop] = totals[0] / totals[1] - totals[2] / totals[3]
     return boot_diffs
 
 
@@ -210,7 +240,7 @@ def main() -> None:
 
     output = {
         "method": "moving block bootstrap over forecast origins, flat-pooled (sum/count) aggregation matching official masked_mae",
-        "aggregation_note": "Flat-pooled MAE is the sum of absolute errors over valid elements divided by their count. Regenerated inference artifacts differ from the archived metrics by approximately 0.0002-0.005 MAE per model on METR-LA; exact historical reproduction is not claimed. Earlier per-origin-mean aggregation differs from flat pooling when valid-element counts vary, with pairwise differences of up to approximately 0.017 MAE.",
+        "aggregation_note": "Flat-pooled MAE is the sum of absolute errors over valid elements divided by their count. Input exports are chronological complete passes verified against archived online MAE within 1e-5, with array checksums and origin counts checked before loading. Pairwise estimates use the same common seed intersection as their resampling intervals.",
         "block_sampling_design": "One shared block-start sample is drawn per replicate from a seed-aggregated per-origin sum/count sequence and applied to both models. Seeds are not independently resampled; each pair uses its disclosed common seed intersection.",
         "dataset": args.dataset,
         "block_len": block_len,
