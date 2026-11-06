@@ -1,0 +1,8 @@
+stage_order,stage_name,count,basis,notes
+1,Historical pooled candidate records,~400,Aggregate historical count,Source-specific raw-hit logs unavailable.
+2,Historical records retained for detailed eligibility,~135,Aggregate historical count,Individual record identities/transitions unavailable.
+3,Historical pooled synthesis,59,Exact bibliography-anchored source set,"References [1], [2], [7]-[62], [66]."
+4,Additional purposive evidence step,+4,Exact purposive additions,"DeepSTUQ [3], CASTMGCN [4], GCN-M [5], STExplainer [6]. Not a new systematic retrieval."
+5,Final synthesis,63,Exact total 59 + 4,"19 journal, 39 conference, 5 preprint cited versions."
+6,Bibliography-only records outside synthesis,4,Exact bibliography accounting,"Dataset repository [63] and supplementary methodological references [64], [65], [67]."
+7,Historical individual record transitions,Not available,Not retained,No unsupported PRISMA-style record transitions are inferred.

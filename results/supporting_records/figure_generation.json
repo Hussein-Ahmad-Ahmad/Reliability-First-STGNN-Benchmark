@@ -1,0 +1,286 @@
+{
+  "inputs": {
+    "results/task1_point_forecasting/seed_metrics.json": "1c89f226c768eebb37bdff9407d8b1027762c0e4a10299867ba816a5a3e73e9e",
+    "results/task2_uncertainty/conformal/METR-LA_conformal_fixed_metrics.json": "a55e392eec32efa79778a35e5ca098a5ffd04a0c2797cc92d216db1dc5b259b5",
+    "results/task2_uncertainty/conformal/METR-LA_conformal_per_horizon_metrics.json": "2a4d00083228db86ac5d4e6b6202ceaedb4d48741c14bc2d27822c30b65156ab",
+    "results/task2_uncertainty/conformal/PEMS-BAY_conformal_fixed_metrics.json": "ee9f818f27e3e7e53556593cf2cf2e608b6ef9a8a92488f7f063be041abc8d79",
+    "results/task2_uncertainty/conformal/PEMS-BAY_conformal_per_horizon_metrics.json": "97c8febaf76b0c154201d91d691aab81df47faddba37e5b489a48de713313611",
+    "results/task2_uncertainty/conformal/PEMS04_conformal_fixed_metrics.json": "d6ef3590012bea1d0ba66942d679b52c589f4c30cfee2c991bac6fefb0c19e60",
+    "results/task2_uncertainty/conformal/PEMS04_conformal_per_horizon_metrics.json": "b42cb303ad793168b0bdf8a3e7fa9c5397d032beeab9c4fa00c8503494cd913d",
+    "results/task3_explainability/gnnexplainer/D2STGNN/METR-LA_fidelity_metrics.json": "fdb62dd2cd72f35c794040ad52da3c3d775ee204720d19c05b27fd2590f87931",
+    "results/task3_explainability/gnnexplainer/MegaCRN/METR-LA_fidelity_metrics.json": "b356909fc78fa2a06b929784108944d3d8f8f5f1a48a80f2dc535bb5b5c2f387",
+    "results/task3_explainability/gnnexplainer/STID/METR-LA_fidelity_metrics.json": "0a78f26b69bf448363caa79e9833a73632abaa01bbf970e8c3ebb65c3043759e",
+    "results/task3_explainability/gnnexplainer/STAEformer/METR-LA_fidelity_metrics.json": "2c69894aae54612317ebd16d880bcf27fc8520c211207e3bb066f120e7b4d6b7"
+  },
+  "figures": {
+    "point_forecast/pf2_horizon_profiles": {
+      "values": {
+        "METR-LA": {
+          "D2STGNN": [
+            2.5626997593283547,
+            2.910028391092364,
+            3.3523727326721313
+          ],
+          "MegaCRN": [
+            2.649666903062378,
+            3.0460857588978496,
+            3.5311319531030576
+          ],
+          "MTGNN": [
+            2.6899523118321906,
+            3.05533130060245,
+            3.4941937526983495
+          ],
+          "STNorm": [
+            2.8071304440377,
+            3.18708492163006,
+            3.5830534413714226
+          ],
+          "STGCNChebGraphConv": [
+            2.778189305297173,
+            3.1751850688089394,
+            3.64848540182996
+          ],
+          "STID": [
+            2.8084371624050326,
+            3.1784046834100326,
+            3.5480525403097047
+          ],
+          "STAEformer": [
+            2.659290990708295,
+            2.9726560800649224,
+            3.3484864110081785
+          ]
+        },
+        "PEMS-BAY": {
+          "D2STGNN": [
+            1.2557429343034912,
+            1.568436302607645,
+            1.862648771656177
+          ],
+          "MegaCRN": [
+            1.2893137189003179,
+            1.6093580649707218,
+            1.9041809598927604
+          ],
+          "MTGNN": [
+            1.3279329524052823,
+            1.6544523079571565,
+            1.9555728636484027
+          ],
+          "STNorm": [
+            1.3442407154430664,
+            1.677630733121639,
+            1.9530994125364831
+          ],
+          "STGCNChebGraphConv": [
+            1.437531271515281,
+            1.7566161522659722,
+            2.064503900598741
+          ],
+          "STID": [
+            1.3097728708470344,
+            1.6294369567796985,
+            1.906983900633642
+          ],
+          "STAEformer": [
+            1.3281274836057146,
+            1.637455440764965,
+            1.9134715712594528
+          ]
+        },
+        "PEMS04": {
+          "D2STGNN": [
+            17.588214354288837,
+            18.396403048417962,
+            19.802967245854134
+          ],
+          "MegaCRN": [
+            17.83316093024217,
+            18.87393244634411,
+            20.393356894920114
+          ],
+          "MTGNN": [
+            18.198886651560326,
+            19.05068835012894,
+            20.52412749588741
+          ],
+          "STNorm": [
+            18.32192367274071,
+            19.11996209503868,
+            20.282200820492832
+          ],
+          "STGCNChebGraphConv": [
+            18.95515032465519,
+            19.914606992283115,
+            21.745992351276985
+          ],
+          "STID": [
+            17.61614108606027,
+            18.436019660138633,
+            19.740472901504283
+          ],
+          "STAEformer": [
+            17.525870635451124,
+            18.25422323327626,
+            19.307631634511605
+          ]
+        }
+      },
+      "outputs": [
+        {
+          "path": "figures-final/figures/point_forecast/pf2_horizon_profiles.pdf",
+          "sha256": "ccc0c456acfa4ccff1a3f46ecbc3526b59bcb6d2496b115a446ca798fb5fd4fe"
+        },
+        {
+          "path": "figures-final/figures/point_forecast/pf2_horizon_profiles.png",
+          "sha256": "38d2b12ceea3958e0dee37127443969c965009a797fac66cd48e42bd6b89a6cf"
+        }
+      ],
+      "text_within_canvas": true
+    },
+    "uq/uq5_coverage_width_tradeoff": {
+      "values": {
+        "METR-LA": {
+          "fixed": {
+            "MPIW": 23.37816619873047,
+            "PICP": 0.9056704309766921
+          },
+          "per_horizon": {
+            "MPIW": 23.180658667155196,
+            "PICP": 0.9056291297695168
+          }
+        },
+        "PEMS-BAY": {
+          "fixed": {
+            "MPIW": 11.6907320022583,
+            "PICP": 0.9062850081933598
+          },
+          "per_horizon": {
+            "MPIW": 11.414535137326617,
+            "PICP": 0.9063804839635228
+          }
+        },
+        "PEMS04": {
+          "fixed": {
+            "MPIW": 91.75132751464844,
+            "PICP": 0.9009819565124711
+          },
+          "per_horizon": {
+            "MPIW": 89.80267461438196,
+            "PICP": 0.9006797835028832
+          }
+        }
+      },
+      "outputs": [
+        {
+          "path": "figures-final/figures/uq/uq5_coverage_width_tradeoff.pdf",
+          "sha256": "3a7d25235da977fb9334345c94e24c2ba8cd16550cb542cdce62c19fcb8ef099"
+        },
+        {
+          "path": "figures-final/figures/uq/uq5_coverage_width_tradeoff.png",
+          "sha256": "32b91675f814e25f0fd96f6e05fd43bf77cbe3c42d769a980136e0d699ae0270"
+        }
+      ],
+      "text_within_canvas": true
+    },
+    "xai/xai2_gnnexplainer_delta_comparison": {
+      "values": {
+        "D2STGNN": {
+          "budgets": [
+            5,
+            10,
+            20,
+            50
+          ],
+          "selected": [
+            0.679435113845393,
+            1.5747551039606333,
+            3.26442538395524,
+            7.671212422698736
+          ],
+          "random": [
+            1.3702926813345402,
+            2.2707088469713925,
+            4.325608934871853,
+            8.118670674189925
+          ]
+        },
+        "MegaCRN": {
+          "budgets": [
+            5,
+            10,
+            20,
+            50
+          ],
+          "selected": [
+            0.05035866264253855,
+            0.11122198045253753,
+            0.1913887497037649,
+            0.3135119977593422
+          ],
+          "random": [
+            0.14470296531915663,
+            0.19635628201067448,
+            0.2610943831503391,
+            0.30250094026327135
+          ]
+        },
+        "STID": {
+          "budgets": [
+            5,
+            10,
+            20,
+            50
+          ],
+          "selected": [
+            0.23571855932474137,
+            0.7052659846842289,
+            1.9579482191801072,
+            6.990096017122268
+          ],
+          "random": [
+            0.9141063445806503,
+            1.7986756187677384,
+            3.6050412303209303,
+            8.948165395259856
+          ]
+        },
+        "STAEformer": {
+          "budgets": [
+            5,
+            10,
+            20,
+            50
+          ],
+          "selected": [
+            0.012510864166542887,
+            0.024861063142307103,
+            0.054340427070856095,
+            0.15737512487918137
+          ],
+          "random": [
+            0.01213876039488241,
+            0.02482314307242632,
+            0.05176610048860311,
+            0.12756503224372864
+          ]
+        }
+      },
+      "outputs": [
+        {
+          "path": "figures-final/figures/xai/xai2_gnnexplainer_delta_comparison.pdf",
+          "sha256": "8ce5a303c52fac095ea99a6399150abfdd87ad3a931d3b9b9280a1399e605444"
+        },
+        {
+          "path": "figures-final/figures/xai/xai2_gnnexplainer_delta_comparison.png",
+          "sha256": "3ca863e048f63dda9839a8c2327fa41c08bdde498ebe9e301223c1c9ee9ed5ec"
+        }
+      ],
+      "text_within_canvas": true
+    }
+  },
+  "training_performed": false,
+  "inference_performed": false,
+  "font": "DejaVu Sans"
+}

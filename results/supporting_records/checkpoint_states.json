@@ -1,0 +1,1237 @@
+{
+  "scope": "Tensor comparison of retained auxiliary and archived checkpoint states.",
+  "training_performed": false,
+  "inference_performed": false,
+  "cases": [
+    {
+      "model": "D2STGNN",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "84de0763d7093b1b5fbbf99e98915f78f6da3d7ef75d67f91f2864ff1ee8ac70",
+        "tensor_sha256": "bf8c9998b32ba70ccf72ad220b2d57a201eb156cdd7ce5492be549ed1bfef119",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "04ae7a25b3233077ab149abff66918ae3f984b9eb60b187879db0f631a756d6a",
+        "tensor_sha256": "df65e6cb5166d26155648c8dc2d450587e6717f3809d4ec7b73ef2b21a31886d",
+        "epoch": 77,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "84de0763d7093b1b5fbbf99e98915f78f6da3d7ef75d67f91f2864ff1ee8ac70",
+        "tensor_sha256": "bf8c9998b32ba70ccf72ad220b2d57a201eb156cdd7ce5492be549ed1bfef119",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed43/df0cf6f0146be24966504e70a2f32880/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed43/df0cf6f0146be24966504e70a2f32880/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "METR-LA",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "844a9e59f38174010f15a5f8d4850be2d5e542da8661f77bd7096fad417372ae",
+        "tensor_sha256": "34817c85ab6ed2d9fb9ee2bc23f4c2df4e72101a7e1e8f344a7360a9b13038fd",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "21fdb14fd9ef9981fc5312f97db91b8a011afd251417a1d6676ef0a97a19d6df",
+        "tensor_sha256": "6109fe2c779e26ffeac8591910fcf3ea21fcd831a398ae06ea335618b3257a5c",
+        "epoch": 78,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "844a9e59f38174010f15a5f8d4850be2d5e542da8661f77bd7096fad417372ae",
+        "tensor_sha256": "34817c85ab6ed2d9fb9ee2bc23f4c2df4e72101a7e1e8f344a7360a9b13038fd",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/METR-LA_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed44/e98ec97bc3505401c5aa34252fad9a9d/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed44/e98ec97bc3505401c5aa34252fad9a9d/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "METR-LA",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "6208ed4516c6d3e819a9107993db4a3dad5346d11ffde387994fc1d633fc478b",
+        "tensor_sha256": "381d81045652b2a88e4b74a625dd23537331f8ed0bf04c67ce5be5445e05c6df",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "f2ff06510685e7c7ffc2cb543c7ff3eef3b1b5417d86f499f988184192d28266",
+        "tensor_sha256": "7af0ba2d15b9d567fa7e75091c61dd13b9ec2001ef5bc76852fdc713bdfa17e6",
+        "epoch": 70,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "6208ed4516c6d3e819a9107993db4a3dad5346d11ffde387994fc1d633fc478b",
+        "tensor_sha256": "381d81045652b2a88e4b74a625dd23537331f8ed0bf04c67ce5be5445e05c6df",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/METR-LA_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed45/314de509ae4c09a882a2df45cce6de4c/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/METR-LA_100_12_12_seed45/314de509ae4c09a882a2df45cce6de4c/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS-BAY",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "76e567fbebd1530268c6503c4b72f05c256357cf7d2e7a56108c6e2d42ec13c3",
+        "tensor_sha256": "374f68bcf89447def1cda06c8c59e0e66b60c7d4dfdb0bbbb9c9759df9f84694",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "aff3b5a63ef0adc8e87748b84adae4ac3585a4890accf8684947417beb36ec93",
+        "tensor_sha256": "1e548aa806e79bf0fb1acf3fafb1f53cd92429d1d116131eee5f68dfb7895b0b",
+        "epoch": 98,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "76e567fbebd1530268c6503c4b72f05c256357cf7d2e7a56108c6e2d42ec13c3",
+        "tensor_sha256": "374f68bcf89447def1cda06c8c59e0e66b60c7d4dfdb0bbbb9c9759df9f84694",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/PEMS-BAY_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed43/d0c8a54cfa22cd89231f1984561f9ef6/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed43/d0c8a54cfa22cd89231f1984561f9ef6/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS-BAY",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "967956eec416026b76be66af3f99e91c5f83e62e3b7167513f2c38f320d81d7f",
+        "tensor_sha256": "9a971e2bb6e31da7d11b5d99ce226037d50d017ff65d3d3f513e5918f376fa5f",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "606d05963be5f516a949c5d9dff9c66082491ae00a5c48c08f383a5461d35358",
+        "tensor_sha256": "88922d264f9934345ca6ae4fcb479747fb312a4f63ad2b5947638e22ea8fa0a4",
+        "epoch": 90,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "967956eec416026b76be66af3f99e91c5f83e62e3b7167513f2c38f320d81d7f",
+        "tensor_sha256": "9a971e2bb6e31da7d11b5d99ce226037d50d017ff65d3d3f513e5918f376fa5f",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/PEMS-BAY_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed44/d3d8dece2fca7df54c664e805e18e2cd/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed44/d3d8dece2fca7df54c664e805e18e2cd/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS-BAY",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "3b251de27bacf5b17e9ae85ba4fcc6760feda34960a75d670938e9a08009a0fb",
+        "tensor_sha256": "7556d27d7b8820adfcc2b67b567c8da4e7f5724219db90290636927c3f7b95c3",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "460c44ce77049780574393da5478a655c3565538b6c87cd77d965fdfe2e36f58",
+        "tensor_sha256": "ed30de3eca11c8fc9b19bd6948785c248a1cced6f05d4dc8ca558dcd737decfd",
+        "epoch": 86,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "3b251de27bacf5b17e9ae85ba4fcc6760feda34960a75d670938e9a08009a0fb",
+        "tensor_sha256": "7556d27d7b8820adfcc2b67b567c8da4e7f5724219db90290636927c3f7b95c3",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/PEMS-BAY_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed45/409d8374150fd595a6b88e262c8cffc3/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/PEMS-BAY_100_12_12_seed45/409d8374150fd595a6b88e262c8cffc3/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS04",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "3cfcb93262f3c4947b024f9c716591937d15f2416b68eb87dfe4c0bae2013d85",
+        "tensor_sha256": "db8781f262326fa428b1ae4f2c5e5d3651ced62dcbc445ee2c589515b48e3199",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "b8b51736e82082f7bf6aa0c76f2633ad119c858b17e99829a8c5aa2fdb2a04bc",
+        "tensor_sha256": "3809d352da2ac954942444846179aa5d15ba35695011454f722766820b779028",
+        "epoch": 97,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "3cfcb93262f3c4947b024f9c716591937d15f2416b68eb87dfe4c0bae2013d85",
+        "tensor_sha256": "db8781f262326fa428b1ae4f2c5e5d3651ced62dcbc445ee2c589515b48e3199",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/PEMS04_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed43/4b46f6085eb5bb54551a637059ab2c9b/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed43/4b46f6085eb5bb54551a637059ab2c9b/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS04",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "48ceaa94c288d45a3afdece222db8dbdb2ac2318e7f4cf195895f081c7186391",
+        "tensor_sha256": "13947adbd9c3ca40d2e21f39218594641564b6d6b9dc4cec017dd51e869377b1",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "05631ec5acd89628d98077fefd62ab058bb64aa44246a17cee07273b30f6ed28",
+        "tensor_sha256": "13947adbd9c3ca40d2e21f39218594641564b6d6b9dc4cec017dd51e869377b1",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "archived_epoch100": {
+        "file_sha256": "48ceaa94c288d45a3afdece222db8dbdb2ac2318e7f4cf195895f081c7186391",
+        "tensor_sha256": "13947adbd9c3ca40d2e21f39218594641564b6d6b9dc4cec017dd51e869377b1",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/PEMS04_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed44/26833830056a9790fd9e371e0acb8a3c/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed44/26833830056a9790fd9e371e0acb8a3c/D2STGNN_100.pt"
+    },
+    {
+      "model": "D2STGNN",
+      "dataset": "PEMS04",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "afe65a826a09874377b2cffb4b72641c46108f4538979e2c58d0de3ef6521200",
+        "tensor_sha256": "7b8c68ee239d1cbf51ec88446be733710a4156da8e04a720065bd188840c368f",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "archived_best": {
+        "file_sha256": "f917ee983c04bdcbef038509db85b5e36e5b5b4715724258bc41e5dd7f044ef6",
+        "tensor_sha256": "44e605d9d374f61682826c4b25266f20f5b733e5c1f6f8c249402e9b45753dcc",
+        "epoch": 91,
+        "tensor_count": 184
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 152,
+        "examples": [
+          "T_i_D_emb",
+          "D_i_W_emb",
+          "node_emb_u",
+          "node_emb_d",
+          "embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "afe65a826a09874377b2cffb4b72641c46108f4538979e2c58d0de3ef6521200",
+        "tensor_sha256": "7b8c68ee239d1cbf51ec88446be733710a4156da8e04a720065bd188840c368f",
+        "epoch": 100,
+        "tensor_count": 184
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/D2STGNN/PEMS04_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed45/747a083b3b242dc48f31929843440260/D2STGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/D2STGNN/PEMS04_100_12_12_seed45/747a083b3b242dc48f31929843440260/D2STGNN_100.pt"
+    },
+    {
+      "model": "MTGNN",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "f6ba0dd5490c64565df058164ce441a26381d65f364bb8eb63c245297f36c0c1",
+        "tensor_sha256": "22126a35e6a924c2148ffdd091697d24ad07e14293c7097fa94a967be29d5b5c",
+        "epoch": 100,
+        "tensor_count": 94
+      },
+      "archived_best": {
+        "file_sha256": "d498d667f3c58b44e5fc64617c85aec4e943d8509adfbab1d41276839507d34b",
+        "tensor_sha256": "7675e91bb23d4e8b459a2efbd4683e5f66edf1d1f6308ee4d92cb2beecc6f1f1",
+        "epoch": 58,
+        "tensor_count": 94
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 88,
+        "examples": [
+          "filter_convs.0.tconv.0.weight",
+          "filter_convs.0.tconv.0.bias",
+          "filter_convs.0.tconv.1.weight",
+          "filter_convs.0.tconv.1.bias",
+          "filter_convs.0.tconv.2.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "f6ba0dd5490c64565df058164ce441a26381d65f364bb8eb63c245297f36c0c1",
+        "tensor_sha256": "22126a35e6a924c2148ffdd091697d24ad07e14293c7097fa94a967be29d5b5c",
+        "epoch": 100,
+        "tensor_count": 94
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/MTGNN/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/MTGNN/METR-LA_100_12_12_seed43/b49973cb6528058f8eafa1751de49e57/MTGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/MTGNN/METR-LA_100_12_12_seed43/b49973cb6528058f8eafa1751de49e57/MTGNN_100.pt"
+    },
+    {
+      "model": "MTGNN",
+      "dataset": "PEMS-BAY",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "96b799ddbec39e0f188a71b23d87fd2bb110eb921316a901ab46304818077820",
+        "tensor_sha256": "b4460e45c528d6b76ea39cf8164915fb55b6ad7c4d289c3fff9afdc0d0cfe284",
+        "epoch": 100,
+        "tensor_count": 94
+      },
+      "archived_best": {
+        "file_sha256": "fd67ec6e70451b813f6a28fb1473effa2b2a1711ca4f34bbabb58bd77545b676",
+        "tensor_sha256": "970b70da7e42776c5546ff9dc421556d42cb68fbf78ec4a2ff084346cfe0d9ab",
+        "epoch": 81,
+        "tensor_count": 94
+      },
+      "best_matches_export_hash": null,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 88,
+        "examples": [
+          "filter_convs.0.tconv.0.weight",
+          "filter_convs.0.tconv.0.bias",
+          "filter_convs.0.tconv.1.weight",
+          "filter_convs.0.tconv.1.bias",
+          "filter_convs.0.tconv.2.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "96b799ddbec39e0f188a71b23d87fd2bb110eb921316a901ab46304818077820",
+        "tensor_sha256": "b4460e45c528d6b76ea39cf8164915fb55b6ad7c4d289c3fff9afdc0d0cfe284",
+        "epoch": 100,
+        "tensor_count": 94
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/MTGNN/PEMS-BAY_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/MTGNN/PEMS-BAY_100_12_12_seed43/2e3f004865bfed3764aed307e93c2ef9/MTGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/MTGNN/PEMS-BAY_100_12_12_seed43/2e3f004865bfed3764aed307e93c2ef9/MTGNN_100.pt"
+    },
+    {
+      "model": "MTGNN",
+      "dataset": "PEMS04",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "6d942c28822f170b1c717911dfdfcfc67551fff4153835a4d5b6aa8562f3a024",
+        "tensor_sha256": "8e226932e667c52df70c0a953fc78c09a7e2127bd206cc54b3a7a0b1a2dda524",
+        "epoch": 100,
+        "tensor_count": 94
+      },
+      "archived_best": {
+        "file_sha256": "dda0835fa3912ec62bfa6538421c7e695e94844be1bd23b99c2b7fa67daece4a",
+        "tensor_sha256": "0984c07773c87f4b2dfd0d602a3480db356ce7cc3dd55ed9b13d17f7bc9fa274",
+        "epoch": 99,
+        "tensor_count": 94
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 88,
+        "examples": [
+          "filter_convs.0.tconv.0.weight",
+          "filter_convs.0.tconv.0.bias",
+          "filter_convs.0.tconv.1.weight",
+          "filter_convs.0.tconv.1.bias",
+          "filter_convs.0.tconv.2.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "6d942c28822f170b1c717911dfdfcfc67551fff4153835a4d5b6aa8562f3a024",
+        "tensor_sha256": "8e226932e667c52df70c0a953fc78c09a7e2127bd206cc54b3a7a0b1a2dda524",
+        "epoch": 100,
+        "tensor_count": 94
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/MTGNN/PEMS04_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/MTGNN/PEMS04_100_12_12_seed43/3296253683405aa7f969d7be7396b7a3/MTGNN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/MTGNN/PEMS04_100_12_12_seed43/3296253683405aa7f969d7be7396b7a3/MTGNN_100.pt"
+    },
+    {
+      "model": "MegaCRN",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "99d0746a81919ce655f47256dd6fef7903ba3799773367dacd2b96d9968b2f39",
+        "tensor_sha256": "4db41afcfc00d53c4a463414270d6bdf0cbdcd47563d4943335c1dbf93d8da3f",
+        "epoch": 100,
+        "tensor_count": 14
+      },
+      "archived_best": {
+        "file_sha256": "ac3caeb1d5a3dd0affef29df9e59bd152f834115a73c4f9d86461e05beb29ac8",
+        "tensor_sha256": "a7eac657ef3655444a49bc7dcbe6d759a94a2ad88783801e08e775272c7b9777",
+        "epoch": 62,
+        "tensor_count": 14
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 14,
+        "examples": [
+          "memory.Memory",
+          "memory.Wq",
+          "memory.We1",
+          "memory.We2",
+          "encoder.dcrnn_cells.0.gate.weights"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "99d0746a81919ce655f47256dd6fef7903ba3799773367dacd2b96d9968b2f39",
+        "tensor_sha256": "4db41afcfc00d53c4a463414270d6bdf0cbdcd47563d4943335c1dbf93d8da3f",
+        "epoch": 100,
+        "tensor_count": 14
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/MegaCRN/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed43/5da0891349a74d561cc671d791d650f5/MegaCRN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed43/5da0891349a74d561cc671d791d650f5/MegaCRN_100.pt"
+    },
+    {
+      "model": "MegaCRN",
+      "dataset": "METR-LA",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "03fe20607136d6cd1490c9b665e5a22d1fa124bfb6ec569f9b4a0bddcb55eade",
+        "tensor_sha256": "e5e432cc9511b50dbcee1422f86c9f59e46802039ca91ebe7eea56fef9415af7",
+        "epoch": 100,
+        "tensor_count": 14
+      },
+      "archived_best": {
+        "file_sha256": "5f16a7c58f00f913aa3ac3f15137b2f7df174de113f004fe69b31ac1fe6526f4",
+        "tensor_sha256": "1e2d30034d4ee94346cff38645ec312d5369da4aab24d88d476b87af05339036",
+        "epoch": 51,
+        "tensor_count": 14
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 14,
+        "examples": [
+          "memory.Memory",
+          "memory.Wq",
+          "memory.We1",
+          "memory.We2",
+          "encoder.dcrnn_cells.0.gate.weights"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "03fe20607136d6cd1490c9b665e5a22d1fa124bfb6ec569f9b4a0bddcb55eade",
+        "tensor_sha256": "e5e432cc9511b50dbcee1422f86c9f59e46802039ca91ebe7eea56fef9415af7",
+        "epoch": 100,
+        "tensor_count": 14
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/MegaCRN/METR-LA_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed44/0249ac62895c58a2a348a0e6167406f8/MegaCRN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed44/0249ac62895c58a2a348a0e6167406f8/MegaCRN_100.pt"
+    },
+    {
+      "model": "MegaCRN",
+      "dataset": "METR-LA",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "00af8fc1254d4760209bfb165dae4d52ec4f0ac8897d3114ee91d023078a9a43",
+        "tensor_sha256": "8ca6eb0885c6d449f1e547f3c7f8bb2bf64b9d5bbe73492f053e017728e3200c",
+        "epoch": 100,
+        "tensor_count": 14
+      },
+      "archived_best": {
+        "file_sha256": "ee8311838e675499aea8bb42cfa583e353918c4eb5434285162a22aa210ee162",
+        "tensor_sha256": "1bfb7291cea473a2eca0caade776c24191fa925470407fc7616ba9812d963391",
+        "epoch": 52,
+        "tensor_count": 14
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 14,
+        "examples": [
+          "memory.Memory",
+          "memory.Wq",
+          "memory.We1",
+          "memory.We2",
+          "encoder.dcrnn_cells.0.gate.weights"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "00af8fc1254d4760209bfb165dae4d52ec4f0ac8897d3114ee91d023078a9a43",
+        "tensor_sha256": "8ca6eb0885c6d449f1e547f3c7f8bb2bf64b9d5bbe73492f053e017728e3200c",
+        "epoch": 100,
+        "tensor_count": 14
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/MegaCRN/METR-LA_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed45/7f4070757032836bd729775ac17f4f96/MegaCRN_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/MegaCRN/METR-LA_100_12_12_seed45/7f4070757032836bd729775ac17f4f96/MegaCRN_100.pt"
+    },
+    {
+      "model": "STAEformer",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "9e62d2e8e60bc55f787226201135addd5172000483171e3a088644fb1e5190f8",
+        "tensor_sha256": "dcd68c3d77d216d1f78d6eebfbef2bed29c6b4f65ddec9da2a98ece21a1eefe8",
+        "epoch": 100,
+        "tensor_count": 103
+      },
+      "archived_best": {
+        "file_sha256": "96a5b79ca34a41d5c8ad4686c519ec4f989bda9b7856d0b12a2a17b56202a878",
+        "tensor_sha256": "d2c5c855902750beb554b99fb820640ce1bb329c28608c7591d113a10ce7b7b7",
+        "epoch": 25,
+        "tensor_count": 103
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 103,
+        "examples": [
+          "adaptive_embedding",
+          "input_proj.weight",
+          "input_proj.bias",
+          "tod_embedding.weight",
+          "dow_embedding.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "9e62d2e8e60bc55f787226201135addd5172000483171e3a088644fb1e5190f8",
+        "tensor_sha256": "dcd68c3d77d216d1f78d6eebfbef2bed29c6b4f65ddec9da2a98ece21a1eefe8",
+        "epoch": 100,
+        "tensor_count": 103
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STAEformer/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/STAEformer/METR-LA_100_12_12_seed43/6e41ab1fdb68ffe63475b8df1dca8ae8/STAEformer_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STAEformer/METR-LA_100_12_12_seed43/6e41ab1fdb68ffe63475b8df1dca8ae8/STAEformer_100.pt"
+    },
+    {
+      "model": "STGCNChebGraphConv",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "24c4308c3591c9eb4a9e68e77909396974db5ec1b33d18915e7e91f7aed84c90",
+        "tensor_sha256": "82d47ead23d4333f83e7d6b12280b6191b23d3121e9e3fbb98eb2fc2a909b6ac",
+        "epoch": 100,
+        "tensor_count": 38
+      },
+      "archived_best": {
+        "file_sha256": "5d8ce59bb1951ce7308ee51c3b141b907ef5754d492a1cadc18f79cd04b2fb11",
+        "tensor_sha256": "71c00b08688c6b768fc4712257383d02eab2529b074cc61088b3f2ade2f591b1",
+        "epoch": 98,
+        "tensor_count": 38
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 28,
+        "examples": [
+          "st_blocks.0.tmp_conv1.causal_conv.weight",
+          "st_blocks.0.tmp_conv1.causal_conv.bias",
+          "st_blocks.0.graph_conv.align.align_conv.weight",
+          "st_blocks.0.graph_conv.align.align_conv.bias",
+          "st_blocks.0.graph_conv.cheb_graph_conv.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "24c4308c3591c9eb4a9e68e77909396974db5ec1b33d18915e7e91f7aed84c90",
+        "tensor_sha256": "82d47ead23d4333f83e7d6b12280b6191b23d3121e9e3fbb98eb2fc2a909b6ac",
+        "epoch": 100,
+        "tensor_count": 38
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STGCNChebGraphConv/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12_seed43/e6a1d567e4c62e3516fc087a00db8bec/STGCNChebGraphConv_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STGCNChebGraphConv/METR-LA_100_12_12_seed43/e6a1d567e4c62e3516fc087a00db8bec/STGCNChebGraphConv_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "05706c4ea6086e45dbc4cbf9f1656c3ad4e5e0b7c4916156486ef4d4d3125264",
+        "tensor_sha256": "0418f138260fdcdd6a5713201694ac7b707c868edebcd2312093fa1a04a8cbaf",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "f34da8292825cac7f7f5aaf4492bf71610c4b5ca12175f120072f3ee25d47da3",
+        "tensor_sha256": "7841c15287f5e3a8ccea0e1813c492df1a8ae55f398a28377a0e01e7844958af",
+        "epoch": 93,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "05706c4ea6086e45dbc4cbf9f1656c3ad4e5e0b7c4916156486ef4d4d3125264",
+        "tensor_sha256": "0418f138260fdcdd6a5713201694ac7b707c868edebcd2312093fa1a04a8cbaf",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/STID/METR-LA_100_12_12_seed43/38e0392ef9dec6dbdddc6a767d3023d4/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/METR-LA_100_12_12_seed43/38e0392ef9dec6dbdddc6a767d3023d4/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "METR-LA",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "dfa99c97221b3f0d88319ec79fbf45012c49ec169c4a121482dea45371d9309d",
+        "tensor_sha256": "eeab06f8a94203b11bb245c9edc905b31d67fd3599456eac01b4c2f376e21250",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "c606a84405759af878a8fcb79ff43832dacfe825a496e33167405f13c05e5b74",
+        "tensor_sha256": "96a0ce32f21c2f62abde077c73b7c520080944d22c956c4664727d5d4fa6bf39",
+        "epoch": 86,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "dfa99c97221b3f0d88319ec79fbf45012c49ec169c4a121482dea45371d9309d",
+        "tensor_sha256": "eeab06f8a94203b11bb245c9edc905b31d67fd3599456eac01b4c2f376e21250",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/METR-LA_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/STID/METR-LA_100_12_12_seed44/bbe9dfdbdd5c9ea9fa8edb60d6ff0094/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/METR-LA_100_12_12_seed44/bbe9dfdbdd5c9ea9fa8edb60d6ff0094/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "METR-LA",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "9c2780e0477ed778418e50e2a37abdbd4b74490c1d6a30eb10e1271aedcd28f9",
+        "tensor_sha256": "042187ed9b767004adaef8844c1955884bc4d5a1b2218739d1a498f1199aaf2d",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "b8bd371895d8e456fe19a12003868b2d8a31a6c3e4ac347235dfceeb43cc2bed",
+        "tensor_sha256": "393a873ff2e756acde3970585bafc89bfee5f7319c286cd1447f994278bcc03c",
+        "epoch": 31,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "9c2780e0477ed778418e50e2a37abdbd4b74490c1d6a30eb10e1271aedcd28f9",
+        "tensor_sha256": "042187ed9b767004adaef8844c1955884bc4d5a1b2218739d1a498f1199aaf2d",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/METR-LA_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/STID/METR-LA_100_12_12_seed45/9a1e85eb62155c45f724c2b330178a7e/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/METR-LA_100_12_12_seed45/9a1e85eb62155c45f724c2b330178a7e/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS-BAY",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "cc3182e5b6b60a160ae6f99555ca3ecb4c783485902c3e1bfa2953a8e69baa92",
+        "tensor_sha256": "7fa7dcf05397d72fef5a6f23d51ec82960d6d0dc4fc1f510944af65ae1caa338",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "d5ee5d6fdf3dc11aa0c96ffbc6fb241803cc5a053ad63751300e9a12a0a93d09",
+        "tensor_sha256": "c41981ca4957b82067f29d2e5a4622196882de9d68dc17573ef3cf0e0c40b8ab",
+        "epoch": 94,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "cc3182e5b6b60a160ae6f99555ca3ecb4c783485902c3e1bfa2953a8e69baa92",
+        "tensor_sha256": "7fa7dcf05397d72fef5a6f23d51ec82960d6d0dc4fc1f510944af65ae1caa338",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/PEMS-BAY_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed43/213b345107a495685b6a6fce3e9b69d7/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed43/213b345107a495685b6a6fce3e9b69d7/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS-BAY",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "ed5511035ab2fd87f46a0b2bf72305b307c20be946e348b2b6457fdee2592441",
+        "tensor_sha256": "6860953732a0076f69e351b6e71fffbb650ea077fbf9b2721625e530d8b7803d",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "9025071c40d3d3c89cdf9fbd39fc805b7ac27bb8a52e27d424d146856da85430",
+        "tensor_sha256": "3e6450614918e5b9c50203240058838ed513a75b3ff12f6ede4108a49513b94b",
+        "epoch": 85,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "ed5511035ab2fd87f46a0b2bf72305b307c20be946e348b2b6457fdee2592441",
+        "tensor_sha256": "6860953732a0076f69e351b6e71fffbb650ea077fbf9b2721625e530d8b7803d",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/PEMS-BAY_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed44/025de8a5db00ca81ac742a7b7a333643/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed44/025de8a5db00ca81ac742a7b7a333643/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS-BAY",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "df04616cb22a9ad5c1d49708f829b9f624244bc51cb618194c2af4ac028c3898",
+        "tensor_sha256": "db3aa56ea97cabaa41022bd1d46155c1f2e057e2eb266cd0f3990c07d637d616",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "b37ba8902eb680e03e496195b65b483a5552c10a9d1fdc7018374e93e445bc1c",
+        "tensor_sha256": "db3aa56ea97cabaa41022bd1d46155c1f2e057e2eb266cd0f3990c07d637d616",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "archived_epoch100": {
+        "file_sha256": "df04616cb22a9ad5c1d49708f829b9f624244bc51cb618194c2af4ac028c3898",
+        "tensor_sha256": "db3aa56ea97cabaa41022bd1d46155c1f2e057e2eb266cd0f3990c07d637d616",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/PEMS-BAY_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed45/15730c8b436e8b1573006e8353504979/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/PEMS-BAY_100_12_12_seed45/15730c8b436e8b1573006e8353504979/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS04",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "222a3ba0db55dd549ff460044243c43fd5183f46ce57aa34cb1106e05388ff80",
+        "tensor_sha256": "02c5a0ebad5c1d259280bd7f0c6231e232151a699b53ba077549ac76cd16c2f1",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "d7bf9f50006144b9bfe0022428114f0d61a92b44e9362341eb30a09b9e53c8fb",
+        "tensor_sha256": "8f3f5c821aa525df33f2bbcb592eb8755304d48e8e68033cb77ff4a19e7d7e2d",
+        "epoch": 97,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "222a3ba0db55dd549ff460044243c43fd5183f46ce57aa34cb1106e05388ff80",
+        "tensor_sha256": "02c5a0ebad5c1d259280bd7f0c6231e232151a699b53ba077549ac76cd16c2f1",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/PEMS04_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/STID/PEMS04_100_12_12_seed43/200c683298e50646d22fe7c97dde60a3/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/PEMS04_100_12_12_seed43/200c683298e50646d22fe7c97dde60a3/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS04",
+      "seed": 44,
+      "auxiliary": {
+        "file_sha256": "054aa960bd30b73bd07e4e4ab59961442b4de0bdc60868f5b485c2cd2ae9900a",
+        "tensor_sha256": "14957015dc5b10def1b746c6d13cf30e56ad21469e95c7098c782b40e657d4c9",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "d05cadaa038cd485cfb3a5b6ea1d52d457295757263c1ab93958cd5fbb25a461",
+        "tensor_sha256": "7aa36cb6bee427708368499b2296dca6adce0005850c278a7761ab32fc0013c8",
+        "epoch": 92,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "054aa960bd30b73bd07e4e4ab59961442b4de0bdc60868f5b485c2cd2ae9900a",
+        "tensor_sha256": "14957015dc5b10def1b746c6d13cf30e56ad21469e95c7098c782b40e657d4c9",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/PEMS04_seed44/best_model.pt",
+      "archived_best_path": "checkpoints/STID/PEMS04_100_12_12_seed44/5b8699b310175f02f9a8413d0628b5f5/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/PEMS04_100_12_12_seed44/5b8699b310175f02f9a8413d0628b5f5/STID_100.pt"
+    },
+    {
+      "model": "STID",
+      "dataset": "PEMS04",
+      "seed": 45,
+      "auxiliary": {
+        "file_sha256": "d3c08294e1451aebe38f2776ae0f90acebe74b069caabf896fadabafc8281d49",
+        "tensor_sha256": "17ac9ec71117a28fa8cdf85cb8f2417794dc96410ab324112b2042003743c624",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "archived_best": {
+        "file_sha256": "c83845c436e46a8400a054eabfdd83095304b545124a3e30810fecd8b0ea0a56",
+        "tensor_sha256": "a91ba69ccfed0a330047cd9ce460b686ba9168d534d63d773bb1f441e9957aa3",
+        "epoch": 92,
+        "tensor_count": 19
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 19,
+        "examples": [
+          "node_emb",
+          "time_in_day_emb",
+          "day_in_week_emb",
+          "time_series_emb_layer.weight",
+          "time_series_emb_layer.bias"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "d3c08294e1451aebe38f2776ae0f90acebe74b069caabf896fadabafc8281d49",
+        "tensor_sha256": "17ac9ec71117a28fa8cdf85cb8f2417794dc96410ab324112b2042003743c624",
+        "epoch": 100,
+        "tensor_count": 19
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STID/PEMS04_seed45/best_model.pt",
+      "archived_best_path": "checkpoints/STID/PEMS04_100_12_12_seed45/652c1ed78d3922cad159d0b590a1606a/STID_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STID/PEMS04_100_12_12_seed45/652c1ed78d3922cad159d0b590a1606a/STID_100.pt"
+    },
+    {
+      "model": "STNorm",
+      "dataset": "METR-LA",
+      "seed": 43,
+      "auxiliary": {
+        "file_sha256": "f0ee064a5b20e074d2497898d016c8820173ba5460c1d3bb2c13b65388b5aa19",
+        "tensor_sha256": "99c7a10ef30364d20e44ee1a9bf4ca16d544bb8b9fee3787b2a5b5ffe3bb0a3f",
+        "epoch": 100,
+        "tensor_count": 118
+      },
+      "archived_best": {
+        "file_sha256": "f876993f7a276bb4186af90a3346fa56f6dcebd108691b5fc8c041b70833cdf2",
+        "tensor_sha256": "358eabe8aad80b66c7a4e17916e59eccbe37a5ad685a995ee4ab28fd3381e3a6",
+        "epoch": 19,
+        "tensor_count": 118
+      },
+      "best_matches_export_hash": true,
+      "auxiliary_vs_best": {
+        "equal": false,
+        "same_keys": true,
+        "different_tensor_count": 116,
+        "examples": [
+          "filter_convs.0.weight",
+          "filter_convs.0.bias",
+          "filter_convs.1.weight",
+          "filter_convs.1.bias",
+          "filter_convs.2.weight"
+        ]
+      },
+      "archived_epoch100": {
+        "file_sha256": "f0ee064a5b20e074d2497898d016c8820173ba5460c1d3bb2c13b65388b5aa19",
+        "tensor_sha256": "99c7a10ef30364d20e44ee1a9bf4ca16d544bb8b9fee3787b2a5b5ffe3bb0a3f",
+        "epoch": 100,
+        "tensor_count": 118
+      },
+      "auxiliary_vs_epoch100": {
+        "equal": true,
+        "same_keys": true,
+        "different_tensor_count": 0,
+        "examples": []
+      },
+      "status": "compared original tensor states",
+      "auxiliary_path": "checkpoints/STNorm/METR-LA_seed43/best_model.pt",
+      "archived_best_path": "checkpoints/STNorm/METR-LA_100_12_12_seed43/70d43e707a12d602460787b0917023e7/STNorm_best_val_MAE.pt",
+      "archived_epoch100_path": "checkpoints/STNorm/METR-LA_100_12_12_seed43/70d43e707a12d602460787b0917023e7/STNorm_100.pt"
+    }
+  ]
+}

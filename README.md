@@ -36,6 +36,10 @@ Mean test MAE across three seeds; lower is better.
 
 Browse [benchmark results](RESULTS.md) for compact metrics, analysis outputs, and protocol details.
 
+Tables S1-S2 and additional technical records are indexed in
+[Benchmark Supporting Records](results/supporting_records/README.md).
+The numerical benchmark remains pinned to v1.4.4.
+
 ## Quick Start
 
 ```bash

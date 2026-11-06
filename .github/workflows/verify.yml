@@ -45,6 +45,9 @@ jobs:
           --expect-tests 31
           --json-output "${{ runner.temp }}/verification-summary.json"
 
+      - name: Verify supporting records
+        run: python results/supporting_records/verify_records.py
+
       - name: Publish verification summary
         if: always()
         uses: actions/upload-artifact@v6

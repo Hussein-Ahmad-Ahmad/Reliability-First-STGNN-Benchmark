@@ -22,13 +22,19 @@ count, and test count.
 
 ## Current Main Branch
 
+The supporting-record addendum extends the public tree without
+replacing the v1.4.4 benchmark snapshot. Tables S1-S2, checkpoint-comparison
+records, literature support and plotting sources are indexed in
+[`results/supporting_records/README.md`](results/supporting_records/README.md).
+
 Verify the current tracked release tree with:
 
 ```bash
 python scripts/verify_release.py --expect-tests 31
+python results/supporting_records/verify_records.py
 ```
 
-The same command runs automatically through
+Both checks run automatically through
 [`.github/workflows/verify.yml`](.github/workflows/verify.yml) on pushes, pull
 requests, a weekly schedule, and manual dispatch.
 

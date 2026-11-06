@@ -1,0 +1,2091 @@
+{
+  "dataset": "METR-LA",
+  "calibration_origins": 3415,
+  "original_evaluation_origins": 3416,
+  "excluded_evaluation_origins": 11,
+  "remaining_evaluation_origins": 3405,
+  "evaluation_window_start_indices_excluded_zero_based": [
+    3415,
+    3416,
+    3417,
+    3418,
+    3419,
+    3420,
+    3421,
+    3422,
+    3423,
+    3424,
+    3425
+  ],
+  "thresholds_unchanged": true,
+  "calibration_quantile_consistency": [
+    {
+      "pool": "pooled",
+      "computed": 11.178125381469727,
+      "stored": 11.178125381469727,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_1",
+      "computed": 9.854202270507812,
+      "stored": 9.854202270507812,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_2",
+      "computed": 11.944151878356934,
+      "stored": 11.944151878356934,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_3",
+      "computed": 12.264853477478027,
+      "stored": 12.264853477478027,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_4",
+      "computed": 12.153275489807129,
+      "stored": 12.153275489807129,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_5",
+      "computed": 11.997684478759766,
+      "stored": 11.997684478759766,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_6",
+      "computed": 11.623140335083008,
+      "stored": 11.623140335083008,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_7",
+      "computed": 11.477343559265137,
+      "stored": 11.477343559265137,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_8",
+      "computed": 11.193119049072266,
+      "stored": 11.193119049072266,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_9",
+      "computed": 10.876346588134766,
+      "stored": 10.876346588134766,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_10",
+      "computed": 10.509345054626465,
+      "stored": 10.509345054626465,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_11",
+      "computed": 10.147138595581055,
+      "stored": 10.147138595581055,
+      "tolerance": 0.0,
+      "passes": true
+    },
+    {
+      "pool": "horizon_12",
+      "computed": 9.824535369873047,
+      "stored": 9.824535369873047,
+      "tolerance": 0.0,
+      "passes": true
+    }
+  ],
+  "normalized_pooled_threshold": 11.178125381469727,
+  "normalized_horizon_thresholds": [
+    9.854202270507812,
+    11.944151878356934,
+    12.264853477478027,
+    12.153275489807129,
+    11.997684478759766,
+    11.623140335083008,
+    11.477343559265137,
+    11.193119049072266,
+    10.876346588134766,
+    10.509345054626465,
+    10.147138595581055,
+    9.824535369873047
+  ],
+  "plain_half_width": 6.894855499267578,
+  "validity_mask": "finite targets not equal to zero",
+  "std_ddof": 0,
+  "epsilon": 1e-06,
+  "excluded_boundary_valid_target_count": 0,
+  "excluded_boundary_targets_all_zero": true,
+  "boundary_targets_match_supplied_raw_dataset": true,
+  "supplied_dataset_sha256": "857a98d0ec47b3538396e289dbc0ab883f87e7c69aa789cfd6cf62b5f47bed61",
+  "boundary_raw_target_time_indices_inclusive": [
+    30845,
+    30866
+  ],
+  "input_arrays": {
+    "ensemble_predictions.npy": {
+      "sha256": "517d3b7c4b4bdda92ee79709dd7b8b879d016f1ed6763478f38fde2306748845",
+      "bytes": 407237024
+    },
+    "targets.npy": {
+      "sha256": "05501d9db2874c31bde62d5ccc78f0e1bdf2774ef45ed8abbdfb9ec995649eeb",
+      "bytes": 67872944
+    }
+  },
+  "frozen_interval_code_sha256": "6e35df371e942a0ecc657103f0b4a66bdbac79cb769c66e9d0134d108044a521",
+  "numpy_version": "2.4.4",
+  "original_metric_reproduction": [
+    {
+      "method": "normalized_pooled",
+      "scope": "aggregate",
+      "metric": "PICP",
+      "recomputed": 0.9056704309766921,
+      "published_record": 0.9056704309766921,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "aggregate",
+      "metric": "MPIW",
+      "recomputed": 23.37816619873047,
+      "published_record": 23.37816619873047,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "aggregate",
+      "metric": "valid_target_count",
+      "recomputed": 7118436,
+      "published_record": 7118436,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_1",
+      "metric": "PICP",
+      "recomputed": 0.9237936642780057,
+      "published_record": 0.9237936642780057,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_1",
+      "metric": "MPIW",
+      "recomputed": 15.634867668151855,
+      "published_record": 15.634867668151855,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_1",
+      "metric": "valid_target_count",
+      "recomputed": 592103,
+      "published_record": 592103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_2",
+      "metric": "PICP",
+      "recomputed": 0.8940491606491947,
+      "published_record": 0.8940491606491947,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_2",
+      "metric": "MPIW",
+      "recomputed": 16.87856101989746,
+      "published_record": 16.87856101989746,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_2",
+      "metric": "valid_target_count",
+      "recomputed": 592303,
+      "published_record": 592303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_3",
+      "metric": "PICP",
+      "recomputed": 0.8899769283868605,
+      "published_record": 0.8899769283868605,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_3",
+      "metric": "MPIW",
+      "recomputed": 18.801496505737305,
+      "published_record": 18.801496505737305,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_3",
+      "metric": "valid_target_count",
+      "recomputed": 592503,
+      "published_record": 592503,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_4",
+      "metric": "PICP",
+      "recomputed": 0.892271508664542,
+      "published_record": 0.892271508664542,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_4",
+      "metric": "MPIW",
+      "recomputed": 20.65169334411621,
+      "published_record": 20.65169334411621,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_4",
+      "metric": "valid_target_count",
+      "recomputed": 592703,
+      "published_record": 592703,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_5",
+      "metric": "PICP",
+      "recomputed": 0.8944110588072586,
+      "published_record": 0.8944110588072586,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_5",
+      "metric": "MPIW",
+      "recomputed": 22.228500366210938,
+      "published_record": 22.228500366210938,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_5",
+      "metric": "valid_target_count",
+      "recomputed": 592903,
+      "published_record": 592903,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_6",
+      "metric": "PICP",
+      "recomputed": 0.8994660286661844,
+      "published_record": 0.8994660286661844,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_6",
+      "metric": "MPIW",
+      "recomputed": 23.616443634033203,
+      "published_record": 23.616443634033203,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_6",
+      "metric": "valid_target_count",
+      "recomputed": 593103,
+      "published_record": 593103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_7",
+      "metric": "PICP",
+      "recomputed": 0.9018208234241188,
+      "published_record": 0.9018208234241188,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_7",
+      "metric": "MPIW",
+      "recomputed": 24.756393432617188,
+      "published_record": 24.756393432617188,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_7",
+      "metric": "valid_target_count",
+      "recomputed": 593303,
+      "published_record": 593303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_8",
+      "metric": "PICP",
+      "recomputed": 0.9051243211912998,
+      "published_record": 0.9051243211912998,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_8",
+      "metric": "MPIW",
+      "recomputed": 25.75104331970215,
+      "published_record": 25.75104331970215,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_8",
+      "metric": "valid_target_count",
+      "recomputed": 593503,
+      "published_record": 593503,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_9",
+      "metric": "PICP",
+      "recomputed": 0.9101503613759742,
+      "published_record": 0.9101503613759742,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_9",
+      "metric": "MPIW",
+      "recomputed": 26.730636596679688,
+      "published_record": 26.730636596679688,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_9",
+      "metric": "valid_target_count",
+      "recomputed": 593703,
+      "published_record": 593703,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_10",
+      "metric": "PICP",
+      "recomputed": 0.9143142903807524,
+      "published_record": 0.9143142903807524,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_10",
+      "metric": "MPIW",
+      "recomputed": 27.559635162353516,
+      "published_record": 27.559635162353516,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_10",
+      "metric": "valid_target_count",
+      "recomputed": 593903,
+      "published_record": 593903,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_11",
+      "metric": "PICP",
+      "recomputed": 0.9192682077013582,
+      "published_record": 0.9192682077013582,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_11",
+      "metric": "MPIW",
+      "recomputed": 28.49270248413086,
+      "published_record": 28.49270248413086,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_11",
+      "metric": "valid_target_count",
+      "recomputed": 594103,
+      "published_record": 594103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_12",
+      "metric": "PICP",
+      "recomputed": 0.9233118459775569,
+      "published_record": 0.9233118459775569,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_12",
+      "metric": "MPIW",
+      "recomputed": 29.375486373901367,
+      "published_record": 29.375486373901367,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_12",
+      "metric": "valid_target_count",
+      "recomputed": 594303,
+      "published_record": 594303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "aggregate",
+      "metric": "PICP",
+      "recomputed": 0.9056291297695168,
+      "published_record": 0.9056291297695168,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "aggregate",
+      "metric": "MPIW",
+      "recomputed": 23.180658667155196,
+      "published_record": 23.180658667155196,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "aggregate",
+      "metric": "valid_target_count",
+      "recomputed": 7118436,
+      "published_record": 7118436,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_1",
+      "metric": "PICP",
+      "recomputed": 0.9029543846256479,
+      "published_record": 0.9029543846256479,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_1",
+      "metric": "MPIW",
+      "recomputed": 13.783093452453613,
+      "published_record": 13.783093452453613,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_1",
+      "metric": "valid_target_count",
+      "recomputed": 592103,
+      "published_record": 592103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_2",
+      "metric": "PICP",
+      "recomputed": 0.9058032797402681,
+      "published_record": 0.9058032797402681,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_2",
+      "metric": "MPIW",
+      "recomputed": 18.035232543945312,
+      "published_record": 18.035232543945312,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_2",
+      "metric": "valid_target_count",
+      "recomputed": 592303,
+      "published_record": 592303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_3",
+      "metric": "PICP",
+      "recomputed": 0.906616506583089,
+      "published_record": 0.906616506583089,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_3",
+      "metric": "MPIW",
+      "recomputed": 20.629362106323242,
+      "published_record": 20.629362106323242,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_3",
+      "metric": "valid_target_count",
+      "recomputed": 592503,
+      "published_record": 592503,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_4",
+      "metric": "PICP",
+      "recomputed": 0.9070630653126439,
+      "published_record": 0.9070630653126439,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_4",
+      "metric": "MPIW",
+      "recomputed": 22.453292846679688,
+      "published_record": 22.453292846679688,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_4",
+      "metric": "valid_target_count",
+      "recomputed": 592703,
+      "published_record": 592703,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_5",
+      "metric": "PICP",
+      "recomputed": 0.9065715639826414,
+      "published_record": 0.9065715639826414,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_5",
+      "metric": "MPIW",
+      "recomputed": 23.858251571655273,
+      "published_record": 23.858251571655273,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_5",
+      "metric": "valid_target_count",
+      "recomputed": 592903,
+      "published_record": 592903,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_6",
+      "metric": "PICP",
+      "recomputed": 0.9059455103076531,
+      "published_record": 0.9059455103076531,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_6",
+      "metric": "MPIW",
+      "recomputed": 24.556642532348633,
+      "published_record": 24.556642532348633,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_6",
+      "metric": "valid_target_count",
+      "recomputed": 593103,
+      "published_record": 593103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_7",
+      "metric": "PICP",
+      "recomputed": 0.9059553044565761,
+      "published_record": 0.9059553044565761,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_7",
+      "metric": "MPIW",
+      "recomputed": 25.41907501220703,
+      "published_record": 25.41907501220703,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_7",
+      "metric": "valid_target_count",
+      "recomputed": 593303,
+      "published_record": 593303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_8",
+      "metric": "PICP",
+      "recomputed": 0.9053399898568331,
+      "published_record": 0.9053399898568331,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_8",
+      "metric": "MPIW",
+      "recomputed": 25.785585403442383,
+      "published_record": 25.785585403442383,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_8",
+      "metric": "valid_target_count",
+      "recomputed": 593503,
+      "published_record": 593503,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_9",
+      "metric": "PICP",
+      "recomputed": 0.9059041305164367,
+      "published_record": 0.9059041305164367,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_9",
+      "metric": "MPIW",
+      "recomputed": 26.008981704711914,
+      "published_record": 26.008981704711914,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_9",
+      "metric": "valid_target_count",
+      "recomputed": 593703,
+      "published_record": 593703,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_10",
+      "metric": "PICP",
+      "recomputed": 0.9050703566070554,
+      "published_record": 0.9050703566070554,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_10",
+      "metric": "MPIW",
+      "recomputed": 25.91075897216797,
+      "published_record": 25.91075897216797,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_10",
+      "metric": "valid_target_count",
+      "recomputed": 593903,
+      "published_record": 593903,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_11",
+      "metric": "PICP",
+      "recomputed": 0.9052723180997234,
+      "published_record": 0.9052723180997234,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_11",
+      "metric": "MPIW",
+      "recomputed": 25.864749908447266,
+      "published_record": 25.864749908447266,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_11",
+      "metric": "valid_target_count",
+      "recomputed": 594103,
+      "published_record": 594103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_12",
+      "metric": "PICP",
+      "recomputed": 0.9050568481061008,
+      "published_record": 0.9050568481061008,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_12",
+      "metric": "MPIW",
+      "recomputed": 25.818328857421875,
+      "published_record": 25.818328857421875,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_12",
+      "metric": "valid_target_count",
+      "recomputed": 594303,
+      "published_record": 594303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "aggregate",
+      "metric": "PICP",
+      "recomputed": 0.9014364953200394,
+      "published_record": 0.9014364953200394,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "aggregate",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "aggregate",
+      "metric": "valid_target_count",
+      "recomputed": 7118436,
+      "published_record": 7118436,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_1",
+      "metric": "PICP",
+      "recomputed": 0.9384853648773946,
+      "published_record": 0.9384853648773946,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_1",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_1",
+      "metric": "valid_target_count",
+      "recomputed": 592103,
+      "published_record": 592103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_2",
+      "metric": "PICP",
+      "recomputed": 0.9234091335009277,
+      "published_record": 0.9234091335009277,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_2",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_2",
+      "metric": "valid_target_count",
+      "recomputed": 592303,
+      "published_record": 592303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_3",
+      "metric": "PICP",
+      "recomputed": 0.9143211089226553,
+      "published_record": 0.9143211089226553,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_3",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_3",
+      "metric": "valid_target_count",
+      "recomputed": 592503,
+      "published_record": 592503,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_4",
+      "metric": "PICP",
+      "recomputed": 0.9075759697521355,
+      "published_record": 0.9075759697521355,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_4",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_4",
+      "metric": "valid_target_count",
+      "recomputed": 592703,
+      "published_record": 592703,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_5",
+      "metric": "PICP",
+      "recomputed": 0.902457906267973,
+      "published_record": 0.902457906267973,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_5",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_5",
+      "metric": "valid_target_count",
+      "recomputed": 592903,
+      "published_record": 592903,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_6",
+      "metric": "PICP",
+      "recomputed": 0.8986702141112083,
+      "published_record": 0.8986702141112083,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_6",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_6",
+      "metric": "valid_target_count",
+      "recomputed": 593103,
+      "published_record": 593103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_7",
+      "metric": "PICP",
+      "recomputed": 0.8952390262648259,
+      "published_record": 0.8952390262648259,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_7",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_7",
+      "metric": "valid_target_count",
+      "recomputed": 593303,
+      "published_record": 593303,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_8",
+      "metric": "PICP",
+      "recomputed": 0.8921184897127732,
+      "published_record": 0.8921184897127732,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_8",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_8",
+      "metric": "valid_target_count",
+      "recomputed": 593503,
+      "published_record": 593503,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_9",
+      "metric": "PICP",
+      "recomputed": 0.8897613790060013,
+      "published_record": 0.8897613790060013,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_9",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_9",
+      "metric": "valid_target_count",
+      "recomputed": 593703,
+      "published_record": 593703,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_10",
+      "metric": "PICP",
+      "recomputed": 0.8872812563667805,
+      "published_record": 0.8872812563667805,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_10",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_10",
+      "metric": "valid_target_count",
+      "recomputed": 593903,
+      "published_record": 593903,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_11",
+      "metric": "PICP",
+      "recomputed": 0.8851411287268369,
+      "published_record": 0.8851411287268369,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_11",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_11",
+      "metric": "valid_target_count",
+      "recomputed": 594103,
+      "published_record": 594103,
+      "tolerance": 0,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_12",
+      "metric": "PICP",
+      "recomputed": 0.8829906630119653,
+      "published_record": 0.8829906630119653,
+      "tolerance": 1e-12,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_12",
+      "metric": "MPIW",
+      "recomputed": 13.789710998535156,
+      "published_record": 13.789710998535156,
+      "tolerance": 1e-05,
+      "passes": true
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_12",
+      "metric": "valid_target_count",
+      "recomputed": 594303,
+      "published_record": 594303,
+      "tolerance": 0,
+      "passes": true
+    }
+  ],
+  "methods": {
+    "normalized_pooled": {
+      "original": {
+        "PICP": 0.9056704309766921,
+        "MPIW": 23.37816619873047,
+        "valid_target_count": 7118436,
+        "per_horizon": {
+          "horizon_1": {
+            "PICP": 0.9237936642780057,
+            "MPIW": 15.634867668151855,
+            "valid_target_count": 592103
+          },
+          "horizon_2": {
+            "PICP": 0.8940491606491947,
+            "MPIW": 16.87856101989746,
+            "valid_target_count": 592303
+          },
+          "horizon_3": {
+            "PICP": 0.8899769283868605,
+            "MPIW": 18.801496505737305,
+            "valid_target_count": 592503
+          },
+          "horizon_4": {
+            "PICP": 0.892271508664542,
+            "MPIW": 20.65169334411621,
+            "valid_target_count": 592703
+          },
+          "horizon_5": {
+            "PICP": 0.8944110588072586,
+            "MPIW": 22.228500366210938,
+            "valid_target_count": 592903
+          },
+          "horizon_6": {
+            "PICP": 0.8994660286661844,
+            "MPIW": 23.616443634033203,
+            "valid_target_count": 593103
+          },
+          "horizon_7": {
+            "PICP": 0.9018208234241188,
+            "MPIW": 24.756393432617188,
+            "valid_target_count": 593303
+          },
+          "horizon_8": {
+            "PICP": 0.9051243211912998,
+            "MPIW": 25.75104331970215,
+            "valid_target_count": 593503
+          },
+          "horizon_9": {
+            "PICP": 0.9101503613759742,
+            "MPIW": 26.730636596679688,
+            "valid_target_count": 593703
+          },
+          "horizon_10": {
+            "PICP": 0.9143142903807524,
+            "MPIW": 27.559635162353516,
+            "valid_target_count": 593903
+          },
+          "horizon_11": {
+            "PICP": 0.9192682077013582,
+            "MPIW": 28.49270248413086,
+            "valid_target_count": 594103
+          },
+          "horizon_12": {
+            "PICP": 0.9233118459775569,
+            "MPIW": 29.375486373901367,
+            "valid_target_count": 594303
+          }
+        }
+      },
+      "boundary_excluded": {
+        "PICP": 0.9056704309766921,
+        "MPIW": 23.37816619873047,
+        "valid_target_count": 7118436,
+        "per_horizon": {
+          "horizon_1": {
+            "PICP": 0.9237936642780057,
+            "MPIW": 15.634867668151855,
+            "valid_target_count": 592103
+          },
+          "horizon_2": {
+            "PICP": 0.8940491606491947,
+            "MPIW": 16.87856101989746,
+            "valid_target_count": 592303
+          },
+          "horizon_3": {
+            "PICP": 0.8899769283868605,
+            "MPIW": 18.801496505737305,
+            "valid_target_count": 592503
+          },
+          "horizon_4": {
+            "PICP": 0.892271508664542,
+            "MPIW": 20.65169334411621,
+            "valid_target_count": 592703
+          },
+          "horizon_5": {
+            "PICP": 0.8944110588072586,
+            "MPIW": 22.228500366210938,
+            "valid_target_count": 592903
+          },
+          "horizon_6": {
+            "PICP": 0.8994660286661844,
+            "MPIW": 23.616443634033203,
+            "valid_target_count": 593103
+          },
+          "horizon_7": {
+            "PICP": 0.9018208234241188,
+            "MPIW": 24.756393432617188,
+            "valid_target_count": 593303
+          },
+          "horizon_8": {
+            "PICP": 0.9051243211912998,
+            "MPIW": 25.75104331970215,
+            "valid_target_count": 593503
+          },
+          "horizon_9": {
+            "PICP": 0.9101503613759742,
+            "MPIW": 26.730636596679688,
+            "valid_target_count": 593703
+          },
+          "horizon_10": {
+            "PICP": 0.9143142903807524,
+            "MPIW": 27.559635162353516,
+            "valid_target_count": 593903
+          },
+          "horizon_11": {
+            "PICP": 0.9192682077013582,
+            "MPIW": 28.49270248413086,
+            "valid_target_count": 594103
+          },
+          "horizon_12": {
+            "PICP": 0.9233118459775569,
+            "MPIW": 29.375486373901367,
+            "valid_target_count": 594303
+          }
+        }
+      }
+    },
+    "normalized_per_horizon": {
+      "original": {
+        "PICP": 0.9056291297695168,
+        "MPIW": 23.180658667155196,
+        "valid_target_count": 7118436,
+        "per_horizon": {
+          "horizon_1": {
+            "PICP": 0.9029543846256479,
+            "MPIW": 13.783093452453613,
+            "valid_target_count": 592103
+          },
+          "horizon_2": {
+            "PICP": 0.9058032797402681,
+            "MPIW": 18.035232543945312,
+            "valid_target_count": 592303
+          },
+          "horizon_3": {
+            "PICP": 0.906616506583089,
+            "MPIW": 20.629362106323242,
+            "valid_target_count": 592503
+          },
+          "horizon_4": {
+            "PICP": 0.9070630653126439,
+            "MPIW": 22.453292846679688,
+            "valid_target_count": 592703
+          },
+          "horizon_5": {
+            "PICP": 0.9065715639826414,
+            "MPIW": 23.858251571655273,
+            "valid_target_count": 592903
+          },
+          "horizon_6": {
+            "PICP": 0.9059455103076531,
+            "MPIW": 24.556642532348633,
+            "valid_target_count": 593103
+          },
+          "horizon_7": {
+            "PICP": 0.9059553044565761,
+            "MPIW": 25.41907501220703,
+            "valid_target_count": 593303
+          },
+          "horizon_8": {
+            "PICP": 0.9053399898568331,
+            "MPIW": 25.785585403442383,
+            "valid_target_count": 593503
+          },
+          "horizon_9": {
+            "PICP": 0.9059041305164367,
+            "MPIW": 26.008981704711914,
+            "valid_target_count": 593703
+          },
+          "horizon_10": {
+            "PICP": 0.9050703566070554,
+            "MPIW": 25.91075897216797,
+            "valid_target_count": 593903
+          },
+          "horizon_11": {
+            "PICP": 0.9052723180997234,
+            "MPIW": 25.864749908447266,
+            "valid_target_count": 594103
+          },
+          "horizon_12": {
+            "PICP": 0.9050568481061008,
+            "MPIW": 25.818328857421875,
+            "valid_target_count": 594303
+          }
+        }
+      },
+      "boundary_excluded": {
+        "PICP": 0.9056291297695168,
+        "MPIW": 23.180658667155196,
+        "valid_target_count": 7118436,
+        "per_horizon": {
+          "horizon_1": {
+            "PICP": 0.9029543846256479,
+            "MPIW": 13.783093452453613,
+            "valid_target_count": 592103
+          },
+          "horizon_2": {
+            "PICP": 0.9058032797402681,
+            "MPIW": 18.035232543945312,
+            "valid_target_count": 592303
+          },
+          "horizon_3": {
+            "PICP": 0.906616506583089,
+            "MPIW": 20.629362106323242,
+            "valid_target_count": 592503
+          },
+          "horizon_4": {
+            "PICP": 0.9070630653126439,
+            "MPIW": 22.453292846679688,
+            "valid_target_count": 592703
+          },
+          "horizon_5": {
+            "PICP": 0.9065715639826414,
+            "MPIW": 23.858251571655273,
+            "valid_target_count": 592903
+          },
+          "horizon_6": {
+            "PICP": 0.9059455103076531,
+            "MPIW": 24.556642532348633,
+            "valid_target_count": 593103
+          },
+          "horizon_7": {
+            "PICP": 0.9059553044565761,
+            "MPIW": 25.41907501220703,
+            "valid_target_count": 593303
+          },
+          "horizon_8": {
+            "PICP": 0.9053399898568331,
+            "MPIW": 25.785585403442383,
+            "valid_target_count": 593503
+          },
+          "horizon_9": {
+            "PICP": 0.9059041305164367,
+            "MPIW": 26.008981704711914,
+            "valid_target_count": 593703
+          },
+          "horizon_10": {
+            "PICP": 0.9050703566070554,
+            "MPIW": 25.91075897216797,
+            "valid_target_count": 593903
+          },
+          "horizon_11": {
+            "PICP": 0.9052723180997234,
+            "MPIW": 25.864749908447266,
+            "valid_target_count": 594103
+          },
+          "horizon_12": {
+            "PICP": 0.9050568481061008,
+            "MPIW": 25.818328857421875,
+            "valid_target_count": 594303
+          }
+        }
+      }
+    },
+    "plain_pooled": {
+      "original": {
+        "PICP": 0.9014364953200394,
+        "MPIW": 13.789710998535156,
+        "valid_target_count": 7118436,
+        "per_horizon": {
+          "horizon_1": {
+            "PICP": 0.9384853648773946,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592103
+          },
+          "horizon_2": {
+            "PICP": 0.9234091335009277,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592303
+          },
+          "horizon_3": {
+            "PICP": 0.9143211089226553,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592503
+          },
+          "horizon_4": {
+            "PICP": 0.9075759697521355,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592703
+          },
+          "horizon_5": {
+            "PICP": 0.902457906267973,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592903
+          },
+          "horizon_6": {
+            "PICP": 0.8986702141112083,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593103
+          },
+          "horizon_7": {
+            "PICP": 0.8952390262648259,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593303
+          },
+          "horizon_8": {
+            "PICP": 0.8921184897127732,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593503
+          },
+          "horizon_9": {
+            "PICP": 0.8897613790060013,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593703
+          },
+          "horizon_10": {
+            "PICP": 0.8872812563667805,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593903
+          },
+          "horizon_11": {
+            "PICP": 0.8851411287268369,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 594103
+          },
+          "horizon_12": {
+            "PICP": 0.8829906630119653,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 594303
+          }
+        }
+      },
+      "boundary_excluded": {
+        "PICP": 0.9014364953200394,
+        "MPIW": 13.789710998535156,
+        "valid_target_count": 7118436,
+        "per_horizon": {
+          "horizon_1": {
+            "PICP": 0.9384853648773946,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592103
+          },
+          "horizon_2": {
+            "PICP": 0.9234091335009277,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592303
+          },
+          "horizon_3": {
+            "PICP": 0.9143211089226553,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592503
+          },
+          "horizon_4": {
+            "PICP": 0.9075759697521355,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592703
+          },
+          "horizon_5": {
+            "PICP": 0.902457906267973,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 592903
+          },
+          "horizon_6": {
+            "PICP": 0.8986702141112083,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593103
+          },
+          "horizon_7": {
+            "PICP": 0.8952390262648259,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593303
+          },
+          "horizon_8": {
+            "PICP": 0.8921184897127732,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593503
+          },
+          "horizon_9": {
+            "PICP": 0.8897613790060013,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593703
+          },
+          "horizon_10": {
+            "PICP": 0.8872812563667805,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 593903
+          },
+          "horizon_11": {
+            "PICP": 0.8851411287268369,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 594103
+          },
+          "horizon_12": {
+            "PICP": 0.8829906630119653,
+            "MPIW": 13.789710998535156,
+            "valid_target_count": 594303
+          }
+        }
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "method": "normalized_pooled",
+      "scope": "aggregate",
+      "original_PICP": 0.9056704309766921,
+      "boundary_excluded_PICP": 0.9056704309766921,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 23.37816619873047,
+      "boundary_excluded_MPIW": 23.37816619873047,
+      "width_change": 0.0,
+      "original_valid_elements": 7118436,
+      "boundary_excluded_valid_elements": 7118436
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_1",
+      "original_PICP": 0.9237936642780057,
+      "boundary_excluded_PICP": 0.9237936642780057,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 15.634867668151855,
+      "boundary_excluded_MPIW": 15.634867668151855,
+      "width_change": 0.0,
+      "original_valid_elements": 592103,
+      "boundary_excluded_valid_elements": 592103
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_2",
+      "original_PICP": 0.8940491606491947,
+      "boundary_excluded_PICP": 0.8940491606491947,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 16.87856101989746,
+      "boundary_excluded_MPIW": 16.87856101989746,
+      "width_change": 0.0,
+      "original_valid_elements": 592303,
+      "boundary_excluded_valid_elements": 592303
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_3",
+      "original_PICP": 0.8899769283868605,
+      "boundary_excluded_PICP": 0.8899769283868605,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 18.801496505737305,
+      "boundary_excluded_MPIW": 18.801496505737305,
+      "width_change": 0.0,
+      "original_valid_elements": 592503,
+      "boundary_excluded_valid_elements": 592503
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_4",
+      "original_PICP": 0.892271508664542,
+      "boundary_excluded_PICP": 0.892271508664542,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 20.65169334411621,
+      "boundary_excluded_MPIW": 20.65169334411621,
+      "width_change": 0.0,
+      "original_valid_elements": 592703,
+      "boundary_excluded_valid_elements": 592703
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_5",
+      "original_PICP": 0.8944110588072586,
+      "boundary_excluded_PICP": 0.8944110588072586,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 22.228500366210938,
+      "boundary_excluded_MPIW": 22.228500366210938,
+      "width_change": 0.0,
+      "original_valid_elements": 592903,
+      "boundary_excluded_valid_elements": 592903
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_6",
+      "original_PICP": 0.8994660286661844,
+      "boundary_excluded_PICP": 0.8994660286661844,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 23.616443634033203,
+      "boundary_excluded_MPIW": 23.616443634033203,
+      "width_change": 0.0,
+      "original_valid_elements": 593103,
+      "boundary_excluded_valid_elements": 593103
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_7",
+      "original_PICP": 0.9018208234241188,
+      "boundary_excluded_PICP": 0.9018208234241188,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 24.756393432617188,
+      "boundary_excluded_MPIW": 24.756393432617188,
+      "width_change": 0.0,
+      "original_valid_elements": 593303,
+      "boundary_excluded_valid_elements": 593303
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_8",
+      "original_PICP": 0.9051243211912998,
+      "boundary_excluded_PICP": 0.9051243211912998,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 25.75104331970215,
+      "boundary_excluded_MPIW": 25.75104331970215,
+      "width_change": 0.0,
+      "original_valid_elements": 593503,
+      "boundary_excluded_valid_elements": 593503
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_9",
+      "original_PICP": 0.9101503613759742,
+      "boundary_excluded_PICP": 0.9101503613759742,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 26.730636596679688,
+      "boundary_excluded_MPIW": 26.730636596679688,
+      "width_change": 0.0,
+      "original_valid_elements": 593703,
+      "boundary_excluded_valid_elements": 593703
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_10",
+      "original_PICP": 0.9143142903807524,
+      "boundary_excluded_PICP": 0.9143142903807524,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 27.559635162353516,
+      "boundary_excluded_MPIW": 27.559635162353516,
+      "width_change": 0.0,
+      "original_valid_elements": 593903,
+      "boundary_excluded_valid_elements": 593903
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_11",
+      "original_PICP": 0.9192682077013582,
+      "boundary_excluded_PICP": 0.9192682077013582,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 28.49270248413086,
+      "boundary_excluded_MPIW": 28.49270248413086,
+      "width_change": 0.0,
+      "original_valid_elements": 594103,
+      "boundary_excluded_valid_elements": 594103
+    },
+    {
+      "method": "normalized_pooled",
+      "scope": "horizon_12",
+      "original_PICP": 0.9233118459775569,
+      "boundary_excluded_PICP": 0.9233118459775569,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 29.375486373901367,
+      "boundary_excluded_MPIW": 29.375486373901367,
+      "width_change": 0.0,
+      "original_valid_elements": 594303,
+      "boundary_excluded_valid_elements": 594303
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "aggregate",
+      "original_PICP": 0.9056291297695168,
+      "boundary_excluded_PICP": 0.9056291297695168,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 23.180658667155196,
+      "boundary_excluded_MPIW": 23.180658667155196,
+      "width_change": 0.0,
+      "original_valid_elements": 7118436,
+      "boundary_excluded_valid_elements": 7118436
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_1",
+      "original_PICP": 0.9029543846256479,
+      "boundary_excluded_PICP": 0.9029543846256479,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.783093452453613,
+      "boundary_excluded_MPIW": 13.783093452453613,
+      "width_change": 0.0,
+      "original_valid_elements": 592103,
+      "boundary_excluded_valid_elements": 592103
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_2",
+      "original_PICP": 0.9058032797402681,
+      "boundary_excluded_PICP": 0.9058032797402681,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 18.035232543945312,
+      "boundary_excluded_MPIW": 18.035232543945312,
+      "width_change": 0.0,
+      "original_valid_elements": 592303,
+      "boundary_excluded_valid_elements": 592303
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_3",
+      "original_PICP": 0.906616506583089,
+      "boundary_excluded_PICP": 0.906616506583089,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 20.629362106323242,
+      "boundary_excluded_MPIW": 20.629362106323242,
+      "width_change": 0.0,
+      "original_valid_elements": 592503,
+      "boundary_excluded_valid_elements": 592503
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_4",
+      "original_PICP": 0.9070630653126439,
+      "boundary_excluded_PICP": 0.9070630653126439,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 22.453292846679688,
+      "boundary_excluded_MPIW": 22.453292846679688,
+      "width_change": 0.0,
+      "original_valid_elements": 592703,
+      "boundary_excluded_valid_elements": 592703
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_5",
+      "original_PICP": 0.9065715639826414,
+      "boundary_excluded_PICP": 0.9065715639826414,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 23.858251571655273,
+      "boundary_excluded_MPIW": 23.858251571655273,
+      "width_change": 0.0,
+      "original_valid_elements": 592903,
+      "boundary_excluded_valid_elements": 592903
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_6",
+      "original_PICP": 0.9059455103076531,
+      "boundary_excluded_PICP": 0.9059455103076531,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 24.556642532348633,
+      "boundary_excluded_MPIW": 24.556642532348633,
+      "width_change": 0.0,
+      "original_valid_elements": 593103,
+      "boundary_excluded_valid_elements": 593103
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_7",
+      "original_PICP": 0.9059553044565761,
+      "boundary_excluded_PICP": 0.9059553044565761,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 25.41907501220703,
+      "boundary_excluded_MPIW": 25.41907501220703,
+      "width_change": 0.0,
+      "original_valid_elements": 593303,
+      "boundary_excluded_valid_elements": 593303
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_8",
+      "original_PICP": 0.9053399898568331,
+      "boundary_excluded_PICP": 0.9053399898568331,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 25.785585403442383,
+      "boundary_excluded_MPIW": 25.785585403442383,
+      "width_change": 0.0,
+      "original_valid_elements": 593503,
+      "boundary_excluded_valid_elements": 593503
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_9",
+      "original_PICP": 0.9059041305164367,
+      "boundary_excluded_PICP": 0.9059041305164367,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 26.008981704711914,
+      "boundary_excluded_MPIW": 26.008981704711914,
+      "width_change": 0.0,
+      "original_valid_elements": 593703,
+      "boundary_excluded_valid_elements": 593703
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_10",
+      "original_PICP": 0.9050703566070554,
+      "boundary_excluded_PICP": 0.9050703566070554,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 25.91075897216797,
+      "boundary_excluded_MPIW": 25.91075897216797,
+      "width_change": 0.0,
+      "original_valid_elements": 593903,
+      "boundary_excluded_valid_elements": 593903
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_11",
+      "original_PICP": 0.9052723180997234,
+      "boundary_excluded_PICP": 0.9052723180997234,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 25.864749908447266,
+      "boundary_excluded_MPIW": 25.864749908447266,
+      "width_change": 0.0,
+      "original_valid_elements": 594103,
+      "boundary_excluded_valid_elements": 594103
+    },
+    {
+      "method": "normalized_per_horizon",
+      "scope": "horizon_12",
+      "original_PICP": 0.9050568481061008,
+      "boundary_excluded_PICP": 0.9050568481061008,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 25.818328857421875,
+      "boundary_excluded_MPIW": 25.818328857421875,
+      "width_change": 0.0,
+      "original_valid_elements": 594303,
+      "boundary_excluded_valid_elements": 594303
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "aggregate",
+      "original_PICP": 0.9014364953200394,
+      "boundary_excluded_PICP": 0.9014364953200394,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 7118436,
+      "boundary_excluded_valid_elements": 7118436
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_1",
+      "original_PICP": 0.9384853648773946,
+      "boundary_excluded_PICP": 0.9384853648773946,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 592103,
+      "boundary_excluded_valid_elements": 592103
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_2",
+      "original_PICP": 0.9234091335009277,
+      "boundary_excluded_PICP": 0.9234091335009277,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 592303,
+      "boundary_excluded_valid_elements": 592303
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_3",
+      "original_PICP": 0.9143211089226553,
+      "boundary_excluded_PICP": 0.9143211089226553,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 592503,
+      "boundary_excluded_valid_elements": 592503
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_4",
+      "original_PICP": 0.9075759697521355,
+      "boundary_excluded_PICP": 0.9075759697521355,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 592703,
+      "boundary_excluded_valid_elements": 592703
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_5",
+      "original_PICP": 0.902457906267973,
+      "boundary_excluded_PICP": 0.902457906267973,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 592903,
+      "boundary_excluded_valid_elements": 592903
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_6",
+      "original_PICP": 0.8986702141112083,
+      "boundary_excluded_PICP": 0.8986702141112083,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 593103,
+      "boundary_excluded_valid_elements": 593103
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_7",
+      "original_PICP": 0.8952390262648259,
+      "boundary_excluded_PICP": 0.8952390262648259,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 593303,
+      "boundary_excluded_valid_elements": 593303
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_8",
+      "original_PICP": 0.8921184897127732,
+      "boundary_excluded_PICP": 0.8921184897127732,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 593503,
+      "boundary_excluded_valid_elements": 593503
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_9",
+      "original_PICP": 0.8897613790060013,
+      "boundary_excluded_PICP": 0.8897613790060013,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 593703,
+      "boundary_excluded_valid_elements": 593703
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_10",
+      "original_PICP": 0.8872812563667805,
+      "boundary_excluded_PICP": 0.8872812563667805,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 593903,
+      "boundary_excluded_valid_elements": 593903
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_11",
+      "original_PICP": 0.8851411287268369,
+      "boundary_excluded_PICP": 0.8851411287268369,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 594103,
+      "boundary_excluded_valid_elements": 594103
+    },
+    {
+      "method": "plain_pooled",
+      "scope": "horizon_12",
+      "original_PICP": 0.8829906630119653,
+      "boundary_excluded_PICP": 0.8829906630119653,
+      "coverage_change_percentage_points": 0.0,
+      "original_MPIW": 13.789710998535156,
+      "boundary_excluded_MPIW": 13.789710998535156,
+      "width_change": 0.0,
+      "original_valid_elements": 594303,
+      "boundary_excluded_valid_elements": 594303
+    }
+  ],
+  "training_performed": false,
+  "inference_performed": false,
+  "scope": "Saved-array sensitivity to evaluation-boundary exclusion, not an exchangeability or conditional-coverage guarantee."
+}
