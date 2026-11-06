@@ -1,85 +1,62 @@
 # Benchmark Supporting Records
 
-These records accompany the final article interpretation. The numerical
-benchmark remains pinned to [v1.4.4](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.4),
-commit `60c812982e530b9c743b4feeb0154310182e6639`. No training results or
-historical release files are replaced by this addendum.
+Supporting tables, data and analysis scripts for the benchmark snapshot
+[v1.4.4](https://github.com/Hussein-Ahmad-Ahmad/Reliability-First-STGNN-Benchmark/tree/v1.4.4).
 
-## Record Index
+## Files
 
-| Article location | File | Contents |
-|---|---|---|
-| Section VII-E, Table 16 and Table S1 | [Supporting Tables.pdf](Supporting%20Tables.pdf), [Table S1.csv](Table%20S1.csv) | All ten reference-degree controls, 30 random draws per control, source hashes and descriptive ranks |
-| Section VII-C and Table S2 | [Table S2 all horizons.csv](Table%20S2%20all%20horizons.csv), [calibration_boundary_sensitivity.json](calibration_boundary_sensitivity.json) | Original and boundary-excluded PICP/MPIW for three METR-LA interval methods |
-| Table 5 and auxiliary diagnostics | [checkpoint_states.json](checkpoint_states.json) | Tensor comparison of 27 auxiliary cases with archived checkpoint states |
-| Appendix Tables A.4-A.6 | [RER evidence map.csv](RER%20evidence%20map.csv), [Synthesis sources.csv](Synthesis%20sources.csv), [Screening accounting.csv](Screening%20accounting.csv) | 117 final literature codes, 63-source synthesis and aggregate screening accounting |
-| Figures A.1, A.3 and A.8 | [figure_generation.json](figure_generation.json), [render_selected_figures.py](render_selected_figures.py) | Input records and plotting code for the three retained production figures |
-| Figure A.10 | [ig_overlap_figure.json](ig_overlap_figure.json), [render_ig_overlap.py](render_ig_overlap.py) | Seven-model top-10 sensor inclusion counts and plotting code |
+| Material | Files |
+|---|---|
+| Reader-facing Tables S1 and S2 | [Supporting Tables.pdf](Supporting%20Tables.pdf) |
+| Ten sensor-ablation controls and their source hashes | [Table S1.csv](Table%20S1.csv) |
+| Aggregate and horizon-wise calibration-boundary results | [Table S2 all horizons.csv](Table%20S2%20all%20horizons.csv), [calculation record](calibration_boundary_sensitivity.json) |
+| Comparison of 27 checkpoint states | [checkpoint_states.json](checkpoint_states.json) |
+| Literature codes and synthesis accounting | [RER evidence map.csv](RER%20evidence%20map.csv), [Synthesis sources.csv](Synthesis%20sources.csv), [Screening accounting.csv](Screening%20accounting.csv) |
+| Figure inputs and plotting scripts | [figure_generation.json](figure_generation.json), [render_selected_figures.py](render_selected_figures.py), [ig_overlap_figure.json](ig_overlap_figure.json), [render_ig_overlap.py](render_ig_overlap.py) |
+| Array and checkpoint calculations | [calibration_boundary_sensitivity.py](calibration_boundary_sensitivity.py), [check_checkpoint_states.py](check_checkpoint_states.py) |
 
-[Supporting Tables.tex](Supporting%20Tables.tex) is the editable source of the
-reader-facing tables. The tables retain the S1/S2 identifiers used in the article;
-their availability here does not imply a separate journal supplement.
+## Measurement Scope
 
-## Interpretation
+Table S1 reports target-MAE changes on epoch-100 checkpoints, with a clean
+reference for each checkpoint. Its ranks are descriptive positions among 30
+random controls. Sample-specific XAI tests instead measure forecast changes
+on each model's output scale using inputs passed directly from the data loader.
+These procedures use different input processing and response definitions.
 
-S1 ranks describe responses of fixed sensor sets on epoch-100 checkpoints, not
-significance tests or authenticated fidelity of the original explainer checkpoint.
-All 27 inspected auxiliary states match archived epoch-100 states; 25 differ
-from validation-selected states. Weight identity does not authenticate every
-historical inference or establish equivalent preprocessing.
+Table S2 keeps calibration and thresholds fixed and excludes 11 evaluation
+origins whose targets are all masked. Both evaluations retain the same
+7,118,436 valid elements, so coverage and width are unchanged. This checks
+boundary accounting rather than the effect of removing valid observations.
 
-The sample-specific XAI routine uses loader-supplied inputs and native model
-outputs. Target-MAE controls instead use their specified scaled-input and
-inverse-output pipeline. Cross-horizon diagnostics and absolute native-output
-changes are not harmonized benchmark-matched explanation fidelity. The primary
-traffic assessment retains five Met and four Partial judgments, including RER-6
-Partial. Model-specific attention records are not a controlled common-axis
-entropy comparison; the removed entropy panel is not included in this addendum.
+## Prediction Records
 
-S2 retains the calibration origins, fitted thresholds and validity mask and
-excludes the first 11 evaluation origins. The origin count changes from 3,416
-to 3,405, but both evaluations contain the same 7,118,436 valid target elements
-because those 11 origins contribute no valid targets. This is a boundary and
-mask check, not sensitivity to removing valid observations or an exchangeability
-guarantee.
+The [53 benchmark exports](../release/export_verification.json) and the
+[separate six-member METR-LA conformal exports](../task2_uncertainty/conformal/METR-LA_ensemble_manifest.json)
+have their own online-MAE agreement checks within `1e-5`. PEMS-BAY and PEMS04
+conformal predictions were collected directly from inference batches.
 
-The literature files are reference-anchored supporting records. They do not
-recover unavailable historical search transitions. The original paired coding
-passes and agreement calculation remain in `results/literature_coding/`.
+Earlier offline exports had a final-batch indexing mismatch affecting
+94/6,831 METR-LA origins (1.38%), 64/10,400 PEMS-BAY origins (0.62%), and
+94/3,375 PEMS04 origins (2.79%). The reported bootstrap and METR-LA conformal
+analyses use complete, origin-aligned records instead. Point-forecast tables
+use the online measurements.
 
 ## Verification
 
-From the repository root, using Python 3.9 or later and the standard library:
+From the repository root, using Python 3.9 or later:
 
 ```text
 python results/supporting_records/verify_records.py
 ```
 
-This checks file hashes, S1 source identities and arithmetic, the S2 record
-consistency, checkpoint comparison summaries, and literature counts. It does not
-rerun neural models or independently authenticate historical execution.
+This standard-library check verifies file hashes, control arithmetic, boundary
+record consistency, checkpoint summaries and literature counts.
 
-The unchanged `Evaluation-Artifacts-v1.4.4.zip` release asset supplies the frozen
-JSON inputs used by the plotting and array-calculation scripts. Figure plotting
-requires NumPy and Matplotlib. For example:
+Plotting uses NumPy, Matplotlib and the frozen `Evaluation-Artifacts-v1.4.4.zip`
+release asset. Array recalculation uses Python 3.12 and NumPy 2.4.4. Checkpoint
+comparison uses PyTorch. Each script's `--help` lists the required paths.
 
-```text
-python results/supporting_records/render_selected_figures.py --supplement PATH_TO_EVALUATION_ARCHIVE --output-dir OUTPUT_DIRECTORY --records-path OUTPUT_RECORD_JSON
-python results/supporting_records/render_ig_overlap.py --supplement PATH_TO_EVALUATION_ARCHIVE --output-dir OUTPUT_DIRECTORY --records-path OUTPUT_RECORD_JSON
-```
-
-The following optional checks require authorized access to the internal files:
-
-```text
-python results/supporting_records/calibration_boundary_sensitivity.py --arrays-dir PATH_TO_ALIGNED_ARRAYS --supplement PATH_TO_EVALUATION_ARCHIVE --raw-data PATH_TO_METR_LA_DATA --output-dir OUTPUT_DIRECTORY
-python results/supporting_records/check_checkpoint_states.py --archive-root ARCHIVED_CHECKPOINT_ROOT --repository-root AUXILIARY_CHECKPOINT_ROOT --supplement PATH_TO_EVALUATION_ARCHIVE --output-dir OUTPUT_DIRECTORY
-```
-
-The boundary calculation uses Python 3.12 and NumPy 2.4.4 to reproduce its
-recorded floating-point results. Checkpoint comparison additionally requires
-PyTorch supporting `weights_only=True`. These scripts do not train models or
-execute inference. Large traffic arrays and weights are not distributed, so
-these files do not provide a self-contained reproduction of all experiments.
-
-`SHA256SUMS.txt` covers this directory except itself. The repository's
-`ARTIFACT_MANIFEST.sha256` additionally covers the complete tracked release tree.
+Full traffic prediction arrays and weights remain internal. The array and
+checkpoint scripts require those files, while the compact-record verifier and
+plotting scripts use public inputs. `SHA256SUMS.txt` covers this folder, and
+`ARTIFACT_MANIFEST.sha256` covers the tracked repository.
